@@ -1,12 +1,10 @@
 import React from 'react';
 import LaunchPage from "./LaunchPage";
+import './styles/App.css';
 
 function App() {
     return (
         <div className="App">
-            <header className="App-header">
-                Enso Street
-            </header>
             <LaunchPage/>
         </div>
     );

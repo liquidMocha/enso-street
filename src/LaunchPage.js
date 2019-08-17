@@ -1,14 +1,19 @@
 import React from 'react';
+import './styles/LaunchPage.scss';
 
 function LaunchPage() {
     return (
-        <div>
-            <p>
+        <div className="launch-page">
+            <div id="enso-street-title">
+                <p>Enso</p>
+                <p>Street</p>
+            </div>
+            <div>
                 Conscious Living
-            </p>
-            <p>
+            </div>
+            <div>
                 Effortless Sharing
-            </p>
+            </div>
         </div>
     );
 }
