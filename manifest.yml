@@ -1,0 +1,7 @@
+---
+applications:
+  - name: enso-street-web-ui
+    path: build/
+    memory: 64M
+    instances: 1
+    buildpack: https://github.com/cloudfoundry/staticfile-buildpack
