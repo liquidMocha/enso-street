@@ -18,7 +18,7 @@ class LaunchPage extends React.Component {
                     <p>Enso</p>
                     <p>Street</p>
                 </div>
-                <Button data-onsuccess={this.onSignIn} onclick={this.signin}>Sign In Through Google</Button>
+                <Button data-onsuccess={this.onSignIn} class="g-signin2">Sign In Through Google</Button>
                 <div>
                     Conscious Living
                 </div>
