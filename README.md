@@ -30,6 +30,7 @@ See the section about [deployment](https://facebook.github.io/create-react-app/d
 
 ### `cf push`
 
+Run `npm run build` first.
 deploy to wherever `cf target` is pointing to.
 
 ### `npm run eject`
