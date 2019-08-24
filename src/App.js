@@ -1,11 +1,11 @@
 import React from 'react';
-import LaunchPage from "./LaunchPage";
 import './styles/App.css';
+import SearchBar from "./SearchBar";
 
 function App() {
     return (
         <div className="App">
-            <LaunchPage/>
+            <SearchBar/>
         </div>
     );
 }
