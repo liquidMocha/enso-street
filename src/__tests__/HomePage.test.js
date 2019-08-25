@@ -41,6 +41,16 @@ describe("Home Page", function () {
         });
     });
 
+    describe("menu button", () => {
+        it("should display menu when click on menu button", () => {
+            let menuButton = browser.findElement({className: "menu-button-container"});
+            menuButton.click();
+            let menu = browser.findElement({className: "menu-container"});
+
+            expect(menu.isDisplayed()).toBe(true);
+        });
+    });
+
     afterAll(function () {
         browser.quit();
     });
