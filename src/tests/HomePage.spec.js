@@ -5,6 +5,8 @@ module.exports = {
             .waitForElementVisible('body')
             .click('.menu-button-container')
             .assert.visible('.menu-container')
+            .click('.menu-button-container')
+            .assert.elementNotPresent('.menu-container')
             .end();
     }
 };
