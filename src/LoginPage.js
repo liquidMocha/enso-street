@@ -38,6 +38,10 @@ class LoginPage extends React.Component {
                     />
                     {(this.state.loggedInUser ? this.state.loggedInUser : null)}
                 </div>
+
+                <div className='sign-up-section'>
+                    Don't have an account? <span className='sign-up-button'>Sign up</span>
+                </div>
             </div>
         );
     }

@@ -1,5 +1,5 @@
 import React from 'react';
-import './styles/SearchBar.scss';
+import '../styles/SearchBar.scss';
 import MenuButton from "./MenuButton";
 import SearchBox from "./SearchBox";
 import Menu from "./Menu";
