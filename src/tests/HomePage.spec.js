@@ -1,7 +1,9 @@
+const url = 'localhost:3000';
+
 module.exports = {
-    'Home Page test': function (browser) {
+    'Menu button should show and hide menu': function (browser) {
         browser
-            .url('localhost:3000')
+            .url(url)
             .waitForElementVisible('body')
             .click('.menu-button-container')
             .assert.visible('.menu-container')
