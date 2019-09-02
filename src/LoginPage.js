@@ -40,7 +40,7 @@ class LoginPage extends React.Component {
                 </div>
 
                 <div className='sign-up-section'>
-                    Don't have an account? <span className='sign-up-button'>Sign up</span>
+                    Don't have an account? <span className='sign-up-button' onClick={this.props.onSignUpClicked}>Sign up</span>
                 </div>
             </div>
         );
