@@ -7,7 +7,7 @@ jobs:
   build:
     docker:
       # specify the version you desire here
-      - image: circleci/node:12.8.1
+      - image: circleci/node:jessie
 
       # Specify service dependencies here if necessary
       # CircleCI maintains a library of pre-built images
@@ -27,8 +27,6 @@ jobs:
             - v1-dependencies-
 
       - run: npm install
-
-      - run: apt-get install chromium-browser
 
       - save_cache:
           paths:
