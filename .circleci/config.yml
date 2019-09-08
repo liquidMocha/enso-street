@@ -33,9 +33,6 @@ jobs:
             - node_modules
           key: v1-dependencies-{{ checksum "package.json" }}
 
-      # run tests!
-      - run: node_modules/.bin/nightwatch
-
       - run:
           name: Setup CF CLI
           command: |
