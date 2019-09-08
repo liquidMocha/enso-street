@@ -35,7 +35,9 @@ jobs:
 
       - run:
           name: build deployable
-          command: npm run build
+          command: |
+            npm rebuild node-sass
+            npm run build
 
       - run:
           name: Setup CF CLI
