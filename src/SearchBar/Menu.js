@@ -6,7 +6,6 @@ class Menu extends React.Component {
         return (
             <div className="menu-container">
                 <div id='menu-login-option'>Log in</div>
-                <div>Sign up</div>
                 <div>How it works</div>
                 <div>Trust & Safety</div>
                 <div>Help</div>

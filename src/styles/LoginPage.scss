@@ -10,4 +10,10 @@
   .login-buttons {
 
   }
+
+  .sign-up-button {
+    &:hover {
+      cursor: pointer;
+    }
+  }
 }

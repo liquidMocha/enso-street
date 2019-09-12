@@ -1,7 +1,7 @@
 const url = 'localhost:3000';
 
 module.exports = {
-    'Menu button should show and hide menu': function (browser) {
+    'should show and hide menu when click menu button': function (browser) {
         browser
             .url(url)
             .waitForElementVisible('body')
