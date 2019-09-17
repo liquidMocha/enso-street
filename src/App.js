@@ -3,27 +3,16 @@ import './styles/App.css';
 import SearchBar from "./SearchBar/SearchBar";
 import LoginPage from "./LoginPage";
 import SignUpPage from "./SignUpPage";
+import {BrowserRouter, Route} from "react-router-dom";
 
 class App extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {currentPage: 'login-page'};
-
-        this.goToSignUpPage = this.goToSignUpPage.bind(this);
-    }
-
-    goToSignUpPage() {
-        this.setState({currentPage: 'signup-page'})
-    }
-
     render() {
         return (
-            <div className="App">
+            <BrowserRouter>
                 <SearchBar/>
-                {this.state.currentPage === 'login-page' ?
-                    <LoginPage onSignUpClicked={this.goToSignUpPage}/> :
-                    <SignUpPage/>}
-            </div>
+                <Route path="/login" component={LoginPage}/>
+                <Route path="/sign-up" component={SignUpPage}/>
+            </BrowserRouter>
         );
     }
 

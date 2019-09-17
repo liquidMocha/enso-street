@@ -5,6 +5,8 @@ module.exports = {
         browser
             .url(url)
             .waitForElementVisible('body')
+            .click('.menu-button-container')
+            .click('#menu-login-option')
             .click('.sign-up-button')
             .assert.visible('#sign-up-email-field')
             .assert.visible('#sign-up-name-field')
@@ -12,13 +14,4 @@ module.exports = {
             .assert.elementNotPresent('.login-page-title')
             .end();
     },
-
-    'should go to sign up page when click sign up button': (browser) => {
-        browser
-            .url(url)
-            .waitForElementVisible('body')
-            .click('.sign-up-button')
-            .assert.elementPresent('.sign-up-page')
-            .end();
-    }
 };

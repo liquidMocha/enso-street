@@ -1,6 +1,7 @@
 import React from "react";
 import GoogleLogin from "react-google-login";
 import './styles/LoginPage.scss';
+import {Link} from "react-router-dom";
 
 class LoginPage extends React.Component {
 
@@ -40,7 +41,7 @@ class LoginPage extends React.Component {
                 </div>
 
                 <div className='sign-up-section'>
-                    Don't have an account? <span className='sign-up-button' onClick={this.props.onSignUpClicked}>Sign up</span>
+                    Don't have an account? <Link to='sign-up' className='sign-up-button'>Sign up</Link>
                 </div>
             </div>
         );

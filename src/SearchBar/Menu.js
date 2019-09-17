@@ -1,11 +1,13 @@
 import React from "react";
 import '../styles/Menu.scss'
+import {Link} from "react-router-dom";
 
 class Menu extends React.Component {
     render() {
         return (
             <div className="menu-container">
-                <div id='menu-login-option'>Log in</div>
+                <Link to="login" id='menu-login-option'>Log in</Link>
+                <Link to="sign-up">Sign Up</Link>
                 <div>How it works</div>
                 <div>Trust & Safety</div>
                 <div>Help</div>
