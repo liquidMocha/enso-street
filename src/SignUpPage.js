@@ -1,6 +1,7 @@
 import React from "react";
 import axios from 'axios';
 import './styles/SignUpPage.scss';
+import {Link} from "react-router-dom";
 
 class SignUpPage extends React.Component {
     constructor(props) {
@@ -52,6 +53,7 @@ class SignUpPage extends React.Component {
                                    onChange={(event) => {this.setState({password: event.target.value})}}/>
                         </label>
                     </div>
+                    <Link to='login' id='sign-up-page-login-link'>Login</Link>
                     <button id='sign-up-submit-button' onClick={this.onSubmitSignUpForm}>Sign Up</button>
                 </form>
             </div>
