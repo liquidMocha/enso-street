@@ -23,7 +23,6 @@ describe('sign up page', () => {
             }
         });
 
-        console.log(axios.post.mock.calls[0][0]);
         expect(axios.post).toHaveBeenCalled();
         expect(axios.post.mock.calls[0][0].includes('/users/createUser')).toBe(true);
         expect(axios.post.mock.calls[0][1].email).toEqual(enteredEmail);

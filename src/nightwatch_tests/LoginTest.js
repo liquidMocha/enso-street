@@ -14,4 +14,15 @@ module.exports = {
             .assert.elementNotPresent('.login-page-title')
             .end();
     },
+
+    'should have fields to login': (browser) => {
+        browser
+            .url(url)
+            .waitForElementVisible('body')
+            .click('.menu-button-container')
+            .click('#menu-login-option')
+            .assert.visible('#login-email-field')
+            .assert.visible('#login-password-field')
+            .end();
+    }
 };
