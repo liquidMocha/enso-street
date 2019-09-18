@@ -35,7 +35,7 @@ class LoginPage extends React.Component {
         console.log("sign in failed");
     };
 
-    onSignIn = (googleUser) => {
+    onGoogleSignIn = (googleUser) => {
         console.log("onSignIn called from jsx");
         console.log(googleUser);
         let profile = googleUser.getBasicProfile();
@@ -72,13 +72,14 @@ class LoginPage extends React.Component {
                         </label>
                     </div>
                     <button onClick={this.onLogin}>Login</button>
-                    {!this.state.loginSuccessful && this.state.loginClicked ? 'login failed': ''}
+                    {!this.state.loginSuccessful && this.state.loginClicked ? 'login failed': null}
+                    {this.state.loginSuccessful && this.state.loginClicked ? 'login successful': null}
                 </form>
                 <div className='login-buttons'>
                     <GoogleLogin
                         clientId="600326466228-h28741e5k0gksv3440nnn688rnl967bb.apps.googleusercontent.com"
                         buttonText="Login"
-                        onSuccess={this.onSignIn}
+                        onSuccess={this.onGoogleSignIn}
                         onFailure={this.onSignInFailure}
                         cookiePolicy={'single_host_origin'}
                     />
