@@ -5,12 +5,13 @@ class ListItem extends React.Component {
     render() {
         return (
             <div>
-                <button onClick={this.onSubmitListItem()}>list item</button>
+                <button onClick={this.onSubmitListItem}>list item</button>
             </div>
         );
     }
 
-    onSubmitListItem = () => {
+    onSubmitListItem = (event) => {
+        event.preventDefault();
         axios.post(this.props.baseUrl + '/items/createItem', {foo: "bar"}, {withCredentials: true})
     };
 }
