@@ -24,7 +24,7 @@ class LoginPage extends React.Component {
         axios.post(baseUrl + '/users/login', {
             email: this.state.email,
             password: this.state.password
-        }).then((response) => {
+        }, {withCredentials: true}).then((response) => {
             this.setState({loginSuccessful: true, loginClicked: true});
         }).catch((error) => {
             this.setState({loginSuccessful: false, loginClicked: true});
@@ -72,8 +72,8 @@ class LoginPage extends React.Component {
                         </label>
                     </div>
                     <button onClick={this.onLogin}>Login</button>
-                    {!this.state.loginSuccessful && this.state.loginClicked ? 'login failed': null}
-                    {this.state.loginSuccessful && this.state.loginClicked ? 'login successful': null}
+                    {!this.state.loginSuccessful && this.state.loginClicked ? 'login failed' : null}
+                    {this.state.loginSuccessful && this.state.loginClicked ? 'login successful' : null}
                 </form>
                 <div className='login-buttons'>
                     <GoogleLogin

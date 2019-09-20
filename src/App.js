@@ -4,6 +4,7 @@ import SearchBar from "./SearchBar/SearchBar";
 import LoginPage from "./LoginPage";
 import SignUpPage from "./SignUpPage";
 import {BrowserRouter, Route} from "react-router-dom";
+import ListItem from "./ListItem";
 
 class App extends React.Component {
     render() {
@@ -12,6 +13,7 @@ class App extends React.Component {
                 <SearchBar/>
                 <Route path="/login" component={LoginPage}/>
                 <Route path="/sign-up" component={SignUpPage}/>
+                <Route path="/list-item" component={ListItem}/>
             </BrowserRouter>
         );
     }
