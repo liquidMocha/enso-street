@@ -20,8 +20,7 @@ class LoginPage extends React.Component {
     onLogin = (event) => {
         event.preventDefault();
         this.setState({loginClicked: false});
-        const baseUrl = process.env.REACT_APP_SERVER_URL;
-        axios.post(baseUrl + '/users/login', {
+        axios.post(this.props.baseUrl + '/users/login', {
             email: this.state.email,
             password: this.state.password
         }, {withCredentials: true}).then((response) => {

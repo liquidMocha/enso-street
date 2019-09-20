@@ -11,8 +11,7 @@ class ListItem extends React.Component {
     }
 
     onSubmitListItem = () => {
-        const baseUrl = process.env.REACT_APP_SERVER_URL;
-        axios.post(baseUrl + '/items/createItem', {foo: "bar"}, {withCredentials: true})
+        axios.post(this.props.baseUrl + '/items/createItem', {foo: "bar"}, {withCredentials: true})
     };
 }
 

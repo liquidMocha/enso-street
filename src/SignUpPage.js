@@ -15,8 +15,7 @@ class SignUpPage extends React.Component {
 
     onSubmitSignUpForm = (event) => {
         event.preventDefault();
-        const baseUrl = process.env.REACT_APP_SERVER_URL;
-        axios.post(baseUrl + '/users/createUser', {
+        axios.post(this.props.baseUrl + '/users/createUser', {
             email: this.state.email,
             name: this.state.name,
             password: this.state.password
