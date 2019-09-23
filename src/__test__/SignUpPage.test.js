@@ -6,7 +6,8 @@ import axios from "axios";
 describe('sign up page', () => {
     it('should send sign up data to server', () => {
         axios.post = jest.fn();
-        const signUpPage = shallow(<SignUpPage/>);
+        const testBaseUrl = 'www.baseUrl';
+        const signUpPage = shallow(<SignUpPage baseUrl={testBaseUrl}/>);
 
         let emailField = signUpPage.find('#sign-up-email-field');
         let enteredEmail = 'email@enso.com';
@@ -24,13 +25,13 @@ describe('sign up page', () => {
         });
 
         expect(axios.post).toHaveBeenCalled();
-        expect(axios.post.mock.calls[0][0].includes('/users/createUser')).toBe(true);
+        expect(axios.post.mock.calls[0][0].includes(testBaseUrl + '/users/createUser')).toBe(true);
         expect(axios.post.mock.calls[0][1].email).toEqual(enteredEmail);
         expect(axios.post.mock.calls[0][1].name).toEqual(enteredName);
         expect(axios.post.mock.calls[0][1].password).toEqual(enteredPassword);
     });
 
-    it('should prevent default for signup form', () => {
+    it('should prevent default for sign up form', () => {
         const signupPage = shallow(<SignUpPage/>);
 
         let preventDefault = false;

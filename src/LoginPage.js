@@ -37,13 +37,10 @@ class LoginPage extends React.Component {
 
     onGoogleSignIn = (googleUser) => {
         console.log(googleUser);
-        let profile = googleUser.getBasicProfile();
+        const profile = googleUser.getBasicProfile();
         this.setState({loggedInUser: profile.getName()});
         this.setState({userImage: profile.getImageUrl()});
-        console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
-        console.log('Name: ' + profile.getName());
-        console.log('Image URL: ' + profile.getImageUrl());
-        console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
+        const idToken = googleUser.getAuthResponse().id_token;
     };
 
     render() {
@@ -83,7 +80,7 @@ class LoginPage extends React.Component {
                         onFailure={this.onGoogleSignInFailure}
                         cookiePolicy={'single_host_origin'}
                     />
-                    {(this.state.loggedInUser ? this.state.loggedInUser : null)}
+                    {this.state.loggedInUser ? this.state.loggedInUser : null}
                     {this.state.loggedInUser ? <img src={this.state.userImage} alt="new"/> : null}
                 </div>
 

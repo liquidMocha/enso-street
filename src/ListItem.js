@@ -13,7 +13,17 @@ class ListItem extends React.Component {
 
     onSubmitListItem = (event) => {
         event.preventDefault();
-        axios.post(this.props.baseUrl + '/items/createItem', {foo: "bar"}, {withCredentials: true})
+        axios.post(
+            this.props.baseUrl + '/items/createItem',
+            {foo: "bar"},
+            {withCredentials: true})
+            .then((response) => {
+                console.log(response.status)
+            })
+            .catch((error) => {
+                //TODO: redirect to login here
+                console.log("errorrrr:", error)
+            })
     };
 }
 
