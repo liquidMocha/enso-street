@@ -42,7 +42,7 @@ class LoginPage extends React.Component {
         this.setState({userImage: profile.getImageUrl()});
         const idToken = googleUser.getAuthResponse().id_token;
 
-        axios.post(this.props.baseUrl + '/googleSignOn', {
+        axios.post(this.props.baseUrl + '/users/googleSignOn', {
             idToken: idToken
         }).then(response => {
             console.log('response from googleSignOn: ', response);
