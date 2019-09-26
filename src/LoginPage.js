@@ -83,7 +83,7 @@ class LoginPage extends React.Component {
                 <div className='login-buttons'>
                     <GoogleLogin
                         clientId="600326466228-h28741e5k0gksv3440nnn688rnl967bb.apps.googleusercontent.com"
-                        buttonText="Login"
+                        buttonText="Continue With Google"
                         onSuccess={this.onGoogleSignIn}
                         onFailure={this.onGoogleSignInFailure}
                         cookiePolicy={'single_host_origin'}

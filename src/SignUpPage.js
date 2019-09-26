@@ -9,12 +9,17 @@ class SignUpPage extends React.Component {
         this.state = {
             email: "",
             name: "",
-            password: ""
+            password: "",
+            signUpFailed: false
         };
     }
 
     onSubmitSignUpForm = (event) => {
         event.preventDefault();
+        if (this.state.password.length < 8) {
+            this.setState({signUpFailed: true});
+            return;
+        }
         axios.post(this.props.baseUrl + '/users/createUser', {
             email: this.state.email,
             name: this.state.name,
@@ -33,7 +38,9 @@ class SignUpPage extends React.Component {
                             Email:
                             <input id='sign-up-email-field'
                                    type='text'
-                            onChange={(event) => {this.setState({email: event.target.value})}}/>
+                                   onChange={(event) => {
+                                       this.setState({email: event.target.value})
+                                   }}/>
                         </label>
                     </div>
                     <div>
@@ -41,7 +48,9 @@ class SignUpPage extends React.Component {
                             Name:
                             <input id='sign-up-name-field'
                                    type='text'
-                                   onChange={(event) => {this.setState({name: event.target.value})}}/>
+                                   onChange={(event) => {
+                                       this.setState({name: event.target.value})
+                                   }}/>
                         </label>
                     </div>
                     <div>
@@ -49,12 +58,15 @@ class SignUpPage extends React.Component {
                             Password:
                             <input id='sign-up-password-field'
                                    type='password'
-                                   onChange={(event) => {this.setState({password: event.target.value})}}/>
+                                   onChange={(event) => {
+                                       this.setState({password: event.target.value})
+                                   }}/>
                         </label>
                     </div>
                     <Link to='login' id='sign-up-page-login-link'>Login</Link>
                     <button id='sign-up-submit-button' onClick={this.onSubmitSignUpForm}>Sign Up</button>
                 </form>
+                {this.state.signUpFailed ? 'sign up failed' : null}
             </div>
         );
     }
