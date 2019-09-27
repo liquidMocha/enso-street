@@ -1,12 +1,12 @@
 import {shallow} from "enzyme";
 import React from "react";
-import LoginPage from "../LoginPage";
 import axios from "axios";
+import LoginForm from "../LoginForm";
 
 describe('login page', () => {
     it('should send login data to server', () => {
         axios.post = jest.fn(() => Promise.resolve({ data: {} }));
-        const loginPage = shallow(<LoginPage/>);
+        const loginPage = shallow(<LoginForm/>);
 
         let emailField = loginPage.find('#login-email-field');
         let enteredEmail = "some-email@enso.com";
@@ -27,7 +27,7 @@ describe('login page', () => {
     });
 
     it('should prevent default for login form', () => {
-        const loginPage = shallow(<LoginPage/>);
+        const loginPage = shallow(<LoginForm/>);
 
         let preventDefault = false;
         loginPage.find('form').simulate('submit', {

@@ -3,6 +3,7 @@ import GoogleLogin from "react-google-login";
 import './styles/LoginPage.scss';
 import {Link} from "react-router-dom";
 import axios from "axios";
+import LoginForm from "./LoginForm";
 
 class LoginPage extends React.Component {
 
@@ -10,26 +11,9 @@ class LoginPage extends React.Component {
         super(props);
         this.state = {
             loggedInUser: '',
-            userImage: '',
-            email: '',
-            password: '',
-            loginSuccessful: false,
-            loginClicked: false
+            userImage: ''
         };
     }
-
-    onLogin = (event) => {
-        event.preventDefault();
-        this.setState({loginClicked: false});
-        axios.post(this.props.baseUrl + '/users/login', {
-            email: this.state.email,
-            password: this.state.password
-        }, {withCredentials: true}).then((response) => {
-            this.setState({loginSuccessful: true, loginClicked: true});
-        }).catch((error) => {
-            this.setState({loginSuccessful: false, loginClicked: true});
-        });
-    };
 
     onGoogleSignInFailure = () => {
         console.log("sign in failed");
@@ -55,31 +39,7 @@ class LoginPage extends React.Component {
         return (
             <div className='login-page'>
                 <div className='login-page-title'>Log in</div>
-                <form onSubmit={this.onLogin}>
-                    <div>
-                        <label>
-                            Email:
-                            <input id='login-email-field'
-                                   type='text'
-                                   onChange={(event) => {
-                                       this.setState({email: event.target.value})
-                                   }}/>
-                        </label>
-                    </div>
-                    <div>
-                        <label>
-                            Password:
-                            <input id='login-password-field'
-                                   type='password'
-                                   onChange={(event) => {
-                                       this.setState({password: event.target.value})
-                                   }}/>
-                        </label>
-                    </div>
-                    <button onClick={this.onLogin}>Login</button>
-                    {!this.state.loginSuccessful && this.state.loginClicked ? 'login failed' : null}
-                    {this.state.loginSuccessful && this.state.loginClicked ? 'login successful' : null}
-                </form>
+                <LoginForm baseUrl={this.props.baseUrl}/>
                 <div className='login-buttons'>
                     <GoogleLogin
                         clientId="600326466228-h28741e5k0gksv3440nnn688rnl967bb.apps.googleusercontent.com"
