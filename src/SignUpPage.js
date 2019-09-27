@@ -2,6 +2,7 @@ import React from "react";
 import axios from 'axios';
 import './styles/SignUpPage.scss';
 import {Link} from "react-router-dom";
+import * as ReactGA from "react-ga";
 
 class SignUpPage extends React.Component {
     constructor(props) {
@@ -12,6 +13,10 @@ class SignUpPage extends React.Component {
             password: "",
             signUpFailed: false
         };
+    }
+
+    componentDidMount() {
+        ReactGA.pageview('/sign-up');
     }
 
     onSubmitSignUpForm = (event) => {
