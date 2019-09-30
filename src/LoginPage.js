@@ -28,7 +28,7 @@ class LoginPage extends React.Component {
 
         axios.post(this.props.baseUrl + '/users/googleSignOn', {
             idToken: idToken
-        }).then(response => {
+        }, {withCredentials: true}).then(response => {
             console.log('response from googleSignOn: ', response);
         }).catch(error => {
             console.log('error from googleSignOn: ', error);
