@@ -42,7 +42,7 @@ class LoginPage extends React.Component {
                 <LoginForm baseUrl={this.props.baseUrl}/>
                 <div className='login-buttons'>
                     <GoogleLogin
-                        clientId={process.env.googleClientId}
+                        clientId={process.env.REACT_APP_googleClientId}
                         buttonText="Continue With Google"
                         onSuccess={this.onGoogleSignIn}
                         onFailure={this.onGoogleSignInFailure}
