@@ -1,0 +1,20 @@
+#login-form {
+
+  label {
+    font-size: 12px;
+    display: block;
+  }
+
+  input {
+    margin-bottom: 10px;
+    border-radius: 3px;
+    padding: 5px;
+    border: 1px solid grey;
+  }
+
+  button {
+    margin-top: 15px;
+    margin-bottom: 15px;
+    width: 100%;
+  }
+}

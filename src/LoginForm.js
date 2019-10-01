@@ -1,5 +1,6 @@
 import React, {useState} from "react";
 import axios from "axios";
+import './styles/LoginForm.scss';
 
 const LoginForm = (props) => {
     const [loginSuccessful, setLoginSuccessful] = useState(false);
@@ -24,26 +25,26 @@ const LoginForm = (props) => {
     };
 
     return (
-        <form onSubmit={onLogin}>
+        <form id='login-form' onSubmit={onLogin}>
             <div>
                 <label>
-                    Email:
-                    <input id='login-email-field'
-                           type='text'
-                           onChange={(event) => {
-                               setEmail(event.target.value)
-                           }}/>
+                    Email
                 </label>
+                <input id='login-email-field'
+                       type='text'
+                       onChange={(event) => {
+                           setEmail(event.target.value)
+                       }}/>
             </div>
             <div>
                 <label>
-                    Password:
-                    <input id='login-password-field'
-                           type='password'
-                           onChange={(event) => {
-                               setPassword(event.target.value)
-                           }}/>
+                    Password
                 </label>
+                <input id='login-password-field'
+                       type='password'
+                       onChange={(event) => {
+                           setPassword(event.target.value)
+                       }}/>
             </div>
             <button onClick={onLogin}>Login</button>
             {!loginSuccessful && loginClicked ? 'login failed' : null}

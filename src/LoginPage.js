@@ -3,6 +3,7 @@ import GoogleLogin from "react-google-login";
 import './styles/LoginPage.scss';
 import axios from "axios";
 import LoginForm from "./LoginForm";
+import TitleBar from "./TitleBar";
 
 class LoginPage extends React.Component {
 
@@ -37,21 +38,24 @@ class LoginPage extends React.Component {
     render() {
         return (
             <div className='login-page'>
-                <div className='login-page-title'>Join EnsoStreet</div>
-                <div className='login-buttons'>
-                    <GoogleLogin
-                        clientId={process.env.REACT_APP_googleClientId}
-                        buttonText="Continue With Google"
-                        onSuccess={this.onGoogleSignIn}
-                        onFailure={this.onGoogleSignInFailure}
-                        cookiePolicy={'single_host_origin'}
-                    />
-                    {this.state.loggedInUser ? this.state.loggedInUser : null}
-                    {this.state.loggedInUser ? <img src={this.state.userImage} alt="new"/> : null}
+                <TitleBar/>
+                <div className='login-page-body'>
+                    <div className='login-page-title'>Join EnsoStreet</div>
+                    <div className='login-buttons'>
+                        <GoogleLogin
+                            clientId={process.env.REACT_APP_googleClientId}
+                            buttonText="Continue With Google"
+                            onSuccess={this.onGoogleSignIn}
+                            onFailure={this.onGoogleSignInFailure}
+                            cookiePolicy={'single_host_origin'}
+                        />
+                        {this.state.loggedInUser ? this.state.loggedInUser : null}
+                        {this.state.loggedInUser ? <img src={this.state.userImage} alt="new"/> : null}
+                    </div>
+                    <div>OR</div>
+                    <LoginForm baseUrl={this.props.baseUrl}/>
+                    <div>Forget password</div>
                 </div>
-                <div>OR</div>
-                <LoginForm baseUrl={this.props.baseUrl}/>
-                <div>Forget password</div>
             </div>
         );
     }

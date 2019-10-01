@@ -5,7 +5,7 @@ module.exports = {
         browser
             .url(url)
             .waitForElementVisible('body')
-            .assert.visible('#enso-street-title')
+            .assert.visible('.enso-street-title')
             .assert.visible('#login-button')
             .assert.visible('#sign-up-button')
             .end();
