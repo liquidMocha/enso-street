@@ -41,3 +41,8 @@ jobs:
           command: |
             npm rebuild node-sass
             npm run build
+
+      - run:
+          name: tests
+          command: |
+            npm test
