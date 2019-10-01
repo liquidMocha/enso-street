@@ -37,12 +37,6 @@ jobs:
           key: v1-dependencies-{{ checksum "package.json" }}
 
       - run:
-          name: build deployable
-          command: |
-            npm rebuild node-sass
-            npm run build
-
-      - run:
           name: unit tests
           command: |
             npm test
