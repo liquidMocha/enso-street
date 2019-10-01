@@ -51,4 +51,5 @@ jobs:
           name: browser tests
           command: |
             nohup bash -c 'npm start' &
+            sleep 5
             ./node_modules/nightwatch/bin/nightwatch
