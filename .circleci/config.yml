@@ -43,6 +43,11 @@ jobs:
             npm run build
 
       - run:
-          name: tests
+          name: unit tests
           command: |
             npm test
+
+      - run:
+          name: browser tests
+          command: |
+            nightwatch
