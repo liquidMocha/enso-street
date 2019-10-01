@@ -1,25 +1,11 @@
 const url = 'localhost:3000';
 
 module.exports = {
-    'should have button for sign up': (browser) => {
+    'should have button for login': (browser) => {
         browser
             .url(url)
             .waitForElementVisible('body')
-            .click('.menu-button-container')
-            .click('#menu-login-option')
-            .click('.sign-up-button')
-            .assert.visible('#sign-up-email-field')
-            .assert.visible('#sign-up-name-field')
-            .assert.visible('#sign-up-password-field')
-            .end();
-    },
-
-    'should have fields to login': (browser) => {
-        browser
-            .url(url)
-            .waitForElementVisible('body')
-            .click('.menu-button-container')
-            .click('#menu-login-option')
+            .click('#login-button')
             .assert.visible('#login-email-field')
             .assert.visible('#login-password-field')
             .end();

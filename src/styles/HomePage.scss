@@ -1,0 +1,37 @@
+.home-page {
+  margin: 10px;
+
+  #home-page-body {
+    text-align: center;
+    border-bottom: 1px solid grey;
+    padding-bottom: 10px;
+  }
+
+  #enso-street-title {
+    border-bottom: 1px solid grey;
+    margin-bottom: 10px;
+    padding-bottom: 5px;
+  }
+
+  #home-page-button-group {
+    display: flex;
+    flex-direction: column;
+
+    a {
+      text-align: center;
+      text-decoration: none;
+      width: 100%;
+    }
+
+    .home-page-button {
+      border-radius: 3px;
+      margin-bottom: 10px;
+      padding: 5px;
+      border: 1px solid grey;
+    }
+  }
+
+  #home-page-policy-section {
+    margin-top: 10px;
+  }
+}

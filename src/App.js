@@ -1,17 +1,17 @@
 import React from 'react';
 import './styles/App.css';
-import SearchBar from "./SearchBar/SearchBar";
 import LoginPage from "./LoginPage";
 import SignUpPage from "./SignUpPage";
 import {BrowserRouter, Route} from "react-router-dom";
 import ListItem from "./ListItem";
+import HomePage from "./HomePage";
 
 class App extends React.Component {
     render() {
         const baseUrl = process.env.REACT_APP_SERVER_URL;
         return (
             <BrowserRouter>
-                <SearchBar/>
+                <Route exact path="/" component={HomePage} />
                 <Route path="/login"
                        component={(props) => <LoginPage {...props} baseUrl={baseUrl}/>}
                 />

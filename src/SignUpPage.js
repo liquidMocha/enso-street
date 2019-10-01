@@ -28,7 +28,7 @@ function SignUpPage(props) {
 
     return (
         <div className='sign-up-page'>
-            <div>Sign Up</div>
+            <div>Join EnsoStreet</div>
             <form onSubmit={onSubmitSignUpForm}>
                 <div>
                     <label>

@@ -1,7 +1,6 @@
 import React from "react";
 import GoogleLogin from "react-google-login";
 import './styles/LoginPage.scss';
-import {Link} from "react-router-dom";
 import axios from "axios";
 import LoginForm from "./LoginForm";
 
@@ -38,8 +37,7 @@ class LoginPage extends React.Component {
     render() {
         return (
             <div className='login-page'>
-                <div className='login-page-title'>Log in</div>
-                <LoginForm baseUrl={this.props.baseUrl}/>
+                <div className='login-page-title'>Join EnsoStreet</div>
                 <div className='login-buttons'>
                     <GoogleLogin
                         clientId={process.env.REACT_APP_googleClientId}
@@ -51,10 +49,9 @@ class LoginPage extends React.Component {
                     {this.state.loggedInUser ? this.state.loggedInUser : null}
                     {this.state.loggedInUser ? <img src={this.state.userImage} alt="new"/> : null}
                 </div>
-
-                <div className='sign-up-section'>
-                    Don't have an account? <Link to='sign-up' className='sign-up-button'>Sign up</Link>
-                </div>
+                <div>OR</div>
+                <LoginForm baseUrl={this.props.baseUrl}/>
+                <div>Forget password</div>
             </div>
         );
     }
