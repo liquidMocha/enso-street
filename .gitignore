@@ -21,3 +21,4 @@ yarn-error.log*
 /tests_output/
 /chromedriver.log
 /.env
+/nohup.out
