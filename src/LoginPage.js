@@ -3,6 +3,7 @@ import GoogleLogin from "react-google-login";
 import './styles/LoginPage.scss';
 import axios from "axios";
 import LoginForm from "./LoginForm";
+import './styles/Button.scss';
 
 class LoginPage extends React.Component {
 
@@ -46,6 +47,9 @@ class LoginPage extends React.Component {
                             onSuccess={this.onGoogleSignIn}
                             onFailure={this.onGoogleSignInFailure}
                             cookiePolicy={'single_host_origin'}
+                            render={_ => (
+                                <button>Continue with Google</button>
+                            )}
                         />
                         {this.state.loggedInUser ? this.state.loggedInUser : null}
                         {this.state.loggedInUser ? <img src={this.state.userImage} alt="new"/> : null}

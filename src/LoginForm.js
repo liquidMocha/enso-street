@@ -32,6 +32,7 @@ const LoginForm = (props) => {
                 </label>
                 <input id='login-email-field'
                        type='text'
+                       data-lpignore='true'
                        onChange={(event) => {
                            setEmail(event.target.value)
                        }}/>
@@ -42,6 +43,7 @@ const LoginForm = (props) => {
                 </label>
                 <input id='login-password-field'
                        type='password'
+                       data-lpignore='true'
                        onChange={(event) => {
                            setPassword(event.target.value)
                        }}/>
