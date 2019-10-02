@@ -36,8 +36,8 @@ const OAuthButtons = () => {
                 onSuccess={onGoogleSignIn}
                 onFailure={onGoogleSignInFailure}
                 cookiePolicy={'single_host_origin'}
-                render={_ => (
-                    <button>Continue with Google</button>
+                render={renderProps => (
+                    <button onClick={renderProps.onClick} disabled={renderProps.disabled}>Continue with Google</button>
                 )}
             />
             {loggedInUser ? loggedInUser : null}
