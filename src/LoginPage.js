@@ -19,7 +19,7 @@ class LoginPage extends React.Component {
             <div className='login-page'>
                 <div className='login-page-body'>
                     <div className='login-page-title'>Join EnsoStreet</div>
-                    <OAuthButtons/>
+                    <OAuthButtons baseUrl={this.props.baseUrl}/>
                     <div>OR</div>
                     <LoginForm baseUrl={this.props.baseUrl}/>
                     <div>Forget password</div>

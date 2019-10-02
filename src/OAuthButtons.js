@@ -2,7 +2,7 @@ import GoogleLogin from "react-google-login";
 import React, {useState} from "react";
 import axios from "axios";
 
-const OAuthButtons = () => {
+const OAuthButtons = (props) => {
     const [loggedInUser, setLoggedInUser] = useState('');
     const [userImage, setUserImage] = useState('');
 
@@ -13,7 +13,7 @@ const OAuthButtons = () => {
         setUserImage(profile.getImageUrl());
         const idToken = googleUser.getAuthResponse().id_token;
 
-        axios.post(this.props.baseUrl + '/users/googleSignOn', {
+        axios.post(props.baseUrl + '/users/googleSignOn', {
             idToken: idToken
         }, {withCredentials: true}).then(response => {
             console.log('response from googleSignOn: ', response);
