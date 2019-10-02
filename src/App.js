@@ -13,8 +13,8 @@ class App extends React.Component {
         const baseUrl = process.env.REACT_APP_SERVER_URL;
         return (
             <BrowserRouter>
-                <TitleBar/>
                 <div id='app-content'>
+                    <TitleBar/>
                     <Route exact path="/" component={HomePage}/>
                     <Route path="/login"
                            component={(props) => <LoginPage {...props} baseUrl={baseUrl}/>}
