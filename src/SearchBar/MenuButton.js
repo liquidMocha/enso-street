@@ -10,6 +10,6 @@ const MenuButton = (props) => {
             <div className="menu-button-bar"/>
         </div>
     );
-}
+};
 
 export default MenuButton;

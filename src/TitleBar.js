@@ -4,7 +4,9 @@ import './styles/TitleBar.scss'
 const TitleBar = () => {
 
     return (
-        <div className='enso-street-title'>EnsoStreet</div>
+        <div>
+            <div className='enso-street-title'>EnsoStreet</div>
+        </div>
     )
 };
 
