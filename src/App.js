@@ -6,6 +6,7 @@ import {BrowserRouter, Route} from "react-router-dom";
 import ListItem from "./ListItem";
 import HomePage from "./HomePage";
 import TitleBar from "./TitleBar";
+import Footer from "./Footer";
 
 class App extends React.Component {
     render() {
@@ -24,6 +25,7 @@ class App extends React.Component {
                     <Route path="/list-item"
                            component={(props) => <ListItem {...props} baseUrl={baseUrl}/>}/>
                 </div>
+                <Footer />
             </BrowserRouter>
         );
     }

@@ -1,0 +1,26 @@
+#application-footer {
+  margin-top: 30px;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+
+  #terms-bar {
+    display: flex;
+    flex-direction: row;
+    background-color: lightgrey;
+    justify-items: center;
+    padding: 5px;
+
+    div {
+      justify-content: center;
+      display: flex;
+      flex: 1;
+    }
+  }
+
+  #copy-right {
+    padding: 5px;
+    align-self: center;
+    font-size: 10px;
+  }
+}

@@ -1,0 +1,19 @@
+.sign-up-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  .login-buttons {
+    width: 100%;
+  }
+  form {
+    width: 100%;
+  }
+
+  #agree-terms-claim {
+    font-size: 10px;
+    align-self: center;
+    width: 60%;
+    color: grey;
+  }
+}

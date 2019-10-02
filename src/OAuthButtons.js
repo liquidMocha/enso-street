@@ -1,6 +1,7 @@
 import GoogleLogin from "react-google-login";
 import React, {useState} from "react";
 import axios from "axios";
+import './styles/Button.scss';
 
 const OAuthButtons = (props) => {
     const [loggedInUser, setLoggedInUser] = useState('');
@@ -25,8 +26,6 @@ const OAuthButtons = (props) => {
     const onGoogleSignInFailure = () => {
         console.log("sign in failed");
     };
-
-
 
     return (
         <div className='login-buttons'>
