@@ -3,7 +3,6 @@ import GoogleLogin from "react-google-login";
 import './styles/LoginPage.scss';
 import axios from "axios";
 import LoginForm from "./LoginForm";
-import TitleBar from "./TitleBar";
 
 class LoginPage extends React.Component {
 
@@ -38,7 +37,6 @@ class LoginPage extends React.Component {
     render() {
         return (
             <div className='login-page'>
-                <TitleBar/>
                 <div className='login-page-body'>
                     <div className='login-page-title'>Join EnsoStreet</div>
                     <div className='login-buttons'>

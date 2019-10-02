@@ -1,7 +1,6 @@
-import React, {useState, useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import axios from 'axios';
 import './styles/SignUpPage.scss';
-import {Link} from "react-router-dom";
 import * as ReactGA from "react-ga";
 
 function SignUpPage(props) {
@@ -54,7 +53,6 @@ function SignUpPage(props) {
                                onChange={(event) => {setPassword(event.target.value)}}/>
                     </label>
                 </div>
-                <Link to='login' id='sign-up-page-login-link'>Login</Link>
                 <button id='sign-up-submit-button' onClick={onSubmitSignUpForm}>Sign Up</button>
             </form>
             {signUpFailed ? 'sign up failed' : null}

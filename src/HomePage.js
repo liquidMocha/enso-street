@@ -1,13 +1,11 @@
 import React from "react";
 import {Link} from "react-router-dom";
 import './styles/HomePage.scss';
-import TitleBar from "./TitleBar";
 
 const HomePage = () => {
 
     return (
         <div className='home-page'>
-            <TitleBar/>
             <div id='home-page-body'>
                 <div id='home-page-button-group'>
                     <Link to='login' id='login-button'>
