@@ -4,6 +4,7 @@ import './styles/SignUpPage.scss';
 import * as ReactGA from "react-ga";
 import OAuthButtons from "./OAuthButtons";
 import './styles/Input.scss';
+import InputWithError from "./InputWithError";
 
 function SignUpPage(props) {
     const [email, setEmail] = useState('');
@@ -36,26 +37,38 @@ function SignUpPage(props) {
                 <div>
                     <label>
                         Email
-                        <input id='sign-up-email-field'
-                               type='text'
-                               onChange={(event) => {setEmail(event.target.value)}}/>
                     </label>
+                    <InputWithError id='sign-up-email-field'
+                                    type='text'
+                                    onChange={(value) => {
+                                        setEmail(value)
+                                    }}
+                                    shouldError={() => email === ''}
+                    />
                 </div>
                 <div>
                     <label>
                         Name
-                        <input id='sign-up-name-field'
-                               type='text'
-                               onChange={(event) => {setName(event.target.value)}}/>
                     </label>
+                    <InputWithError id='sign-up-name-field'
+                                    type='text'
+                                    onChange={(value) => {
+                                        setName(value)
+                                    }}
+                                    shouldError={() => name === ''}
+                    />
                 </div>
                 <div>
                     <label>
                         Password
-                        <input id='sign-up-password-field'
-                               type='password'
-                               onChange={(event) => {setPassword(event.target.value)}}/>
                     </label>
+                    <InputWithError id='sign-up-password-field'
+                                    type='text'
+                                    onChange={(value) => {
+                                        setPassword(value)
+                                    }}
+                                    shouldError={() => password === ''}
+                    />
                 </div>
                 <button id='sign-up-submit-button' onClick={onSubmitSignUpForm}>Sign Up</button>
             </form>

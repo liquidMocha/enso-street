@@ -31,8 +31,8 @@ const LoginForm = (props) => {
                 <label>Email</label>
                 <InputWithError id='login-email-field'
                                 type='text'
-                                onChange={(event) => {
-                                    setEmail(event.target.value)
+                                onChange={(value) => {
+                                    setEmail(value)
                                 }}
                                 shouldError={() => email === ''}
                 />
@@ -41,8 +41,8 @@ const LoginForm = (props) => {
                 <label>Password</label>
                 <InputWithError id='login-password-field'
                                 type='password'
-                                onChange={(event) => {
-                                    setPassword(event.target.value)
+                                onChange={(value) => {
+                                    setPassword(value)
                                 }}
                                 shouldError={() => password === ''}
                 />
