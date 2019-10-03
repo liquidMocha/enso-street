@@ -61,7 +61,7 @@ describe('sign up page', () => {
 
     const enterIntoField = (selector, enteredEmail) => {
         let emailField = signUpPage.find(selector);
-        emailField.simulate("change", {target: {value: enteredEmail}});
+        emailField.simulate("change", enteredEmail);
         return enteredEmail;
     };
 });

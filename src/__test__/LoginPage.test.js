@@ -10,10 +10,10 @@ describe('login page', () => {
 
         let emailField = loginPage.find('#login-email-field');
         let enteredEmail = "some-email@enso.com";
-        emailField.simulate('change', {target: {value: enteredEmail}});
+        emailField.simulate('change', enteredEmail);
         let passwordField = loginPage.find('#login-password-field');
         let enteredPassword = 'pa$$';
-        passwordField.simulate('change', {target: {value: enteredPassword}});
+        passwordField.simulate('change', enteredPassword);
 
         loginPage.find('form').simulate('submit', {
             preventDefault: () => {
