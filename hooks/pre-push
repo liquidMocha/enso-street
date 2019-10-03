@@ -6,6 +6,3 @@ git pull -r
 
 echo 'running nightwatch tests'
 nightwatch
-
-echo 'running unit tests'
-npm test

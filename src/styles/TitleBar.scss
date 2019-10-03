@@ -1,4 +1,7 @@
-.enso-street-title {
+.enso-street-title-bar {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
   background-color: white;
   top: 0;
   width: calc(100% - 20px);
