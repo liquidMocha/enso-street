@@ -2,7 +2,7 @@ import React from "react";
 import {Link} from "react-router-dom";
 import './styles/HomePage.scss';
 
-const HomePage = () => {
+const MenuPage = () => {
 
     return (
         <div className='home-page'>
@@ -31,4 +31,4 @@ const HomePage = () => {
     )
 };
 
-export default HomePage;
+export default MenuPage;
