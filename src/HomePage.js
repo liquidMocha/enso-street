@@ -10,6 +10,8 @@ import DateTab from "./DateTab";
 const HomePage = () => {
     const [displayDatePicker, toggleDatePicker] = useState(false);
     const [dateSelection, toggleDateSelection] = useState('rental');
+    const [rentDate, setRentDate] = useState(new Date());
+    const [returnDate, setReturnDate] = useState(new Date());
 
     return (
         <div id='home-page'>
@@ -40,9 +42,22 @@ const HomePage = () => {
                     </span>
                 </div>
                 <div id='date-tabs'>
-                    <DateTab title='Rent' onClick={() => toggleDateSelection('rental')} date={new Date()} selected={dateSelection === 'rental'}/>
-                    <DateTab title='Return' onClick={() => toggleDateSelection('return')} selected={dateSelection === 'return'}/>
+                    <DateTab title='Rent' onClick={() => toggleDateSelection('rental')} date={rentDate}
+                             selected={dateSelection === 'rental'}/>
+                    <DateTab title='Return' onClick={() => toggleDateSelection('return')} date={returnDate}
+                             selected={dateSelection === 'return'}/>
                 </div>
+                {/*TODO: fix this*/}
+                <label>date picker place holder</label>
+                <input type='date' onBlur={(event) => {
+                    console.log(event.target.value);
+                    if (dateSelection === 'rental') {
+                        setRentDate(new Date(event.target.value))
+                    } else {
+                        setReturnDate(new Date(event.target.value))
+                    }
+                }
+                }/>
             </Modal>
         </div>
     )
