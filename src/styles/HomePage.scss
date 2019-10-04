@@ -10,25 +10,34 @@
   left: 0;
   right: 0;
   bottom: 0;
-  padding: 5px;
 
   #date-range-picker-title-bar {
     display: flex;
     margin-top: 10px;
     justify-content: space-between;
     align-items: baseline;
-    width: 100%;
+
     border-bottom: 1px solid grey;
     padding-bottom: 5px;
+    margin-left: 5px;
+    margin-right: 5px;
 
     #date-range-picker-title {
       justify-self: center;
+      font-weight: bold;
     }
 
     #date-range-picker-close {
       justify-self: end;
       font-size: 10px;
     }
+  }
+
+  #date-tabs {
+    display:flex;
+    width: 100%;
+    margin-top: 15px;
+    margin-left: 0;
   }
 }
 

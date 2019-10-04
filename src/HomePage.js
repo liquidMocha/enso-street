@@ -5,9 +5,11 @@ import './styles/Input.scss';
 import './styles/HomePage.scss';
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faCalendarAlt} from '@fortawesome/free-solid-svg-icons';
+import DateTab from "./DateTab";
 
 const HomePage = () => {
     const [displayDatePicker, toggleDatePicker] = useState(false);
+    const [dateSelection, toggleDateSelection] = useState('rental');
 
     return (
         <div id='home-page'>
@@ -30,12 +32,16 @@ const HomePage = () => {
                    overlayClassName="date-range-picker-overlay"
                    isOpen={displayDatePicker}>
                 <div id='date-range-picker-title-bar'>
-                    <span />
+                    <span/>
                     <span id='date-range-picker-title'>Select Dates</span>
                     <span id='date-range-picker-close' onClick={() => {
                         toggleDatePicker(false);
                     }}>Done
                     </span>
+                </div>
+                <div id='date-tabs'>
+                    <DateTab title='Rent' onClick={() => toggleDateSelection('rental')} date={new Date()} selected={dateSelection === 'rental'}/>
+                    <DateTab title='Return' onClick={() => toggleDateSelection('return')} selected={dateSelection === 'return'}/>
                 </div>
             </Modal>
         </div>

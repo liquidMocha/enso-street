@@ -38,5 +38,13 @@ module.exports = {
             .assert.elementNotPresent('.date-range-picker-modal')
             .assert.visible('#home-page-search-button')
             .end();
+    },
+
+    'should display date tabs': (browser) => {
+        browser.url(url)
+            .waitForElementVisible('body')
+            .click('#date-range-opener')
+            .assert.visible('#date-tabs')
+            .end();
     }
 };
