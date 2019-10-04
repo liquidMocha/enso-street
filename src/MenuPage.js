@@ -1,13 +1,13 @@
 import React from "react";
 import {Link} from "react-router-dom";
-import './styles/HomePage.scss';
+import './styles/MenuPage.scss';
 
 const MenuPage = () => {
 
     return (
-        <div className='home-page'>
-            <div id='home-page-body'>
-                <div id='home-page-button-group'>
+        <div className='menu-page'>
+            <div id="menu-page-body">
+                <div id='menu-page-button-group'>
                     <Link to='login' id='login-button'>
                         <div className='home-page-button'>
                             Log in
@@ -21,7 +21,7 @@ const MenuPage = () => {
                 </div>
                 <div>How does it work?</div>
             </div>
-            <div id='home-page-policy-section'>
+            <div id='menu-page-policy-section'>
                 <div>Policies</div>
                 <div>Privacy Policy</div>
                 <div>Terms & Conditions</div>

@@ -5,3 +5,12 @@ input {
   padding: 5px;
   border: 1px solid grey;
 }
+
+.input{
+  width: calc(100% - 10px);
+  margin-bottom: 10px;
+  border-radius: 3px;
+  padding: 5px;
+  border: 1px solid grey;
+  height: 10px;
+}
