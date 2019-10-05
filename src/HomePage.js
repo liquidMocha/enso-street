@@ -1,15 +1,13 @@
 import React, {useState} from "react";
-import Modal from 'react-modal';
 import './styles/Button.scss';
 import './styles/Input.scss';
 import './styles/HomePage.scss';
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faCalendarAlt} from '@fortawesome/free-solid-svg-icons';
-import DateTab from "./DateTab";
+import DateRangePickerModal from "./DateRangePickerModal";
 
 const HomePage = () => {
     const [displayDatePicker, toggleDatePicker] = useState(false);
-    const [dateSelection, toggleDateSelection] = useState('rental');
     const [rentDate, setRentDate] = useState(new Date());
     const [returnDate, setReturnDate] = useState(new Date());
 
@@ -31,38 +29,12 @@ const HomePage = () => {
                 </div>
             }
 
-            <Modal className='date-range-picker-modal'
-                   overlayClassName="date-range-picker-overlay"
-                   isOpen={displayDatePicker}>
-                <div id='date-range-picker-title-bar'>
-                    <span/>
-                    <span id='date-range-picker-title'>Select Dates</span>
-                    <span id='date-range-picker-close' onClick={() => {
-                        toggleDatePicker(false);
-                    }}>Done
-                    </span>
-                </div>
-                <div id='date-tabs'>
-                    <DateTab id='rent-date' title='Rent'
-                             onClick={() => toggleDateSelection('rental')} date={rentDate}
-                             selected={dateSelection === 'rental'}/>
-                    <DateTab id='return-date' title='Return'
-                             onClick={() => toggleDateSelection('return')}
-                             date={returnDate}
-                             selected={dateSelection === 'return'}/>
-                </div>
-                {/*TODO: fix this*/}
-                <label>date picker place holder</label>
-                <input type='date' onBlur={(event) => {
-                    console.log(event.target.value);
-                    if (dateSelection === 'rental') {
-                        setRentDate(new Date(event.target.value))
-                    } else {
-                        setReturnDate(new Date(event.target.value))
-                    }
-                }
-                }/>
-            </Modal>
+            <DateRangePickerModal displayDatePicker={displayDatePicker}
+                                  toggleDatePicker={toggleDatePicker}
+                                  setRentDate={setRentDate}
+                                  setReturnDate={setReturnDate}
+                                  rentDate={rentDate}
+                                  returnDate={returnDate}/>
         </div>
     )
 };
