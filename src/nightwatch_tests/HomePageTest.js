@@ -46,5 +46,13 @@ module.exports = {
             .click('#date-range-opener')
             .assert.visible('#date-tabs')
             .end();
+    },
+
+    'should display default dates on homepage': (browser) => {
+        const dateFormatter = new Intl.DateTimeFormat('en-US', {month: 'short', day: '2-digit'});
+
+        browser.url(url)
+            .waitForElementVisible('body')
+            .assert.containsText('#home-page .input', `${dateFormatter.format(new Date())} - ${dateFormatter.format(new Date())}`)
     }
 };

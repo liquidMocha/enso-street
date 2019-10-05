@@ -16,7 +16,9 @@ const DateTab = (prop) => {
     }
 
     return (
-        <div className={`date-tab ${prop.selected ? 'date-tab-selected' : ''}`} onClick={prop.onClick}>
+        <div id={prop.id}
+             className={`date-tab ${prop.selected ? 'date-tab-selected' : ''}`}
+             onClick={prop.onClick}>
             <div>
                 <div className='date-tab-title'>{prop.title}</div>
                 <div className='date-tab-month'>{monthName}</div>

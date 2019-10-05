@@ -13,6 +13,8 @@ const HomePage = () => {
     const [rentDate, setRentDate] = useState(new Date());
     const [returnDate, setReturnDate] = useState(new Date());
 
+    const dateFormatter = new Intl.DateTimeFormat('en-US', {month: 'short', day: '2-digit'});
+
     return (
         <div id='home-page'>
             {displayDatePicker ? null :
@@ -23,9 +25,8 @@ const HomePage = () => {
                              toggleDatePicker(true)
                          }}>
                         <FontAwesomeIcon icon={faCalendarAlt}/>
-                        <i className='far fa-calendar-alt'/>
+                        {`${dateFormatter.format(rentDate)} - ${dateFormatter.format(returnDate)}`}
                     </div>
-
                     <button id='home-page-search-button'>Search</button>
                 </div>
             }
@@ -42,9 +43,12 @@ const HomePage = () => {
                     </span>
                 </div>
                 <div id='date-tabs'>
-                    <DateTab title='Rent' onClick={() => toggleDateSelection('rental')} date={rentDate}
+                    <DateTab id='rent-date' title='Rent'
+                             onClick={() => toggleDateSelection('rental')} date={rentDate}
                              selected={dateSelection === 'rental'}/>
-                    <DateTab title='Return' onClick={() => toggleDateSelection('return')} date={returnDate}
+                    <DateTab id='return-date' title='Return'
+                             onClick={() => toggleDateSelection('return')}
+                             date={returnDate}
                              selected={dateSelection === 'return'}/>
                 </div>
                 {/*TODO: fix this*/}
