@@ -28,7 +28,6 @@ const HomePage = () => {
                     <button id='home-page-search-button'>Search</button>
                 </div>
             }
-
             <DateRangePickerModal displayDatePicker={displayDatePicker}
                                   toggleDatePicker={toggleDatePicker}
                                   setRentDate={setRentDate}
