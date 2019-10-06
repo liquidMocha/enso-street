@@ -1,5 +1,5 @@
 #home-page {
-  #date-range-opener {
+  .input {
     height: 15px;
 
     svg {
@@ -8,13 +8,7 @@
   }
 }
 
-.date-range-picker-modal {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-
+.home-page-modal {
   #date-range-picker-title-bar {
     display: flex;
     margin-top: 10px;
@@ -43,13 +37,4 @@
     margin-top: 15px;
     margin-left: 0;
   }
-}
-
-.date-range-picker-overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: rgba(255, 255, 255, 1);
 }

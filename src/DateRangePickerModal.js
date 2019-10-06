@@ -1,13 +1,14 @@
 import React, {useState} from "react";
 import DateTab from "./DateTab";
 import Modal from "react-modal";
+import './styles/Modal.scss';
 
 const DateRangePickerModal = (props) => {
     const [dateSelection, toggleDateSelection] = useState('rental');
 
     return (
-        <Modal className='date-range-picker-modal'
-               overlayClassName="date-range-picker-overlay"
+        <Modal className='home-page-modal'
+               overlayClassName="modal-overlay"
                isOpen={props.displayDatePicker}>
             <div id='date-range-picker-title-bar'>
                 <span/>

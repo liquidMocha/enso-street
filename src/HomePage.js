@@ -3,11 +3,13 @@ import './styles/Button.scss';
 import './styles/Input.scss';
 import './styles/HomePage.scss';
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {faCalendarAlt} from '@fortawesome/free-solid-svg-icons';
+import {faCalendarAlt, faMapMarkerAlt} from '@fortawesome/free-solid-svg-icons';
 import DateRangePickerModal from "./DateRangePickerModal";
+import LocationPickerModal from "./LocationPickerModal";
 
 const HomePage = () => {
     const [displayDatePicker, toggleDatePicker] = useState(false);
+    const [displayLocationPicker, toggleLocationPicker] = useState(false);
     const [rentDate, setRentDate] = useState(new Date());
     const [returnDate, setReturnDate] = useState(new Date());
 
@@ -15,7 +17,7 @@ const HomePage = () => {
 
     return (
         <div id='home-page'>
-            {displayDatePicker ? null :
+            {displayDatePicker || displayLocationPicker ? null :
                 <div>
                     <div className='input'
                          id='date-range-opener'
@@ -24,6 +26,14 @@ const HomePage = () => {
                          }}>
                         <FontAwesomeIcon icon={faCalendarAlt}/>
                         {`${dateFormatter.format(rentDate)} - ${dateFormatter.format(returnDate)}`}
+                    </div>
+
+                    <div className='input'
+                         id='location-opener'
+                         onClick={() => {
+                             toggleLocationPicker(true)
+                         }}>
+                        <FontAwesomeIcon icon={faMapMarkerAlt}/>
                     </div>
                     <button id='home-page-search-button'>Search</button>
                 </div>
@@ -34,6 +44,11 @@ const HomePage = () => {
                                   setReturnDate={setReturnDate}
                                   rentDate={rentDate}
                                   returnDate={returnDate}/>
+
+            <LocationPickerModal shouldDisplay={displayLocationPicker}
+                                 onDone={() => {
+                                     toggleLocationPicker(false)
+                                 }}/>
         </div>
     )
 };
