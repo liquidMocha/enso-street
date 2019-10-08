@@ -1,6 +1,6 @@
 import React from "react";
 import './styles/TitleBar.scss'
-import MenuButton from "./SearchBar/MenuButton";
+import MenuButton from "./MenuButton";
 import {withRouter} from "react-router-dom";
 
 const TitleBar = withRouter(({history}) => {
