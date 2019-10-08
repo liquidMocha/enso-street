@@ -21,7 +21,8 @@ const LocationPickerModal = (props) => {
         <Modal isOpen={props.shouldDisplay}
                overlayClassName="modal-overlay"
                className='home-page-modal'>
-            <div id='date-range-picker-title-bar'>
+            <div id='date-range-picker-title-bar'
+                 className='fixed-title-bar'>
                 <span>
                     <FontAwesomeIcon id='date-range-plus' icon={faPlus}/>
                     <FontAwesomeIcon icon={faMapMarkerAlt}/>

@@ -10,7 +10,8 @@ const DateRangePickerModal = (props) => {
         <Modal className='home-page-modal'
                overlayClassName="modal-overlay"
                isOpen={props.displayDatePicker}>
-            <div id='date-range-picker-title-bar'>
+            <div id='date-range-picker-title-bar'
+                 className='fixed-title-bar'>
                 <span/>
                 <span id='date-range-picker-title'>Select Dates</span>
                 <span id='date-range-picker-close' onClick={() => {

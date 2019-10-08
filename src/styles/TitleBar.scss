@@ -1,12 +1,11 @@
-.enso-street-title-bar {
+.fixed-title-bar {
   display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  background-color: white;
   top: 0;
   width: calc(100% - 20px);
   position: fixed;
-  border-bottom: 1px solid grey;
+  background-color: white;
   padding-top: 10px;
+  justify-content: space-between;
+  border-bottom: 1px solid grey;
   padding-bottom: 5px;
 }
