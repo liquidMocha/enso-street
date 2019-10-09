@@ -24,7 +24,8 @@ function SignUpPage(props) {
             email: email,
             name: name,
             password: password
-        });
+        }).then(_ => setSignUpFailed(false))
+            .catch(error => setSignUpFailed(true));
     };
 
 
