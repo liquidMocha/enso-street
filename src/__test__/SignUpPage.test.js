@@ -9,7 +9,7 @@ describe('sign up page', () => {
 
     beforeEach(() => {
         signUpPage = shallow(<SignUpPage baseUrl={testBaseUrl}/>);
-        axios.post = jest.fn();
+        axios.post = jest.fn(() => Promise.resolve({ data: {} }));
     });
 
     it('should send sign up data to server', () => {
