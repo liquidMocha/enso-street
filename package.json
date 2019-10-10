@@ -20,16 +20,13 @@
     "react-modal": "^3.10.1",
     "react-router-dom": "^5.0.1",
     "react-scripts": "3.1.1",
-    "react-test-renderer": "^16.9.0",
-    "snyk": "^1.230.5"
+    "react-test-renderer": "^16.9.0"
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject",
-    "snyk-protect": "snyk protect",
-    "prepare": "npm run snyk-protect"
+    "eject": "react-scripts eject"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -51,6 +48,5 @@
     "chromedriver": "^76.0.1",
     "enzyme": "^3.10.0",
     "enzyme-adapter-react-16": "^1.14.0"
-  },
-  "snyk": true
+  }
 }
