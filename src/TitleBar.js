@@ -7,7 +7,7 @@ const TitleBar = withRouter(({history}) => {
 
     return (
         <div className='fixed-title-bar'>
-            <div id='enso-street-title' onClick={() => {history.push('/')}}>EnsoStreet</div>
+            <div id='enso-street-title' onClick={() => {history.push('/')}}>Enso Street</div>
             <MenuButton onClick={() => {
                 history.push('/menu')
             }}/>
