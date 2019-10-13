@@ -20,20 +20,19 @@ const HomePage = () => {
             {displayDatePicker || displayLocationPicker ? null :
                 <div>
                     <div className='input'
+                         id='location-opener'
+                         onClick={() => {
+                             toggleLocationPicker(true)
+                         }}>
+                        <FontAwesomeIcon icon={faMapMarkerAlt}/>
+                    </div>
+                    <div className='input'
                          id='date-range-opener'
                          onClick={() => {
                              toggleDatePicker(true)
                          }}>
                         <FontAwesomeIcon icon={faCalendarAlt}/>
                         {`${dateFormatter.format(rentDate)} - ${dateFormatter.format(returnDate)}`}
-                    </div>
-
-                    <div className='input'
-                         id='location-opener'
-                         onClick={() => {
-                             toggleLocationPicker(true)
-                         }}>
-                        <FontAwesomeIcon icon={faMapMarkerAlt}/>
                     </div>
                     <button id='home-page-search-button'>Search</button>
                 </div>
