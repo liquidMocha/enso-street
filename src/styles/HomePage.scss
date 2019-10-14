@@ -1,34 +1,6 @@
-#home-page {
-  .input {
-    height: 15px;
-
-    svg {
-      padding-right: 10px;
-    }
-  }
-}
-
-.home-page-modal {
-  #date-range-picker-title-bar {
-    align-items: baseline;
-    margin-left: 5px;
-    margin-right: 5px;
-
-    #date-range-picker-title {
-      justify-self: center;
-      font-weight: bold;
-    }
-
-    #date-range-picker-close {
-      justify-self: end;
-      font-size: 10px;
-    }
-  }
-
-  #date-tabs {
-    display:flex;
-    width: 100%;
-    margin-top: 15px;
-    margin-left: 0;
-  }
+#date-tabs {
+  display: flex;
+  width: 100%;
+  margin-top: 15px;
+  margin-left: 0;
 }

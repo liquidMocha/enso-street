@@ -1,9 +1,8 @@
 import React, {useState} from "react";
 import Modal from "react-modal";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {faMapMarkerAlt, faPlus} from "@fortawesome/free-solid-svg-icons";
+import {faPlus} from "@fortawesome/free-solid-svg-icons";
 import './styles/Modal.scss';
-import './styles/LocationPickerModal.scss';
 
 const LocationPickerModal = (props) => {
     const [locations, setLocations] = useState([]);
@@ -24,10 +23,9 @@ const LocationPickerModal = (props) => {
             <div id='date-range-picker-title-bar'
                  className='fixed-title-bar'>
                 <span>
-                    <FontAwesomeIcon id='date-range-plus' icon={faPlus}/>
-                    <FontAwesomeIcon icon={faMapMarkerAlt}/>
+                    <FontAwesomeIcon icon={faPlus}/>
                 </span>
-                <span>Locations</span>
+                <span className='fixed-title-bar__title--font'>Locations</span>
                 <span id='location-picker-done' onClick={props.onDone}>Done</span>
             </div>
 

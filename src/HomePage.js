@@ -6,6 +6,7 @@ import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faCalendarAlt, faMapMarkerAlt} from '@fortawesome/free-solid-svg-icons';
 import DateRangePickerModal from "./DateRangePickerModal";
 import LocationPickerModal from "./LocationPickerModal";
+import './styles/Sizing.scss';
 
 const HomePage = () => {
     const [displayDatePicker, toggleDatePicker] = useState(false);
@@ -16,17 +17,17 @@ const HomePage = () => {
     const dateFormatter = new Intl.DateTimeFormat('en-US', {month: 'short', day: '2-digit'});
 
     return (
-        <div id='home-page'>
+        <div>
             {displayDatePicker || displayLocationPicker ? null :
                 <div>
-                    <div className='input'
+                    <div className='input-size input-field'
                          id='location-opener'
                          onClick={() => {
                              toggleLocationPicker(true)
                          }}>
                         <FontAwesomeIcon icon={faMapMarkerAlt}/>
                     </div>
-                    <div className='input'
+                    <div className='input-size input-field'
                          id='date-range-opener'
                          onClick={() => {
                              toggleDatePicker(true)

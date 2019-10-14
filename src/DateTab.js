@@ -1,5 +1,6 @@
 import React from "react";
 import './styles/DateTab.scss';
+import './styles/font.scss';
 
 const DateTab = (prop) => {
     const monthFormatter = new Intl.DateTimeFormat('en-US', {month: 'long'});
@@ -20,8 +21,8 @@ const DateTab = (prop) => {
              className={`date-tab ${prop.selected ? 'date-tab-selected' : ''}`}
              onClick={prop.onClick}>
             <div>
-                <div className='date-tab-title'>{prop.title}</div>
-                <div className='date-tab-month'>{monthName}</div>
+                <div className='date-tab-title deemphasize'>{prop.title}</div>
+                <div className='date-tab-month bold'>{monthName}</div>
                 <div className='date-tab-day-of-week'>{dayOfWeek}</div>
             </div>
             <div>

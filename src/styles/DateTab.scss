@@ -1,24 +1,14 @@
 .date-tab {
   display: flex;
   flex-direction: row;
-  border: 1px solid grey;
-  border-radius: 3px;
-  padding-left: 20px;
+  margin-left: 20px;
   padding-top: 5px;
   padding-bottom: 5px;
   flex: 1;
-
-  .date-tab-title {
-    color: grey;
-  }
-
-  .date-tab-month {
-    font-weight: bold;
-  }
 }
 
 .date-tab-selected {
-  background-color: lightgrey;
+  border-bottom: 1px solid grey;
 }
 
 .date-tab > div:nth-of-type(1) {

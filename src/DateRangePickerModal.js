@@ -13,8 +13,12 @@ const DateRangePickerModal = (props) => {
             <div id='date-range-picker-title-bar'
                  className='fixed-title-bar'>
                 <span/>
-                <span id='date-range-picker-title'>Select Dates</span>
-                <span id='date-range-picker-close' onClick={() => {
+                <span className='fixed-title-bar__title--font'>
+                    Select Dates
+                </span>
+                <span id='date-range-picker-close'
+                      className='fixed-title-bar__right-element'
+                      onClick={() => {
                     props.toggleDatePicker(false);
                 }}>Done
                     </span>

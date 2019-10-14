@@ -25,6 +25,6 @@ module.exports = {
 
         browser.url(url)
             .waitForElementVisible('body')
-            .assert.containsText('#home-page .input', `${dateFormatter.format(new Date())} - ${dateFormatter.format(new Date())}`)
+            .assert.containsText('#date-range-opener', `${dateFormatter.format(new Date())} - ${dateFormatter.format(new Date())}`)
     }
 };

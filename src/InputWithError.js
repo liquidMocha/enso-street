@@ -1,5 +1,6 @@
 import React, {useState} from "react";
 import ErrorMessage from "./ErrorMessage";
+import './styles/Input.scss';
 
 const InputWithError = (prop) => {
     const [displayError, setDisplayError] = useState(false);
@@ -9,6 +10,7 @@ const InputWithError = (prop) => {
             <input
                 id={prop.id}
                 type={prop.type}
+                className='input-field'
                 data-lpignore='true'
                 onChange={(event => prop.onChange(event.target.value))}
                 onBlur={_ => {

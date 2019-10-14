@@ -1,6 +1,5 @@
 import React, {useState} from "react";
 import axios from "axios";
-import './styles/LoginForm.scss';
 import InputWithError from "./InputWithError";
 
 const LoginForm = (props) => {
@@ -28,7 +27,7 @@ const LoginForm = (props) => {
     return (
         <form id='login-form' onSubmit={onLogin}>
             <div>
-                <label>Email</label>
+                <label className='input-label'>Email</label>
                 <InputWithError id='login-email-field'
                                 type='text'
                                 onChange={(value) => {
@@ -38,7 +37,7 @@ const LoginForm = (props) => {
                 />
             </div>
             <div>
-                <label>Password</label>
+                <label className='input-label'>Password</label>
                 <InputWithError id='login-password-field'
                                 type='password'
                                 onChange={(value) => {
@@ -47,7 +46,7 @@ const LoginForm = (props) => {
                                 shouldError={() => password === ''}
                 />
             </div>
-            <button onClick={onLogin}>Login</button>
+            <button onClick={onLogin}>Log In</button>
             {!loginSuccessful && loginClicked ? 'login failed' : null}
             {loginSuccessful && loginClicked ? 'login successful' : null}
         </form>
