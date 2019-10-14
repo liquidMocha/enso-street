@@ -11,15 +11,18 @@ const LocationPickerModal = (props) => {
         setLocations([...locations, location])
     };
 
-    navigator.geolocation.getCurrentPosition((position => {
-        console.log(position);
-        addLocation(position.coords);
-    }), (error) => console.log(error));
+    const getLocation = () => {
+        navigator.geolocation.getCurrentPosition((position => {
+            console.log(position);
+            addLocation(position.coords);
+        }), (error) => console.log(error));
+    };
 
     return (
         <Modal isOpen={props.shouldDisplay}
                overlayClassName="modal-overlay"
-               className='home-page-modal'>
+               className='home-page-modal'
+               onAfterOpen={getLocation}>
             <div id='date-range-picker-title-bar'
                  className='fixed-title-bar'>
                 <span>

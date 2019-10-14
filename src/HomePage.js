@@ -15,6 +15,7 @@ const HomePage = () => {
     const [rentDate, setRentDate] = useState(new Date());
     const [returnDate, setReturnDate] = useState(new Date());
     const [displayLocationPermission, toggleLocationPermissionPopup] = useState(true);
+    const [hasAskedLocationPermission, setHasAskedLocationPermission] = useState(false);
 
     const dateFormatter = new Intl.DateTimeFormat('en-US', {month: 'short', day: '2-digit'});
 
@@ -24,11 +25,20 @@ const HomePage = () => {
             left: '50%',
             transform: 'translate(-50%, -50%)',
             fontSize: '16px',
-            height: '70px',
+            height: '90px',
             width: '50vw',
             borderRadius: 0
         }
     };
+
+    navigator.permissions.query({name: 'geolocation'})
+        .then((result) => {
+            if (result.state === 'granted' || result.state === 'denied') {
+                setHasAskedLocationPermission(true);
+            } else {
+                setHasAskedLocationPermission(false);
+            }
+        });
 
     return (
         <div>
@@ -53,7 +63,7 @@ const HomePage = () => {
                 </div>
             }
             <Modal id='location-permission-modal'
-                   isOpen={displayLocationPermission}
+                   isOpen={displayLocationPermission && !hasAskedLocationPermission}
                    overlayClassName="popup-modal-overlay"
                    style={popupModalStyles}>
                 "Enso Street" would like to user your current location?
