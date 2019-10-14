@@ -5,6 +5,7 @@ module.exports = {
         browser
             .url(url)
             .waitForElementVisible('body')
+            .click('#allow-location-button')
             .click('#date-range-opener')
             .assert.visible('.home-page-modal')
             .assert.visible('#date-range-picker-title-bar')
@@ -15,6 +16,7 @@ module.exports = {
     'should close date picker modal when click done': (browser) => {
         browser.url(url)
             .waitForElementVisible('body')
+            .click('#allow-location-button')
             .click('#date-range-opener')
             .click('#date-range-picker-close')
             .assert.elementNotPresent('.date-range-picker-modal')
@@ -25,6 +27,7 @@ module.exports = {
     'should display date tabs': (browser) => {
         browser.url(url)
             .waitForElementVisible('body')
+            .click('#allow-location-button')
             .click('#date-range-opener')
             .assert.visible('#date-tabs')
             .end();
