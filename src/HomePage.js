@@ -23,10 +23,10 @@ const HomePage = () => {
             top: '50%',
             left: '50%',
             transform: 'translate(-50%, -50%)',
-            'font-size': '16px',
+            fontSize: '16px',
             height: '70px',
             width: '50vw',
-            'border-radius': 0
+            borderRadius: 0
         }
     };
 
