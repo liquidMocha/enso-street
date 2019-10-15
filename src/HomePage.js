@@ -31,7 +31,7 @@ const HomePage = () => {
         }
     };
 
-    navigator.permissions.query({name: 'geolocation'})
+    window.navigator.permissions.query({name: 'geolocation'})
         .then((result) => {
             if (result.state === 'granted' || result.state === 'denied') {
                 setHasAskedLocationPermission(true);
