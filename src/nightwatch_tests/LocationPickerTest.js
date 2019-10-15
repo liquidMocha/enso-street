@@ -5,7 +5,6 @@ module.exports = {
         browser
             .url(url)
             .waitForElementVisible('body')
-            .click('#allow-location-button')
             .click('#location-opener')
             .assert.visible('.home-page-modal')
             .assert.elementNotPresent('#home-page-search-button')
@@ -16,7 +15,6 @@ module.exports = {
         browser
             .url(url)
             .waitForElementVisible('body')
-            .click('#allow-location-button')
             .click('#location-opener')
             .click('#location-picker-done')
             .assert.visible('#home-page-search-button')

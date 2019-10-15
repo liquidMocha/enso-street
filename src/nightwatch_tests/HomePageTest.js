@@ -5,7 +5,6 @@ module.exports = {
         browser
             .url(url)
             .waitForElementVisible('body')
-            .click('#allow-location-button')
             .click('.menu-button-container')
             .assert.visible('#sign-up-button')
             .assert.visible('#login-button')
@@ -16,7 +15,6 @@ module.exports = {
         browser
             .url(url)
             .waitForElementVisible('body')
-            .click('#allow-location-button')
             .click('.menu-button-container')
             .click('#enso-street-title')
             .expect.url().to.endWith(url + '/')
@@ -28,18 +26,6 @@ module.exports = {
         browser.url(url)
             .waitForElementVisible('body')
             .assert.containsText('#date-range-opener', `${dateFormatter.format(new Date())} - ${dateFormatter.format(new Date())}`)
-    },
-
-    'should display location permission modal initially': (browser) => {
-        browser.url(url)
-            .waitForElementVisible('body')
-            .assert.visible('#location-permission-modal')
-    },
-
-    'should go to location selection if clicked Do not allow': (browser) => {
-        browser.url(url)
-            .waitForElementVisible('body')
-            .click('#do-not-allow-location-button')
-            .assert.containsText('#date-range-picker-title-bar', 'Locations')
     }
+
 };
