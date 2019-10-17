@@ -4,10 +4,10 @@ import LoginPage from "./LoginPage";
 import SignUpPage from "./SignUpPage";
 import {BrowserRouter, Route} from "react-router-dom";
 import ListItem from "./ListItem";
-import TitleBar from "./TitleBar";
 import Footer from "./Footer";
 import HomePage from "./HomePage";
 import MenuPage from "./MenuPage";
+import LocationPickerPage from "./LocationPickerPage";
 
 class App extends React.Component {
     render() {
@@ -15,7 +15,6 @@ class App extends React.Component {
         return (
             <BrowserRouter>
                 <div id='app-content'>
-                    <TitleBar/>
                     <Route exact path="/" component={HomePage}/>
                     <Route path="/menu" component={MenuPage}/>
                     <Route path="/login"
@@ -26,6 +25,7 @@ class App extends React.Component {
                     />
                     <Route path="/list-item"
                            component={(props) => <ListItem {...props} baseUrl={baseUrl}/>}/>
+                    <Route path="/location" component={LocationPickerPage}/>
                 </div>
                 <Footer/>
             </BrowserRouter>

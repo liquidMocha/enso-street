@@ -5,6 +5,7 @@ import * as ReactGA from "react-ga";
 import OAuthButtons from "./OAuthButtons";
 import './styles/Input.scss';
 import InputWithError from "./InputWithError";
+import TitleBar from "./TitleBar";
 
 function SignUpPage(props) {
     const [email, setEmail] = useState('');
@@ -25,12 +26,13 @@ function SignUpPage(props) {
             name: name,
             password: password
         }).then(_ => setSignUpFailed(false))
-            .catch(error => setSignUpFailed(true));
+            .catch(_ => setSignUpFailed(true));
     };
 
 
     return (
         <div className='sign-up-page'>
+            <TitleBar/>
             <div>Join EnsoStreet</div>
             <OAuthButtons baseUrl={props.baseUrl}/>
             <div>OR</div>

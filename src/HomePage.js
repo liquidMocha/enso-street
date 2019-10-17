@@ -5,12 +5,12 @@ import './styles/HomePage.scss';
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faCalendarAlt, faMapMarkerAlt} from '@fortawesome/free-solid-svg-icons';
 import DateRangePickerModal from "./DateRangePickerModal";
-import LocationPickerModal from "./LocationPickerModal";
 import './styles/Sizing.scss';
+import {withRouter} from "react-router-dom";
+import TitleBar from "./TitleBar";
 
-const HomePage = () => {
+const HomePage = withRouter(({history}) => {
     const [displayDatePicker, toggleDatePicker] = useState(false);
-    const [displayLocationPicker, toggleLocationPicker] = useState(false);
     const [rentDate, setRentDate] = useState(new Date());
     const [returnDate, setReturnDate] = useState(new Date());
 
@@ -18,12 +18,13 @@ const HomePage = () => {
 
     return (
         <div>
-            {displayDatePicker || displayLocationPicker ? null :
+            <TitleBar/>
+            {displayDatePicker ? null :
                 <div>
                     <div className='input-size input-field'
                          id='location-opener'
                          onClick={() => {
-                             toggleLocationPicker(true)
+                             history.push('/location')
                          }}>
                         <FontAwesomeIcon icon={faMapMarkerAlt}/>
                     </div>
@@ -44,13 +45,8 @@ const HomePage = () => {
                                   setReturnDate={setReturnDate}
                                   rentDate={rentDate}
                                   returnDate={returnDate}/>
-
-            <LocationPickerModal shouldDisplay={displayLocationPicker}
-                                 onDone={() => {
-                                     toggleLocationPicker(false)
-                                 }}/>
         </div>
     )
-};
+});
 
 export default HomePage;

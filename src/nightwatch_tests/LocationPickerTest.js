@@ -6,7 +6,7 @@ module.exports = {
             .url(url)
             .waitForElementVisible('body')
             .click('#location-opener')
-            .assert.visible('.home-page-modal')
+            .assert.containsText('.fixed-title-bar', 'Locations')
             .assert.elementNotPresent('#home-page-search-button')
             .end();
     },

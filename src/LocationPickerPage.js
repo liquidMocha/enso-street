@@ -1,10 +1,10 @@
 import React, {useState} from "react";
-import Modal from "react-modal";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faPlus} from "@fortawesome/free-solid-svg-icons";
 import './styles/Modal.scss';
+import {withRouter} from "react-router-dom";
 
-const LocationPickerModal = (props) => {
+const LocationPickerPage = withRouter((props) => {
     const [locations, setLocations] = useState([]);
 
     const addLocation = (location) => {
@@ -19,17 +19,14 @@ const LocationPickerModal = (props) => {
     };
 
     return (
-        <Modal isOpen={props.shouldDisplay}
-               overlayClassName="modal-overlay"
-               className='home-page-modal'
-               onAfterOpen={getLocation}>
+        <div>
             <div id='date-range-picker-title-bar'
                  className='fixed-title-bar'>
                 <span>
                     <FontAwesomeIcon icon={faPlus}/>
                 </span>
                 <span className='fixed-title-bar__title--font'>Locations</span>
-                <span id='location-picker-done' onClick={props.onDone}>Done</span>
+                <span id='location-picker-done' onClick={() => {props.history.push('/')}}>Done</span>
             </div>
 
             <div>
@@ -39,8 +36,8 @@ const LocationPickerModal = (props) => {
                 {locations[0] ? locations[0].longitude : ''}
             </div>
 
-        </Modal>
+        </div>
     )
-};
+});
 
-export default LocationPickerModal
+export default LocationPickerPage
