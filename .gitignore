@@ -22,3 +22,4 @@ yarn-error.log*
 /chromedriver.log
 /.env
 /nohup.out
+/dist/
