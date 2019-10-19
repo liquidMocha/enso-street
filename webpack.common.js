@@ -1,9 +1,15 @@
 const HtmlWebPackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-
-const isDevelopment = process.env.NODE_ENV === 'development';
+const path = require('path');
 
 module.exports = {
+    entry: {
+        app: './src/index.js',
+    },
+    output: {
+        filename: '[name].bundle.js',
+        path: path.resolve(__dirname, 'dist'),
+    },
     module: {
         rules: [
             {
@@ -24,18 +30,17 @@ module.exports = {
             {
                 test: /\.module\.s(a|c)ss$/,
                 loader: [
-                    isDevelopment ? 'style-loader' : MiniCssExtractPlugin.loader,
                     {
                         loader: 'css-loader',
                         options: {
                             modules: true,
-                            sourceMap: isDevelopment
+                            sourceMap: true
                         }
                     },
                     {
                         loader: 'sass-loader',
                         options: {
-                            sourceMap: isDevelopment
+                            sourceMap: true
                         }
                     }
                 ]
@@ -44,12 +49,12 @@ module.exports = {
                 test: /\.s(a|c)ss$/,
                 exclude: /\.module.(s(a|c)ss)$/,
                 loader: [
-                    isDevelopment ? 'style-loader' : MiniCssExtractPlugin.loader,
+                    'style-loader',
                     'css-loader',
                     {
                         loader: 'sass-loader',
                         options: {
-                            sourceMap: isDevelopment
+                            sourceMap: true
                         }
                     }
                 ]
@@ -62,8 +67,8 @@ module.exports = {
             filename: "./index.html"
         }),
         new MiniCssExtractPlugin({
-            filename: isDevelopment ? '[name].css' : '[name].[hash].css',
-            chunkFilename: isDevelopment ? '[id].css' : '[id].[hash].css'
+            filename: '[name].css',
+            chunkFilename: '[id].css'
         })
     ],
     resolve: {
