@@ -1,15 +1,15 @@
 import React, {useState} from "react";
 import DateTab from "./DateTab";
-import Modal from "react-modal";
 import './styles/Modal.scss';
+import {withRouter} from "react-router-dom";
+import {changeRentDate, changeReturnDate} from "./redux/actions";
+import {connect} from "react-redux";
 
-const DateRangePickerModal = (props) => {
+const DateRangePickerPage = withRouter((props) => {
     const [dateSelection, toggleDateSelection] = useState('rental');
 
     return (
-        <Modal className='home-page-modal'
-               overlayClassName="modal-overlay"
-               isOpen={props.displayDatePicker}>
+        <div>
             <div id='date-range-picker-title-bar'
                  className='fixed-title-bar'>
                 <span/>
@@ -19,8 +19,8 @@ const DateRangePickerModal = (props) => {
                 <span id='date-range-picker-close'
                       className='fixed-title-bar__right-element'
                       onClick={() => {
-                    props.toggleDatePicker(false);
-                }}>Done
+                          props.history.push('/');
+                      }}>Done
                     </span>
             </div>
             <div id='date-tabs'>
@@ -36,16 +36,25 @@ const DateRangePickerModal = (props) => {
             {/*TODO: fix this*/}
             <label>date picker place holder</label>
             <input type='date' onBlur={(event) => {
-                console.log(event.target.value);
                 if (dateSelection === 'rental') {
-                    props.setRentDate(new Date(event.target.value))
+                    props.changeRentDate(new Date(event.target.value));
                 } else {
-                    props.setReturnDate(new Date(event.target.value))
+                    props.changeReturnDate(new Date(event.target.value));
                 }
             }
             }/>
-        </Modal>
+        </div>
     )
+});
+
+const mapStateToProps = (state) => {
+    return {
+        rentDate: state.searchCriteria.dates.rentDate,
+        returnDate: state.searchCriteria.dates.returnDate
+    }
 };
 
-export default DateRangePickerModal
+export default connect(mapStateToProps, {
+    changeRentDate,
+    changeReturnDate
+})(DateRangePickerPage)

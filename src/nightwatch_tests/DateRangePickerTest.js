@@ -6,7 +6,6 @@ module.exports = {
             .url(url)
             .waitForElementVisible('body')
             .click('#date-range-opener')
-            .assert.visible('.home-page-modal')
             .assert.visible('#date-range-picker-title-bar')
             .assert.elementNotPresent('#home-page-search-button')
             .end();

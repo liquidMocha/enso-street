@@ -8,6 +8,7 @@ import Footer from "./Footer";
 import HomePage from "./HomePage";
 import MenuPage from "./MenuPage";
 import LocationPickerPage from "./LocationPickerPage";
+import DateRangePickerPage from "./DateRangePickerPage";
 
 class App extends React.Component {
     render() {
@@ -17,15 +18,11 @@ class App extends React.Component {
                 <div id='app-content'>
                     <Route exact path="/" component={HomePage}/>
                     <Route path="/menu" component={MenuPage}/>
-                    <Route path="/login"
-                           component={(props) => <LoginPage {...props} baseUrl={baseUrl}/>}
-                    />
-                    <Route path="/sign-up"
-                           component={(props) => <SignUpPage {...props} baseUrl={baseUrl}/>}
-                    />
-                    <Route path="/list-item"
-                           component={(props) => <ListItem {...props} baseUrl={baseUrl}/>}/>
+                    <Route path="/login" component={(props) => <LoginPage {...props} baseUrl={baseUrl}/>}/>
+                    <Route path="/sign-up" component={(props) => <SignUpPage {...props} baseUrl={baseUrl}/>}/>
+                    <Route path="/list-item" component={(props) => <ListItem {...props} baseUrl={baseUrl}/>}/>
                     <Route path="/location" component={LocationPickerPage}/>
+                    <Route path="/pick-date" component={DateRangePickerPage}/>
                 </div>
                 <Footer/>
             </BrowserRouter>
