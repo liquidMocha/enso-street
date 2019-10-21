@@ -40,5 +40,12 @@ describe('input with error', () => {
         inputWithError.find('input').simulate('blur');
 
         expect(inputWithError.find('ErrorMessage').length).toEqual(0);
+    });
+
+    it('should not display error if there is no shouldError function', () => {
+        inputWithError.setProps({shouldError: null});
+        inputWithError.find('input').simulate('blur');
+
+        expect(inputWithError.find('ErrorMessage').length).toEqual(0);
     })
 });

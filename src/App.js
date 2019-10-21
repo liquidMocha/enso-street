@@ -9,6 +9,7 @@ import HomePage from "./HomePage";
 import MenuPage from "./MenuPage";
 import LocationPickerPage from "./LocationPickerPage";
 import DateRangePickerPage from "./DateRangePickerPage";
+import AddLocationPage from "./AddLocationPage";
 
 class App extends React.Component {
     render() {
@@ -23,6 +24,7 @@ class App extends React.Component {
                     <Route path="/list-item" component={(props) => <ListItem {...props} baseUrl={baseUrl}/>}/>
                     <Route path="/location" component={LocationPickerPage}/>
                     <Route path="/pick-date" component={DateRangePickerPage}/>
+                    <Route path="/add-location" component={AddLocationPage}/>
                 </div>
                 <Footer/>
             </BrowserRouter>

@@ -14,7 +14,7 @@ const InputWithError = (prop) => {
                 data-lpignore='true'
                 onChange={(event => prop.onChange(event.target.value))}
                 onBlur={_ => {
-                    prop.shouldError() ? setDisplayError(true) : setDisplayError(false)
+                    prop.shouldError && prop.shouldError() ? setDisplayError(true) : setDisplayError(false)
                 }}
             />
             {displayError ? <ErrorMessage message='This field is required'/> : null}
