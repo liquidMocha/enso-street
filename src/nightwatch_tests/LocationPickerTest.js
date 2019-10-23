@@ -44,5 +44,38 @@ module.exports = {
             .click('#add-address-apply')
             .assert.containsText('#selectable-search-locations', 'abc')
             .end();
+    },
+
+    'should highlight the location if it is the only one': (browser) => {
+        browser
+            .url(url)
+            .waitForElementVisible('body')
+            .click('#location-opener')
+            .click('#add-location-button')
+            .click('#nickname-field')
+            .keys('abc')
+            .click('#zip-code-field')
+            .keys('12345')
+            .click('#add-address-apply')
+            .assert.cssClassPresent('div[data-test="location-row"]', 'highlight-background');
+    },
+
+    'should highlight the location selected': (browser) => {
+        const homepage = browser.page.HomePageObject();
+        homepage.navigate()
+            .waitForElementVisible('body')
+            .click('#location-opener')
+            .click('#add-location-button')
+            .setValue('@nicknameField', 'abc')
+            .setValue('@zipCodeField', '12345')
+            .click('#add-address-apply')
+            .click('#add-location-button')
+            .setValue('@nicknameField', 'home')
+            .setValue('@zipCodeField', '54321')
+            .click('#add-address-apply')
+            .click({selector: '@locationRow', index: 1})
+            .assert.cssClassPresent({selector: '@locationRow', index: 1}, 'highlight-background');;
+
+        browser.end();
     }
 };

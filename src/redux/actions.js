@@ -1,4 +1,4 @@
-import {ADD_SEARCH_LOCATION, CHANGE_RENT_DATE, CHANGE_RETURN_DATE} from "./actionTypes";
+import {ADD_SEARCH_LOCATION, CHANGE_RENT_DATE, CHANGE_RETURN_DATE, SELECT_SEARCH_LOCATION} from "./actionTypes";
 
 export const changeRentDate = date => ({
     type: CHANGE_RENT_DATE,
@@ -17,4 +17,9 @@ export const changeReturnDate = date => ({
 export const addSearchLocation = location => ({
     type: ADD_SEARCH_LOCATION,
     payload: location
+});
+
+export const selectSearchLocation = zipCode => ({
+    type: SELECT_SEARCH_LOCATION,
+    payload: zipCode
 });

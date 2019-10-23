@@ -1,4 +1,9 @@
-import {ADD_SEARCH_LOCATION, CHANGE_RENT_DATE, CHANGE_RETURN_DATE} from "../actionTypes";
+import {
+    ADD_SEARCH_LOCATION,
+    CHANGE_RENT_DATE,
+    CHANGE_RETURN_DATE,
+    SELECT_SEARCH_LOCATION
+} from "../actionTypes";
 
 const initialState = {
     locations: [],
@@ -10,9 +15,25 @@ const initialState = {
 
 export default (state = initialState, action) => {
     switch (action.type) {
+        case SELECT_SEARCH_LOCATION: {
+            const selectedZipCode = action.payload;
+            return Object.assign({}, state, {
+                ...state,
+                locations: state.locations.map(location => {
+                    if (location.zipCode === selectedZipCode) {
+                        return {
+                            ...location,
+                            selected: true
+                        }
+                    } else {
+                        return {...location, selected: false};
+                    }
+                })
+            })
+        }
         case ADD_SEARCH_LOCATION: {
             const location = action.payload;
-            return Object.assign({}, state,  {
+            return Object.assign({}, state, {
                 ...state,
                 locations: [
                     ...state.locations,
@@ -48,3 +69,8 @@ export default (state = initialState, action) => {
         }
     }
 }
+
+export const selectedLocation = (state) => {
+    return state.searchCriteria.locations.find(location => location.selected) ||
+        state.searchCriteria.locations[0];
+};

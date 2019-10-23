@@ -3,12 +3,12 @@ import './styles/color.scss';
 
 const SelectableLocationRow = (props) => {
     return (
-        <div date-test='location-row'
+        <div data-test='location-row'
              className={props.selected ? 'highlight-background' : ''}
              onClick={() => {
-                 props.onClick();
+                 props.onClick(props.zipCode);
              }}>
-            <div date-test='location-name'>{props.name}</div>
+            <div data-test='location-name'>{props.name}</div>
         </div>
     )
 };

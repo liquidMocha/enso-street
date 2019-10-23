@@ -12,7 +12,7 @@ describe('input with error', () => {
 
     it('should display location name', () => {
         const nameField =
-            selectableLocationRow.find('div[date-test="location-name"]');
+            selectableLocationRow.find('div[data-test="location-name"]');
 
         expect(nameField.text()).toEqual('location name');
     });
@@ -29,11 +29,15 @@ describe('input with error', () => {
         expect(selectableLocationRow.find('.highlight-background').length).toBe(0);
     });
 
-    it('should invoke callback when clicked on', () => {
+    it('should invoke callback with zip code when clicked on', () => {
         const mockOnClick = jest.fn();
-        selectableLocationRow.setProps({onClick: mockOnClick});
+        const zipCode = '12345';
+        selectableLocationRow.setProps({
+            onClick: mockOnClick,
+            zipCode: zipCode
+        });
 
-        selectableLocationRow.find('div[date-test="location-row"]').simulate('click');
-        expect(mockOnClick).toHaveBeenCalled();
+        selectableLocationRow.find('div[data-test="location-row"]').simulate('click');
+        expect(mockOnClick).toHaveBeenCalledWith(zipCode);
     })
 });

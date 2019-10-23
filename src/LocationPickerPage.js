@@ -5,9 +5,14 @@ import './styles/Modal.scss';
 import {withRouter} from "react-router-dom";
 import {connect} from "react-redux";
 import SelectableLocationRow from "./SelectableLocationRow";
+import {selectedLocation} from "./redux/reducers/searchCriteria";
+import {selectSearchLocation} from "./redux/actions";
+import {bindActionCreators} from "redux";
 
 const LocationPickerPage = withRouter((props) => {
     const [locations, setLocations] = useState([]);
+
+    const boundSelectSearchLocation = bindActionCreators(props.selectSearchLocation, props.dispatch);
 
     const addLocation = (location) => {
         setLocations([...locations, location])
@@ -34,20 +39,27 @@ const LocationPickerPage = withRouter((props) => {
 
             <div id='selectable-search-locations'>
                 {props.locations.map(location => {
-                    return <SelectableLocationRow key={location.zipCode} name={location.nickname}/>
+                    return <SelectableLocationRow selected={location === props.selectedLocation}
+                                                  key={location.zipCode}
+                                                  name={location.nickname}
+                                                  zipCode={location.zipCode}
+                                                  onClick={boundSelectSearchLocation}
+                    />
                 })}
             </div>
-
         </div>
     )
 });
 
 const mapStateToProps = (state) => {
     return {
-        locations: state.searchCriteria.locations
+        locations: state.searchCriteria.locations,
+        selectedLocation: selectedLocation(state)
     }
 };
 
-export default connect(
-    mapStateToProps
-)(LocationPickerPage)
+const mapDispatchToProps = (dispatch) => {
+    return {selectSearchLocation, dispatch};
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(LocationPickerPage)
