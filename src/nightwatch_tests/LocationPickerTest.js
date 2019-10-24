@@ -61,20 +61,20 @@ module.exports = {
     },
 
     'should highlight the location selected': (browser) => {
-        const homepage = browser.page.HomePageObject();
-        homepage.navigate()
+        const locationPickerPage = browser.page.LocationPickerPageObject();
+        locationPickerPage.navigate()
             .waitForElementVisible('body')
             .click('#location-opener')
-            .click('#add-location-button')
+            .click('@addLocationButton')
             .setValue('@nicknameField', 'abc')
             .setValue('@zipCodeField', '12345')
-            .click('#add-address-apply')
-            .click('#add-location-button')
+            .click('@applyLocationButton')
+            .click('@addLocationButton')
             .setValue('@nicknameField', 'home')
             .setValue('@zipCodeField', '54321')
-            .click('#add-address-apply')
+            .click('@applyLocationButton')
             .click({selector: '@locationRow', index: 1})
-            .assert.cssClassPresent({selector: '@locationRow', index: 1}, 'highlight-background');;
+            .assert.cssClassPresent({selector: '@locationRow', index: 1}, 'highlight-background');
 
         browser.end();
     }

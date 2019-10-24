@@ -26,6 +26,25 @@ module.exports = {
         browser.url(url)
             .waitForElementVisible('body')
             .assert.containsText('#date-range-opener', `${dateFormatter.format(new Date())} - ${dateFormatter.format(new Date())}`)
+    },
+
+    'should display user selected location on homepage': (browser) => {
+        const homepage = browser.page.HomePageObject();
+        const locationPickerPage = browser.page.LocationPickerPageObject();
+
+        homepage.navigate()
+            .click('@locationPageOpener');
+
+        locationPickerPage
+            .click('@addLocationButton')
+            .setValue('@nicknameField', 'abc')
+            .setValue('@zipCodeField', '12345')
+            .click('@applyLocationButton')
+            .click('@locationPickerDone');
+
+        homepage.assert.containsText('@locationPageOpener', 'abc');
+
+        browser.end();
     }
 
 };

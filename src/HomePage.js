@@ -8,6 +8,7 @@ import './styles/Sizing.scss';
 import {withRouter} from "react-router-dom";
 import TitleBar from "./TitleBar";
 import {connect} from "react-redux";
+import {selectedLocation} from "./redux/reducers/searchCriteria";
 
 const HomePage = withRouter((props) => {
     const dateFormatter = new Intl.DateTimeFormat('en-US', {month: 'short', day: '2-digit'});
@@ -22,6 +23,7 @@ const HomePage = withRouter((props) => {
                          props.history.push('/location')
                      }}>
                     <FontAwesomeIcon icon={faMapMarkerAlt}/>
+                    {props.selectedLocation ? props.selectedLocation.nickname : ''}
                 </div>
                 <div className='input-size input-field'
                      id='date-range-opener'
@@ -40,7 +42,8 @@ const HomePage = withRouter((props) => {
 const mapStateToProps = (state) => {
     return {
         rentDate: state.searchCriteria.dates.rentDate,
-        returnDate: state.searchCriteria.dates.returnDate
+        returnDate: state.searchCriteria.dates.returnDate,
+        selectedLocation: selectedLocation(state)
     };
 };
 
