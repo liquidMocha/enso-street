@@ -1,10 +1,11 @@
 import React from "react";
 import './styles/color.scss';
+import './styles/Spacing.scss';
 
 const SelectableLocationRow = (props) => {
     return (
         <div data-test='location-row'
-             className={props.selected ? 'highlight-background' : ''}
+             className={'full-width-row ' + (props.selected ? 'highlight-background' : '')}
              onClick={() => {
                  props.onClick(props.zipCode);
              }}>
