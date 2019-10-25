@@ -1,6 +1,6 @@
 import {shallow} from "enzyme";
 import React from "react";
-import DateTab from "../DateTab";
+import DateTab from "../components/homepage/dateRange/DateTab";
 
 describe('DateTab', () => {
     let dateTab, title, date, callback;

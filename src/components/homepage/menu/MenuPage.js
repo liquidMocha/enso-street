@@ -1,7 +1,7 @@
 import React from "react";
 import {Link} from "react-router-dom";
-import './styles/MenuPage.scss';
-import TitleBar from "./TitleBar";
+import '../../../styles/MenuPage.scss';
+import TitleBar from "../../shared/TitleBar";
 
 const MenuPage = () => {
 

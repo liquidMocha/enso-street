@@ -1,7 +1,7 @@
 import {shallow} from "enzyme";
 import React from "react";
 import axios from "axios";
-import LoginForm from "../LoginForm";
+import LoginForm from "../components/homepage/menu/LoginForm";
 
 describe('login page', () => {
     it('should send login data to server', () => {

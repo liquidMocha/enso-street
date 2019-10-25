@@ -1,6 +1,6 @@
 import {shallow} from "enzyme";
 import React from "react";
-import SelectableLocationRow from "../SelectableLocationRow";
+import SelectableLocationRow from "../components/homepage/location/SelectableLocationRow";
 
 describe('input with error', () => {
     let selectableLocationRow;

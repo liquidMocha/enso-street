@@ -1,6 +1,6 @@
 import React, {useState} from "react";
 import ErrorMessage from "./ErrorMessage";
-import './styles/Input.scss';
+import '../../styles/Input.scss';
 
 const InputWithError = (prop) => {
     const [displayError, setDisplayError] = useState(false);

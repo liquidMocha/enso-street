@@ -1,12 +1,12 @@
 import React, {useState} from "react";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faPlus} from "@fortawesome/free-solid-svg-icons";
-import './styles/Modal.scss';
+import '../../../styles/Modal.scss';
 import {withRouter} from "react-router-dom";
 import {connect} from "react-redux";
 import SelectableLocationRow from "./SelectableLocationRow";
-import {selectedLocation} from "./redux/reducers/searchCriteria";
-import {selectSearchLocation} from "./redux/actions";
+import {selectedLocation} from "../../../redux/reducers/searchCriteria";
+import {selectSearchLocation} from "../../../redux/actions";
 import {bindActionCreators} from "redux";
 
 const LocationPickerPage = withRouter((props) => {

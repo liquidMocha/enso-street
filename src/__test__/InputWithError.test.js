@@ -1,5 +1,5 @@
 import {shallow} from "enzyme";
-import InputWithError from "../InputWithError";
+import InputWithError from "../components/shared/InputWithError";
 import React from "react";
 
 describe('input with error', () => {

@@ -1,15 +1,15 @@
 import React from 'react';
 import './styles/App.scss';
-import LoginPage from "./LoginPage";
-import SignUpPage from "./SignUpPage";
+import LoginPage from "./components/homepage/menu/LoginPage";
+import SignUpPage from "./components/homepage/menu/SignUpPage";
 import {BrowserRouter, Route} from "react-router-dom";
 import ListItem from "./ListItem";
-import Footer from "./Footer";
-import HomePage from "./HomePage";
-import MenuPage from "./MenuPage";
-import LocationPickerPage from "./LocationPickerPage";
-import DateRangePickerPage from "./DateRangePickerPage";
-import AddLocationPage from "./AddLocationPage";
+import Footer from "./components/shared/Footer";
+import HomePage from "./components/homepage/HomePage";
+import MenuPage from "./components/homepage/menu/MenuPage";
+import LocationPickerPage from "./components/homepage/location/LocationPickerPage";
+import DateRangePickerPage from "./components/homepage/dateRange/DateRangePickerPage";
+import AddLocationPage from "./components/homepage/location/AddLocationPage";
 
 class App extends React.Component {
     render() {

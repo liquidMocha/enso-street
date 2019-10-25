@@ -1,10 +1,10 @@
 import React from "react";
-import './styles/LoginPage.scss';
+import '../../../styles/LoginPage.scss';
 import LoginForm from "./LoginForm";
-import './styles/Button.scss';
+import '../../../styles/Button.scss';
 import OAuthButtons from "./OAuthButtons";
-import './styles/Spacing.scss';
-import TitleBar from "./TitleBar";
+import '../../../styles/Spacing.scss';
+import TitleBar from "../../shared/TitleBar";
 
 class LoginPage extends React.Component {
 

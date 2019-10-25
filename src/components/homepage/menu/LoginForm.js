@@ -1,6 +1,6 @@
 import React, {useState} from "react";
 import axios from "axios";
-import InputWithError from "./InputWithError";
+import InputWithError from "../../shared/InputWithError";
 
 const LoginForm = (props) => {
     const [loginSuccessful, setLoginSuccessful] = useState(false);

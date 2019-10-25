@@ -1,5 +1,5 @@
 import React from "react";
-import './styles/ErrorMessage.scss';
+import '../../styles/ErrorMessage.scss';
 
 const ErrorMessage = (prop) => {
 

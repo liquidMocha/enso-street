@@ -1,11 +1,11 @@
 import React, {useEffect, useState} from 'react';
 import axios from 'axios';
-import './styles/SignUpPage.scss';
+import '../../../styles/SignUpPage.scss';
 import * as ReactGA from "react-ga";
 import OAuthButtons from "./OAuthButtons";
-import './styles/Input.scss';
-import InputWithError from "./InputWithError";
-import TitleBar from "./TitleBar";
+import '../../../styles/Input.scss';
+import InputWithError from "../../shared/InputWithError";
+import TitleBar from "../../shared/TitleBar";
 
 function SignUpPage(props) {
     const [email, setEmail] = useState('');

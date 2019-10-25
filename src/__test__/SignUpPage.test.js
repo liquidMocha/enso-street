@@ -1,6 +1,6 @@
 import React from 'react';
 import {shallow} from 'enzyme';
-import SignUpPage from "../SignUpPage";
+import SignUpPage from "../components/homepage/menu/SignUpPage";
 import axios from "axios";
 
 describe('sign up page', () => {

@@ -1,6 +1,6 @@
 import React from "react";
-import './styles/DateTab.scss';
-import './styles/font.scss';
+import '../../../styles/DateTab.scss';
+import '../../../styles/font.scss';
 
 const DateTab = (prop) => {
     const monthFormatter = new Intl.DateTimeFormat('en-US', {month: 'long'});

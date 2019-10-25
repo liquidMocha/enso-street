@@ -1,14 +1,14 @@
 import React from "react";
-import './styles/Button.scss';
-import './styles/Input.scss';
-import './styles/HomePage.scss';
+import '../../styles/Button.scss';
+import '../../styles/Input.scss';
+import '../../styles/HomePage.scss';
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faCalendarAlt, faMapMarkerAlt} from '@fortawesome/free-solid-svg-icons';
-import './styles/Sizing.scss';
+import '../../styles/Sizing.scss';
 import {withRouter} from "react-router-dom";
-import TitleBar from "./TitleBar";
+import TitleBar from "../shared/TitleBar";
 import {connect} from "react-redux";
-import {selectedLocation} from "./redux/reducers/searchCriteria";
+import {selectedLocation} from "../../redux/reducers/searchCriteria";
 
 const HomePage = withRouter((props) => {
     const dateFormatter = new Intl.DateTimeFormat('en-US', {month: 'short', day: '2-digit'});

@@ -1,6 +1,6 @@
 import React from "react";
-import './styles/color.scss';
-import './styles/Spacing.scss';
+import '../../../styles/color.scss';
+import '../../../styles/Spacing.scss';
 
 const SelectableLocationRow = (props) => {
     return (
