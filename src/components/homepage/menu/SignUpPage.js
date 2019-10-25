@@ -66,7 +66,7 @@ function SignUpPage(props) {
                         Password
                     </label>
                     <InputWithError id='sign-up-password-field'
-                                    type='text'
+                                    type='password'
                                     onChange={(value) => {
                                         setPassword(value)
                                     }}
