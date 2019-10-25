@@ -60,7 +60,7 @@ const AddLocationPage = withRouter((props) => {
                 <div>
                     <label className='input-label'>Zip Code*</label>
                     <InputWithError id='zip-code-field'
-                                    type='text'
+                                    type='number'
                                     onChange={(value) => {
                                         setZipCode(value)
                                     }}
