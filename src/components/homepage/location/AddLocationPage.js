@@ -35,9 +35,26 @@ const AddLocationPage = withRouter((props) => {
                     <label className='input-label'>Nickname*</label>
                     <InputWithError id='nickname-field'
                                     type='text'
+                                    placeholder={'Ex. Home, work, parent\'s home'}
                                     onChange={(value) => {
                                         setNickname(value)
                                     }}
+                    />
+                </div>
+                <div>
+                    <label className='input-label'>Address</label>
+                    <InputWithError id='address-field'
+                                    type='text'
+                                    placeholder={'Ex. West 22nd Street'}
+                                    onChange={() => {}}
+                    />
+                </div>
+                <div>
+                    <label className='input-label'>City</label>
+                    <InputWithError id='city-field'
+                                    type='text'
+                                    placeholder={'Enter City'}
+                                    onChange={() => {}}
                     />
                 </div>
                 <div>
