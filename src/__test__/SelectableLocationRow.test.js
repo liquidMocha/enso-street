@@ -29,15 +29,15 @@ describe('input with error', () => {
         expect(selectableLocationRow.find('.highlight-background').length).toBe(0);
     });
 
-    it('should invoke callback with zip code when clicked on', () => {
+    it('should invoke callback with location name when clicked on', () => {
         const mockOnClick = jest.fn();
-        const zipCode = '12345';
+        const locaitonName = 'home';
         selectableLocationRow.setProps({
             onClick: mockOnClick,
-            zipCode: zipCode
+            name: locaitonName
         });
 
         selectableLocationRow.find('div[data-test="location-row"]').simulate('click');
-        expect(mockOnClick).toHaveBeenCalledWith(zipCode);
+        expect(mockOnClick).toHaveBeenCalledWith(locaitonName);
     })
 });

@@ -19,7 +19,7 @@ export const addSearchLocation = location => ({
     payload: location
 });
 
-export const selectSearchLocation = zipCode => ({
+export const selectSearchLocation = nickname => ({
     type: SELECT_SEARCH_LOCATION,
-    payload: zipCode
+    payload: nickname
 });

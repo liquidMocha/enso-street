@@ -3,17 +3,17 @@ import {ADD_SEARCH_LOCATION, SELECT_SEARCH_LOCATION} from "../redux/actionTypes"
 
 describe('searchCriteria reducer', () => {
     describe('should handle select search location action', () => {
-        it('should select the location with the zipcode passed in', () => {
-            const action = {type: SELECT_SEARCH_LOCATION, payload: '123'};
+        it('should select the location with the nickname passed in', () => {
+            const action = {type: SELECT_SEARCH_LOCATION, payload: 'home'};
             const state = {
                 locations: [
-                    {zipCode: '123'},
-                    {zipCode: '345'}
+                    {nickname: 'work', zipCode: "123"},
+                    {nickname: 'home', zipCode: "123"}
                 ]
             };
             const newState = searchCriteria(state, action);
 
-            expect(newState.locations[0].selected).toEqual(true);
+            expect(newState.locations[1].selected).toEqual(true);
         });
 
         it('should only select one location', () => {
@@ -21,8 +21,8 @@ describe('searchCriteria reducer', () => {
             const secondAction = {type: SELECT_SEARCH_LOCATION, payload: '345'};
             const state = {
                 locations: [
-                    {zipCode: '123'},
-                    {zipCode: '345'}
+                    {nickname: '123'},
+                    {nickname: '345'}
                 ]
             };
             const intermediateState = searchCriteria(state, action);
@@ -37,7 +37,7 @@ describe('searchCriteria reducer', () => {
         it('should add location', () => {
             const action = {type: ADD_SEARCH_LOCATION, payload: {nickname: 'home', zipCode: '12345'}};
 
-            const newState = searchCriteria({locations:[]}, action);
+            const newState = searchCriteria({locations: []}, action);
 
             expect(newState.locations.length).toEqual(1);
             expect(newState.locations[0].zipCode).toEqual('12345');

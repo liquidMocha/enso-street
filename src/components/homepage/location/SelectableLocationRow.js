@@ -7,7 +7,7 @@ const SelectableLocationRow = (props) => {
         <div data-test='location-row'
              className={'full-width-row ' + (props.selected ? 'highlight-background' : '')}
              onClick={() => {
-                 props.onClick(props.zipCode);
+                 props.onClick(props.name);
              }}>
             <div data-test='location-name'>{props.name}</div>
         </div>

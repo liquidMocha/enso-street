@@ -16,11 +16,11 @@ const initialState = {
 export default (state = initialState, action) => {
     switch (action.type) {
         case SELECT_SEARCH_LOCATION: {
-            const selectedZipCode = action.payload;
+            const selectedLocationNickname = action.payload;
             return Object.assign({}, state, {
                 ...state,
                 locations: state.locations.map(location => {
-                    if (location.zipCode === selectedZipCode) {
+                    if (location.nickname === selectedLocationNickname) {
                         return {
                             ...location,
                             selected: true
