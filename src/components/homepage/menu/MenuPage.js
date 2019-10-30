@@ -10,6 +10,11 @@ const MenuPage = () => {
             <TitleBar/>
             <div id="menu-page-body">
                 <div id='menu-page-button-group'>
+                    <Link to={'post-item'} id='post-item-button'>
+                        <div className='home-page-button'>
+                            Post Item
+                        </div>
+                    </Link>
                     <Link to='login' id='login-button'>
                         <div className='home-page-button'>
                             Log in

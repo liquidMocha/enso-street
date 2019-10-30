@@ -10,6 +10,7 @@ import MenuPage from "./components/homepage/menu/MenuPage";
 import LocationPickerPage from "./components/homepage/location/LocationPickerPage";
 import DateRangePickerPage from "./components/homepage/dateRange/DateRangePickerPage";
 import AddLocationPage from "./components/homepage/location/AddLocationPage";
+import PostItemPage from "./components/postItem/PostItemPage";
 
 class App extends React.Component {
     render() {
@@ -25,6 +26,7 @@ class App extends React.Component {
                     <Route path="/location" component={LocationPickerPage}/>
                     <Route path="/pick-date" component={DateRangePickerPage}/>
                     <Route path="/add-location" component={AddLocationPage}/>
+                    <Route path="/post-item" component={PostItemPage}/>
                 </div>
                 <Footer/>
             </BrowserRouter>

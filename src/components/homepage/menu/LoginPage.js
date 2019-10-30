@@ -6,28 +6,17 @@ import OAuthButtons from "./OAuthButtons";
 import '../../../styles/Spacing.scss';
 import TitleBar from "../../shared/TitleBar";
 
-class LoginPage extends React.Component {
-
-    constructor(props) {
-        super(props);
-        this.state = {
-            loggedInUser: '',
-            userImage: ''
-        };
-    }
-
-    render() {
-        return (
-            <div className='column-layout'>
-                <TitleBar/>
-                <div className='login-page-title'>Login</div>
-                <OAuthButtons baseUrl={this.props.baseUrl}/>
-                <div>OR</div>
-                <LoginForm baseUrl={this.props.baseUrl}/>
-                <div>Forget password</div>
-            </div>
-        );
-    }
-}
+const LoginPage = (props) => {
+    return (
+        <div className='column-layout'>
+            <TitleBar/>
+            <div className='login-page-title'>Login</div>
+            <OAuthButtons baseUrl={props.baseUrl}/>
+            <div>OR</div>
+            <LoginForm baseUrl={props.baseUrl}/>
+            <div>Forget password</div>
+        </div>
+    );
+};
 
 export default LoginPage
