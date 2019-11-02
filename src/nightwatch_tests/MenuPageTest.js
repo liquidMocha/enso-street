@@ -1,7 +1,7 @@
 const url = 'localhost:3000';
 
 module.exports = {
-    'should display home page': (browser) => {
+    'should display login and signup button when not logged in': (browser) => {
         browser
             .url(url)
             .waitForElementVisible('body')

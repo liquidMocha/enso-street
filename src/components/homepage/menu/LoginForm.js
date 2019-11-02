@@ -15,10 +15,10 @@ const LoginForm = (props) => {
             email: email,
             password: password
         }, {withCredentials: true})
-            .then((response) => {
+            .then((_) => {
                 setLoginClicked(true);
                 setLoginSuccessful(true);
-            }).catch((error) => {
+            }).catch((_) => {
             setLoginClicked(true);
             setLoginSuccessful(false);
         });
@@ -46,7 +46,7 @@ const LoginForm = (props) => {
                                 shouldError={() => password === ''}
                 />
             </div>
-            <button onClick={onLogin}>Log In</button>
+            <button id='login-button' onClick={onLogin}>Log In</button>
             {!loginSuccessful && loginClicked ? 'login failed' : null}
             {loginSuccessful && loginClicked ? 'login successful' : null}
         </form>

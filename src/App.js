@@ -11,6 +11,7 @@ import LocationPickerPage from "./components/homepage/location/LocationPickerPag
 import DateRangePickerPage from "./components/homepage/dateRange/DateRangePickerPage";
 import AddLocationPage from "./components/homepage/location/AddLocationPage";
 import PostItemPage from "./components/postItem/PostItemPage";
+import {isUserLoggedIn} from "./UserService";
 
 class App extends React.Component {
     render() {
@@ -19,7 +20,7 @@ class App extends React.Component {
             <BrowserRouter>
                 <div id='app-content'>
                     <Route exact path="/" component={HomePage}/>
-                    <Route path="/menu" component={MenuPage}/>
+                    <Route path="/menu" component={(props) => <MenuPage {...props} baseUrl={baseUrl} isLoggedIn={isUserLoggedIn}/>}/>
                     <Route path="/login" component={(props) => <LoginPage {...props} baseUrl={baseUrl}/>}/>
                     <Route path="/sign-up" component={(props) => <SignUpPage {...props} baseUrl={baseUrl}/>}/>
                     <Route path="/list-item" component={(props) => <ListItem {...props} baseUrl={baseUrl}/>}/>

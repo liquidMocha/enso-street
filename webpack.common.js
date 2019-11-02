@@ -4,9 +4,9 @@ const path = require('path');
 const HtmlWebpackInlineSourcePlugin = require('html-webpack-inline-source-plugin');
 
 module.exports = {
-    entry: {
-        app: './src/index.js',
-    },
+    entry: [
+        './src/index.js','babel-polyfill'
+    ],
     output: {
         filename: '[name].bundle.js',
         path: path.resolve(__dirname, 'dist'),
