@@ -7,6 +7,10 @@ const PostItemPhoto = (props) => {
         <div>
             <PostItemTitleBar/>
             <div id='title-row'>Title: {props.postedItemTitle}</div>
+            <div className='image-button'>
+                Take Photo
+                <input type="file" accept="image/*" capture="camera"/>
+            </div>
         </div>
     )
 };
