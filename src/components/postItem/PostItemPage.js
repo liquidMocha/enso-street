@@ -4,6 +4,7 @@ import {Link, withRouter} from "react-router-dom";
 import PostItemTitleBar from "../shared/PostItemTitleBar";
 import {updatePostedItemTitle} from "../../redux/actions";
 import {connect} from "react-redux";
+import '../../styles/Button.scss';
 
 
 export const PostItemPage = (props) => {
@@ -22,9 +23,9 @@ export const PostItemPage = (props) => {
                            props.updatePostedItemTitle(itemTitle);
                        }}/>
                 <Link to='/post-item/photo'>
-                    <div id='next-button' className='home-page-button'>
+                    <button id='next-button' className='home-page-button'>
                         Next
-                    </div>
+                    </button>
                 </Link>
             </div>
         </div>
