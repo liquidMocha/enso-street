@@ -1,25 +1,36 @@
-import React from "react";
+import React, {useState} from "react";
 import '../../styles/Input.scss';
-import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {faAngleLeft} from "@fortawesome/free-solid-svg-icons";
+import {Link, withRouter} from "react-router-dom";
+import PostItemTitleBar from "../shared/PostItemTitleBar";
+import {updatePostedItemTitle} from "../../redux/actions";
+import {connect} from "react-redux";
 
 
-const PostItemPage = (props) => {
+export const PostItemPage = (props) => {
+    const [itemTitle, setItemTitle] = useState('');
+
     return (
         <div>
-            <div id='date-range-picker-title-bar' className='fixed-title-bar'>
-                <span>
-                    <FontAwesomeIcon icon={faAngleLeft}/>
-                </span>
-                <span className='fixed-title-bar__title--font'>Post Items</span>
-                <span>Cancel</span>
-            </div>
+            <PostItemTitleBar/>
             <div className='center-aligned'>
                 <label>Title</label>
-                <input className='input-field' type='text' id='item-title-input'/>
+                <input className='input-field' type='text' id='item-title-input'
+                       onChange={((event) => {
+                           setItemTitle(event.target.value);
+                       })}
+                       onBlur={() => {
+                           props.updatePostedItemTitle(itemTitle);
+                       }}/>
+                <Link to='/post-item/photo'>
+                    <div id='next-button' className='home-page-button'>
+                        Next
+                    </div>
+                </Link>
             </div>
         </div>
     )
 };
 
-export default PostItemPage
+const mapDispatchToProps = {updatePostedItemTitle};
+
+export default withRouter(connect(null, mapDispatchToProps)(PostItemPage))
