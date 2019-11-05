@@ -25,3 +25,33 @@ input[type=number] {
   font-size: 12px;
   display: block;
 }
+
+.image-button {
+  width: 50%;
+  margin: auto;
+
+  input[type=file] {
+    height: 0;
+    overflow: hidden;
+    width: 0;
+  }
+
+  [type="file"] + label {
+    background: lightgrey;
+    border: none;
+    color: black;
+    cursor: pointer;
+    display: inline-block;
+    font-size: inherit;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    outline: none;
+    padding: 1rem 30px;
+    position: relative;
+  }
+
+  svg {
+    display: block;
+  }
+
+}
