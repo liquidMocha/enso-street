@@ -4,7 +4,7 @@ const baseUrl = process.env.REACT_APP_SERVER_URL;
 
 
 export const isUserLoggedIn = () => {
-    return axios.get(
+    return axios.post(
         baseUrl + '/users/isLoggedIn',
         {withCredentials: true})
 };
