@@ -16,7 +16,7 @@ import PostItemPhoto from "./components/postItem/PostItemPhoto";
 
 class App extends React.Component {
     render() {
-        const baseUrl = process.env.REACT_APP_SERVER_URL;
+        const baseUrl = '/api';
         return (
             <BrowserRouter>
                 <div id='app-content'>
