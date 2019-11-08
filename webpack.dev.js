@@ -8,7 +8,15 @@ module.exports = merge(common, {
     devServer: {
         historyApiFallback: true,
         contentBase: './dist',
-        port: 3000
+        port: 3000,
+        https: true,
+        proxy: {
+            '/api/**':
+                {
+                    target: 'https://localhost:8080',
+                    secure: false
+                }
+        }
     },
     plugins: [
         new webpack.DefinePlugin({
