@@ -1,8 +1,7 @@
 import {UPDATE_POSTED_ITEM_TITLE} from "../actionTypes";
 
 const initialState = {
-    title: '',
-    imagePath: ''
+    title: ''
 };
 
 export default (state = initialState, action) => {
