@@ -27,7 +27,6 @@ input[type=number] {
 }
 
 .image-button {
-  width: 50%;
   margin: auto;
 
   input[type=file] {
@@ -37,21 +36,21 @@ input[type=number] {
   }
 
   [type="file"] + label {
-    background: lightgrey;
+    display: flex;
+    justify-content: center;
+    background: white;
     border: none;
     color: black;
     cursor: pointer;
-    display: inline-block;
-    font-size: inherit;
-    font-weight: 600;
     margin-bottom: 1rem;
     outline: none;
-    padding: 1rem 30px;
     position: relative;
+    width: 100%;
   }
 
   svg {
     display: block;
+    margin-right: 5px;
   }
 
 }

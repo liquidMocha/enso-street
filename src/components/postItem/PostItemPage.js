@@ -5,10 +5,12 @@ import PostItemTitleBar from "../shared/PostItemTitleBar";
 import {updatePostedItemTitle} from "../../redux/actions";
 import {connect} from "react-redux";
 import '../../styles/Button.scss';
-
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import {faCamera} from "@fortawesome/free-solid-svg-icons";
 
 export const PostItemPage = (props) => {
     const [itemTitle, setItemTitle] = useState('');
+    const [imageUrl, setImageUrl] = useState(null);
 
     return (
         <div>
@@ -22,7 +24,19 @@ export const PostItemPage = (props) => {
                        onBlur={() => {
                            props.updatePostedItemTitle(itemTitle);
                        }}/>
-                <Link to='/post-item/photo'>
+                <div className='image-button'>
+                    <input id='take-photo-input' type="file" accept="image/*" capture="camera"
+                           onChange={(event) => {
+                               if (event.target.files && event.target.files[0]) {
+                                   setImageUrl(URL.createObjectURL(event.target.files[0]));
+                               }
+                           }}/>
+                    <label htmlFor='take-photo-input'>
+                        <FontAwesomeIcon icon={faCamera}/>
+                        Take a photo
+                    </label>
+                </div>
+                <Link to='/post-item/details'>
                     <button id='next-button' className='home-page-button'>
                         Next
                     </button>
