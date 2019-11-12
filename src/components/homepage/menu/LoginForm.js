@@ -49,12 +49,6 @@ const LoginForm = (props) => {
             <button id='login-button' onClick={onLogin}>Log In</button>
             {!loginSuccessful && loginClicked ? 'login failed' : null}
             {loginSuccessful && loginClicked ? 'login successful' : null}
-            <select>
-                <option value="grapefruit">This</option>
-                <option value="lime">is</option>
-                <option selected value="coconut">a</option>
-                <option value="mango">test</option>
-            </select>
         </form>
     )
 };
