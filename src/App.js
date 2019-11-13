@@ -13,6 +13,7 @@ import PostItemPage from "./components/postItem/PostItemPage";
 import {isUserLoggedIn} from "./UserService";
 import PostItemDetailPage from "./components/postItem/PostItemDetailPage";
 import PriceAndDelivery from "./components/postItem/PriceAndDelivery";
+import Preview from "./components/postItem/Preview";
 
 class App extends React.Component {
     render() {
@@ -30,6 +31,7 @@ class App extends React.Component {
                     <Route exact path="/post-item" component={PostItemPage}/>
                     <Route exact path="/post-item/details" component={PostItemDetailPage}/>
                     <Route exact path="/post-item/price-and-delivery" component={PriceAndDelivery}/>
+                    <Route exact path="/post-item/preview" component={Preview}/>
                 </div>
                 <Footer/>
             </BrowserRouter>

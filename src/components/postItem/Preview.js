@@ -1,0 +1,48 @@
+import React from "react";
+import PostItemTitleBar from "../shared/PostItemTitleBar";
+import {connect} from "react-redux";
+
+const Preview = (props) => {
+    return (
+        <div>
+            <PostItemTitleBar/>
+            <img src={props.imageUrl}/>
+            <div>{props.itemTitle}</div>
+            <div>
+                <span>{props.dailyPrice} per day</span>
+                <span>{props.deposit} deposit</span>
+            </div>
+            <div>
+                Condition {props.condition}
+            </div>
+            <div>
+                Description
+                {props.description}
+            </div>
+            <div>
+                Item size {props.itemSize}
+            </div>
+            {
+                props.canBeDelivered ?
+                    <div>
+                        Item can be delivered
+                    </div> : null
+            }
+        </div>
+    )
+};
+
+const mapStateToProps = (state) => {
+    return {
+        imageUrl: state.postedItem.imageUrl,
+        itemTitle: state.postedItem.title,
+        dailyPrice: state.postedItem.rentalDailyPrice,
+        deposit: state.postedItem.deposit,
+        condition: state.postedItem.condition,
+        description: state.postedItem.description,
+        itemSize: state.postedItem.itemSize,
+        canBeDelivered: state.postedItem.canBeDelivered,
+    }
+};
+
+export default connect(mapStateToProps, null)(Preview)

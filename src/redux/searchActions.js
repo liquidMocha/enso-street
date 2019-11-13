@@ -2,8 +2,7 @@ import {
     ADD_SEARCH_LOCATION,
     CHANGE_RENT_DATE,
     CHANGE_RETURN_DATE,
-    SELECT_SEARCH_LOCATION,
-    UPDATE_POSTED_ITEM_TITLE
+    SELECT_SEARCH_LOCATION
 } from "./actionTypes";
 
 export const changeRentDate = date => ({
@@ -28,9 +27,4 @@ export const addSearchLocation = location => ({
 export const selectSearchLocation = nickname => ({
     type: SELECT_SEARCH_LOCATION,
     payload: nickname
-});
-
-export const updatePostedItemTitle = title => ({
-    type: UPDATE_POSTED_ITEM_TITLE,
-    payload: title
 });

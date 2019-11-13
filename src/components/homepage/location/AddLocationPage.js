@@ -4,7 +4,7 @@ import {faPlus} from "@fortawesome/free-solid-svg-icons";
 import InputWithError from "../../shared/InputWithError";
 import {withRouter} from "react-router-dom";
 import {connect} from "react-redux";
-import {addSearchLocation} from "../../../redux/actions";
+import {addSearchLocation} from "../../../redux/searchActions";
 
 const AddLocationPage = withRouter((props) => {
     const [nickname, setNickname] = useState('');

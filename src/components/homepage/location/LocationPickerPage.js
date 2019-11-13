@@ -6,7 +6,7 @@ import {withRouter} from "react-router-dom";
 import {connect} from "react-redux";
 import SelectableLocationRow from "./SelectableLocationRow";
 import {selectedLocation} from "../../../redux/reducers/searchCriteria";
-import {selectSearchLocation} from "../../../redux/actions";
+import {selectSearchLocation} from "../../../redux/searchActions";
 import {bindActionCreators} from "redux";
 
 const LocationPickerPage = withRouter((props) => {

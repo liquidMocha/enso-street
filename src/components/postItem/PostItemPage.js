@@ -2,16 +2,15 @@ import React, {useState} from "react";
 import '../../styles/Input.scss';
 import {withRouter} from "react-router-dom";
 import PostItemTitleBar from "../shared/PostItemTitleBar";
-import {updatePostedItemTitle} from "../../redux/actions";
 import {connect} from "react-redux";
 import '../../styles/Button.scss';
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faCamera} from "@fortawesome/free-solid-svg-icons";
 import NextButton from "./NextButton";
+import {updatePostedItemImageUrl, updatePostedItemTitle} from "../../redux/postItemActions";
 
 export const PostItemPage = (props) => {
     const [itemTitle, setItemTitle] = useState('');
-    const [imageUrl, setImageUrl] = useState(null);
 
     return (
         <div>
@@ -29,7 +28,7 @@ export const PostItemPage = (props) => {
                     <input id='take-photo-input' type="file" accept="image/*" capture="camera"
                            onChange={(event) => {
                                if (event.target.files && event.target.files[0]) {
-                                   setImageUrl(URL.createObjectURL(event.target.files[0]));
+                                   props.updatePostedItemImageUrl(URL.createObjectURL(event.target.files[0]));
                                }
                            }}/>
                     <label htmlFor='take-photo-input'>
@@ -43,6 +42,6 @@ export const PostItemPage = (props) => {
     )
 };
 
-const mapDispatchToProps = {updatePostedItemTitle};
+const mapDispatchToProps = {updatePostedItemTitle, updatePostedItemImageUrl};
 
 export default withRouter(connect(null, mapDispatchToProps)(PostItemPage))

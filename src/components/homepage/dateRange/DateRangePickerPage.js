@@ -2,7 +2,7 @@ import React, {useState} from "react";
 import DateTab from "./DateTab";
 import '../../../styles/Modal.scss';
 import {withRouter} from "react-router-dom";
-import {changeRentDate, changeReturnDate} from '../../../redux/actions';
+import {changeRentDate, changeReturnDate} from '../../../redux/searchActions';
 import {connect} from "react-redux";
 
 const DateRangePickerPage = withRouter((props) => {
