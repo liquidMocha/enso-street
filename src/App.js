@@ -12,6 +12,7 @@ import AddLocationPage from "./components/homepage/location/AddLocationPage";
 import PostItemPage from "./components/postItem/PostItemPage";
 import {isUserLoggedIn} from "./UserService";
 import PostItemDetailPage from "./components/postItem/PostItemDetailPage";
+import PriceAndDelivery from "./components/postItem/PriceAndDelivery";
 
 class App extends React.Component {
     render() {
@@ -28,6 +29,7 @@ class App extends React.Component {
                     <Route path="/add-location" component={AddLocationPage}/>
                     <Route exact path="/post-item" component={PostItemPage}/>
                     <Route exact path="/post-item/details" component={PostItemDetailPage}/>
+                    <Route exact path="/post-item/price-and-delivery" component={PriceAndDelivery}/>
                 </div>
                 <Footer/>
             </BrowserRouter>
