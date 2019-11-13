@@ -1,12 +1,13 @@
 import React, {useState} from "react";
 import '../../styles/Input.scss';
-import {Link, withRouter} from "react-router-dom";
+import {withRouter} from "react-router-dom";
 import PostItemTitleBar from "../shared/PostItemTitleBar";
 import {updatePostedItemTitle} from "../../redux/actions";
 import {connect} from "react-redux";
 import '../../styles/Button.scss';
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faCamera} from "@fortawesome/free-solid-svg-icons";
+import NextButton from "./NextButton";
 
 export const PostItemPage = (props) => {
     const [itemTitle, setItemTitle] = useState('');
@@ -36,11 +37,7 @@ export const PostItemPage = (props) => {
                         Take a photo
                     </label>
                 </div>
-                <Link to='/post-item/details'>
-                    <button id='next-button' className='home-page-button'>
-                        Next
-                    </button>
-                </Link>
+                <NextButton destination='/post-item/details'/>
             </div>
         </div>
     )

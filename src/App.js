@@ -11,6 +11,7 @@ import DateRangePickerPage from "./components/homepage/dateRange/DateRangePicker
 import AddLocationPage from "./components/homepage/location/AddLocationPage";
 import PostItemPage from "./components/postItem/PostItemPage";
 import {isUserLoggedIn} from "./UserService";
+import PostItemDetailPage from "./components/postItem/PostItemDetailPage";
 
 class App extends React.Component {
     render() {
@@ -26,6 +27,7 @@ class App extends React.Component {
                     <Route path="/pick-date" component={DateRangePickerPage}/>
                     <Route path="/add-location" component={AddLocationPage}/>
                     <Route exact path="/post-item" component={PostItemPage}/>
+                    <Route exact path="/post-item/details" component={PostItemDetailPage}/>
                 </div>
                 <Footer/>
             </BrowserRouter>
