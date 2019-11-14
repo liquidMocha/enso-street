@@ -26,7 +26,7 @@ const PriceAndDelivery = (props) => {
 
     return (
         <div>
-            <PostItemTitleBar/>
+            <PostItemTitleBar backLink="/post-item/details"/>
             <div id="price-section" className="horizontal-layout">
                 <div>
                     <label>Daily rental</label>

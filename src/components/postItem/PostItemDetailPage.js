@@ -17,7 +17,7 @@ const PostItemDetailPage = (props) => {
 
     return (
         <div>
-            <PostItemTitleBar/>
+            <PostItemTitleBar backLink="/post-item"/>
             <div>
                 <label>Condition</label>
                 <select onChange={handleConditionChange}>

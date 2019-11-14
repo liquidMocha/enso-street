@@ -6,8 +6,8 @@ import "../../styles/Image.scss";
 const Preview = (props) => {
     return (
         <div>
-            <PostItemTitleBar/>
-            <img src={props.imageUrl}/>
+            <PostItemTitleBar backLink="/post-item/price-and-delivery"/>
+            <img src={props.imageUrl} alt="Posted Item"/>
             <div className='bold'>{props.itemTitle}</div>
             <div className='horizontal-layout'>
                 <span>{props.dailyPrice} per day</span>

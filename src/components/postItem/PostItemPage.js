@@ -1,6 +1,5 @@
 import React, {useState} from "react";
 import '../../styles/Input.scss';
-import {withRouter} from "react-router-dom";
 import PostItemTitleBar from "../shared/PostItemTitleBar";
 import {connect} from "react-redux";
 import '../../styles/Button.scss';
@@ -14,7 +13,7 @@ export const PostItemPage = (props) => {
 
     return (
         <div>
-            <PostItemTitleBar/>
+            <PostItemTitleBar hideBackButton={true}/>
             <div>
                 <label>Title</label>
                 <input className='input-field' type='text' id='item-title-input'
@@ -44,4 +43,4 @@ export const PostItemPage = (props) => {
 
 const mapDispatchToProps = {updatePostedItemTitle, updatePostedItemImageUrl};
 
-export default withRouter(connect(null, mapDispatchToProps)(PostItemPage))
+export default connect(null, mapDispatchToProps)(PostItemPage)
