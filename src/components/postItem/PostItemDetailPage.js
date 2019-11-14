@@ -3,6 +3,7 @@ import PostItemTitleBar from "../shared/PostItemTitleBar";
 import NextButton from "./NextButton";
 import {updatePostedItemCondition, updatePostedItemDescription} from "../../redux/postItemActions";
 import {connect} from "react-redux";
+import "../../styles/Input.scss";
 
 const PostItemDetailPage = (props) => {
 
@@ -26,7 +27,7 @@ const PostItemDetailPage = (props) => {
                 </select>
             </div>
             <div>
-                <label>Description(optional)</label>
+                <label>Description (optional)</label>
                 <input type='textarea' onChange={handleDescriptionChange}/>
             </div>
             <NextButton destination='/post-item/price-and-delivery'/>

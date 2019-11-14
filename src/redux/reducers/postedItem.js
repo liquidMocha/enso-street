@@ -12,9 +12,9 @@ const initialState = {
     title: '',
     rentalDailyPrice: 0,
     deposit: 0,
-    condition: '',
+    condition: 'like-new',
     description: '',
-    itemSize: '',
+    itemSize: 'small',
     canBeDelivered: false,
     zipCode: ''
 };

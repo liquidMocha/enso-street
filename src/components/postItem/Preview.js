@@ -1,27 +1,29 @@
 import React from "react";
 import PostItemTitleBar from "../shared/PostItemTitleBar";
 import {connect} from "react-redux";
+import "../../styles/Image.scss";
 
 const Preview = (props) => {
     return (
         <div>
             <PostItemTitleBar/>
             <img src={props.imageUrl}/>
-            <div>{props.itemTitle}</div>
-            <div>
+            <div className='bold'>{props.itemTitle}</div>
+            <div className='horizontal-layout'>
                 <span>{props.dailyPrice} per day</span>
                 <span>{props.deposit} deposit</span>
             </div>
             <div>
-                Condition {props.condition}
+                <span className='bold'>Condition</span>
+                {props.condition}
             </div>
             <div>
-                Description
+                <span className='bold'>Description</span>
                 {props.description}
             </div>
             <div>
-                Item size {props.itemSize}
-            </div>
+                <span className='bold'>Item size</span>
+                {props.itemSize}</div>
             {
                 props.canBeDelivered ?
                     <div>

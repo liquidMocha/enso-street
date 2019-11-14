@@ -8,6 +8,8 @@ import {
     updatePostedItemDeposit,
     updatePostedItemSize
 } from "../../redux/postItemActions";
+import "../../styles/Input.scss";
+import "../../styles/PriceAndDelivery.scss";
 
 const PriceAndDelivery = (props) => {
     const handleDailyRentalChange = (event) => {
@@ -25,44 +27,24 @@ const PriceAndDelivery = (props) => {
     return (
         <div>
             <PostItemTitleBar/>
-            <div>
-                <label>Daily rental</label>
-                <span>$</span><input type='number' onChange={handleDailyRentalChange}/>
-            </div>
-            <div>
-                <label>Deposit</label>
-                <span>$</span><input type='number' onChange={handleDepositChange}/>
+            <div id="price-section" className="horizontal-layout">
+                <div>
+                    <label>Daily rental</label>
+                    <input className='price-input' type='number' onChange={handleDailyRentalChange}/>
+                </div>
+                <div>
+                    <label>Deposit</label>
+                    <input className='price-input' type='number' onChange={handleDepositChange}/>
+                </div>
             </div>
             <div>
                 <label>Item size</label>
                 <select onChange={handleItemSizeChange}>
                     Please select a condition
-                    <option value='small'>Small(can fit in a backpack)</option>
-                    <option value='Medium'>Medium(can fit in the trunk of a sedan)</option>
-                    <option value='Large'>Large(need bigger vehicle to transport)</option>
+                    <option value='small'>Small (can fit in a backpack)</option>
+                    <option value='Medium'>Medium (can fit in the trunk of a sedan)</option>
+                    <option value='Large'>Large (need bigger vehicle to transport)</option>
                 </select>
-            </div>
-            <div>
-                <label>Zip code</label>
-                <input type='number'/>
-            </div>
-            <div>
-                <label>This item can be delivered</label>
-                <input type='radio'/>
-            </div>
-            <div>
-                <div>
-                    <label>Small</label>
-                    <input type='number'/>
-                </div>
-                <div>
-                    <label>Medium</label>
-                    <input type='number'/>
-                </div>
-                <div>
-                    <label>Large</label>
-                    <input type='number'/>
-                </div>
             </div>
             <Link to='/post-item/preview'>
                 <button id='preview-button' className='home-page-button'>

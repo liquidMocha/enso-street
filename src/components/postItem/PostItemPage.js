@@ -15,7 +15,7 @@ export const PostItemPage = (props) => {
     return (
         <div>
             <PostItemTitleBar/>
-            <div className='center-aligned'>
+            <div>
                 <label>Title</label>
                 <input className='input-field' type='text' id='item-title-input'
                        onChange={((event) => {
