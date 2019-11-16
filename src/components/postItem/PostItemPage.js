@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React from "react";
 import '../../styles/Input.scss';
 import PostItemTitleBar from "../shared/PostItemTitleBar";
 import {connect} from "react-redux";
@@ -9,8 +9,6 @@ import NextButton from "./NextButton";
 import {updatePostedItemImageUrl, updatePostedItemTitle} from "../../redux/postItemActions";
 
 export const PostItemPage = (props) => {
-    const [itemTitle, setItemTitle] = useState('');
-
     return (
         <div>
             <PostItemTitleBar hideBackButton={true}/>
@@ -18,11 +16,10 @@ export const PostItemPage = (props) => {
                 <label>Title</label>
                 <input className='input-field' type='text' id='item-title-input'
                        onChange={((event) => {
-                           setItemTitle(event.target.value);
+                           props.updatePostedItemTitle(event.target.value);
                        })}
-                       onBlur={() => {
-                           props.updatePostedItemTitle(itemTitle);
-                       }}/>
+                       value={props.title}
+                />
                 <div className='image-button'>
                     <input id='take-photo-input' type="file" accept="image/*" capture="camera"
                            onChange={(event) => {
@@ -41,6 +38,12 @@ export const PostItemPage = (props) => {
     )
 };
 
+const mapStateToProps = (state) => {
+    return {
+        title: state.postedItem.title
+    }
+};
+
 const mapDispatchToProps = {updatePostedItemTitle, updatePostedItemImageUrl};
 
-export default connect(null, mapDispatchToProps)(PostItemPage)
+export default connect(mapStateToProps, mapDispatchToProps)(PostItemPage)

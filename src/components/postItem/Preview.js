@@ -4,6 +4,13 @@ import {connect} from "react-redux";
 import "../../styles/Image.scss";
 
 const Preview = (props) => {
+
+    const renderCategories = () => {
+        return props.categories.map(category => {
+            return <div key={category.value}>{category.label}</div>
+        })
+    };
+
     return (
         <div>
             <PostItemTitleBar backLink="/post-item/price-and-delivery"/>
@@ -12,6 +19,10 @@ const Preview = (props) => {
             <div className='horizontal-layout'>
                 <span>{props.dailyPrice} per day</span>
                 <span>{props.deposit} deposit</span>
+            </div>
+            <div>
+                <span className='bold'>Categories</span>
+                {renderCategories()}
             </div>
             <div>
                 <span className='bold'>Condition</span>
@@ -40,6 +51,7 @@ const mapStateToProps = (state) => {
         itemTitle: state.postedItem.title,
         dailyPrice: state.postedItem.rentalDailyPrice,
         deposit: state.postedItem.deposit,
+        categories: state.postedItem.categories,
         condition: state.postedItem.condition,
         description: state.postedItem.description,
         itemSize: state.postedItem.itemSize,

@@ -1,5 +1,5 @@
 import {
-    UPDATE_POSTED_ITEM_CAN_BE_DELIVERED,
+    UPDATE_POSTED_ITEM_CAN_BE_DELIVERED, UPDATE_POSTED_ITEM_CATEGORIES,
     UPDATE_POSTED_ITEM_CONDITION,
     UPDATE_POSTED_ITEM_DAILY_PRICE,
     UPDATE_POSTED_ITEM_DEPOSIT,
@@ -28,6 +28,11 @@ export const updatePostedItemDeposit = deposit => ({
     payload: deposit
 });
 
+
+export const updatePostedItemCategories = categories => ({
+    type: UPDATE_POSTED_ITEM_CATEGORIES,
+    payload: categories
+});
 
 export const updatePostedItemCondition = condition => ({
     type: UPDATE_POSTED_ITEM_CONDITION,

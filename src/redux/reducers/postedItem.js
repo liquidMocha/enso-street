@@ -1,5 +1,5 @@
 import {
-    UPDATE_POSTED_ITEM_CAN_BE_DELIVERED,
+    UPDATE_POSTED_ITEM_CAN_BE_DELIVERED, UPDATE_POSTED_ITEM_CATEGORIES,
     UPDATE_POSTED_ITEM_CONDITION,
     UPDATE_POSTED_ITEM_DAILY_PRICE,
     UPDATE_POSTED_ITEM_DEPOSIT, UPDATE_POSTED_ITEM_DESCRIPTION,
@@ -12,6 +12,7 @@ const initialState = {
     title: '',
     rentalDailyPrice: 0,
     deposit: 0,
+    categories: [],
     condition: 'like-new',
     description: '',
     itemSize: 'small',
@@ -41,6 +42,11 @@ export default (state = initialState, action) => {
         case UPDATE_POSTED_ITEM_DEPOSIT: {
             return Object.assign({}, state, {
                 ...state, deposit: action.payload
+            })
+        }
+        case UPDATE_POSTED_ITEM_CATEGORIES: {
+            return Object.assign({}, state, {
+                ...state, categories: action.payload
             })
         }
         case UPDATE_POSTED_ITEM_CONDITION: {
