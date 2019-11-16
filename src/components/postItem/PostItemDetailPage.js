@@ -48,6 +48,7 @@ const PostItemDetailPage = (props) => {
                     isMulti={true}
                     onChange={handleCategoryChange}
                     options={options}
+                    value={props.categories}
                 />
             </div>
             <div>
@@ -70,10 +71,12 @@ const PostItemDetailPage = (props) => {
 
 const mapStateToProps = (state) => {
     return {
+        categories: state.postedItem.categories,
         condition: state.postedItem.condition,
         description: state.postedItem.description
     }
 };
+
 const mapDispatchToProps = {
     updatePostedItemCondition,
     updatePostedItemDescription,

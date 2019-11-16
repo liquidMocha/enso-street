@@ -30,11 +30,11 @@ const PriceAndDelivery = (props) => {
             <div id="price-section" className="horizontal-layout">
                 <div>
                     <label>Daily rental</label>
-                    <input className='price-input' type='number' onChange={handleDailyRentalChange}/>
+                    <input className='price-input' type='number' value={props.dailyPrice} onChange={handleDailyRentalChange}/>
                 </div>
                 <div>
                     <label>Deposit</label>
-                    <input className='price-input' type='number' onChange={handleDepositChange}/>
+                    <input className='price-input' type='number' value={props.deposit} onChange={handleDepositChange}/>
                 </div>
             </div>
             <div>
@@ -54,6 +54,15 @@ const PriceAndDelivery = (props) => {
         </div>
     )
 };
+
+const mapStateToProps = (state) => {
+    return {
+        dailyPrice: state.postedItem.rentalDailyPrice,
+        deposit: state.postedItem.deposit,
+        size: state.postedItem.itemSize
+    }
+};
+
 const mapDispatchToProps = {
     updatePostedItemDailyPrice,
     updatePostedItemDeposit,
@@ -61,4 +70,4 @@ const mapDispatchToProps = {
     updatePostedItemCanBeDelivered
 };
 
-export default connect(null, mapDispatchToProps)(PriceAndDelivery)
+export default connect(mapStateToProps, mapDispatchToProps)(PriceAndDelivery)
