@@ -10,6 +10,7 @@ import {
 } from "../../redux/postItemActions";
 import "../../styles/Input.scss";
 import "../../styles/PriceAndDelivery.scss";
+import Select from 'react-select';
 
 const PriceAndDelivery = (props) => {
     const handleDailyRentalChange = (event) => {
@@ -20,9 +21,15 @@ const PriceAndDelivery = (props) => {
         props.updatePostedItemDeposit(event.target.value);
     };
 
-    const handleItemSizeChange = (event) => {
-        props.updatePostedItemSize(event.target.value);
+    const handleItemSizeChange = (selected) => {
+        props.updatePostedItemSize(selected);
     };
+
+    const sizeOptions = [
+        {value: 'small', label: 'Small (can fit in a backpack)'},
+        {value: 'medium', label: 'Medium (can fit in the trunk of a sedan)'},
+        {value: 'large', label: 'Large (need bigger vehicle to transport)'}
+    ];
 
     return (
         <div>
@@ -39,12 +46,11 @@ const PriceAndDelivery = (props) => {
             </div>
             <div>
                 <label>Item size</label>
-                <select onChange={handleItemSizeChange}>
-                    Please select a condition
-                    <option value='small'>Small (can fit in a backpack)</option>
-                    <option value='Medium'>Medium (can fit in the trunk of a sedan)</option>
-                    <option value='Large'>Large (need bigger vehicle to transport)</option>
-                </select>
+                <Select
+                    onChange={handleItemSizeChange}
+                    options={sizeOptions}
+                    value={props.size}
+                />
             </div>
             <Link to='/post-item/preview'>
                 <button id='preview-button' className='home-page-button'>

@@ -34,7 +34,7 @@ const Preview = (props) => {
             </div>
             <div>
                 <span className='bold'>Item size</span>
-                {props.itemSize}</div>
+                {props.itemSize.label}</div>
             {
                 props.canBeDelivered ?
                     <div>

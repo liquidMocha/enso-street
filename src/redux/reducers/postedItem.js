@@ -15,7 +15,7 @@ const initialState = {
     categories: [],
     condition: {value: 'like-new', label: 'Like new'},
     description: '',
-    itemSize: 'small',
+    itemSize: {value: 'small', label: 'Small (can fit in a backpack)'},
     canBeDelivered: false,
     zipCode: ''
 };
