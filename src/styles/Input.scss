@@ -38,11 +38,12 @@ input[type=number] {
   [type="file"] + label {
     display: flex;
     justify-content: center;
-    background: white;
+    background: lightgrey;
     border: none;
     color: black;
     cursor: pointer;
     margin-bottom: 1rem;
+    padding: 15px 20px;
     outline: none;
     position: relative;
     width: 100%;

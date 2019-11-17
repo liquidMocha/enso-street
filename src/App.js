@@ -14,6 +14,7 @@ import {isUserLoggedIn} from "./UserService";
 import PostItemDetailPage from "./components/postItem/PostItemDetailPage";
 import PriceAndDelivery from "./components/postItem/PriceAndDelivery";
 import Preview from "./components/postItem/Preview";
+import UseMyPhoto from "./components/postItem/UseMyPhoto";
 
 class App extends React.Component {
     render() {
@@ -29,6 +30,7 @@ class App extends React.Component {
                     <Route path="/pick-date" component={DateRangePickerPage}/>
                     <Route path="/add-location" component={AddLocationPage}/>
                     <Route exact path="/post-item" component={PostItemPage}/>
+                    <Route exact path="/post-item/use-my-photo" component={UseMyPhoto}/>
                     <Route exact path="/post-item/details" component={PostItemDetailPage}/>
                     <Route exact path="/post-item/price-and-delivery" component={PriceAndDelivery}/>
                     <Route exact path="/post-item/preview" component={Preview}/>

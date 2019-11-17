@@ -17,6 +17,7 @@ const InputWithError = (prop) => {
                 onBlur={_ => {
                     prop.shouldError && prop.shouldError() ? setDisplayError(true) : setDisplayError(false)
                 }}
+                value={prop.value}
             />
             {displayError ? <ErrorMessage message='This field is required'/> : null}
         </div>

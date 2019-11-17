@@ -4,9 +4,11 @@ import PostItemTitleBar from "../shared/PostItemTitleBar";
 import {connect} from "react-redux";
 import '../../styles/Button.scss';
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {faCamera} from "@fortawesome/free-solid-svg-icons";
+import {faImage} from "@fortawesome/free-solid-svg-icons";
 import NextButton from "./NextButton";
 import {updatePostedItemImageUrl, updatePostedItemTitle} from "../../redux/postItemActions";
+import InputWithError from "../shared/InputWithError";
+import {Link} from "react-router-dom";
 
 export const PostItemPage = (props) => {
     return (
@@ -14,24 +16,18 @@ export const PostItemPage = (props) => {
             <PostItemTitleBar hideBackButton={true}/>
             <div>
                 <label>Title</label>
-                <input className='input-field' type='text' id='item-title-input'
-                       onChange={((event) => {
-                           props.updatePostedItemTitle(event.target.value);
-                       })}
-                       value={props.title}
+                <InputWithError id='item-title-input' type='text'
+                                onChange={(value) => props.updatePostedItemTitle(value)}
+                                value={props.title}
+                                shouldError={() => {
+                                    return props.title === "";
+                                }}
                 />
-                <div className='image-button'>
-                    <input id='take-photo-input' type="file" accept="image/*" capture="camera"
-                           onChange={(event) => {
-                               if (event.target.files && event.target.files[0]) {
-                                   props.updatePostedItemImageUrl(URL.createObjectURL(event.target.files[0]));
-                               }
-                           }}/>
-                    <label htmlFor='take-photo-input'>
-                        <FontAwesomeIcon icon={faCamera}/>
-                        Take a photo
-                    </label>
-                </div>
+                {props.imageUrl ? <img src={props.imageUrl} alt='User provided item'/> : null}
+                <Link to='/post-item/use-my-photo'>
+                    <FontAwesomeIcon icon={faImage}/>
+                    Use my photo
+                </Link>
                 <NextButton destination='/post-item/details'/>
             </div>
         </div>
@@ -40,6 +36,7 @@ export const PostItemPage = (props) => {
 
 const mapStateToProps = (state) => {
     return {
+        imageUrl: state.postedItem.imageUrl,
         title: state.postedItem.title
     }
 };
