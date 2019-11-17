@@ -26,7 +26,7 @@ const Preview = (props) => {
             </div>
             <div>
                 <span className='bold'>Condition</span>
-                {props.condition}
+                {props.condition.label}
             </div>
             <div>
                 <span className='bold'>Description</span>

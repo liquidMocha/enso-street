@@ -13,7 +13,7 @@ const initialState = {
     rentalDailyPrice: 0,
     deposit: 0,
     categories: [],
-    condition: 'like-new',
+    condition: {value: 'like-new', label: 'Like new'},
     description: '',
     itemSize: 'small',
     canBeDelivered: false,
