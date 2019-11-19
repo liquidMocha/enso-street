@@ -1,7 +1,7 @@
-.price-input {
-  width: 70%;
-}
-
 #price-section {
+  display: flex;
   margin-bottom: 30px;
+  > div {
+    max-width: 30%;
+  }
 }

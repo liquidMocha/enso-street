@@ -1,0 +1,18 @@
+.dollar-input {
+  display: flex;
+  width: 100%;
+  flex-shrink: 1;
+
+  span {
+    padding: 5px;
+    border: 0.5px grey solid;
+    border-right: none;
+  }
+
+  input {
+    display: flex;
+    width:100%;
+    border: 0.5px grey solid;
+    padding-left: 10px;
+  }
+}

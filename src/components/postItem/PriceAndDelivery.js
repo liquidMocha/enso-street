@@ -11,6 +11,7 @@ import {
 import "../../styles/Input.scss";
 import "../../styles/PriceAndDelivery.scss";
 import Select from 'react-select';
+import DollarInput from "../shared/DollarInput";
 
 const PriceAndDelivery = (props) => {
     const handleDailyRentalChange = (event) => {
@@ -37,11 +38,17 @@ const PriceAndDelivery = (props) => {
             <div id="price-section" className="horizontal-layout">
                 <div>
                     <label>Daily rental</label>
-                    <input className='price-input' type='number' value={props.dailyPrice} onChange={handleDailyRentalChange}/>
+                    <DollarInput
+                        value={props.dailyPrice}
+                        onChange={handleDailyRentalChange}
+                    />
                 </div>
                 <div>
                     <label>Deposit</label>
-                    <input className='price-input' type='number' value={props.deposit} onChange={handleDepositChange}/>
+                    <DollarInput
+                        value={props.deposit}
+                        onChange={handleDepositChange}
+                    />
                 </div>
             </div>
             <div>
