@@ -9,6 +9,7 @@ import NextButton from "./NextButton";
 import {updatePostedItemImageUrl, updatePostedItemTitle} from "../../redux/postItemActions";
 import InputWithError from "../shared/InputWithError";
 import {Link} from "react-router-dom";
+import "../../styles/App.scss";
 
 export const PostItemPage = (props) => {
     return (
@@ -24,7 +25,7 @@ export const PostItemPage = (props) => {
                                 }}
                 />
                 {props.imageUrl ? <img src={props.imageUrl} alt='User provided item'/> : null}
-                <Link to='/post-item/use-my-photo'>
+                <Link to='/post-item/use-my-photo' className='center-aligned'>
                     <FontAwesomeIcon icon={faImage}/>
                     Use my photo
                 </Link>
