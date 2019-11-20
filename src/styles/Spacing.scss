@@ -22,3 +22,8 @@
   justify-content: center;
   text-align: center;
 }
+
+.left-aligned {
+  display: flex;
+  align-items: start;
+}

@@ -1,0 +1,22 @@
+#preview-prices {
+  width: 50%;
+  margin-bottom: 20px;
+}
+
+.key-value-column {
+  margin-right: 5px;
+}
+
+#preview-buttons {
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
+}
+
+.preview-button {
+  width: 40%;
+  border-radius: 3px;
+  margin-bottom: 10px;
+  padding: 5px;
+  border: 1px solid grey;
+}
