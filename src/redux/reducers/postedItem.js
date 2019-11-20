@@ -2,7 +2,7 @@ import {
     UPDATE_POSTED_ITEM_CAN_BE_DELIVERED,
     UPDATE_POSTED_ITEM_CATEGORIES,
     UPDATE_POSTED_ITEM_CONDITION,
-    UPDATE_POSTED_ITEM_DAILY_PRICE,
+    UPDATE_POSTED_ITEM_DAILY_PRICE, UPDATE_POSTED_ITEM_DELIVERY_ADDITIONAL, UPDATE_POSTED_ITEM_DELIVERY_STARTING,
     UPDATE_POSTED_ITEM_DEPOSIT,
     UPDATE_POSTED_ITEM_DESCRIPTION,
     UPDATE_POSTED_ITEM_IMAGE_URL,
@@ -18,6 +18,8 @@ const initialState = {
     condition: {value: 'like-new', label: 'Like new'},
     description: '',
     canBeDelivered: false,
+    deliveryStarting: 0,
+    deliveryAdditional: 0,
     zipCode: ''
 };
 
@@ -63,6 +65,16 @@ export default (state = initialState, action) => {
         case UPDATE_POSTED_ITEM_CAN_BE_DELIVERED: {
             return Object.assign({}, state, {
                 ...state, canBeDelivered: !state.canBeDelivered
+            })
+        }
+        case UPDATE_POSTED_ITEM_DELIVERY_STARTING: {
+            return Object.assign({}, state, {
+                ...state, deliveryStarting: action.payload
+            })
+        }
+        case UPDATE_POSTED_ITEM_DELIVERY_ADDITIONAL: {
+            return Object.assign({}, state, {
+                ...state, deliveryAdditional: action.payload
             })
         }
         default: {

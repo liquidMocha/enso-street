@@ -1,3 +1,9 @@
+#preview-root {
+  > div {
+    margin-bottom: 10px;
+  }
+}
+
 #preview-prices {
   width: 50%;
   margin-bottom: 20px;
@@ -19,4 +25,13 @@
   margin-bottom: 10px;
   padding: 5px;
   border: 1px solid grey;
+}
+
+#preview-delivery-prices-section {
+  width: 100%;
+}
+
+#preview-delivery-prices {
+  display: flex;
+  justify-content: space-between;
 }

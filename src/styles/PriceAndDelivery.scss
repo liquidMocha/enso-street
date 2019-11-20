@@ -10,3 +10,19 @@
   display: flex;
   justify-content: space-between;
 }
+
+#price-and-delivery-fee-section {
+  > div {
+    display: flex;
+    width: 100%;
+    margin-bottom: 15px;
+    label {
+      display: flex;
+      align-self: center;
+      margin-left: 5px;
+    }
+    .dollar-input {
+      width: 40%;
+    }
+  }
+}

@@ -18,7 +18,7 @@ const Preview = withRouter((props) => {
     };
 
     return (
-        <div className='column-layout left-aligned'>
+        <div className='column-layout left-aligned' id='preview-root'>
             <PostItemTitleBar backLink="/post-item/price-and-delivery"/>
             <img src={props.imageUrl} alt="Posted Item"/>
             <div className='bold'>{props.itemTitle}</div>
@@ -38,6 +38,15 @@ const Preview = withRouter((props) => {
                 <span className='bold'>Description</span>
                 {props.description}
             </div>
+            {props.canBeDelivered ?
+                <div id='preview-delivery-prices-section'>
+                    <span className='bold'>This item can be delivered</span>
+                    <div id='preview-delivery-prices'>
+                        <span>${props.deliveryStarting} within 3 mile</span>
+                        <span>${props.deliveryAdditional} per additional mile</span>
+                    </div>
+                </div>
+                : null}
             <div className='horizontal-layout' id='preview-buttons'>
                 <button className='preview-button' onClick={onClickingEdit}>Edit</button>
                 <button className='preview-button'>Post</button>
@@ -57,6 +66,8 @@ const mapStateToProps = (state) => {
         description: state.postedItem.description,
         itemSize: state.postedItem.itemSize,
         canBeDelivered: state.postedItem.canBeDelivered,
+        deliveryStarting: state.postedItem.deliveryStarting,
+        deliveryAdditional: state.postedItem.deliveryAdditional
     }
 };
 
