@@ -11,7 +11,7 @@ const initialState = {
     imageUrl: null,
     title: '',
     rentalDailyPrice: 0,
-    deposit: 0,
+    deposit: 50,
     categories: [],
     condition: {value: 'like-new', label: 'Like new'},
     description: '',
