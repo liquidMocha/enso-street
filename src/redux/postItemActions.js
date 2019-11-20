@@ -47,7 +47,6 @@ export const updatePostedItemDescription = description => ({
 });
 
 
-export const updatePostedItemCanBeDelivered = canBeDelivered => ({
-    type: UPDATE_POSTED_ITEM_CAN_BE_DELIVERED,
-    payload: canBeDelivered
+export const updatePostedItemCanBeDelivered = () => ({
+    type: UPDATE_POSTED_ITEM_CAN_BE_DELIVERED
 });

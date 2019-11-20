@@ -62,7 +62,7 @@ export default (state = initialState, action) => {
         }
         case UPDATE_POSTED_ITEM_CAN_BE_DELIVERED: {
             return Object.assign({}, state, {
-                ...state, canBeDelivered: action.payload
+                ...state, canBeDelivered: !state.canBeDelivered
             })
         }
         default: {
