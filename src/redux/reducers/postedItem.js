@@ -1,9 +1,11 @@
 import {
-    UPDATE_POSTED_ITEM_CAN_BE_DELIVERED, UPDATE_POSTED_ITEM_CATEGORIES,
+    UPDATE_POSTED_ITEM_CAN_BE_DELIVERED,
+    UPDATE_POSTED_ITEM_CATEGORIES,
     UPDATE_POSTED_ITEM_CONDITION,
     UPDATE_POSTED_ITEM_DAILY_PRICE,
-    UPDATE_POSTED_ITEM_DEPOSIT, UPDATE_POSTED_ITEM_DESCRIPTION,
-    UPDATE_POSTED_ITEM_IMAGE_URL, UPDATE_POSTED_ITEM_SIZE,
+    UPDATE_POSTED_ITEM_DEPOSIT,
+    UPDATE_POSTED_ITEM_DESCRIPTION,
+    UPDATE_POSTED_ITEM_IMAGE_URL,
     UPDATE_POSTED_ITEM_TITLE
 } from "../actionTypes";
 
@@ -15,7 +17,6 @@ const initialState = {
     categories: [],
     condition: {value: 'like-new', label: 'Like new'},
     description: '',
-    itemSize: {value: 'small', label: 'Small (can fit in a backpack)'},
     canBeDelivered: false,
     zipCode: ''
 };
@@ -57,11 +58,6 @@ export default (state = initialState, action) => {
         case UPDATE_POSTED_ITEM_DESCRIPTION: {
             return Object.assign({}, state, {
                 ...state, description: action.payload
-            })
-        }
-        case UPDATE_POSTED_ITEM_SIZE: {
-            return Object.assign({}, state, {
-                ...state, itemSize: action.payload
             })
         }
         case UPDATE_POSTED_ITEM_CAN_BE_DELIVERED: {

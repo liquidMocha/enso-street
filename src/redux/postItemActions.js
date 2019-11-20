@@ -1,10 +1,11 @@
 import {
-    UPDATE_POSTED_ITEM_CAN_BE_DELIVERED, UPDATE_POSTED_ITEM_CATEGORIES,
+    UPDATE_POSTED_ITEM_CAN_BE_DELIVERED,
+    UPDATE_POSTED_ITEM_CATEGORIES,
     UPDATE_POSTED_ITEM_CONDITION,
     UPDATE_POSTED_ITEM_DAILY_PRICE,
     UPDATE_POSTED_ITEM_DEPOSIT,
-    UPDATE_POSTED_ITEM_DESCRIPTION, UPDATE_POSTED_ITEM_IMAGE_URL,
-    UPDATE_POSTED_ITEM_SIZE,
+    UPDATE_POSTED_ITEM_DESCRIPTION,
+    UPDATE_POSTED_ITEM_IMAGE_URL,
     UPDATE_POSTED_ITEM_TITLE
 } from "./actionTypes";
 
@@ -43,12 +44,6 @@ export const updatePostedItemCondition = condition => ({
 export const updatePostedItemDescription = description => ({
     type: UPDATE_POSTED_ITEM_DESCRIPTION,
     payload: description
-});
-
-
-export const updatePostedItemSize = itemSize => ({
-    type: UPDATE_POSTED_ITEM_SIZE,
-    payload: itemSize
 });
 
 
