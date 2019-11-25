@@ -10,7 +10,7 @@ import LocationPickerPage from "./components/homepage/location/LocationPickerPag
 import DateRangePickerPage from "./components/homepage/dateRange/DateRangePickerPage";
 import AddLocationPage from "./components/homepage/location/AddLocationPage";
 import PostItemPage from "./components/postItem/PostItemPage";
-import {isUserLoggedIn} from "./UserService";
+import {isUserLoggedIn} from "./services/UserService";
 import PostItemDetailPage from "./components/postItem/PostItemDetailPage";
 import PriceAndDelivery from "./components/postItem/PriceAndDelivery";
 import Preview from "./components/postItem/Preview";

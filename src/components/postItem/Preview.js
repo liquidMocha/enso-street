@@ -4,6 +4,7 @@ import {connect} from "react-redux";
 import "../../styles/Image.scss";
 import "../../styles/Preview.scss";
 import {withRouter} from "react-router-dom";
+import {postItem} from "../../services/ItemService";
 
 const Preview = withRouter((props) => {
 
@@ -15,6 +16,44 @@ const Preview = withRouter((props) => {
 
     const onClickingEdit = () => {
         props.history.push('/post-item/price-and-delivery');
+    };
+
+    const onClickingPost = () => {
+        const {
+            imageUrl,
+            itemTitle,
+            dailyPrice,
+            deposit,
+            categories,
+            condition,
+            description,
+            canBeDelivered,
+            deliveryStarting,
+            deliveryAdditional
+        } = props;
+        const categoryValues = categories.map(category => {
+            return category.value;
+        });
+        const conditionValue = condition.value;
+        postItem({
+            imageUrl: imageUrl,
+            title: itemTitle,
+            rentalDailyPrice: dailyPrice,
+            deposit: deposit,
+            categories: categoryValues,
+            condition: conditionValue,
+            description: description,
+            canBeDelivered: canBeDelivered,
+            deliveryStarting: deliveryStarting,
+            deliveryAdditional: deliveryAdditional,
+            location: {zipCode: "dummy location"}
+        })
+            .then(() => {
+                console.log('posted item')
+            })
+            .catch(() => {
+                console.log('failed posting item')
+            });
     };
 
     return (
@@ -49,7 +88,7 @@ const Preview = withRouter((props) => {
                 : null}
             <div className='horizontal-layout' id='preview-buttons'>
                 <button className='preview-button' onClick={onClickingEdit}>Edit</button>
-                <button className='preview-button'>Post</button>
+                <button className='preview-button' onClick={onClickingPost}>Post</button>
             </div>
         </div>
     )
