@@ -15,6 +15,7 @@ import PostItemDetailPage from "./components/postItem/PostItemDetailPage";
 import PriceAndDelivery from "./components/postItem/PriceAndDelivery";
 import Preview from "./components/postItem/Preview";
 import UseMyPhoto from "./components/postItem/UseMyPhoto";
+import MyItems from "./components/homepage/menu/MyItems";
 
 class App extends React.Component {
     render() {
@@ -29,6 +30,7 @@ class App extends React.Component {
                     <Route path="/location" component={LocationPickerPage}/>
                     <Route path="/pick-date" component={DateRangePickerPage}/>
                     <Route path="/add-location" component={AddLocationPage}/>
+                    <Route path="/my-items" component={MyItems}/>
                     <Route exact path="/post-item" component={PostItemPage}/>
                     <Route exact path="/post-item/use-my-photo" component={UseMyPhoto}/>
                     <Route exact path="/post-item/details" component={PostItemDetailPage}/>

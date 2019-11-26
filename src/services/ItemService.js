@@ -7,3 +7,7 @@ export const postItem = (item) => {
         baseUrl + '/items', item, {withCredentials: true}
     )
 };
+
+export const getAllItemsForUser = () => {
+    return axios.get(baseUrl + '/items', {withCredentials: true})
+};

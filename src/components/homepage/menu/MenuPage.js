@@ -25,6 +25,13 @@ const MenuPage = (props) => {
             })
     };
 
+    const logout = () => {
+        axios.get(props.baseUrl + '/users/logout', {withCredentials: true})
+            .then((_) => {
+                setIsLoggedIn(false);
+            })
+    };
+
     const links = () => {
         if (isLoggedIn) {
             return (
@@ -34,12 +41,12 @@ const MenuPage = (props) => {
                             Post Item
                         </div>
                     </Link>
-                    <div id='logout-button' className='home-page-button' onClick={() => {
-                        axios.get(props.baseUrl + '/users/logout', {withCredentials: true})
-                            .then((_) => {
-                                setIsLoggedIn(false);
-                            })
-                    }}>
+                    <Link to={'my-items'} id='post-item-button'>
+                        <div className='home-page-button'>
+                            My Items
+                        </div>
+                    </Link>
+                    <div id='logout-button' className='home-page-button' onClick={logout}>
                         Log Out
                     </div>
                 </div>
