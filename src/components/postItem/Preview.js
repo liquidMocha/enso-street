@@ -49,7 +49,8 @@ const Preview = withRouter((props) => {
             location: {zipCode: "dummy location"}
         })
             .then(() => {
-                console.log('posted item')
+                console.log('posted item');
+                props.history.push('/my-items');
             })
             .catch(() => {
                 console.log('failed posting item')
