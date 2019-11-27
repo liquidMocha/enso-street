@@ -19,33 +19,21 @@ const Preview = withRouter((props) => {
     };
 
     const onClickingPost = () => {
-        const {
-            imageUrl,
-            itemTitle,
-            dailyPrice,
-            deposit,
-            categories,
-            condition,
-            description,
-            canBeDelivered,
-            deliveryStarting,
-            deliveryAdditional
-        } = props;
-        const categoryValues = categories.map(category => {
+        const categoryValues = props.categories.map(category => {
             return category.value;
         });
-        const conditionValue = condition.value;
+        const conditionValue = props.condition.value;
         postItem({
-            imageUrl: imageUrl,
-            title: itemTitle,
-            rentalDailyPrice: dailyPrice,
-            deposit: deposit,
+            imageUrl: props.imageUrl,
+            title: props.itemTitle,
+            rentalDailyPrice: props.dailyPrice,
+            deposit: props.deposit,
             categories: categoryValues,
             condition: conditionValue,
-            description: description,
-            canBeDelivered: canBeDelivered,
-            deliveryStarting: deliveryStarting,
-            deliveryAdditional: deliveryAdditional,
+            description: props.description,
+            canBeDelivered: props.canBeDelivered,
+            deliveryStarting: props.deliveryStarting,
+            deliveryAdditional: props.deliveryAdditional,
             location: {zipCode: "dummy location"}
         })
             .then(() => {
