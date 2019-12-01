@@ -35,14 +35,12 @@ const Preview = withRouter((props) => {
             deliveryStarting: props.deliveryStarting,
             deliveryAdditional: props.deliveryAdditional,
             location: {zipCode: "dummy location"}
-        })
-            .then(() => {
-                console.log('posted item');
-                props.history.push('/my-items');
-            })
-            .catch(() => {
-                console.log('failed posting item')
-            });
+        }).then(() => {
+            props.history.push('/my-items');
+        }).catch((error) => {
+            console.log('failed posting item');
+            console.error(error);
+        });
     };
 
     return (

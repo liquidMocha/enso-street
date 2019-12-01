@@ -30,7 +30,7 @@ const UseMyPhoto = withRouter((props) => {
                                props.history.push('/post-item');
                            }
                        }}/>
-                <label htmlFor='take-photo-input'>
+                <label htmlFor='select-image-input'>
                     <FontAwesomeIcon icon={faImages}/>
                     Select Photo
                 </label>
