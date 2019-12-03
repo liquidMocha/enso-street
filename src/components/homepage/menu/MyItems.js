@@ -16,6 +16,7 @@ const MyItems = () => {
             {items.map(item => {
                 return (
                     <div key={item.id}>
+                        <img src={item.imageUrl} alt='item' />
                         <p>title: {item.title}</p>
                         <p>daily price: {item.rentalDailyPrice}</p>
                         <p>deposit: {item.deposit}</p>
