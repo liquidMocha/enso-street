@@ -1,12 +1,10 @@
 import React from "react";
 import PostItemTitleBar from "../shared/PostItemTitleBar";
 import {connect} from "react-redux";
-import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {faImage} from "@fortawesome/free-solid-svg-icons";
 import NextButton from "./NextButton";
 import {updatePostedItemImageUrl, updatePostedItemTitle} from "../../redux/postItemActions";
 import InputWithError from "../shared/InputWithError";
-import {Link} from "react-router-dom";
+import PostImageInput from "./PostImageInput";
 import "../../styles/Input.scss";
 import "../../styles/Button.scss";
 import "../../styles/App.scss";
@@ -25,11 +23,7 @@ export const PostItemPage = (props) => {
                                     return props.title === "";
                                 }}
                 />
-                {props.imageUrl ? <img src={props.imageUrl} alt='User provided item'/> : null}
-                <Link to='/post-item/use-my-photo' className='center-aligned'>
-                    <FontAwesomeIcon icon={faImage}/>
-                    Use my photo
-                </Link>
+                <PostImageInput />
                 <NextButton destination='/post-item/details'/>
             </div>
         </div>

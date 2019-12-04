@@ -15,7 +15,7 @@ const Preview = withRouter((props) => {
     };
 
     const onClickingEdit = () => {
-        props.history.push('/post-item/price-and-delivery');
+        props.history.push('/post-item/edit-complete-item');
     };
 
     const onClickingPost = () => {
