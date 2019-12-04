@@ -3,9 +3,28 @@ import axios from "axios";
 const baseUrl = '/api';
 
 export const postItem = (item) => {
+    const categoryValues = item.categories.map(category => {
+        return category.value;
+    });
+    const conditionValue = item.condition.value;
+
+    const itemPayload = {
+        imageUrl: item.imageUrl,
+        title: item.title,
+        rentalDailyPrice: item.rentalDailyPrice,
+        deposit: item.deposit,
+        categories: categoryValues,
+        condition: conditionValue,
+        description: item.description,
+        canBeDelivered: item.canBeDelivered,
+        deliveryStarting: item.deliveryStarting,
+        deliveryAdditional: item.deliveryAdditional,
+        location: {zipCode: "dummy location"}
+    };
+
     const imageFilePromise = axios.get(item.imageUrl, {responseType: 'blob'});
     const signedRequestPromise = axios.post(
-        baseUrl + '/items', item, {withCredentials: true}
+        baseUrl + '/items', itemPayload, {withCredentials: true}
     );
 
     return Promise.all([imageFilePromise, signedRequestPromise])

@@ -19,23 +19,7 @@ const Preview = withRouter((props) => {
     };
 
     const onClickingPost = () => {
-        const categoryValues = props.categories.map(category => {
-            return category.value;
-        });
-        const conditionValue = props.condition.value;
-        postItem({
-            imageUrl: props.imageUrl,
-            title: props.itemTitle,
-            rentalDailyPrice: props.dailyPrice,
-            deposit: props.deposit,
-            categories: categoryValues,
-            condition: conditionValue,
-            description: props.description,
-            canBeDelivered: props.canBeDelivered,
-            deliveryStarting: props.deliveryStarting,
-            deliveryAdditional: props.deliveryAdditional,
-            location: {zipCode: "dummy location"}
-        }).then(() => {
+        postItem(props.item).then(() => {
             props.history.push('/my-items');
         }).catch((error) => {
             console.log('failed posting item');
@@ -83,6 +67,7 @@ const Preview = withRouter((props) => {
 
 const mapStateToProps = (state) => {
     return {
+        item: state.postedItem,
         imageUrl: state.postedItem.imageUrl,
         itemTitle: state.postedItem.title,
         dailyPrice: state.postedItem.rentalDailyPrice,
