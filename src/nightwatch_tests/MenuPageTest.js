@@ -1,4 +1,4 @@
-const url = 'localhost:3000';
+const url = 'https://localhost:3000';
 
 module.exports = {
     'should display login and signup button when not logged in': (browser) => {

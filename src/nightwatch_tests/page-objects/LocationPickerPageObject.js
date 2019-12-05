@@ -1,5 +1,5 @@
 module.exports = {
-    url: 'http://localhost:3000',
+    url: 'https://localhost:3000',
     elements: {
         locationRow: {
             selector: 'div[data-test="location-row"]'

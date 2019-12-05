@@ -8,6 +8,9 @@ module.exports = {
         },
         'item-title-row': {
             selector: '#title-row'
+        },
+        'useMyPhotoButton': {
+            selector: '#use-my-photo'
         }
     }
 };
