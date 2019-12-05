@@ -11,6 +11,9 @@ module.exports = {
         },
         'useMyPhotoButton': {
             selector: '#use-my-photo'
+        },
+        'nextButton': {
+            selector: '#next-button'
         }
     }
 };

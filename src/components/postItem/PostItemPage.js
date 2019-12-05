@@ -1,8 +1,8 @@
 import React from "react";
 import PostItemTitleBar from "../shared/PostItemTitleBar";
-import {connect} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import NextButton from "./NextButton";
-import {updatePostedItemImageUrl, updatePostedItemTitle} from "../../redux/postItemActions";
+import {updatePostedItemTitle} from "../../redux/postItemActions";
 import InputWithError from "../shared/InputWithError";
 import PostImageInput from "./PostImageInput";
 import "../../styles/Input.scss";
@@ -10,33 +10,27 @@ import "../../styles/Button.scss";
 import "../../styles/App.scss";
 import "../../styles/Image.scss";
 
-export const PostItemPage = (props) => {
+export const PostItemPage = () => {
+    const dispatch = useDispatch();
+    const title = useSelector(state => state.postedItem.title);
+
     return (
         <div>
             <PostItemTitleBar hideBackButton={true}/>
             <div>
                 <label>Title</label>
                 <InputWithError id='item-title-input' type='text'
-                                onChange={(value) => props.updatePostedItemTitle(value)}
-                                value={props.title}
+                                onChange={(value) => dispatch(updatePostedItemTitle(value))}
+                                value={title}
                                 shouldError={() => {
-                                    return props.title === "";
+                                    return title === "";
                                 }}
                 />
-                <PostImageInput />
+                <PostImageInput/>
                 <NextButton destination='/post-item/details'/>
             </div>
         </div>
     )
 };
 
-const mapStateToProps = (state) => {
-    return {
-        imageUrl: state.postedItem.imageUrl,
-        title: state.postedItem.title
-    }
-};
-
-const mapDispatchToProps = {updatePostedItemTitle, updatePostedItemImageUrl};
-
-export default connect(mapStateToProps, mapDispatchToProps)(PostItemPage)
+export default PostItemPage;

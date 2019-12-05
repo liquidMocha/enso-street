@@ -15,5 +15,17 @@ module.exports = {
         postItemPage
             .click('@useMyPhotoButton')
             .expect.url().to.endWith('use-my-photo')
+    },
+
+    'post item flow': (browser) => {
+        const postItemPage = browser.page.PostItemPageObject();
+
+        const itemTitle = 'some item';
+        browser.url(url).waitForElementVisible('body');
+
+        postItemPage
+            .sendKeys('@itemTitleInputField', itemTitle)
+            .click('@nextButton')
+            .expect.url().to.endWith('/post-item/details')
     }
 };
