@@ -35,7 +35,7 @@ const DateRangePickerPage = withRouter((props) => {
             </div>
             {/*TODO: fix this*/}
             <label>date picker place holder</label>
-            <input type='date' onBlur={(event) => {
+            <input type='datetime-local' onBlur={(event) => {
                 if (dateSelection === 'rental') {
                     props.changeRentDate(new Date(event.target.value));
                 } else {
