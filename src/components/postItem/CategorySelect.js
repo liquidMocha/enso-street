@@ -11,12 +11,20 @@ const CategorySelect = () => {
 
     useEffect(() => {
         getAllCategories().then(result => {
-            setCategories(
-                result.data.map(category => {
-                    const label = categoryOptions.get(category.name);
-                    return {value: category.name, label: label};
-                })
-            );
+            const options = result.data.map(category => {
+                const label = categoryOptions.get(category.name);
+                return {value: category.name, label: label};
+            }).sort((a, b) => {
+                const optionA = a.label;
+                const optionB = b.label;
+                if (optionA > optionB) {
+                    return 1;
+                } else if (optionA < optionB) {
+                    return -1;
+                }
+                return 0;
+            });
+            setCategories(options);
         })
     }, []);
 
@@ -25,14 +33,14 @@ const CategorySelect = () => {
     };
 
     const categoryOptions = new Map([
-        ["appliances","Appliances"],
-        ["arts-and-crafts","Arts & Crafts"],
-        ["audio-equipment","Audio Equipment"],
+        ["appliances", "Appliances"],
+        ["arts-and-crafts", "Arts & Crafts"],
+        ["audio-equipment", "Audio Equipment"],
         ["baby-and-kids", "Baby & Kids"],
         ["business-equipment", "Business Equipment"],
-        ["camping-and-outdoors","Camping & Outdoors"],
-        ["costumes-and-special-occasions","Costumes & Special Occasions"],
-        ["computer-equipment","Computer Equipment"],
+        ["camping-and-outdoors", "Camping & Outdoors"],
+        ["costumes-and-special-occasions", "Costumes & Special Occasions"],
+        ["computer-equipment", "Computer Equipment"],
         ["diy-home-improvement", "DIY Home Improvement"],
         ["exercise", "Exercise"],
         ["farming", "Farming"],
