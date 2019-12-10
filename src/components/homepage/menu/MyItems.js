@@ -7,7 +7,16 @@ const MyItems = () => {
     useEffect(() => {
         getAllItemsForUser()
             .then(result => {
-                setItems(result.data);
+                setItems(result.data.sort((a, b) => {
+                    const timeA = a.createdOn;
+                    const timeB = b.createdOn;
+                    if (timeA > timeB) {
+                        return -1;
+                    } else if (timeA < timeB) {
+                        return 1;
+                    }
+                    return 0;
+                }));
             });
     }, []);
 
