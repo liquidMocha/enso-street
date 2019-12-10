@@ -14,11 +14,13 @@ import "../../styles/PriceAndDelivery.scss";
 import RentalPriceInputSection from "./RentalPriceInputSection";
 import DeliveryToggle from "./DeliveryToggle";
 import DeliveryFeeInputSection from "./DeliveryFeeInputSection";
+import ProgressBar from "./ProgressBar";
 
 const PriceAndDelivery = (props) => {
     return (
         <div>
             <PostItemTitleBar backLink="/post-item/details"/>
+            <ProgressBar/>
             <RentalPriceInputSection/>
             <DeliveryToggle canBeDelivered={props.canBeDelivered}
                             updatePostedItemCanBeDelivered={props.updatePostedItemCanBeDelivered}/>

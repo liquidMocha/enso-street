@@ -9,6 +9,7 @@ import "../../styles/Input.scss";
 import "../../styles/Button.scss";
 import "../../styles/App.scss";
 import "../../styles/Image.scss";
+import ProgressBar from "./ProgressBar";
 
 export const PostItemPage = () => {
     const dispatch = useDispatch();
@@ -17,6 +18,7 @@ export const PostItemPage = () => {
     return (
         <div>
             <PostItemTitleBar hideBackButton={true}/>
+            <ProgressBar/>
             <div>
                 <label>Title</label>
                 <InputWithError id='item-title-input' type='text'
