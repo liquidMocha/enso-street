@@ -1,27 +1,56 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
 import Select from "react-select";
 import {useDispatch, useSelector} from "react-redux";
 import {updatePostedItemCategories} from "../../redux/postItemActions";
+import {getAllCategories} from "../../services/CategoryService";
 
 const CategorySelect = () => {
+    const [allCategoryOptions, setCategories] = useState([]);
     const dispatch = useDispatch();
     const categories = useSelector(state => state.postedItem.categories);
+
+    useEffect(() => {
+        getAllCategories().then(result => {
+            setCategories(
+                result.data.map(category => {
+                    const label = categoryOptions.get(category.name);
+                    return {value: category.name, label: label};
+                })
+            );
+        })
+    }, []);
 
     const handleCategoryChange = (selectedOption) => {
         dispatch(updatePostedItemCategories(selectedOption));
     };
 
-    const categoryOptions = [
-        {value: "baby-and-kids", label: "Baby & Kids"},
-        {value: "business-equipment", label: "Business Equipment"},
-        {value: "diy-home-improvement", label: "DIY Home Improvement"},
-        {value: "farming", label: "Farming"},
-        {value: "free", label: "Free"},
-        {value: "garden-and-patio", label: "Garden & Patio"},
-        {value: "home-maintenance", label: "Home Maintenance"},
-        {value: "music-instruments", label: "Music Instruments"},
-        {value: "novelty-electronics", label: "Novelty Electronics"}
-    ];
+    const categoryOptions = new Map([
+        ["appliances","Appliances"],
+        ["arts-and-crafts","Arts & Crafts"],
+        ["audio-equipment","Audio Equipment"],
+        ["baby-and-kids", "Baby & Kids"],
+        ["business-equipment", "Business Equipment"],
+        ["camping-and-outdoors","Camping & Outdoors"],
+        ["costumes-and-special-occasions","Costumes & Special Occasions"],
+        ["computer-equipment","Computer Equipment"],
+        ["diy-home-improvement", "DIY Home Improvement"],
+        ["exercise", "Exercise"],
+        ["farming", "Farming"],
+        ["free", "Free"],
+        ["furniture", "Furniture"],
+        ["garden-and-patio", "Garden & Patio"],
+        ["games-and-toys", "Games & Toys"],
+        ["home-maintenance", "Home Maintenance"],
+        ["music-instruments", "Music Instruments"],
+        ["novelty-electronics", "Novelty Electronics"],
+        ["party-and-events", "Party & Events"],
+        ["pet-supplies", "Pet Supplies"],
+        ["photography", "Photography"],
+        ["rare-find", "Rare Find"],
+        ["sports", "Sports"],
+        ["tools-and-machinery", "Tools & Machinery"],
+        ["video-equipment", "Video Equipment"]
+    ]);
 
     return (
         <div>
@@ -31,7 +60,7 @@ const CategorySelect = () => {
                 closeMenuOnSelect={false}
                 isMulti={true}
                 onChange={handleCategoryChange}
-                options={categoryOptions}
+                options={allCategoryOptions}
                 value={categories}
             />
         </div>
