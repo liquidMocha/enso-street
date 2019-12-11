@@ -1,4 +1,4 @@
-const url = 'https://localhost:3000/post-item';
+const url = 'http://localhost:3000/post-item';
 
 module.exports = {
     'should go to post item page': (browser) => {

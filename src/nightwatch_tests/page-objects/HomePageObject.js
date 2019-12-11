@@ -1,5 +1,5 @@
 module.exports = {
-    url: 'https://localhost:3000',
+    url: 'http://localhost:3000',
     elements: {
         menuButton: {
             selector: '.menu-button-container'
