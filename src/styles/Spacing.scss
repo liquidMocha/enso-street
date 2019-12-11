@@ -5,6 +5,11 @@
   align-items: center;
 }
 
+.row-layout {
+  display: flex;
+  flex-direction: row;
+}
+
 .horizontal-layout {
   display: flex;
   flex-direction: row;
