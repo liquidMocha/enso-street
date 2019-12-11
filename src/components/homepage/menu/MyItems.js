@@ -4,11 +4,13 @@ import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faAngleLeft} from "@fortawesome/free-solid-svg-icons";
 import DollarInput from "../../shared/DollarInput";
 import {faSave, faTrashAlt} from "@fortawesome/free-regular-svg-icons";
+import {useHistory} from "react-router-dom";
 import "../../../styles/Spacing.scss";
 import "../../../styles/MyItem.scss";
 
 const MyItems = () => {
     const [items, setItems] = useState([]);
+    let history = useHistory();
 
     useEffect(() => {
         getAllItemsForUser()
@@ -30,6 +32,7 @@ const MyItems = () => {
         <div>
             <div className='fixed-title-bar'>
                 <span onClick={() => {
+                    history.push('/menu')
                 }}>
                     <FontAwesomeIcon icon={faAngleLeft}/> Back
                 </span>
