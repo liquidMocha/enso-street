@@ -1,8 +1,8 @@
 import React, {useEffect, useState} from "react";
 import {Link} from "react-router-dom";
-import '../../../styles/MenuPage.scss';
 import TitleBar from "../../shared/TitleBar";
 import axios from "axios";
+import '../../../styles/MenuPage.scss';
 
 const MenuPage = (props) => {
     const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -35,21 +35,23 @@ const MenuPage = (props) => {
     const links = () => {
         if (isLoggedIn) {
             return (
-                <div id='menu-page-button-group'>
+                <>
                     <Link to={'post-item'} id='post-item-button'>
                         <div className='home-page-button'>
-                            Post Item
+                            Post Items
                         </div>
                     </Link>
-                    <Link to={'my-items'} id='post-item-button'>
-                        <div className='home-page-button'>
-                            My Items
+                    <div id='menu-page-button-group'>
+                        <Link to={'my-items'} id='post-item-button'>
+                            <div className='menu-page-options'>
+                                My Items
+                            </div>
+                        </Link>
+                        <div id='logout-button' className='menu-page-options' onClick={logout}>
+                            Log Out
                         </div>
-                    </Link>
-                    <div id='logout-button' className='home-page-button' onClick={logout}>
-                        Log Out
                     </div>
-                </div>
+                </>
             )
         } else {
             return (
@@ -71,14 +73,16 @@ const MenuPage = (props) => {
     };
 
     return (
-        <div className='menu-page'>
+        <div className='menu-page column-layout'>
             <TitleBar/>
             <div id="menu-page-body">
                 {links()}
-                <div>How does it work?</div>
             </div>
-            <div id='menu-page-policy-section'>
-                <div>Policies</div>
+            <div id='secondary-options' className='column-layout'>
+                <div>How it works?</div>
+                <div>Contact Us</div>
+            </div>
+            <div id='menu-page-policy-section' className='column-layout'>
                 <div>Privacy Policy</div>
                 <div>Terms & Conditions</div>
                 <div>Cookie Policy</div>

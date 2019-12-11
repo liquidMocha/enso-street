@@ -1,8 +1,8 @@
 .menu-page {
+  text-align: center;
 
   #menu-page-body {
-    text-align: center;
-    border-bottom: 1px solid grey;
+    width: 100%;
     padding-bottom: 10px;
   }
 
@@ -16,15 +16,34 @@
       width: 100%;
     }
 
-    .home-page-button {
-      border-radius: 3px;
-      margin-bottom: 10px;
-      padding: 5px;
-      border: 1px solid grey;
+    .menu-page-options {
+      margin-bottom: 5px;
+    }
+  }
+
+  #secondary-options {
+    width: 50%;
+    border-top: 1px solid grey;
+    border-bottom: 1px solid grey;
+    padding: 10px 0;
+    div {
+      margin-bottom: 5px;
     }
   }
 
   #menu-page-policy-section {
+    div {
+      margin-bottom: 5px;
+      color: grey;
+    }
+
     margin-top: 10px;
   }
+}
+
+.home-page-button {
+  border-radius: 3px;
+  margin-bottom: 10px;
+  padding: 5px;
+  border: 1px solid grey;
 }
