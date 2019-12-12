@@ -11,8 +11,8 @@ const ConditionSelect = () => {
         dispatch(updatePostedItemCondition(selected));
     };
     const conditionOptions = [
-        {value: "like-new", label: "Like new"},
-        {value: "normal-wear", label: "Normal wear"},
+        {value: "like-new", label: "Like New"},
+        {value: "normal-wear", label: "Normal Wear"},
         {value: "functional", label: "Functional"}
     ];
 
