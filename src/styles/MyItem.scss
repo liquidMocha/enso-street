@@ -1,3 +1,12 @@
+#my-items-search {
+  position: relative;
+  svg {
+    position: absolute;
+    top: 5px;
+    right: 10px;
+  }
+}
+
 .my-item-card {
   display: flex;
   flex-direction: row;

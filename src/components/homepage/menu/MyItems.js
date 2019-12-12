@@ -7,6 +7,7 @@ import {faSave, faTrashAlt} from "@fortawesome/free-regular-svg-icons";
 import {useHistory} from "react-router-dom";
 import "../../../styles/Spacing.scss";
 import "../../../styles/MyItem.scss";
+import "../../../styles/Input.scss";
 
 const MyItems = () => {
     const [items, setItems] = useState([]);
@@ -56,10 +57,16 @@ const MyItems = () => {
                 <span className='fixed-title-bar__title--font'>My Items</span>
                 <span/>
             </div>
-            <input type='text' placeholder='Search my item' onChange={(event => {
-                setSearchTerm(event.target.value);
-            })}/>
-            <FontAwesomeIcon icon={faSearch}/>
+            <div id='my-items-search'>
+                <input type='text'
+                       className='input-field'
+                       placeholder='Search my item'
+                       onChange={(event => {
+                           setSearchTerm(event.target.value);
+                       })}
+                />
+                <FontAwesomeIcon icon={faSearch}/>
+            </div>
             {visibleItems.map(item => {
                 return (
                     <div key={item.id} className='my-item-card'>
