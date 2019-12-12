@@ -44,5 +44,9 @@ export const postItem = (item) => {
 };
 
 export const getAllItemsForUser = () => {
-    return axios.get(baseUrl + '/items', {withCredentials: true})
+    return axios.get(baseUrl + '/items', {withCredentials: true});
+};
+
+export const deleteItem = (itemId) => {
+    return axios.delete(`${baseUrl}/items/${itemId}`, {withCredentials: true});
 };

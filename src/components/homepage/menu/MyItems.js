@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from "react";
-import {getAllItemsForUser} from "../../../services/ItemService";
+import {deleteItem, getAllItemsForUser} from "../../../services/ItemService";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faAngleLeft} from "@fortawesome/free-solid-svg-icons";
 import DollarInput from "../../shared/DollarInput";
@@ -57,7 +57,13 @@ const MyItems = () => {
                             </div>
                         </div>
                         <div className='my-item-card-buttons column-layout'>
-                            <FontAwesomeIcon icon={faTrashAlt}/>
+                            <FontAwesomeIcon icon={faTrashAlt} onClick={() => {
+                                deleteItem(item.id).then(() => {
+                                    setItems(items.filter(existingItem => {
+                                        return existingItem.id !== item.id
+                                    }))
+                                })
+                            }}/>
                             <FontAwesomeIcon icon={faSave}/>
                         </div>
                     </div>
