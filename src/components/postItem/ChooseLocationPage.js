@@ -96,25 +96,32 @@ const ChooseLocationPage = () => {
                 <div>
                     <label>Address*</label>
                     <input className='input-field' type='text'
+                           placeholder='Ex. West 22nd Street'
                            onChange={(event) => {
                                setStreet(event.target.value);
                            }}/>
                 </div>
                 <div>
                     <label>City*</label>
-                    <input className='input-field' type='text' onChange={(event) => {
-                        setCity(event.target.value);
-                    }}/>
+                    <input className='input-field' type='text'
+                           placeholder='Enter City'
+                           onChange={(event) => {
+                               setCity(event.target.value);
+                           }}/>
                     <label>State*</label>
                     <Select
+                        placeholder='Ohio'
                         onChange={handleStateChange}
                         options={stateOptions}
                         value={state}
                     />
                     <label>Zip Code*</label>
-                    <input className='input-field' type='number' onChange={(event) => {
-                        setZipCode(event.target.value);
-                    }}/>
+                    <input className='input-field'
+                           type='number'
+                           placeholder='00000'
+                           onChange={(event) => {
+                               setZipCode(event.target.value);
+                           }}/>
                 </div>
             </div>
             <div>
