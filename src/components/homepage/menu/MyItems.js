@@ -74,7 +74,9 @@ const MyItems = () => {
                         <div className='column-layout my-item-card-content'>
                             <div className='my-item-card-title'>{item.title}</div>
                             <div className='row-layout my-item-card-content-data'>
-                                <img src={item.imageUrl} alt='item'/>
+                                <div className='my-item-image-container'>
+                                    <img src={item.imageUrl} alt='item'/>
+                                </div>
                                 <div className='column-layout'>
                                     <div className='my-item-card-rental-price'>
                                         <DollarInput value={item.rentalDailyPrice} description='per day'/>
