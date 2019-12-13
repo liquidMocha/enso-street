@@ -29,7 +29,7 @@ const Preview = withRouter((props) => {
 
     return (
         <div className='column-layout left-aligned' id='preview-root'>
-            <PostItemTitleBar backLink="/post-item/price-and-delivery"/>
+            <PostItemTitleBar backLink="/post-item/price-and-delivery" title='Post Items'/>
             <img src={props.imageUrl} alt="Posted Item"/>
             <div className='bold'>{props.itemTitle}</div>
             <div className='horizontal-layout' id='preview-prices'>

@@ -5,7 +5,7 @@ import {
     UPDATE_POSTED_ITEM_DAILY_PRICE, UPDATE_POSTED_ITEM_DELIVERY_ADDITIONAL, UPDATE_POSTED_ITEM_DELIVERY_STARTING,
     UPDATE_POSTED_ITEM_DEPOSIT,
     UPDATE_POSTED_ITEM_DESCRIPTION,
-    UPDATE_POSTED_ITEM_IMAGE_URL,
+    UPDATE_POSTED_ITEM_IMAGE_URL, UPDATE_POSTED_ITEM_LOCATION,
     UPDATE_POSTED_ITEM_TITLE
 } from "../actionTypes";
 
@@ -20,7 +20,13 @@ const initialState = {
     canBeDelivered: false,
     deliveryStarting: 0,
     deliveryAdditional: 0,
-    zipCode: ''
+    location: {
+        street: '',
+        city: '',
+        state: '',
+        zipCode: null,
+        nickname: ''
+    }
 };
 
 export default (state = initialState, action) => {
@@ -75,6 +81,11 @@ export default (state = initialState, action) => {
         case UPDATE_POSTED_ITEM_DELIVERY_ADDITIONAL: {
             return Object.assign({}, state, {
                 ...state, deliveryAdditional: action.payload
+            })
+        }
+        case UPDATE_POSTED_ITEM_LOCATION: {
+            return Object.assign({}, state, {
+                ...state, location: action.payload
             })
         }
         default: {

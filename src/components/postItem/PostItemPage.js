@@ -17,7 +17,7 @@ export const PostItemPage = () => {
 
     return (
         <div>
-            <PostItemTitleBar hideBackButton={true}/>
+            <PostItemTitleBar hideBackButton={true} title='Post Items'/>
             <ProgressBar/>
             <div>
                 <label>Title</label>

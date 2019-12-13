@@ -1,6 +1,24 @@
+#price-and-delivery-location-container {
+  margin-bottom: 10px;
+
+  #price-and-delivery-location-input {
+    display: flex;
+    width: 100%;
+    font-size: 20px;
+
+    span {
+      width: 100%;
+      border-bottom: 1px solid black;
+      padding-bottom: 2px;
+      margin-right: 15px;
+    }
+  }
+}
+
 #price-section {
   display: flex;
   margin-bottom: 30px;
+
   > div {
     max-width: 40%;
   }
@@ -16,11 +34,13 @@
     display: flex;
     width: 100%;
     margin-bottom: 15px;
+
     label {
       display: flex;
       align-self: center;
       margin-left: 5px;
     }
+
     .dollar-input {
       width: 40%;
     }

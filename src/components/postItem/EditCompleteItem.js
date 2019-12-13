@@ -35,7 +35,7 @@ const EditCompleteItem = withRouter((props) => {
 
     return (
         <div>
-            <PostItemTitleBar backLink="/post-item/preview"/>
+            <PostItemTitleBar backLink="/post-item/preview" title='Post Items'/>
             <PostImageInput/>
             <InputWithError id='item-title-input' type='text'
                             onChange={(value) => dispatch(updatePostedItemTitle(value))}

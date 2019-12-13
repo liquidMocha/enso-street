@@ -6,6 +6,7 @@ import {
     UPDATE_POSTED_ITEM_DEPOSIT,
     UPDATE_POSTED_ITEM_DESCRIPTION,
     UPDATE_POSTED_ITEM_IMAGE_URL,
+    UPDATE_POSTED_ITEM_LOCATION,
     UPDATE_POSTED_ITEM_TITLE
 } from "./actionTypes";
 
@@ -59,4 +60,9 @@ export const updatePostedItemDeliveryStarting = fee => ({
 export const updatePostedItemDeliveryAdditional = fee => ({
     type: UPDATE_POSTED_ITEM_DELIVERY_ADDITIONAL,
     payload: fee
+});
+
+export const updatePostedItemLocation = location => ({
+    type: UPDATE_POSTED_ITEM_LOCATION,
+    payload: location
 });

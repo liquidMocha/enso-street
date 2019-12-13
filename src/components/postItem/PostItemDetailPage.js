@@ -12,7 +12,7 @@ const PostItemDetailPage = () => {
 
     return (
         <div id='post-item-detail-page'>
-            <PostItemTitleBar backLink="/post-item"/>
+            <PostItemTitleBar backLink="/post-item" title='Post Items'/>
             <ProgressBar/>
             <CategorySelect/>
             <ConditionSelect/>
