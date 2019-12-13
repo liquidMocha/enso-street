@@ -18,17 +18,18 @@ const MyItems = () => {
     useEffect(() => {
         getAllItemsForUser()
             .then(result => {
-                setItems(result.data.sort(byCreatedOn));
-                setVisibleItems(result.data.sort(byCreatedOn));
+                let sortedItems = result.data.sort(byCreatedOn);
+                setItems(sortedItems);
+                setVisibleItems(sortedItems);
             });
     }, []);
 
     useEffect(() => {
         if (searchTerm.length !== 0) {
             setVisibleItems(items.filter(item => {
-                return item.title.includes(searchTerm) ||
-                    (item.description && item.description.includes(searchTerm)) ||
-                    (item.address && item.address.includes(searchTerm));
+                return item.title.toLowerCase().includes(searchTerm) ||
+                    (item.description && item.description.toLowerCase().includes(searchTerm)) ||
+                    (item.address && item.address.toLowerCase().includes(searchTerm));
             }))
         } else {
             setVisibleItems(items);
@@ -62,7 +63,7 @@ const MyItems = () => {
                        className='input-field'
                        placeholder='Search my item'
                        onChange={(event => {
-                           setSearchTerm(event.target.value);
+                           setSearchTerm(event.target.value.toLocaleLowerCase());
                        })}
                 />
                 <FontAwesomeIcon icon={faSearch}/>
