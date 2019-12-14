@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import PostItemTitleBar from "../shared/PostItemTitleBar";
 import Toggle from "./Toggle";
 import Select from "react-select";
@@ -6,6 +6,9 @@ import '../../styles/Input.scss';
 import {useDispatch} from "react-redux";
 import {updatePostedItemLocation} from "../../redux/postItemActions";
 import {useHistory} from "react-router-dom";
+import {getLocations} from "../../services/LocationService";
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import {faEdit} from "@fortawesome/free-regular-svg-icons";
 
 const ChooseLocationPage = () => {
     const [street, setStreet] = useState('');
@@ -14,10 +17,18 @@ const ChooseLocationPage = () => {
     const [zipCode, setZipCode] = useState(null);
     const [nickname, setNickName] = useState('');
     const [saveThisAddress, setSaveThisAddress] = useState(false);
+    const [locations, setLocations] = useState([]);
 
     const dispatch = useDispatch();
 
     let history = useHistory();
+
+    useEffect(() => {
+        getLocations()
+            .then(locations => {
+                setLocations(locations);
+            });
+    }, []);
     const handleStateChange = (option) => {
         setState(option);
     };
@@ -140,6 +151,13 @@ const ChooseLocationPage = () => {
             <button onClick={handleClickConfirm}>Confirm</button>
             <div>
                 <p>Or choose from your saved addresses</p>
+                {locations.map(location => (
+                    <div key={location.id}>
+                        <span>{location.nickname}</span>
+                        <span>{location.street}, {location.zipCode}</span>
+                        <FontAwesomeIcon icon={faEdit}/>
+                    </div>
+                ))}
             </div>
         </div>
     )
