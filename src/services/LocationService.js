@@ -8,3 +8,11 @@ export const getLocations = () => {
             return response.data;
         })
 };
+
+export const createLocation = (location) => {
+    return axios.put(baseUrl + '/users/locations', {location},
+        {withCredentials: true})
+        .then(response => {
+            return response.data;
+        })
+};

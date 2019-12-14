@@ -21,6 +21,7 @@ const initialState = {
     deliveryStarting: 0,
     deliveryAdditional: 0,
     location: {
+        id: '',
         street: '',
         city: '',
         state: '',

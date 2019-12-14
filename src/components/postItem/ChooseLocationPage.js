@@ -1,12 +1,11 @@
 import React, {useEffect, useState} from "react";
 import PostItemTitleBar from "../shared/PostItemTitleBar";
-import Toggle from "./Toggle";
 import Select from "react-select";
 import '../../styles/Input.scss';
 import {useDispatch} from "react-redux";
 import {updatePostedItemLocation} from "../../redux/postItemActions";
 import {useHistory} from "react-router-dom";
-import {getLocations} from "../../services/LocationService";
+import {createLocation, getLocations} from "../../services/LocationService";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faEdit} from "@fortawesome/free-regular-svg-icons";
 
@@ -16,7 +15,6 @@ const ChooseLocationPage = () => {
     const [state, setState] = useState('');
     const [zipCode, setZipCode] = useState(null);
     const [nickname, setNickName] = useState('');
-    const [saveThisAddress, setSaveThisAddress] = useState(false);
     const [locations, setLocations] = useState([]);
 
     const dispatch = useDispatch();
@@ -34,17 +32,23 @@ const ChooseLocationPage = () => {
     };
 
     const handleClickConfirm = () => {
-        if (saveThisAddress) {
-
-        } else {
+        createLocation({
+            street: street,
+            city: city,
+            state: state.value,
+            zipCode: zipCode,
+            nickname: nickname
+        }).then((locationId) => {
             dispatch(updatePostedItemLocation({
+                id: locationId,
                 street: street,
                 city: city,
                 state: state.value,
-                zipCode: zipCode
+                zipCode: zipCode,
+                nickname: nickname
             }));
             history.push('/post-item/price-and-delivery');
-        }
+        });
     };
 
     const stateOptions = [
@@ -136,17 +140,12 @@ const ChooseLocationPage = () => {
                 </div>
             </div>
             <div>
-                Save this address
-                <Toggle value={saveThisAddress} onChange={() => {
-                    setSaveThisAddress(!saveThisAddress);
-                }}/>
-                {saveThisAddress ?
-                    <div>
-                        <label>Nick Name*</label>
-                        <input className='input-field' type='text'/>
-                    </div>
-                    : null
-                }
+                <div>
+                    <label>Nick Name*</label>
+                    <input className='input-field' type='text'
+                           onChange={(event => setNickName(event.target.value))}
+                    />
+                </div>
             </div>
             <button onClick={handleClickConfirm}>Confirm</button>
             <div>
