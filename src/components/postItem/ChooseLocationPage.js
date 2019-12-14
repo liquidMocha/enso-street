@@ -2,6 +2,7 @@ import React, {useEffect, useState} from "react";
 import PostItemTitleBar from "../shared/PostItemTitleBar";
 import Select from "react-select";
 import '../../styles/Input.scss';
+import '../../styles/ChooseLocationPage.scss';
 import {useDispatch} from "react-redux";
 import {updatePostedItemLocation} from "../../redux/postItemActions";
 import {useHistory} from "react-router-dom";
@@ -49,6 +50,15 @@ const ChooseLocationPage = () => {
             }));
             history.push('/post-item/price-and-delivery');
         });
+    };
+
+    const handleClickSavedAddress = (locationId) => {
+        const selectedLocation = locations.filter(location => {
+            return location.id === locationId;
+        })[0];
+
+        dispatch(updatePostedItemLocation(selectedLocation));
+        history.push('/post-item/price-and-delivery');
     };
 
     const stateOptions = [
@@ -108,53 +118,64 @@ const ChooseLocationPage = () => {
         <div>
             <PostItemTitleBar backLink="/post-item/price-and-delivery" title='Location'/>
             <div>
-                <div>
+                <div id='choose-location-address-address-row'
+                     className='single-input-row'>
                     <label>Address*</label>
-                    <input className='input-field' type='text'
+                    <input type='text'
                            placeholder='Ex. West 22nd Street'
                            onChange={(event) => {
                                setStreet(event.target.value);
                            }}/>
                 </div>
-                <div>
-                    <label>City*</label>
-                    <input className='input-field' type='text'
-                           placeholder='Enter City'
-                           onChange={(event) => {
-                               setCity(event.target.value);
-                           }}/>
-                    <label>State*</label>
-                    <Select
-                        placeholder='Ohio'
-                        onChange={handleStateChange}
-                        options={stateOptions}
-                        value={state}
-                    />
-                    <label>Zip Code*</label>
-                    <input className='input-field'
-                           type='number'
-                           placeholder='00000'
-                           onChange={(event) => {
-                               setZipCode(event.target.value);
-                           }}/>
+                <div id='choose-location-address-second-row'>
+                    <div id='choose-location-address-second-row-city'>
+                        <label>City*</label>
+                        <input type='text'
+                               placeholder='Enter City'
+                               onChange={(event) => {
+                                   setCity(event.target.value);
+                               }}/>
+                    </div>
+                    <div id='choose-location-address-second-row-state'>
+                        <label>State*</label>
+                        <Select
+                            placeholder='Ohio'
+                            onChange={handleStateChange}
+                            options={stateOptions}
+                            value={state}
+                        />
+                    </div>
+                    <div id='choose-location-address-second-row-zip-code'>
+                        <label>Zip Code*</label>
+                        <input type='number'
+                               placeholder='00000'
+                               onChange={(event) => {
+                                   setZipCode(event.target.value);
+                               }}/>
+                    </div>
                 </div>
             </div>
             <div>
-                <div>
+                <div className='single-input-row'>
                     <label>Nick Name*</label>
-                    <input className='input-field' type='text'
+                    <input type='text'
                            onChange={(event => setNickName(event.target.value))}
                     />
                 </div>
             </div>
             <button onClick={handleClickConfirm}>Confirm</button>
-            <div>
+            <div id='choose-location-saved-address'>
                 <p>Or choose from your saved addresses</p>
                 {locations.map(location => (
-                    <div key={location.id}>
-                        <span>{location.nickname}</span>
-                        <span>{location.street}, {location.zipCode}</span>
-                        <FontAwesomeIcon icon={faEdit}/>
+                    <div key={location.id} className='choose-location-saved-address-row'>
+                        <div className='choose-location-select-area' onClick={
+                            () => {
+                                handleClickSavedAddress(location.id)
+                            }}>
+                            <span id='choose-location-saved-address-nickname'>{location.nickname}</span>
+                            <span>{location.street}, {location.zipCode}</span>
+                        </div>
+                        <FontAwesomeIcon className='choose-location-saved-address-row-edit-button' icon={faEdit}/>
                     </div>
                 ))}
             </div>
