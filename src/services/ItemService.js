@@ -19,7 +19,7 @@ export const postItem = (item) => {
         canBeDelivered: item.canBeDelivered,
         deliveryStarting: item.deliveryStarting,
         deliveryAdditional: item.deliveryAdditional,
-        location: {zipCode: "dummy location"}
+        location: item.location
     };
 
     const imageFilePromise = axios.get(item.imageUrl, {responseType: 'blob'});

@@ -26,11 +26,19 @@ const MyItems = () => {
 
     useEffect(() => {
         if (searchTerm.length !== 0) {
-            setVisibleItems(items.filter(item => {
-                return item.title.toLowerCase().includes(searchTerm) ||
-                    (item.description && item.description.toLowerCase().includes(searchTerm)) ||
-                    (item.address && item.address.toLowerCase().includes(searchTerm));
-            }))
+            setVisibleItems(
+                items.filter(item => {
+                    return item.title.toLowerCase().includes(searchTerm) ||
+                        (item.description && item.description.toLowerCase().includes(searchTerm)) ||
+                        (item.location &&
+                            (
+                                (item.location.street && item.location.street.toLowerCase().includes(searchTerm)) ||
+                                (item.location.zipCode && item.location.zipCode.toLowerCase().includes(searchTerm)) ||
+                                (item.location.city && item.location.city.toLowerCase().includes(searchTerm)) ||
+                                (item.location.state && item.location.state.toLowerCase().includes(searchTerm)) ||
+                                (item.location.nickname && item.location.nickname.toLowerCase().includes(searchTerm))
+                            ));
+                }))
         } else {
             setVisibleItems(items);
         }
