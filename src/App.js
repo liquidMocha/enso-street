@@ -18,6 +18,7 @@ import UseMyPhoto from "./components/postItem/UseMyPhoto";
 import MyItems from "./components/homepage/menu/MyItems";
 import EditCompleteItem from "./components/postItem/EditCompleteItem";
 import ChooseLocationPage from "./components/postItem/ChooseLocationPage";
+import EditAddressPage from "./components/postItem/EditAddressPage";
 
 class App extends React.Component {
     render() {
@@ -38,6 +39,7 @@ class App extends React.Component {
                     <Route exact path="/post-item/details" component={PostItemDetailPage}/>
                     <Route exact path="/post-item/price-and-delivery" component={PriceAndDelivery}/>
                     <Route exact path="/post-item/price-and-delivery/choose-location" component={ChooseLocationPage}/>
+                    <Route exact path="/post-item/price-and-delivery/choose-location/edit-address" component={EditAddressPage}/>
                     <Route exact path="/post-item/preview" component={Preview}/>
                     <Route exact path="/post-item/edit-complete-item" component={EditCompleteItem}/>
                 </div>

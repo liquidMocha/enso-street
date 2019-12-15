@@ -42,7 +42,7 @@ const MyItems = () => {
         } else {
             setVisibleItems(items);
         }
-    }, [searchTerm]);
+    }, [searchTerm, items]);
 
     const byCreatedOn = (a, b) => {
         const timeA = a.createdOn;
@@ -98,9 +98,10 @@ const MyItems = () => {
                         <div className='my-item-card-buttons column-layout'>
                             <FontAwesomeIcon icon={faTrashAlt} onClick={() => {
                                 deleteItem(item.id).then(() => {
-                                    setItems(items.filter(existingItem => {
+                                    const itemsLeft = items.filter(existingItem => {
                                         return existingItem.id !== item.id
-                                    }))
+                                    });
+                                    setItems(itemsLeft);
                                 })
                             }}/>
                             <FontAwesomeIcon icon={faSave}/>
