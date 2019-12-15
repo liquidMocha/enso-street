@@ -18,7 +18,7 @@ const EditAddressPage = (props) => {
     const handleClickConfirm = () => {
         updateLocation({
             id: initialLocation.id,
-            street, city, state: state.value, zipCode
+            street, city, state: state.value, zipCode, nickname
         }).then((response) => {
             history.push('/post-item/price-and-delivery/choose-location', response.data);
         });
