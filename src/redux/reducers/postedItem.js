@@ -12,14 +12,14 @@ import {
 const initialState = {
     imageUrl: null,
     title: '',
-    rentalDailyPrice: 0,
+    rentalDailyPrice: 5,
     deposit: 50,
     categories: [],
     condition: {value: "normal-wear", label: "Normal Wear"},
     description: '',
     canBeDelivered: false,
-    deliveryStarting: 0,
-    deliveryAdditional: 0,
+    deliveryStarting: 10,
+    deliveryAdditional: 3,
     location: {
         id: '',
         street: '',
