@@ -10,7 +10,7 @@ const UseMyPhoto = withRouter((props) => {
     return (
         <div className='column-layout'>
             <div className='image-button'>
-                <input id='take-photo-input' type="file" accept="image/*" capture="camera"
+                <input id='take-photo-input' type="file" accept="image/*" capture={true}
                        onChange={(event) => {
                            if (event.target.files && event.target.files[0]) {
                                props.updatePostedItemImageUrl(URL.createObjectURL(event.target.files[0]));
@@ -23,7 +23,7 @@ const UseMyPhoto = withRouter((props) => {
                 </label>
             </div>
             <div className='image-button'>
-                <input id='select-image-input' type="file" accept="image/*"
+                <input id='select-image-input' type="file" accept="image/*" capture={false}
                        onChange={(event) => {
                            if (event.target.files && event.target.files[0]) {
                                props.updatePostedItemImageUrl(URL.createObjectURL(event.target.files[0]));
