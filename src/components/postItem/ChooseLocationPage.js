@@ -1,6 +1,5 @@
 import React, {useEffect, useState} from "react";
 import PostItemTitleBar from "../shared/PostItemTitleBar";
-import Select from "react-select";
 import '../../styles/Input.scss';
 import '../../styles/ChooseLocationPage.scss';
 import {useDispatch} from "react-redux";
@@ -9,12 +8,13 @@ import {useHistory} from "react-router-dom";
 import {createLocation, getLocations} from "../../services/LocationService";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faEdit} from "@fortawesome/free-regular-svg-icons";
+import AddressSecondRow from "./AddressSecondRow";
 
 const ChooseLocationPage = () => {
     const [street, setStreet] = useState('');
     const [city, setCity] = useState('');
     const [state, setState] = useState('');
-    const [zipCode, setZipCode] = useState(null);
+    const [zipCode, setZipCode] = useState('');
     const [nickname, setNickName] = useState('');
     const [locations, setLocations] = useState([]);
 
@@ -28,6 +28,7 @@ const ChooseLocationPage = () => {
                 setLocations(locations);
             });
     }, []);
+
     const handleStateChange = (option) => {
         setState(option);
     };
@@ -61,58 +62,9 @@ const ChooseLocationPage = () => {
         history.push('/post-item/price-and-delivery');
     };
 
-    const stateOptions = [
-        {value: "Alabama", label: "Alabama"},
-        {value: "Alaska", label: "Alaska"},
-        {value: "Arizona", label: "Arizona"},
-        {value: "Arkansas", label: "Arkansas"},
-        {value: "California", label: "California"},
-        {value: "Colorado", label: "Colorado"},
-        {value: "Connecticut", label: "Connecticut"},
-        {value: "Delaware", label: "Delaware"},
-        {value: "Florida", label: "Florida"},
-        {value: "Georgia", label: "Georgia"},
-        {value: "Hawaii", label: "Hawaii"},
-        {value: "Idaho", label: "Idaho"},
-        {value: "Illinois", label: "Illinois"},
-        {value: "Indiana", label: "Indiana"},
-        {value: "Iowa", label: "Iowa"},
-        {value: "Kansas", label: "Kansas"},
-        {value: "Kentucky", label: "Kentucky"},
-        {value: "Louisiana", label: "Louisiana"},
-        {value: "Maine", label: "Maine"},
-        {value: "Maryland", label: "Maryland"},
-        {value: "Massachusetts", label: "Massachusetts"},
-        {value: "Michigan", label: "Michigan"},
-        {value: "Minnesota", label: "Minnesota"},
-        {value: "Mississippi", label: "Mississippi"},
-        {value: "Missouri", label: "Missouri"},
-        {value: "Montana", label: "Montana"},
-        {value: "Nebraska", label: "Nebraska"},
-        {value: "Nevada", label: "Nevada"},
-        {value: "New Hampshire", label: "New"},
-        {value: "New Jersey", label: "New"},
-        {value: "New Mexico", label: "New"},
-        {value: "New York", label: "New"},
-        {value: "North Carolina", label: "North"},
-        {value: "North Dakota", label: "North"},
-        {value: "Ohio", label: "Ohio"},
-        {value: "Oklahoma", label: "Oklahoma"},
-        {value: "Oregon", label: "Oregon"},
-        {value: "Pennsylvania", label: "Pennsylvania"},
-        {value: "Rhode Island", label: "Rhode"},
-        {value: "South Carolina", label: "South"},
-        {value: "South Dakota", label: "South"},
-        {value: "Tennessee", label: "Tennessee"},
-        {value: "Texas", label: "Texas"},
-        {value: "Utah", label: "Utah"},
-        {value: "Vermont", label: "Vermont"},
-        {value: "Virginia", label: "Virginia"},
-        {value: "Washington", label: "Washington"},
-        {value: "West Virginia", label: "West"},
-        {value: "Wisconsin", label: "Wisconsin"},
-        {value: "Wyoming", label: "Wyoming"}
-    ];
+    const openEditLocationPageFor = (location) => {
+        history.push('/post-item/price-and-delivery/choose-location/edit-address', location);
+    };
 
     return (
         <div id='choose-location-page'>
@@ -127,33 +79,14 @@ const ChooseLocationPage = () => {
                                setStreet(event.target.value);
                            }}/>
                 </div>
-                <div id='choose-location-address-second-row'>
-                    <div id='choose-location-address-second-row-city'>
-                        <label>City*</label>
-                        <input type='text'
-                               placeholder='Enter City'
-                               onChange={(event) => {
-                                   setCity(event.target.value);
-                               }}/>
-                    </div>
-                    <div id='choose-location-address-second-row-state'>
-                        <label>State*</label>
-                        <Select
-                            placeholder='Ohio'
-                            onChange={handleStateChange}
-                            options={stateOptions}
-                            value={state}
-                        />
-                    </div>
-                    <div id='choose-location-address-second-row-zip-code'>
-                        <label>Zip Code*</label>
-                        <input type='number'
-                               placeholder='00000'
-                               onChange={(event) => {
-                                   setZipCode(event.target.value);
-                               }}/>
-                    </div>
-                </div>
+                <AddressSecondRow
+                    city={city}
+                    state={state}
+                    zipCode={zipCode}
+                    setCity={setCity}
+                    setZipCode={setZipCode}
+                    handleStateChange={handleStateChange}
+                />
             </div>
             <div>
                 <div className='single-input-row'>
@@ -175,7 +108,12 @@ const ChooseLocationPage = () => {
                             <span id='choose-location-saved-address-nickname'>{location.nickname}</span>
                             <span>{location.street}, {location.zipCode}</span>
                         </div>
-                        <FontAwesomeIcon className='choose-location-saved-address-row-edit-button' icon={faEdit}/>
+                        <FontAwesomeIcon className='choose-location-saved-address-row-edit-button'
+                                         icon={faEdit}
+                                         onClick={() => {
+                                             openEditLocationPageFor(location)
+                                         }}
+                        />
                     </div>
                 ))}
             </div>

@@ -16,3 +16,11 @@ export const createLocation = (location) => {
             return response.data;
         })
 };
+
+export const updateLocation = (location) => {
+    return axios.put(baseUrl + `/users/locations/${location.id}`, {location},
+        {withCredentials: true})
+        .then(response => {
+            return response.data;
+        });
+};
