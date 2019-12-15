@@ -56,7 +56,7 @@ export default (state = initialState, action) => {
         }
         case UPDATE_POSTED_ITEM_CATEGORIES: {
             return Object.assign({}, state, {
-                ...state, categories: action.payload
+                ...state, categories: action.payload || []
             })
         }
         case UPDATE_POSTED_ITEM_CONDITION: {
