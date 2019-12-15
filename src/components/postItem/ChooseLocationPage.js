@@ -115,7 +115,7 @@ const ChooseLocationPage = () => {
     ];
 
     return (
-        <div>
+        <div id='choose-location-page'>
             <PostItemTitleBar backLink="/post-item/price-and-delivery" title='Location'/>
             <div>
                 <div id='choose-location-address-address-row'
