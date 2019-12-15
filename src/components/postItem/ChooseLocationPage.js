@@ -75,6 +75,7 @@ const ChooseLocationPage = () => {
                     <label>Address*</label>
                     <input type='text'
                            placeholder='Ex. West 22nd Street'
+                           value={street}
                            onChange={(event) => {
                                setStreet(event.target.value);
                            }}/>
@@ -92,6 +93,7 @@ const ChooseLocationPage = () => {
                 <div className='single-input-row'>
                     <label>Nick Name*</label>
                     <input type='text'
+                           value={nickname}
                            onChange={(event => setNickName(event.target.value))}
                     />
                 </div>
