@@ -29,7 +29,7 @@ export const postItem = (item) => {
 
     return Promise.all([imageFilePromise, signedRequestPromise])
         .then(values => {
-            axios.put(values[1].data, values[0].data,
+            return axios.put(values[1].data, values[0].data,
                 {
                     headers: {'Content-Type': 'image/jpeg'}
                 })
