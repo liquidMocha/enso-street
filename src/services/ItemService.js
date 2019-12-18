@@ -1,4 +1,5 @@
 import axios from "axios";
+import Jimp from 'jimp';
 
 const baseUrl = '/api';
 
@@ -22,22 +23,32 @@ export const postItem = (item) => {
         location: item.location
     };
 
-    const imageFilePromise = axios.get(item.imageUrl, {responseType: 'blob'});
     const signedRequestPromise = axios.post(
         baseUrl + '/items', itemPayload, {withCredentials: true}
     );
 
-    return Promise.all([imageFilePromise, signedRequestPromise])
+    const imageUrl = item.imageUrl;
+
+    const compressImagePromise = Jimp.read(imageUrl)
+    .then(image => {
+        return image.scaleToFit(110, 100).getBufferAsync(Jimp.MIME_PNG);
+    }).then(binaryBuffer => {
+        return binaryBuffer;
+    }).catch(error => {
+        console.error(`error when compressing image: ${error}`);
+    });
+
+    return Promise.all([compressImagePromise, signedRequestPromise])
         .then(values => {
-            return axios.put(values[1].data, values[0].data,
+            return axios.put(values[1].data, values[0],
                 {
                     headers: {'Content-Type': 'image/jpeg'}
                 })
                 .then(result => {
                     console.log("response from s3", result);
                 }).catch(error => {
-                console.error(error);
-            });
+                    console.error(error);
+                });
         }).catch(error => {
             console.log(error);
         });
