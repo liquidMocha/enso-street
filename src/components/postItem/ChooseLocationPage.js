@@ -5,7 +5,7 @@ import '../../styles/ChooseLocationPage.scss';
 import {useDispatch} from "react-redux";
 import {updatePostedItemLocation} from "../../redux/postItemActions";
 import {useHistory} from "react-router-dom";
-import {createLocation, getLocations} from "../../services/LocationService";
+import {autosuggestAddress, createLocation, getLocations} from "../../services/LocationService";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faEdit} from "@fortawesome/free-regular-svg-icons";
 import AddressSecondRow from "./AddressSecondRow";
@@ -17,6 +17,7 @@ const ChooseLocationPage = () => {
     const [zipCode, setZipCode] = useState('');
     const [nickname, setNickName] = useState('');
     const [locations, setLocations] = useState([]);
+    const [suggestedAddresses, setSuggestedAddresses] = useState([]);
 
     const dispatch = useDispatch();
 
@@ -69,6 +70,20 @@ const ChooseLocationPage = () => {
     return (
         <div id='choose-location-page'>
             <PostItemTitleBar backLink="/post-item/price-and-delivery" title='Location'/>
+            <label>Autosuggest Address</label>
+            <input type='text' placeholder='type here and wait for autosuggest' onChange={(event) => {
+                const searchTerm = event.target.value;
+                autosuggestAddress(searchTerm).then(addresses => {
+                    console.log(addresses);
+                    setSuggestedAddresses(addresses);
+                }).catch(error => {
+                    console.error(error);
+                })
+            }}/>
+            {suggestedAddresses.map(suggestedAddress => (
+                    <div>{suggestedAddress.street}, {suggestedAddress.city}, {suggestedAddress.state}, {suggestedAddress.zipCode}</div>
+                )
+            )}
             <div>
                 <div id='choose-location-address-address-row'
                      className='single-input-row'>

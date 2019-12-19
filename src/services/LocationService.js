@@ -24,3 +24,10 @@ export const updateLocation = (location) => {
             return response.data;
         });
 };
+
+export const autosuggestAddress = (searchTerm) => {
+    return axios.get(baseUrl + `/users/locations/autosuggest/${searchTerm}`, {withCredentials: true})
+        .then(response => {
+            return response.data;
+        });
+};
