@@ -70,6 +70,7 @@ const CategorySelect = () => {
                 onChange={handleCategoryChange}
                 options={allCategoryOptions}
                 value={categories}
+                isSearchable={false}
             />
         </div>
     )
