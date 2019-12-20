@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from "react";
 import {deleteItem, getAllItemsForUser} from "../../../services/ItemService";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {faAngleLeft, faSearch} from "@fortawesome/free-solid-svg-icons";
+import {faAngleLeft, faPlus, faSearch} from "@fortawesome/free-solid-svg-icons";
 import DollarInput from "../../shared/DollarInput";
 import {faSave, faTrashAlt} from "@fortawesome/free-regular-svg-icons";
 import {useHistory} from "react-router-dom";
@@ -81,7 +81,9 @@ const MyItems = () => {
                     <FontAwesomeIcon icon={faAngleLeft}/> Back
                 </span>
                 <span className='fixed-title-bar__title--font'>My Items</span>
-                <span/>
+                <span onClick={() => {
+                    history.push('/post-item')
+                }}><FontAwesomeIcon icon={faPlus}/>Add</span>
             </div>
             <div id='my-items-search'>
                 <input type='text'
