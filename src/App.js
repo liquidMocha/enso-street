@@ -19,6 +19,8 @@ import MyItems from "./components/homepage/menu/MyItems";
 import EditCompleteItem from "./components/postItem/EditCompleteItem";
 import ChooseLocationPage from "./components/postItem/ChooseLocationPage";
 import EditAddressPage from "./components/postItem/EditAddressPage";
+import {ToastContainer} from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
 
 class App extends React.Component {
     render() {
@@ -27,7 +29,8 @@ class App extends React.Component {
             <BrowserRouter>
                 <div id='app-content'>
                     <Route exact path="/" component={HomePage}/>
-                    <Route path="/menu" component={(props) => <MenuPage {...props} baseUrl={baseUrl} isLoggedIn={isUserLoggedIn}/>}/>
+                    <Route path="/menu"
+                           component={(props) => <MenuPage {...props} baseUrl={baseUrl} isLoggedIn={isUserLoggedIn}/>}/>
                     <Route path="/login" component={(props) => <LoginPage {...props} baseUrl={baseUrl}/>}/>
                     <Route path="/sign-up" component={(props) => <SignUpPage {...props} baseUrl={baseUrl}/>}/>
                     <Route path="/location" component={LocationPickerPage}/>
@@ -39,11 +42,14 @@ class App extends React.Component {
                     <Route exact path="/post-item/details" component={PostItemDetailPage}/>
                     <Route exact path="/post-item/price-and-delivery" component={PriceAndDelivery}/>
                     <Route exact path="/post-item/price-and-delivery/choose-location" component={ChooseLocationPage}/>
-                    <Route exact path="/post-item/price-and-delivery/choose-location/edit-address" component={EditAddressPage}/>
+                    <Route exact path="/post-item/price-and-delivery/choose-location/edit-address"
+                           component={EditAddressPage}/>
                     <Route exact path="/post-item/preview" component={Preview}/>
                     <Route exact path="/post-item/edit-complete-item" component={EditCompleteItem}/>
                 </div>
                 <Footer/>
+                <ToastContainer position='bottom-center' autoClose={2000} hideProgressBar={true} closeOnClick
+                                draggable={false}/>
             </BrowserRouter>
         );
     }

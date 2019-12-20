@@ -29,6 +29,10 @@ module.exports = {
                 ]
             },
             {
+                test:/\.css$/,
+                use:['style-loader','css-loader']
+            },
+            {
                 test: /\.module\.s(a|c)ss$/,
                 loader: [
                     {

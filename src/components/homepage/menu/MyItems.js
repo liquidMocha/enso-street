@@ -9,6 +9,7 @@ import Modal from 'react-modal';
 import "../../../styles/Spacing.scss";
 import "../../../styles/MyItem.scss";
 import "../../../styles/Input.scss";
+import {toast} from "react-toastify";
 
 const MyItems = () => {
     const [items, setItems] = useState([]);
@@ -138,6 +139,7 @@ const MyItems = () => {
                                 setDeleteModalStatus({isOpen: true, itemId: item.id});
                             }}/>
                             <FontAwesomeIcon icon={faSave} onClick={() => {
+                                toast.success('Item save successful!');
                                 updateItem({
                                     id: item.id,
                                     rentalDailyPrice: item.rentalDailyPrice,
