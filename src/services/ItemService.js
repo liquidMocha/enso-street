@@ -30,13 +30,13 @@ export const postItem = (item) => {
     const imageUrl = item.imageUrl;
 
     const compressImagePromise = Jimp.read(imageUrl)
-    .then(image => {
-        return image.scaleToFit(110, 100).getBufferAsync(Jimp.MIME_PNG);
-    }).then(binaryBuffer => {
-        return binaryBuffer;
-    }).catch(error => {
-        console.error(`error when compressing image: ${error}`);
-    });
+        .then(image => {
+            return image.scaleToFit(110, 100).getBufferAsync(Jimp.MIME_PNG);
+        }).then(binaryBuffer => {
+            return binaryBuffer;
+        }).catch(error => {
+            console.error(`error when compressing image: ${error}`);
+        });
 
     return Promise.all([compressImagePromise, signedRequestPromise])
         .then(values => {
@@ -60,4 +60,11 @@ export const getAllItemsForUser = () => {
 
 export const deleteItem = (itemId) => {
     return axios.delete(`${baseUrl}/items/${itemId}`, {withCredentials: true});
+};
+
+export const updateItem = (item) => {
+    return axios.put(`${baseUrl}/items/${item.id}`, {
+        rentalDailyPrice: item.rentalDailyPrice,
+        searchable: item.searchable
+    }, {withCredentials: true});
 };

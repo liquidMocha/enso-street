@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from "react";
-import {deleteItem, getAllItemsForUser} from "../../../services/ItemService";
+import {deleteItem, getAllItemsForUser, updateItem} from "../../../services/ItemService";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faAngleLeft, faPlus, faSearch} from "@fortawesome/free-solid-svg-icons";
 import DollarInput from "../../shared/DollarInput";
@@ -106,10 +106,29 @@ const MyItems = () => {
                                 </div>
                                 <div className='column-layout'>
                                     <div className='my-item-card-rental-price'>
-                                        <DollarInput value={item.rentalDailyPrice} description='per day'/>
+                                        <DollarInput value={item.rentalDailyPrice}
+                                                     onChange={(event) => {
+                                                         let newItems = items.slice(0);
+                                                         let newItem = newItems.find(updatedItem => {
+                                                             return updatedItem.id === item.id;
+                                                         });
+                                                         newItem.rentalDailyPrice = event.target.value;
+                                                         setItems(newItems);
+                                                     }}
+                                                     description='per day'/>
                                     </div>
                                     <div>
-                                        <input type='checkbox'/> Show on site
+                                        <input type='checkbox'
+                                               checked={item.searchable || false}
+                                               onChange={(() => {
+                                                   let newItems = items.slice(0);
+                                                   let newItem = newItems.find(updatedItem => {
+                                                       return updatedItem.id === item.id;
+                                                   });
+                                                   newItem.searchable = !newItem.searchable;
+                                                   setItems(newItems);
+                                               })}
+                                        /> Show on site
                                     </div>
                                 </div>
                             </div>
@@ -118,7 +137,15 @@ const MyItems = () => {
                             <FontAwesomeIcon icon={faTrashAlt} onClick={() => {
                                 setDeleteModalStatus({isOpen: true, itemId: item.id});
                             }}/>
-                            <FontAwesomeIcon icon={faSave}/>
+                            <FontAwesomeIcon icon={faSave} onClick={() => {
+                                updateItem({
+                                    id: item.id,
+                                    rentalDailyPrice: item.rentalDailyPrice,
+                                    searchable: item.searchable
+                                }).then(() => {
+                                    console.log('updated')
+                                });
+                            }}/>
                         </div>
                     </div>
                 )
