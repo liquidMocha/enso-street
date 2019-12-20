@@ -23,6 +23,7 @@ const ConditionSelect = () => {
                 onChange={handleConditionChange}
                 options={conditionOptions}
                 value={condition}
+                isSearchable={false}
             />
         </div>
     )
