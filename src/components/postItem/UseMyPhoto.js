@@ -14,7 +14,7 @@ const UseMyPhoto = withRouter((props) => {
                        onChange={(event) => {
                            if (event.target.files && event.target.files[0]) {
                                props.updatePostedItemImageUrl(URL.createObjectURL(event.target.files[0]));
-                               props.history.push('/post-item');
+                               props.history.goBack();
                            }
                        }}/>
                 <label htmlFor='take-photo-input'>
@@ -27,7 +27,7 @@ const UseMyPhoto = withRouter((props) => {
                        onChange={(event) => {
                            if (event.target.files && event.target.files[0]) {
                                props.updatePostedItemImageUrl(URL.createObjectURL(event.target.files[0]));
-                               props.history.push('/post-item');
+                               props.history.goBack();
                            }
                        }}/>
                 <label htmlFor='select-image-input'>
