@@ -1,50 +1,51 @@
-import React from "react";
+import React, {useState} from "react";
 import '../../styles/Button.scss';
 import '../../styles/Input.scss';
 import '../../styles/HomePage.scss';
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {faCalendarAlt, faMapMarkerAlt} from '@fortawesome/free-solid-svg-icons';
+import {faMapMarkerAlt, faSearch} from '@fortawesome/free-solid-svg-icons';
 import '../../styles/Sizing.scss';
-import {withRouter} from "react-router-dom";
 import TitleBar from "../shared/TitleBar";
-import {connect} from "react-redux";
-import {selectedLocation} from "../../redux/reducers/searchCriteria";
 
-const HomePage = withRouter((props) => {
-    const dateFormatter = new Intl.DateTimeFormat('en-US', {month: 'short', day: '2-digit'});
+const HomePage = () => {
+
+    const [searchExpanded, expandSearch] = useState(false);
 
     return (
         <div>
             <TitleBar/>
             <div>
-                <div className='input-size input-field'
-                     id='location-opener'
-                     onClick={() => {
-                         props.history.push('/location')
-                     }}>
-                    <FontAwesomeIcon icon={faMapMarkerAlt}/>
-                    {props.selectedLocation ? props.selectedLocation.nickname : ''}
-                </div>
-                <div className='input-size input-field'
-                     id='date-range-opener'
-                     onClick={() => {
-                         props.history.push('/pick-date');
-                     }}>
-                    <FontAwesomeIcon icon={faCalendarAlt}/>
-                    {`${dateFormatter.format(props.rentDate)} - ${dateFormatter.format(props.returnDate)}`}
-                </div>
-                <button id='home-page-search-button'>Search</button>
+                {searchExpanded ?
+                    <>
+                        <div className='input-size input-field'
+                             id='location-opener'
+                             onClick={() => {
+                             }}>
+                            <FontAwesomeIcon icon={faSearch}/>
+                            Item name
+                        </div>
+                        <div className='input-size input-field'
+                             id='location-opener'
+                             onClick={() => {
+                             }}>
+                            <FontAwesomeIcon icon={faMapMarkerAlt}/>
+                            Add location
+                        </div>
+                        <button id='home-page-search-button'>Search</button>
+                    </>
+                    :
+                    <div className='input-size input-field'
+                         id='location-opener'
+                         onClick={() => {
+                             expandSearch(true);
+                         }}>
+                        <FontAwesomeIcon icon={faSearch}/>
+                        Search Enso Street
+                    </div>
+                }
             </div>
         </div>
     )
-});
-
-const mapStateToProps = (state) => {
-    return {
-        rentDate: state.searchCriteria.dates.rentDate,
-        returnDate: state.searchCriteria.dates.returnDate,
-        selectedLocation: selectedLocation(state)
-    };
 };
 
-export default connect(mapStateToProps)(HomePage);
+export default HomePage;
