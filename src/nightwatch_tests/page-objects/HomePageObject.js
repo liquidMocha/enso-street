@@ -3,9 +3,6 @@ module.exports = {
     elements: {
         menuButton: {
             selector: '.menu-button-container'
-        },
-        locationPageOpener: {
-            selector: '#location-opener'
         }
     }
 };

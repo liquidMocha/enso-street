@@ -47,7 +47,6 @@ class App extends React.Component {
                     <Route exact path="/post-item/preview" component={Preview}/>
                     <Route exact path="/post-item/edit-complete-item" component={EditCompleteItem}/>
                 </div>
-                {/*<Footer/>*/}
                 <ToastContainer position='bottom-center' autoClose={2000} hideProgressBar={true} closeOnClick
                                 draggable={false}/>
             </BrowserRouter>

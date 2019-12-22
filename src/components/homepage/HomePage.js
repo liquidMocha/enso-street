@@ -10,6 +10,7 @@ import {useSpring, animated} from 'react-spring';
 
 const HomePage = () => {
     const [searchExpanded, expandSearch] = useState(false);
+    const [coordinates, setCoordinates] = useState(null);
     const expandingInputAnimation = useSpring({
         height: searchExpanded ? '15px' : '0px',
         overflow: 'hidden'
@@ -22,18 +23,24 @@ const HomePage = () => {
                 {searchExpanded ?
                     <>
                         <animated.div style={expandingInputAnimation} className='input-field'
-                                      id='location-opener'
                                       onClick={() => {
                                       }}>
                             <FontAwesomeIcon icon={faSearch}/>
                             Item name
                         </animated.div>
                         <animated.div style={expandingInputAnimation} className='input-field'
-                                      id='location-opener'
                                       onClick={() => {
+                                          navigator.geolocation.getCurrentPosition((position => {
+                                              setCoordinates({
+                                                  latitude: position.coords.latitude,
+                                                  longitude: position.coords.longitude
+                                              })
+                                          }), (error) => console.log(error))
                                       }}>
                             <FontAwesomeIcon icon={faMapMarkerAlt}/>
-                            Add location
+                            {coordinates ?
+                                `${coordinates.latitude}, ${coordinates.longitude}`
+                                : 'Add location'}
                         </animated.div>
                         <button id='home-page-search-button'>Search</button>
                     </>
