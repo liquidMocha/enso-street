@@ -1,4 +1,5 @@
 import {
+    RESET_POSTED_ITEM,
     UPDATE_POSTED_ITEM_CAN_BE_DELIVERED,
     UPDATE_POSTED_ITEM_CATEGORIES,
     UPDATE_POSTED_ITEM_CONDITION,
@@ -88,6 +89,9 @@ export default (state = initialState, action) => {
             return Object.assign({}, state, {
                 ...state, location: action.payload
             })
+        }
+        case RESET_POSTED_ITEM: {
+            return initialState;
         }
         default: {
             return state;

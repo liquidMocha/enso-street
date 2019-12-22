@@ -1,4 +1,5 @@
 import {
+    RESET_POSTED_ITEM,
     UPDATE_POSTED_ITEM_CAN_BE_DELIVERED,
     UPDATE_POSTED_ITEM_CATEGORIES,
     UPDATE_POSTED_ITEM_CONDITION,
@@ -65,4 +66,8 @@ export const updatePostedItemDeliveryAdditional = fee => ({
 export const updatePostedItemLocation = location => ({
     type: UPDATE_POSTED_ITEM_LOCATION,
     payload: location
+});
+
+export const resetPostedItem = () => ({
+    type: RESET_POSTED_ITEM
 });

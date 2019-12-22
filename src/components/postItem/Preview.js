@@ -1,12 +1,15 @@
 import React from "react";
 import PostItemTitleBar from "../shared/PostItemTitleBar";
-import {connect} from "react-redux";
+import {connect, useDispatch} from "react-redux";
 import "../../styles/Image.scss";
 import "../../styles/Preview.scss";
 import {withRouter} from "react-router-dom";
 import {postItem} from "../../services/ItemService";
+import {resetPostedItem} from "../../redux/postItemActions";
 
 const Preview = withRouter((props) => {
+
+    const dispatch = useDispatch();
 
     const renderCategories = () => {
         return props.categories.map(category => {
@@ -20,6 +23,7 @@ const Preview = withRouter((props) => {
 
     const onClickingPost = () => {
         postItem(props.item).then(() => {
+            dispatch(resetPostedItem());
             props.history.push('/my-items');
         }).catch((error) => {
             console.log('failed posting item');
