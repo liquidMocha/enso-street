@@ -6,10 +6,14 @@ import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faMapMarkerAlt, faSearch} from '@fortawesome/free-solid-svg-icons';
 import '../../styles/Sizing.scss';
 import TitleBar from "../shared/TitleBar";
+import {useSpring, animated} from 'react-spring';
 
 const HomePage = () => {
-
     const [searchExpanded, expandSearch] = useState(false);
+    const expandingInputAnimation = useSpring({
+        height: searchExpanded ? '15px' : '0px',
+        overflow: 'hidden'
+    });
 
     return (
         <div>
@@ -17,20 +21,20 @@ const HomePage = () => {
             <div>
                 {searchExpanded ?
                     <>
-                        <div className='input-size input-field'
-                             id='location-opener'
-                             onClick={() => {
-                             }}>
+                        <animated.div style={expandingInputAnimation} className='input-field'
+                                      id='location-opener'
+                                      onClick={() => {
+                                      }}>
                             <FontAwesomeIcon icon={faSearch}/>
                             Item name
-                        </div>
-                        <div className='input-size input-field'
-                             id='location-opener'
-                             onClick={() => {
-                             }}>
+                        </animated.div>
+                        <animated.div style={expandingInputAnimation} className='input-field'
+                                      id='location-opener'
+                                      onClick={() => {
+                                      }}>
                             <FontAwesomeIcon icon={faMapMarkerAlt}/>
                             Add location
-                        </div>
+                        </animated.div>
                         <button id='home-page-search-button'>Search</button>
                     </>
                     :
@@ -48,4 +52,4 @@ const HomePage = () => {
     )
 };
 
-export default HomePage;
+export default animated(HomePage);

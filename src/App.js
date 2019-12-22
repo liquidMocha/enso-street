@@ -4,7 +4,6 @@ import LoginPage from "./components/homepage/menu/LoginPage";
 import SignUpPage from "./components/homepage/menu/SignUpPage";
 import {BrowserRouter, Route} from "react-router-dom";
 import Footer from "./components/shared/Footer";
-import HomePage from "./components/homepage/HomePage";
 import MenuPage from "./components/homepage/menu/MenuPage";
 import LocationPickerPage from "./components/homepage/location/LocationPickerPage";
 import DateRangePickerPage from "./components/homepage/dateRange/DateRangePickerPage";
@@ -21,6 +20,7 @@ import ChooseLocationPage from "./components/postItem/ChooseLocationPage";
 import EditAddressPage from "./components/postItem/EditAddressPage";
 import {ToastContainer} from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
+import HomePage from "./components/homepage/HomePage";
 
 class App extends React.Component {
     render() {
@@ -47,7 +47,7 @@ class App extends React.Component {
                     <Route exact path="/post-item/preview" component={Preview}/>
                     <Route exact path="/post-item/edit-complete-item" component={EditCompleteItem}/>
                 </div>
-                <Footer/>
+                {/*<Footer/>*/}
                 <ToastContainer position='bottom-center' autoClose={2000} hideProgressBar={true} closeOnClick
                                 draggable={false}/>
             </BrowserRouter>
