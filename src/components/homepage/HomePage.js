@@ -7,10 +7,12 @@ import {faMapMarkerAlt, faSearch} from '@fortawesome/free-solid-svg-icons';
 import '../../styles/Sizing.scss';
 import TitleBar from "../shared/TitleBar";
 import {useSpring, animated} from 'react-spring';
+import {reverseGeocode} from "../../services/LocationService";
 
 const HomePage = () => {
     const [searchExpanded, expandSearch] = useState(false);
     const [coordinates, setCoordinates] = useState(null);
+    const [displayLocation, setDisplayLocation] = useState(null);
     const expandingInputAnimation = useSpring({
         height: searchExpanded ? '15px' : '0px',
         overflow: 'hidden'
@@ -31,16 +33,24 @@ const HomePage = () => {
                         <animated.div style={expandingInputAnimation} className='input-field'
                                       onClick={() => {
                                           navigator.geolocation.getCurrentPosition((position => {
+                                              const latitude = position.coords.latitude;
+                                              const longitude = position.coords.longitude;
                                               setCoordinates({
-                                                  latitude: position.coords.latitude,
-                                                  longitude: position.coords.longitude
-                                              })
+                                                  latitude: latitude,
+                                                  longitude: longitude
+                                              });
+
+                                              reverseGeocode({latitude, longitude})
+                                                  .then(locationLabel => {
+                                                      setDisplayLocation(locationLabel);
+                                                  });
                                           }), (error) => console.log(error))
                                       }}>
                             <FontAwesomeIcon icon={faMapMarkerAlt}/>
-                            {coordinates ?
-                                `${coordinates.latitude}, ${coordinates.longitude}`
-                                : 'Add location'}
+                            {displayLocation ? displayLocation :
+                                (coordinates ?
+                                    `${coordinates.latitude}, ${coordinates.longitude}`
+                                    : 'Add location')}
                         </animated.div>
                         <button id='home-page-search-button'>Search</button>
                     </>

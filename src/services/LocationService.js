@@ -31,3 +31,11 @@ export const autosuggestAddress = (searchTerm) => {
             return response.data;
         });
 };
+
+export const reverseGeocode = (coordinates) => {
+    return axios.get(baseUrl + `/users/locations/reverseGeocode`, {
+        params: {latitude: coordinates.latitude, longitude: coordinates.longitude}
+    }).then(response => {
+        return response.data;
+    });
+};
