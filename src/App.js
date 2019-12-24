@@ -3,7 +3,7 @@ import './styles/App.scss';
 import LoginPage from "./components/homepage/menu/LoginPage";
 import SignUpPage from "./components/homepage/menu/SignUpPage";
 import {BrowserRouter, Route} from "react-router-dom";
-import Footer from "./components/shared/Footer";
+import HomePage from "./components/homepage/HomePage";
 import MenuPage from "./components/homepage/menu/MenuPage";
 import LocationPickerPage from "./components/homepage/location/LocationPickerPage";
 import DateRangePickerPage from "./components/homepage/dateRange/DateRangePickerPage";
@@ -20,7 +20,6 @@ import ChooseLocationPage from "./components/postItem/ChooseLocationPage";
 import EditAddressPage from "./components/postItem/EditAddressPage";
 import {ToastContainer} from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
-import HomePage from "./components/homepage/HomePage";
 
 class App extends React.Component {
     render() {
