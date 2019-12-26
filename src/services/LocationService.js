@@ -3,14 +3,14 @@ import axios from "axios";
 const baseUrl = '/api';
 
 export const getLocations = () => {
-    return axios.get(baseUrl + '/users/locations', {withCredentials: true})
+    return axios.get(baseUrl + '/locations', {withCredentials: true})
         .then(response => {
             return response.data;
         })
 };
 
 export const createLocation = (location) => {
-    return axios.put(baseUrl + '/users/locations', {location},
+    return axios.put(baseUrl + '/locations', {location},
         {withCredentials: true})
         .then(response => {
             return response.data;
@@ -18,7 +18,7 @@ export const createLocation = (location) => {
 };
 
 export const updateLocation = (location) => {
-    return axios.put(baseUrl + `/users/locations/${location.id}`, {location},
+    return axios.put(baseUrl + `/locations/${location.id}`, {location},
         {withCredentials: true})
         .then(response => {
             return response.data;
@@ -26,14 +26,14 @@ export const updateLocation = (location) => {
 };
 
 export const autosuggestAddress = (searchTerm) => {
-    return axios.get(baseUrl + `/users/locations/autosuggest/${searchTerm}`, {withCredentials: true})
+    return axios.get(baseUrl + `/locations/autosuggest/${searchTerm}`, {withCredentials: true})
         .then(response => {
             return response.data;
         });
 };
 
 export const reverseGeocode = (coordinates) => {
-    return axios.get(baseUrl + `/users/locations/reverseGeocode`, {
+    return axios.get(baseUrl + `/locations/reverseGeocode`, {
         params: {latitude: coordinates.latitude, longitude: coordinates.longitude}
     }).then(response => {
         return response.data;
