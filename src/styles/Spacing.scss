@@ -10,6 +10,12 @@
   flex-direction: row;
 }
 
+.spread-out-row{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
 .horizontal-layout {
   display: flex;
   flex-direction: row;

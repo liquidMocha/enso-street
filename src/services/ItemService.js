@@ -1,8 +1,8 @@
 import axios from "axios";
 import Jimp from 'jimp';
+import {BASE_URL} from './Constants';
 
-const baseUrl = '/api';
-
+const itemsPath = '/items';
 export const postItem = (item) => {
     const categoryValues = item.categories.map(category => {
         return category.value;
@@ -24,7 +24,7 @@ export const postItem = (item) => {
     };
 
     const signedRequestPromise = axios.post(
-        baseUrl + '/items', itemPayload, {withCredentials: true}
+        BASE_URL + itemsPath, itemPayload, {withCredentials: true}
     );
 
     const imageUrl = item.imageUrl;
@@ -55,15 +55,15 @@ export const postItem = (item) => {
 };
 
 export const getAllItemsForUser = () => {
-    return axios.get(baseUrl + '/items', {withCredentials: true});
+    return axios.get(BASE_URL + itemsPath, {withCredentials: true});
 };
 
 export const deleteItem = (itemId) => {
-    return axios.delete(`${baseUrl}/items/${itemId}`, {withCredentials: true});
+    return axios.delete(`${BASE_URL}${itemsPath}/${itemId}`, {withCredentials: true});
 };
 
 export const updateItem = (item) => {
-    return axios.put(`${baseUrl}/items/${item.id}`, {
+    return axios.put(`${BASE_URL}${itemsPath}/${item.id}`, {
         rentalDailyPrice: item.rentalDailyPrice,
         searchable: item.searchable
     }, {withCredentials: true});

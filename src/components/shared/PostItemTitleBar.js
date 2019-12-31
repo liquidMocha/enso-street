@@ -16,9 +16,14 @@ const PostItemTitleBar = (props) => {
             </span>
             }
             <span className='fixed-title-bar__title--font'>{props.title}</span>
-            <span onClick={() => {
-                history.push('/')
-            }}>Cancel</span>
+            {props.renderRightItem ?
+                props.renderRightItem() :
+                <span onClick={() => {
+                    history.push('/')
+                }}>
+                    Cancel
+                </span>
+            }
         </div>
     )
 };

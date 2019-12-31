@@ -20,18 +20,19 @@ import ChooseLocationPage from "./components/postItem/ChooseLocationPage";
 import EditAddressPage from "./components/postItem/EditAddressPage";
 import {ToastContainer} from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
+import {BASE_URL} from "./services/Constants";
 
 class App extends React.Component {
     render() {
-        const baseUrl = '/api';
         return (
             <BrowserRouter>
                 <div id='app-content'>
                     <Route exact path="/" component={HomePage}/>
                     <Route path="/menu"
-                           component={(props) => <MenuPage {...props} baseUrl={baseUrl} isLoggedIn={isUserLoggedIn}/>}/>
-                    <Route path="/login" component={(props) => <LoginPage {...props} baseUrl={baseUrl}/>}/>
-                    <Route path="/sign-up" component={(props) => <SignUpPage {...props} baseUrl={baseUrl}/>}/>
+                           component={(props) => <MenuPage {...props} baseUrl={BASE_URL}
+                                                           isLoggedIn={isUserLoggedIn}/>}/>
+                    <Route path="/login" component={(props) => <LoginPage {...props} baseUrl={BASE_URL}/>}/>
+                    <Route path="/sign-up" component={(props) => <SignUpPage {...props} baseUrl={BASE_URL}/>}/>
                     <Route path="/location" component={LocationPickerPage}/>
                     <Route path="/pick-date" component={DateRangePickerPage}/>
                     <Route path="/add-location" component={AddLocationPage}/>
