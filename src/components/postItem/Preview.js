@@ -22,9 +22,10 @@ const Preview = withRouter((props) => {
     };
 
     const onClickingPost = () => {
+        props.history.push('/my-items');
+
         postItem(props.item).then(() => {
             dispatch(resetPostedItem());
-            props.history.push('/my-items');
         }).catch((error) => {
             console.log('failed posting item');
             console.error(error);
