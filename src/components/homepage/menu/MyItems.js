@@ -2,14 +2,13 @@ import React, {useEffect, useState} from "react";
 import {deleteItem, getAllItemsForUser, updateItem} from "../../../services/ItemService";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faAngleLeft, faPlus, faSearch} from "@fortawesome/free-solid-svg-icons";
-import DollarInput from "../../shared/DollarInput";
-import {faSave, faTrashAlt} from "@fortawesome/free-regular-svg-icons";
 import {useHistory} from "react-router-dom";
 import Modal from 'react-modal';
 import "../../../styles/Spacing.scss";
 import "../../../styles/MyItem.scss";
 import "../../../styles/Input.scss";
 import {toast} from "react-toastify";
+import MyItemCard from "./MyItemCard";
 
 const MyItems = () => {
     const [items, setItems] = useState([]);
@@ -73,6 +72,39 @@ const MyItems = () => {
         })
     };
 
+    const onItemSave = (item) => {
+        toast.success('Item save successful!');
+        updateItem({
+            id: item.id,
+            rentalDailyPrice: item.rentalDailyPrice,
+            searchable: item.searchable
+        }).then(() => {
+            console.log('updated')
+        });
+    };
+
+    const onItemDelete = (itemId) => {
+        setDeleteModalStatus({isOpen: true, itemId: itemId});
+    };
+
+    const onChangeRentalDailyPrice = (event, itemId) => {
+        let newItems = items.slice(0);
+        let newItem = newItems.find(updatedItem => {
+            return updatedItem.id === itemId;
+        });
+        newItem.rentalDailyPrice = event.target.value;
+        setItems(newItems);
+    };
+
+    const onChangeSearchability = (itemId) => {
+        let newItems = items.slice(0);
+        let newItem = newItems.find(updatedItem => {
+            return updatedItem.id === itemId;
+        });
+        newItem.searchable = !newItem.searchable;
+        setItems(newItems);
+    };
+
     return (
         <div>
             <div className='fixed-title-bar'>
@@ -97,59 +129,11 @@ const MyItems = () => {
                 <FontAwesomeIcon icon={faSearch}/>
             </div>
             {visibleItems.map(item => {
-                return (
-                    <div key={item.id} className='my-item-card'>
-                        <div className='column-layout my-item-card-content'>
-                            <div className='my-item-card-title'>{item.title}</div>
-                            <div className='row-layout my-item-card-content-data'>
-                                <div className='my-item-image-container'>
-                                    <img src={item.imageUrl} alt='item'/>
-                                </div>
-                                <div className='column-layout'>
-                                    <div className='my-item-card-rental-price'>
-                                        <DollarInput value={item.rentalDailyPrice}
-                                                     onChange={(event) => {
-                                                         let newItems = items.slice(0);
-                                                         let newItem = newItems.find(updatedItem => {
-                                                             return updatedItem.id === item.id;
-                                                         });
-                                                         newItem.rentalDailyPrice = event.target.value;
-                                                         setItems(newItems);
-                                                     }}
-                                                     description='per day'/>
-                                    </div>
-                                    <div>
-                                        <input type='checkbox'
-                                               checked={item.searchable || false}
-                                               onChange={(() => {
-                                                   let newItems = items.slice(0);
-                                                   let newItem = newItems.find(updatedItem => {
-                                                       return updatedItem.id === item.id;
-                                                   });
-                                                   newItem.searchable = !newItem.searchable;
-                                                   setItems(newItems);
-                                               })}
-                                        /> Show on site
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div className='my-item-card-buttons column-layout'>
-                            <FontAwesomeIcon icon={faTrashAlt} onClick={() => {
-                                setDeleteModalStatus({isOpen: true, itemId: item.id});
-                            }}/>
-                            <FontAwesomeIcon icon={faSave} onClick={() => {
-                                toast.success('Item save successful!');
-                                updateItem({
-                                    id: item.id,
-                                    rentalDailyPrice: item.rentalDailyPrice,
-                                    searchable: item.searchable
-                                }).then(() => {
-                                    console.log('updated')
-                                });
-                            }}/>
-                        </div>
-                    </div>
+                return (<MyItemCard item={item}
+                                    onDelete={onItemDelete}
+                                    onSave={onItemSave}
+                                    onChangeRentalDailyPrice={onChangeRentalDailyPrice}
+                                    onChangeSearchability={onChangeSearchability}/>
                 )
             })}
             <Modal isOpen={deleteModalStatus.isOpen}
