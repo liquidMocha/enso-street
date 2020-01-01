@@ -21,6 +21,7 @@ import EditAddressPage from "./components/postItem/EditAddressPage";
 import {ToastContainer} from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
 import {BASE_URL} from "./services/Constants";
+import SearchResults from "./components/search/SearchResults";
 
 class App extends React.Component {
     render() {
@@ -46,6 +47,7 @@ class App extends React.Component {
                            component={EditAddressPage}/>
                     <Route exact path="/post-item/preview" component={Preview}/>
                     <Route exact path="/post-item/edit-complete-item" component={EditCompleteItem}/>
+                    <Route exact path="/search-result" component={SearchResults}/>
                 </div>
                 <ToastContainer position='bottom-center' autoClose={2000} hideProgressBar={true} closeOnClick
                                 draggable={false}/>
