@@ -5,12 +5,17 @@ const SearchResults = (props) => {
     const [searchResults, setSearchResults] = useState([]);
 
     useEffect(() => {
-        SearchService.search('', {
-            latitude: props.location.state.coordinates.latitude,
-            longitude: props.location.state.coordinates.longitude
-        }).then(searchResults => {
-            setSearchResults(searchResults);
-        });
+        const coordinates = props.location.state.coordinates;
+        const address = props.location.state.address;
+        const searchLocation = coordinates ? {
+            latitude: coordinates.latitude,
+            longitude: coordinates.longitude
+        } : {address};
+
+        SearchService.search('', searchLocation)
+            .then(searchResults => {
+                setSearchResults(searchResults);
+            });
     }, [props.location.state]);
 
     return (

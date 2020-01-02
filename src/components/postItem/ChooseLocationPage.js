@@ -6,11 +6,11 @@ import '../../styles/Spacing.scss';
 import {useDispatch} from "react-redux";
 import {updatePostedItemLocation} from "../../redux/postItemActions";
 import {useHistory} from "react-router-dom";
-import {autosuggestAddress, createLocation, getLocations} from "../../services/LocationService";
+import {createLocation, getLocations} from "../../services/LocationService";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faEdit} from "@fortawesome/free-regular-svg-icons";
-import Autosuggest from 'react-autosuggest';
 import Toggle from "./Toggle";
+import LocationAutosuggest from "../shared/LocationAutosuggest";
 
 const ChooseLocationPage = () => {
     const [street, setStreet] = useState('');
@@ -19,8 +19,6 @@ const ChooseLocationPage = () => {
     const [zipCode, setZipCode] = useState('');
     const [nickname, setNickName] = useState('');
     const [locations, setLocations] = useState([]);
-    const [suggestedAddresses, setSuggestedAddresses] = useState([]);
-    const [addressValue, setAddressValue] = useState('');
     const [saveThisAddress, setSaveThisAddress] = useState(false);
 
     const dispatch = useDispatch();
@@ -47,43 +45,11 @@ const ChooseLocationPage = () => {
         history.push('/post-item/price-and-delivery/choose-location/edit-address', location);
     };
 
-    function renderSuggestion(suggestion) {
-        return (
-            <span>{suggestion.houseNumber} {suggestion.street}, {suggestion.city}, {suggestion.state}, {suggestion.zipCode}</span>
-        );
-    }
-
-    const onSuggestionsFetchRequested = ({value}) => {
-        autosuggestAddress(value).then(addresses => {
-            setSuggestedAddresses(addresses);
-        }).catch(error => {
-            console.error(error);
-        })
-    };
-
-    const onSuggestionsClearRequested = () => {
-        setSuggestedAddresses([]);
-    };
-
-    const getSuggestionValue = (suggestion) => {
-        return `${suggestion.houseNumber ? suggestion.houseNumber : ''} ${suggestion.street}, ${suggestion.city}, ${suggestion.state}, ${suggestion.zipCode}`
-    };
-
     const onAddressChange = (event, {suggestion, suggestionValue, suggestionIndex, sectionIndex, method}) => {
         setStreet(`${suggestion.houseNumber ? suggestion.houseNumber : ''} ${suggestion.street}`);
         setCity(suggestion.city);
         setState(suggestion.state);
         setZipCode(suggestion.zipCode);
-    };
-
-    const onAddressTyping = (event, {newValue, method}) => {
-        setAddressValue(newValue);
-    };
-
-    const inputProps = {
-        placeholder: 'Ex. West 22nd Street',
-        value: addressValue,
-        onChange: onAddressTyping
     };
 
     const renderApplyButton = () => {
@@ -123,16 +89,7 @@ const ChooseLocationPage = () => {
             <PostItemTitleBar backLink="/post-item/price-and-delivery" title='Location'
                               renderRightItem={renderApplyButton}/>
             <label>Address*</label>
-            <Autosuggest
-                suggestions={suggestedAddresses}
-                onSuggestionsFetchRequested={onSuggestionsFetchRequested}
-                onSuggestionsClearRequested={onSuggestionsClearRequested}
-                getSuggestionValue={getSuggestionValue}
-                onSuggestionSelected={onAddressChange}
-                renderSuggestion={renderSuggestion}
-                focusInputOnSuggestionClick={false}
-                inputProps={inputProps}/>
-
+            <LocationAutosuggest onAddressChange={onAddressChange}/>
             <Toggle value={saveThisAddress} onChange={() => {
                 setSaveThisAddress(!saveThisAddress);
             }}/>
