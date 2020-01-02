@@ -129,7 +129,8 @@ const MyItems = () => {
                 <FontAwesomeIcon icon={faSearch}/>
             </div>
             {visibleItems.map(item => {
-                return (<MyItemCard item={item}
+                return (<MyItemCard key={item.id}
+                                    item={item}
                                     onDelete={onItemDelete}
                                     onSave={onItemSave}
                                     onChangeRentalDailyPrice={onChangeRentalDailyPrice}

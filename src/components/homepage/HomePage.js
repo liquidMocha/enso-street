@@ -26,7 +26,7 @@ const HomePage = () => {
             <div>
                 {searchExpanded ?
                     <>
-                        <div className='input-sizeinput-field'
+                        <div className='input-size input-field'
                              onClick={() => {
                              }}>
                             <FontAwesomeIcon icon={faSearch}/>
