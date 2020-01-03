@@ -3,7 +3,7 @@ import "../../styles/DollarInput.scss";
 
 const DollarInput = (props) => {
     return (
-        <div className='dollar-input'>
+        <div className='dollar-input' onClick={props.onClick}>
             <span>$</span>
             <input className='price-input' type='number'
                    value={props.value}

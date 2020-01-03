@@ -5,7 +5,9 @@ import {faSave, faTrashAlt} from "@fortawesome/free-regular-svg-icons";
 
 const MyItemCard = (props) => {
     return (
-        <div key={props.item.id} className='my-item-card'>
+        <div key={props.item.id} className='my-item-card' onClick={() => {
+            console.log(props.item.id) // go to edit page for this item
+        }}>
             <div className='column-layout my-item-card-content'>
                 <div className='my-item-card-title'>{props.item.title}</div>
                 <div className='row-layout my-item-card-content-data'>
@@ -15,12 +17,15 @@ const MyItemCard = (props) => {
                     <div className='column-layout'>
                         <div className='my-item-card-rental-price'>
                             <DollarInput value={props.item.rentalDailyPrice}
+                                         onClick={(event) => {
+                                             event.stopPropagation();
+                                         }}
                                          onChange={(event) => {
                                              props.onChangeRentalDailyPrice(event, props.item.id);
                                          }}
                                          description='per day'/>
                         </div>
-                        <div>
+                        <div onClick={(event => event.stopPropagation())}>
                             <input type='checkbox'
                                    checked={props.item.searchable || false}
                                    onChange={(() => {
@@ -32,10 +37,12 @@ const MyItemCard = (props) => {
                 </div>
             </div>
             <div className='my-item-card-buttons column-layout'>
-                <FontAwesomeIcon icon={faTrashAlt} onClick={() => {
+                <FontAwesomeIcon icon={faTrashAlt} onClick={(event) => {
+                    event.stopPropagation();
                     props.onDelete(props.item.id)
                 }}/>
-                <FontAwesomeIcon icon={faSave} onClick={() => {
+                <FontAwesomeIcon icon={faSave} onClick={(event) => {
+                    event.stopPropagation();
                     props.onSave(props.item)
                 }}
                 />
