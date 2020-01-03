@@ -65,7 +65,7 @@ const CategorySelect = () => {
             <label>Categories</label>
             <Select
                 placeholder='Select category'
-                closeMenuOnSelect={false}
+                closeMenuOnSelect={true}
                 isMulti={true}
                 onChange={handleCategoryChange}
                 options={allCategoryOptions}
