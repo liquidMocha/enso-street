@@ -1,10 +1,9 @@
+import PropTypes from 'prop-types';
 import React, {useEffect, useState} from "react";
 import PostItemTitleBar from "../shared/PostItemTitleBar";
 import '../../styles/Input.scss';
 import '../../styles/ChooseLocationPage.scss';
 import '../../styles/Spacing.scss';
-import {useDispatch} from "react-redux";
-import {updatePostedItemLocation} from "../../redux/postItemActions";
 import {useHistory} from "react-router-dom";
 import {createLocation, getLocations} from "../../services/LocationService";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
@@ -12,7 +11,7 @@ import {faEdit} from "@fortawesome/free-regular-svg-icons";
 import Toggle from "./Toggle";
 import LocationAutosuggest from "../shared/LocationAutosuggest";
 
-const ChooseLocationPage = () => {
+const ChooseLocationPage = (props) => {
     const [street, setStreet] = useState('');
     const [city, setCity] = useState('');
     const [state, setState] = useState('');
@@ -20,8 +19,6 @@ const ChooseLocationPage = () => {
     const [nickname, setNickName] = useState('');
     const [locations, setLocations] = useState([]);
     const [saveThisAddress, setSaveThisAddress] = useState(false);
-
-    const dispatch = useDispatch();
 
     let history = useHistory();
 
@@ -37,12 +34,12 @@ const ChooseLocationPage = () => {
             return location.id === locationId;
         })[0];
 
-        dispatch(updatePostedItemLocation(selectedLocation));
-        history.push('/post-item/price-and-delivery');
+        props.onLocationChange(selectedLocation);
+        history.push('/price-and-delivery');
     };
 
     const openEditLocationPageFor = (location) => {
-        history.push('/post-item/price-and-delivery/choose-location/edit-address', location);
+        history.push('/edit-address', location);
     };
 
     const onAddressChange = (event, {suggestion, suggestionValue, suggestionIndex, sectionIndex, method}) => {
@@ -54,12 +51,12 @@ const ChooseLocationPage = () => {
 
     const renderApplyButton = () => {
         return <span onClick={() => {
-            dispatch(updatePostedItemLocation({
+            props.onLocationChange({
                 street: street,
                 city: city,
                 state: state,
                 zipCode: zipCode
-            }));
+            });
             history.goBack();
         }}>Apply</span>
     };
@@ -72,22 +69,24 @@ const ChooseLocationPage = () => {
             zipCode: zipCode,
             nickname: nickname
         }).then((locationId) => {
-            dispatch(updatePostedItemLocation({
+            props.onLocationChange({
                 id: locationId,
                 street: street,
                 city: city,
                 state: state,
                 zipCode: zipCode,
                 nickname: nickname
-            }));
-            history.push('/post-item/price-and-delivery');
+            });
+            history.push('/price-and-delivery');
         });
     };
 
     return (
         <div id='choose-location-page'>
-            <PostItemTitleBar backLink="/post-item/price-and-delivery" title='Location'
-                              renderRightItem={renderApplyButton}/>
+            <PostItemTitleBar backLink="/price-and-delivery"
+                              title='Location'
+                              renderRightItem={renderApplyButton}
+            />
             <label>Address*</label>
             <LocationAutosuggest onAddressChange={onAddressChange}/>
             <Toggle value={saveThisAddress} onChange={() => {
@@ -128,6 +127,10 @@ const ChooseLocationPage = () => {
             </div>
         </div>
     )
+};
+
+ChooseLocationPage.propTypes = {
+    onLocationChange: PropTypes.func
 };
 
 export default ChooseLocationPage

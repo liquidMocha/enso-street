@@ -1,20 +1,20 @@
 import React from "react";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {faImages, faCamera} from "@fortawesome/free-solid-svg-icons";
-import {updatePostedItemImageUrl} from "../../redux/postItemActions";
-import {connect} from "react-redux";
-import {withRouter} from "react-router-dom";
+import {faCamera, faImages} from "@fortawesome/free-solid-svg-icons";
 import "../../styles/Input.scss";
+import {useHistory} from "react-router-dom";
+import PropTypes from 'prop-types';
 
-const UseMyPhoto = withRouter((props) => {
+const UseMyPhoto = (props) => {
+    let history = useHistory();
     return (
         <div className='column-layout'>
             <div className='image-button'>
                 <input id='take-photo-input' type="file" accept="image/*" capture={true}
                        onChange={(event) => {
                            if (event.target.files && event.target.files[0]) {
-                               props.updatePostedItemImageUrl(URL.createObjectURL(event.target.files[0]));
-                               props.history.goBack();
+                               props.onImageUrlChange(URL.createObjectURL(event.target.files[0]));
+                               history.goBack();
                            }
                        }}/>
                 <label htmlFor='take-photo-input'>
@@ -26,8 +26,8 @@ const UseMyPhoto = withRouter((props) => {
                 <input id='select-image-input' type="file" accept="image/*" capture={false}
                        onChange={(event) => {
                            if (event.target.files && event.target.files[0]) {
-                               props.updatePostedItemImageUrl(URL.createObjectURL(event.target.files[0]));
-                               props.history.goBack();
+                               props.onImageUrlChange(URL.createObjectURL(event.target.files[0]));
+                               history.goBack();
                            }
                        }}/>
                 <label htmlFor='select-image-input'>
@@ -37,8 +37,10 @@ const UseMyPhoto = withRouter((props) => {
             </div>
         </div>
     )
-});
+};
 
-const mapDispatchToProps = {updatePostedItemImageUrl};
+UseMyPhoto.propTypes = {
+    onImageUrlChange: PropTypes.func
+};
 
-export default connect(null, mapDispatchToProps)(UseMyPhoto)
+export default UseMyPhoto;

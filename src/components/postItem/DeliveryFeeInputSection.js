@@ -1,38 +1,35 @@
+import PropTypes from 'prop-types';
 import React from "react";
 import DollarInput from "../shared/DollarInput";
-import {useDispatch, useSelector} from "react-redux";
-import {updatePostedItemDeliveryAdditional, updatePostedItemDeliveryStarting} from "../../redux/postItemActions";
 
-const DeliveryFeeInputSection = () => {
-    const dispatch = useDispatch();
-
-    const deliveryStarting = useSelector(state => state.postedItem.deliveryStarting);
-    const deliveryAdditional = useSelector(state => state.postedItem.deliveryAdditional);
-
-    const handleDeliveryStartingPriceChange = (event) => {
-        dispatch(updatePostedItemDeliveryStarting(event.target.value));
-    };
-
-    const handleDeliveryAdditionalPriceChange = (event) => {
-        dispatch(updatePostedItemDeliveryAdditional(event.target.value));
-    };
-
+const DeliveryFeeInputSection = (props) => {
     return (
         <div id='price-and-delivery-fee-section'>
             <div>
                 <DollarInput
-                    value={deliveryStarting}
-                    onChange={handleDeliveryStartingPriceChange}/>
+                    value={props.deliveryStarting}
+                    onChange={(event) => {
+                        props.onDeliveryStartingPriceChange(event.target.value);
+                    }}/>
                 <label>within 3 miles</label>
             </div>
             <div>
                 <DollarInput
-                    value={deliveryAdditional}
-                    onChange={handleDeliveryAdditionalPriceChange}/>
+                    value={props.deliveryAdditional}
+                    onChange={(event) => {
+                        props.onDeliveryAdditionalPriceChange(event.target.value);
+                    }}/>
                 <label>per additional mile</label>
             </div>
         </div>
     )
+};
+
+DeliveryFeeInputSection.propTypes = {
+    deliveryStarting: PropTypes.number,
+    deliveryAdditional: PropTypes.number,
+    onDeliveryStartingPriceChange: PropTypes.func,
+    onDeliveryAdditionalPriceChange: PropTypes.func
 };
 
 export default DeliveryFeeInputSection

@@ -1,40 +1,37 @@
+import PropTypes from 'prop-types';
 import React from "react";
 import DollarInput from "../shared/DollarInput";
-import {useDispatch, useSelector} from "react-redux";
-import {updatePostedItemDailyPrice, updatePostedItemDeposit} from "../../redux/postItemActions";
 
-const RentalPriceInputSection = () => {
-    const dispatch = useDispatch();
-
-    const dailyPrice = useSelector(state => state.postedItem.rentalDailyPrice);
-    const deposit = useSelector(state => state.postedItem.deposit);
-
-    const handleDailyRentalChange = (event) => {
-        dispatch(updatePostedItemDailyPrice(event.target.value));
-    };
-
-    const handleDepositChange = (event) => {
-        dispatch(updatePostedItemDeposit(event.target.value));
-    };
-
+const RentalPriceInputSection = (props) => {
     return (
         <div id="price-section" className="horizontal-layout">
             <div>
                 <label>Daily rental</label>
                 <DollarInput
-                    value={dailyPrice}
-                    onChange={handleDailyRentalChange}
+                    value={props.rentalDailyPrice}
+                    onChange={(event) => {
+                        props.onDailyRentalChange(event.target.value);
+                    }}
                 />
             </div>
             <div>
                 <label>Deposit</label>
                 <DollarInput
-                    value={deposit}
-                    onChange={handleDepositChange}
+                    value={props.deposit}
+                    onChange={(event) => {
+                        props.onDepositChange(event.target.value);
+                    }}
                 />
             </div>
         </div>
     )
+};
+
+RentalPriceInputSection.propTypes = {
+    rentalDailyPrice: PropTypes.number.isRequired,
+    deposit: PropTypes.number.isRequired,
+    onDailyRentalChange: PropTypes.func,
+    onDepositChange: PropTypes.func
 };
 
 export default RentalPriceInputSection

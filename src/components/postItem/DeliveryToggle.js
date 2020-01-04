@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import React from "react";
 import Toggle from "./Toggle";
 
@@ -9,6 +10,11 @@ const DeliveryToggle = (props) => {
                     onChange={props.updatePostedItemCanBeDelivered}/>
         </div>
     )
+};
+
+DeliveryToggle.propTypes = {
+    canBeDelivered: PropTypes.bool,
+    updatePostedItemCanBeDelivered: PropTypes.func
 };
 
 export default DeliveryToggle

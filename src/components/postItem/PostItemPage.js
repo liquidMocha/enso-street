@@ -1,8 +1,6 @@
 import React from "react";
 import PostItemTitleBar from "../shared/PostItemTitleBar";
-import {useDispatch, useSelector} from "react-redux";
 import NextButton from "./NextButton";
-import {updatePostedItemTitle} from "../../redux/postItemActions";
 import InputWithError from "../shared/InputWithError";
 import PostImageInput from "./PostImageInput";
 import "../../styles/Input.scss";
@@ -10,10 +8,10 @@ import "../../styles/Button.scss";
 import "../../styles/App.scss";
 import "../../styles/Image.scss";
 import ProgressBar from "./ProgressBar";
+import PropTypes from 'prop-types';
 
-export const PostItemPage = () => {
-    const dispatch = useDispatch();
-    const title = useSelector(state => state.postedItem.title);
+export const PostItemPage = (props) => {
+    const titleIsEmpty = () => props.item.title === "";
 
     return (
         <div>
@@ -21,18 +19,22 @@ export const PostItemPage = () => {
             <ProgressBar/>
             <div>
                 <label>Title</label>
-                <InputWithError id='item-title-input' type='text'
-                                onChange={(value) => dispatch(updatePostedItemTitle(value))}
-                                value={title}
-                                shouldError={() => {
-                                    return title === "";
-                                }}
+                <InputWithError id='item-title-input'
+                                type='text'
+                                onChange={props.onTitleChange}
+                                value={props.item.title}
+                                shouldError={titleIsEmpty}
                 />
-                <PostImageInput/>
-                <NextButton destination='/post-item/details'/>
+                <PostImageInput imageUrl={props.item.imageUrl}/>
+                <NextButton destination='/details'/>
             </div>
         </div>
     )
+};
+
+PostItemPage.propTypes = {
+    item: PropTypes.any,
+    onTitleChange: PropTypes.func
 };
 
 export default PostItemPage;

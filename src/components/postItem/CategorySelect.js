@@ -1,13 +1,10 @@
 import React, {useEffect, useState} from "react";
 import Select from "react-select";
-import {useDispatch, useSelector} from "react-redux";
-import {updatePostedItemCategories} from "../../redux/postItemActions";
 import {getAllCategories} from "../../services/CategoryService";
 
-const CategorySelect = () => {
+const CategorySelect = (props) => {
     const [allCategoryOptions, setCategories] = useState([]);
-    const dispatch = useDispatch();
-    const categories = useSelector(state => state.postedItem.categories);
+    const categories = props.categories;
 
     useEffect(() => {
         getAllCategories().then(result => {
@@ -29,7 +26,7 @@ const CategorySelect = () => {
     }, []);
 
     const handleCategoryChange = (selectedOption) => {
-        dispatch(updatePostedItemCategories(selectedOption));
+        props.onCategoryChange(selectedOption);
     };
 
     const categoryOptions = new Map([

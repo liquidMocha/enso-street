@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import React from "react";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faAngleLeft} from "@fortawesome/free-solid-svg-icons";
@@ -28,4 +29,11 @@ const PostItemTitleBar = (props) => {
     )
 };
 
-export default PostItemTitleBar
+PostItemTitleBar.propTypes = {
+    hideBackButton: PropTypes.bool,
+    backLink: PropTypes.string,
+    title: PropTypes.string.isRequired,
+    renderRightItem: PropTypes.func
+};
+
+export default PostItemTitleBar;

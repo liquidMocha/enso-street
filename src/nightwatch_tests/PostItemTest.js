@@ -26,6 +26,6 @@ module.exports = {
         postItemPage
             .sendKeys('@itemTitleInputField', itemTitle)
             .click('@nextButton')
-            .expect.url().to.endWith('/post-item/details')
+            .expect.url().to.endWith('/details')
     }
 };

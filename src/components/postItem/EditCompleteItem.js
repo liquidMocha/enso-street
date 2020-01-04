@@ -1,59 +1,78 @@
+import PropTypes from 'prop-types';
 import React from "react";
 import PostItemTitleBar from "../shared/PostItemTitleBar";
 import PostImageInput from "./PostImageInput";
-import {useDispatch, useSelector} from "react-redux";
 import InputWithError from "../shared/InputWithError";
-import {updatePostedItemCanBeDelivered, updatePostedItemTitle} from "../../redux/postItemActions";
 import CategorySelect from "./CategorySelect";
 import ConditionSelect from "./ConditionSelect";
 import RentalPriceInputSection from "./RentalPriceInputSection";
 import DescriptionTextInput from "./DescriptionTextInput";
 import DeliveryToggle from "./DeliveryToggle";
 import DeliveryFeeInputSection from "./DeliveryFeeInputSection";
-import {postItem} from "../../services/ItemService";
-import {withRouter} from "react-router-dom";
 
-const EditCompleteItem = withRouter((props) => {
-    const dispatch = useDispatch();
-    const title = useSelector(state => state.postedItem.title);
-    const item = useSelector(state => state.postedItem);
-
-    const canBeDelivered = useSelector(state => state.postedItem.canBeDelivered);
-
-    const handlePostedItemCanBeDeliveredChange = (event) => {
-        dispatch(updatePostedItemCanBeDelivered(event));
-    };
-
-    const onClickingPost = () => {
-        postItem(item).then(() => {
-            props.history.push('/my-items');
-        }).catch((error) => {
-            console.log('failed posting item');
-            console.error(error);
-        });
-    };
+const EditCompleteItem = (props) => {
+    const item = props.item;
+    const title = item.title;
+    const canBeDelivered = item.canBeDelivered;
 
     return (
         <div>
-            <PostItemTitleBar backLink="/post-item/preview" title='Post Items'/>
-            <PostImageInput/>
+            <PostItemTitleBar backLink="/preview"
+                              title='Post Items'
+            />
+            <PostImageInput imageUrl={item.imageUrl}/>
             <InputWithError id='item-title-input' type='text'
-                            onChange={(value) => dispatch(updatePostedItemTitle(value))}
+                            onChange={props.onTitleChange}
                             value={title}
                             shouldError={() => {
                                 return title === "";
                             }}
             />
-            <CategorySelect/>
-            <ConditionSelect/>
-            <RentalPriceInputSection/>
-            <DescriptionTextInput/>
-            <DeliveryToggle canBeDelivered={canBeDelivered}
-                            updatePostedItemCanBeDelivered={handlePostedItemCanBeDeliveredChange}/>
-            {canBeDelivered ? <DeliveryFeeInputSection/> : null}
-            <button className='preview-button' onClick={onClickingPost}>Post</button>
+            <CategorySelect
+                categories={item.categories}
+                onCategoryChange={props.onCategoryChange}/>
+            <ConditionSelect
+                onConditionChange={props.onConditionChange}
+                condition={item.condition}/>
+            <RentalPriceInputSection
+                deposit={item.deposit}
+                rentalDailyPrice={item.rentalDailyPrice}
+                onDailyRentalChange={props.onDailyRentalChange}
+                onDepositChange={props.onDepositChange}
+            />
+            <DescriptionTextInput
+                description={item.description}
+                onDescriptionChange={props.onDescriptionChange}
+            />
+            <DeliveryToggle
+                canBeDelivered={canBeDelivered}
+                updatePostedItemCanBeDelivered={props.onCanBeDeliveredChange}
+            />
+            {canBeDelivered ?
+                <DeliveryFeeInputSection
+                    deliveryStarting={item.deliveryStarting}
+                    deliveryAdditional={item.deliveryAdditional}
+                    onDeliveryStartingPriceChange={props.onDeliveryStartingPriceChange}
+                    onDeliveryAdditionalPriceChange={props.onDeliveryAdditionalPriceChange}
+                /> : null
+            }
+            <button className='preview-button' onClick={props.onClickingPost}>Post</button>
         </div>
     )
-});
+};
+
+EditCompleteItem.propTypes = {
+    item: PropTypes.any,
+    onTitleChange: PropTypes.func,
+    onCategoryChange: PropTypes.func,
+    onConditionChange: PropTypes.func,
+    onDescriptionChange: PropTypes.func,
+    onDailyRentalChange: PropTypes.func,
+    onDepositChange: PropTypes.func,
+    onCanBeDeliveredChange: PropTypes.func,
+    onDeliveryStartingPriceChange: PropTypes.func,
+    onDeliveryAdditionalPriceChange: PropTypes.func,
+    onClickingPost: PropTypes.func
+};
 
 export default EditCompleteItem

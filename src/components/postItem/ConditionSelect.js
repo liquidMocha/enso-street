@@ -1,20 +1,18 @@
 import React from "react";
 import Select from "react-select";
-import {useDispatch, useSelector} from "react-redux";
-import {updatePostedItemCondition} from "../../redux/postItemActions";
+import PropTypes from 'prop-types';
 
-const ConditionSelect = () => {
-    const dispatch = useDispatch();
+const conditionOptions = [
+    {value: "like-new", label: "Like New"},
+    {value: "normal-wear", label: "Normal Wear"},
+    {value: "functional", label: "Functional"}
+];
 
-    const condition = useSelector(state => state.postedItem.condition);
+const ConditionSelect = (props) => {
+    const condition = props.condition;
     const handleConditionChange = (selected) => {
-        dispatch(updatePostedItemCondition(selected));
+        props.onConditionChange(selected);
     };
-    const conditionOptions = [
-        {value: "like-new", label: "Like New"},
-        {value: "normal-wear", label: "Normal Wear"},
-        {value: "functional", label: "Functional"}
-    ];
 
     return (
         <div>
@@ -27,6 +25,11 @@ const ConditionSelect = () => {
             />
         </div>
     )
+};
+
+ConditionSelect.propTypes = {
+    condition: PropTypes.any.isRequired,
+    onConditionChange: PropTypes.func.isRequired
 };
 
 export default ConditionSelect

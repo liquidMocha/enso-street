@@ -1,14 +1,7 @@
+import PropTypes from 'prop-types';
 import React from "react";
 import PostItemTitleBar from "../shared/PostItemTitleBar";
 import {Link} from "react-router-dom";
-import {connect} from "react-redux";
-import {
-    updatePostedItemCanBeDelivered,
-    updatePostedItemDailyPrice,
-    updatePostedItemDeliveryAdditional,
-    updatePostedItemDeliveryStarting,
-    updatePostedItemDeposit
-} from "../../redux/postItemActions";
 import "../../styles/Input.scss";
 import "../../styles/PriceAndDelivery.scss";
 import RentalPriceInputSection from "./RentalPriceInputSection";
@@ -19,36 +12,55 @@ import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faEdit} from "@fortawesome/free-regular-svg-icons";
 
 const PriceAndDelivery = (props) => {
+    const item = props.item;
+
     const displayLocation = () => {
         let result = '';
-        if (props.location.street) {
-            result += props.location.street;
+        if (item.location.street) {
+            result += item.location.street;
         }
-        if (props.location.zipCode) {
-            result += `, ${props.location.zipCode}`;
+        if (item.location.zipCode) {
+            result += `, ${item.location.zipCode}`;
         }
         return result;
     };
 
     return (
         <div>
-            <PostItemTitleBar backLink="/post-item/details" title='Post Items'/>
+            <PostItemTitleBar
+                backLink="/details"
+                title='Post Items'
+                backLinkState={{item}}
+            />
             <ProgressBar/>
-            <RentalPriceInputSection/>
+            <RentalPriceInputSection
+                deposit={item.deposit}
+                rentalDailyPrice={item.rentalDailyPrice}
+                onDailyRentalChange={props.onDailyRentalChange}
+                onDepositChange={props.onDepositChange}
+            />
             <div id='price-and-delivery-location-container'>
                 <h3>Location</h3>
                 <div id='price-and-delivery-location-input'>
                     <span>{displayLocation()}</span>
-                    <Link to='/post-item/price-and-delivery/choose-location'>
+                    <Link to='/choose-location'>
                         <FontAwesomeIcon icon={faEdit}/>
                     </Link>
                 </div>
                 <span className='deemphasize'>Public search will only show vague location of the item.</span>
             </div>
-            <DeliveryToggle canBeDelivered={props.canBeDelivered}
-                            updatePostedItemCanBeDelivered={props.updatePostedItemCanBeDelivered}/>
-            {props.canBeDelivered ? <DeliveryFeeInputSection/> : null}
-            <Link to='/post-item/preview'>
+            <DeliveryToggle canBeDelivered={item.canBeDelivered}
+                            updatePostedItemCanBeDelivered={props.onCanBeDeliveredChange}
+            />
+            {item.canBeDelivered ?
+                <DeliveryFeeInputSection
+                    deliveryStarting={item.deliveryStarting}
+                    deliveryAdditional={item.deliveryAdditional}
+                    onDeliveryStartingPriceChange={props.onDeliveryStartingPriceChange}
+                    onDeliveryAdditionalPriceChange={props.onDeliveryAdditionalPriceChange}
+                /> :
+                null}
+            <Link to='/preview'>
                 <button id='preview-button' className='home-page-button'>
                     Preview
                 </button>
@@ -57,23 +69,13 @@ const PriceAndDelivery = (props) => {
     )
 };
 
-const mapStateToProps = (state) => {
-    return {
-        dailyPrice: state.postedItem.rentalDailyPrice,
-        deposit: state.postedItem.deposit,
-        canBeDelivered: state.postedItem.canBeDelivered,
-        deliveryStarting: state.postedItem.deliveryStarting,
-        deliveryAdditional: state.postedItem.deliveryAdditional,
-        location: state.postedItem.location
-    }
+PriceAndDelivery.propTypes = {
+    item: PropTypes.any,
+    onDailyRentalChange: PropTypes.func,
+    onDepositChange: PropTypes.func,
+    onCanBeDeliveredChange: PropTypes.func,
+    onDeliveryStartingPriceChange: PropTypes.func,
+    onDeliveryAdditionalPriceChange: PropTypes.func
 };
 
-const mapDispatchToProps = {
-    updatePostedItemDailyPrice,
-    updatePostedItemDeposit,
-    updatePostedItemCanBeDelivered,
-    updatePostedItemDeliveryStarting,
-    updatePostedItemDeliveryAdditional
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(PriceAndDelivery)
+export default PriceAndDelivery;

@@ -1,14 +1,11 @@
+import PropTypes from 'prop-types';
 import React from "react";
-import {useDispatch, useSelector} from "react-redux";
-import {updatePostedItemDescription} from "../../redux/postItemActions";
 
-const DescriptionTextInput = () => {
-    const dispatch = useDispatch();
-
-    const description = useSelector(state => state.postedItem.description);
+const DescriptionTextInput = (props) => {
+    const description = props.description;
 
     const handleDescriptionChange = (event) => {
-        dispatch(updatePostedItemDescription(event.target.value));
+        props.onDescriptionChange(event.target.value);
     };
 
     const descriptionPlaceholder = "Ex. Size 53'' * 30'' * 45'' LWH";
@@ -23,6 +20,11 @@ const DescriptionTextInput = () => {
                 maxLength={2500}/>
         </div>
     )
+};
+
+DescriptionTextInput.propTypes = {
+    description: PropTypes.string,
+    onDescriptionChange: PropTypes.func
 };
 
 export default DescriptionTextInput

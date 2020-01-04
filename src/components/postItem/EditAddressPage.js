@@ -20,14 +20,15 @@ const EditAddressPage = (props) => {
             id: initialLocation.id,
             street, city, state: state.value, zipCode, nickname
         }).then((response) => {
-            history.push('/post-item/price-and-delivery/choose-location', response.data);
+            history.push('/price-and-delivery/choose-location', response.data);
         });
     };
 
     return (
         <div>
-            <PostItemTitleBar backLink="/post-item/price-and-delivery/choose-location"
-                              title='Edit Address'/>
+            <PostItemTitleBar backLink="/price-and-delivery/choose-location"
+                              title='Edit Address'
+            />
             <label>Nick Name*</label>
             <InputWithError type='text' value={nickname} onChange={setNickName}/>
             <label>Address*</label>
