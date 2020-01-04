@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import React from "react";
 import DollarInput from "../../shared/DollarInput";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
@@ -6,7 +7,7 @@ import {faSave, faTrashAlt} from "@fortawesome/free-regular-svg-icons";
 const MyItemCard = (props) => {
     return (
         <div key={props.item.id} className='my-item-card' onClick={() => {
-            console.log(props.item.id) // go to edit page for this item
+            props.onCardClick(props.item);
         }}>
             <div className='column-layout my-item-card-content'>
                 <div className='my-item-card-title'>{props.item.title}</div>
@@ -49,6 +50,10 @@ const MyItemCard = (props) => {
             </div>
         </div>
     )
+};
+
+MyItemCard.propTypes = {
+    onCardClick: PropTypes.func
 };
 
 export default MyItemCard

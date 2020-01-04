@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import React, {useEffect, useState} from "react";
 import {deleteItem, getAllItemsForUser, updateItem} from "../../../services/ItemService";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
@@ -10,7 +11,7 @@ import "../../../styles/Input.scss";
 import {toast} from "react-toastify";
 import MyItemCard from "./MyItemCard";
 
-const MyItems = () => {
+const MyItems = (props) => {
     const [items, setItems] = useState([]);
     const [visibleItems, setVisibleItems] = useState([]);
     const [searchTerm, setSearchTerm] = useState('');
@@ -22,8 +23,8 @@ const MyItems = () => {
 
     useEffect(() => {
         getAllItemsForUser()
-            .then(result => {
-                let sortedItems = result.data.sort(byCreatedOn);
+            .then(items => {
+                let sortedItems = items.sort(byCreatedOn);
                 setItems(sortedItems);
                 setVisibleItems(sortedItems);
             });
@@ -134,7 +135,9 @@ const MyItems = () => {
                                     onDelete={onItemDelete}
                                     onSave={onItemSave}
                                     onChangeRentalDailyPrice={onChangeRentalDailyPrice}
-                                    onChangeSearchability={onChangeSearchability}/>
+                                    onChangeSearchability={onChangeSearchability}
+                                    onCardClick={props.onClickItemCard}
+                    />
                 )
             })}
             <Modal isOpen={deleteModalStatus.isOpen}
@@ -155,6 +158,10 @@ const MyItems = () => {
             </Modal>
         </div>
     )
+};
+
+MyItems.propTypes = {
+    onClickItemCard: PropTypes.func
 };
 
 export default MyItems

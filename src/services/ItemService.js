@@ -55,7 +55,22 @@ export const postItem = (item) => {
 };
 
 export const getAllItemsForUser = () => {
-    return axios.get(BASE_URL + itemsPath, {withCredentials: true});
+    return axios.get(BASE_URL + itemsPath, {withCredentials: true})
+        .then(response => {
+            return response.data.map(item => {
+                return {
+                    ...item,
+                    rentalDailyPrice: Number(item.rentalDailyPrice),
+                    deposit: Number(item.deposit),
+                    deliveryStarting: Number(item.deliveryStarting),
+                    deliveryAdditional: Number(item.deliveryAdditional),
+                    categories: item.categories.map(category => {
+                        return {value: category, label: category};
+                    }),
+                    condition: {value: item.condition, label: item.condition}
+                }
+            })
+        });
 };
 
 export const deleteItem = (itemId) => {
@@ -65,6 +80,22 @@ export const deleteItem = (itemId) => {
 export const updateItem = (item) => {
     return axios.put(`${BASE_URL}${itemsPath}/${item.id}`, {
         rentalDailyPrice: item.rentalDailyPrice,
-        searchable: item.searchable
+        searchable: item.searchable,
+        title: item.title,
+        condition: item.condition.value,
+        categories: item.categories.map(category => {
+            return category.value
+        }),
+        description: item.description,
+        canBeDelivered: item.canBeDelivered,
+        deliveryStarting: item.deliveryStarting,
+        deliveryAdditional: item.deliveryAdditional,
+        deposit: item.deposit,
+        location: {
+            street: item.street,
+            zipCode: item.zipCode,
+            city: item.city,
+            state: item.state
+        }
     }, {withCredentials: true});
 };

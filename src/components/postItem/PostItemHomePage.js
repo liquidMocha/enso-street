@@ -37,12 +37,13 @@ const PostItemHomePage = () => {
         });
     };
 
+    const useMyPhotoPath = '/use-my-photo';
     return (
         <Switch>
             <Route exact path="/post-item">
-                <PostItemPage item={item} onTitleChange={updateTitle}/>
+                <PostItemPage item={item} onTitleChange={updateTitle} useMyPhotoPath={useMyPhotoPath}/>
             </Route>
-            <Route exact path="/use-my-photo">
+            <Route exact path={useMyPhotoPath}>
                 <UseMyPhoto onImageUrlChange={updateImageUrl}/>
             </Route>
             <Route exact path="/details">
@@ -75,6 +76,7 @@ const PostItemHomePage = () => {
             <Route exact path="/edit-complete-item">
                 <EditCompleteItem
                     item={item}
+                    backLink={'/preview'}
                     onTitleChange={updateTitle}
                     onCategoryChange={onCategoryChange}
                     onConditionChange={onConditionChange}
@@ -85,7 +87,7 @@ const PostItemHomePage = () => {
                     onDeliveryStartingPriceChange={onDeliveryStartingPriceChange}
                     onDeliveryAdditionalPriceChange={onDeliveryAdditionalPriceChange}
                     onClickingPost={onPostingItem}
-                />
+                    useMyPhotoPath={useMyPhotoPath}/>
             </Route>
         </Switch>
     )

@@ -11,9 +11,10 @@ const PostImageInput = (props) => {
     return (
         <div>
             {imageUrl ? <img src={imageUrl} alt='User provided item'/> : null}
-            <Link to='/use-my-photo'
+            <Link to={props.useMyPhotoPath}
                   className='center-aligned'
-                  id='use-my-photo'>
+                  id='use-my-photo'
+            >
                 <FontAwesomeIcon icon={faImage}/>
                 Use my photo
             </Link>
@@ -22,7 +23,8 @@ const PostImageInput = (props) => {
 };
 
 PostImageInput.propTypes = {
-    imageUrl: PropTypes.string
+    imageUrl: PropTypes.string,
+    useMyPhotoPath: PropTypes.string.isRequired
 };
 
 export default PostImageInput

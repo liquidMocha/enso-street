@@ -17,10 +17,10 @@ const EditCompleteItem = (props) => {
 
     return (
         <div>
-            <PostItemTitleBar backLink="/preview"
+            <PostItemTitleBar backLink={props.backLink}
                               title='Post Items'
             />
-            <PostImageInput imageUrl={item.imageUrl}/>
+            <PostImageInput imageUrl={item.imageUrl} useMyPhotoPath={props.useMyPhotoPath}/>
             <InputWithError id='item-title-input' type='text'
                             onChange={props.onTitleChange}
                             value={title}
@@ -63,6 +63,8 @@ const EditCompleteItem = (props) => {
 
 EditCompleteItem.propTypes = {
     item: PropTypes.any,
+    backLink: PropTypes.string,
+    useMyPhotoPath: PropTypes.string.isRequired,
     onTitleChange: PropTypes.func,
     onCategoryChange: PropTypes.func,
     onConditionChange: PropTypes.func,
