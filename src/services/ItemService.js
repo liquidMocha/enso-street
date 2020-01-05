@@ -92,10 +92,10 @@ export const updateItem = (item) => {
         deliveryAdditional: item.deliveryAdditional,
         deposit: item.deposit,
         location: {
-            street: item.street,
-            zipCode: item.zipCode,
-            city: item.city,
-            state: item.state
+            street: item.location.street,
+            zipCode: item.location.zipCode,
+            city: item.location.city,
+            state: item.location.state
         }
     }, {withCredentials: true});
 };

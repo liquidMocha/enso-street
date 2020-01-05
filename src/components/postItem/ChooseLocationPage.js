@@ -35,7 +35,7 @@ const ChooseLocationPage = (props) => {
         })[0];
 
         props.onLocationChange(selectedLocation);
-        history.push('/price-and-delivery');
+        history.push(props.pathAfterApplyLocation);
     };
 
     const openEditLocationPageFor = (location) => {
@@ -77,13 +77,13 @@ const ChooseLocationPage = (props) => {
                 zipCode: zipCode,
                 nickname: nickname
             });
-            history.push('/price-and-delivery');
+            history.push(props.pathAfterApplyLocation);
         });
     };
 
     return (
         <div id='choose-location-page'>
-            <PostItemTitleBar backLink="/price-and-delivery"
+            <PostItemTitleBar backLink={props.backLink}
                               title='Location'
                               renderRightItem={renderApplyButton}
             />
@@ -130,6 +130,8 @@ const ChooseLocationPage = (props) => {
 };
 
 ChooseLocationPage.propTypes = {
+    backLink: PropTypes.string.isRequired,
+    pathAfterApplyLocation: PropTypes.string.isRequired,
     onLocationChange: PropTypes.func
 };
 

@@ -9,8 +9,9 @@ import RentalPriceInputSection from "./RentalPriceInputSection";
 import DescriptionTextInput from "./DescriptionTextInput";
 import DeliveryToggle from "./DeliveryToggle";
 import DeliveryFeeInputSection from "./DeliveryFeeInputSection";
+import LocationInput from "./LocationInput";
 
-const EditCompleteItem = (props) => {
+const EditItem = (props) => {
     const item = props.item;
     const title = item.title;
     const canBeDelivered = item.canBeDelivered;
@@ -44,6 +45,10 @@ const EditCompleteItem = (props) => {
                 description={item.description}
                 onDescriptionChange={props.onDescriptionChange}
             />
+            <LocationInput
+                chooseLocationPath={props.chooseLocationPath}
+                location={item.location}
+            />
             <DeliveryToggle
                 canBeDelivered={canBeDelivered}
                 updatePostedItemCanBeDelivered={props.onCanBeDeliveredChange}
@@ -61,10 +66,11 @@ const EditCompleteItem = (props) => {
     )
 };
 
-EditCompleteItem.propTypes = {
+EditItem.propTypes = {
     item: PropTypes.any,
     backLink: PropTypes.string,
     useMyPhotoPath: PropTypes.string.isRequired,
+    chooseLocationPath: PropTypes.string.isRequired,
     onTitleChange: PropTypes.func,
     onCategoryChange: PropTypes.func,
     onConditionChange: PropTypes.func,
@@ -77,4 +83,4 @@ EditCompleteItem.propTypes = {
     onClickingPost: PropTypes.func
 };
 
-export default EditCompleteItem
+export default EditItem

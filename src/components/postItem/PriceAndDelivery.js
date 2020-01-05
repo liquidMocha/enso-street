@@ -8,22 +8,10 @@ import RentalPriceInputSection from "./RentalPriceInputSection";
 import DeliveryToggle from "./DeliveryToggle";
 import DeliveryFeeInputSection from "./DeliveryFeeInputSection";
 import ProgressBar from "./ProgressBar";
-import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {faEdit} from "@fortawesome/free-regular-svg-icons";
+import LocationInput from "./LocationInput";
 
 const PriceAndDelivery = (props) => {
     const item = props.item;
-
-    const displayLocation = () => {
-        let result = '';
-        if (item.location.street) {
-            result += item.location.street;
-        }
-        if (item.location.zipCode) {
-            result += `, ${item.location.zipCode}`;
-        }
-        return result;
-    };
 
     return (
         <div>
@@ -39,16 +27,10 @@ const PriceAndDelivery = (props) => {
                 onDailyRentalChange={props.onDailyRentalChange}
                 onDepositChange={props.onDepositChange}
             />
-            <div id='price-and-delivery-location-container'>
-                <h3>Location</h3>
-                <div id='price-and-delivery-location-input'>
-                    <span>{displayLocation()}</span>
-                    <Link to='/choose-location'>
-                        <FontAwesomeIcon icon={faEdit}/>
-                    </Link>
-                </div>
-                <span className='deemphasize'>Public search will only show vague location of the item.</span>
-            </div>
+            <LocationInput
+                chooseLocationPath='/choose-location'
+                location={item.location}
+            />
             <DeliveryToggle canBeDelivered={item.canBeDelivered}
                             updatePostedItemCanBeDelivered={props.onCanBeDeliveredChange}
             />

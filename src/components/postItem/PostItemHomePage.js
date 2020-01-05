@@ -7,7 +7,7 @@ import PriceAndDelivery from "./PriceAndDelivery";
 import Preview from "./Preview";
 import {defaultItem} from "./PostItemConstants";
 import {postItem} from "../../services/ItemService";
-import EditCompleteItem from "./EditCompleteItem";
+import EditItem from "./EditItem";
 import ChooseLocationPage from "./ChooseLocationPage";
 import EditAddressPage from "./EditAddressPage";
 
@@ -38,6 +38,10 @@ const PostItemHomePage = () => {
     };
 
     const useMyPhotoPath = '/use-my-photo';
+    const chooseLocationPath = '/choose-location';
+    const priceAndDeliveryPath = '/price-and-delivery';
+    const previewPath = '/preview';
+
     return (
         <Switch>
             <Route exact path="/post-item">
@@ -54,7 +58,7 @@ const PostItemHomePage = () => {
                     onDescriptionChange={onDescriptionChange}
                 />
             </Route>
-            <Route exact path="/price-and-delivery">
+            <Route exact path={priceAndDeliveryPath}>
                 <PriceAndDelivery
                     item={item}
                     onDailyRentalChange={onDailyRentalChange}
@@ -64,19 +68,21 @@ const PostItemHomePage = () => {
                     onDeliveryAdditionalPriceChange={onDeliveryAdditionalPriceChange}
                 />
             </Route>
-            <Route exact path="/choose-location">
-                <ChooseLocationPage onLocationChange={onLocationChange}/>
+            <Route exact path={chooseLocationPath}>
+                <ChooseLocationPage onLocationChange={onLocationChange}
+                                    backLink={priceAndDeliveryPath}
+                                    pathAfterApplyLocation={priceAndDeliveryPath}/>
             </Route>
             <Route exact path="/edit-address">
                 <EditAddressPage/>
             </Route>
-            <Route exact path="/preview">
+            <Route exact path={previewPath}>
                 <Preview item={item} onPostingItem={onPostingItem}/>
             </Route>
             <Route exact path="/edit-complete-item">
-                <EditCompleteItem
+                <EditItem
                     item={item}
-                    backLink={'/preview'}
+                    backLink={previewPath}
                     onTitleChange={updateTitle}
                     onCategoryChange={onCategoryChange}
                     onConditionChange={onConditionChange}
@@ -87,7 +93,8 @@ const PostItemHomePage = () => {
                     onDeliveryStartingPriceChange={onDeliveryStartingPriceChange}
                     onDeliveryAdditionalPriceChange={onDeliveryAdditionalPriceChange}
                     onClickingPost={onPostingItem}
-                    useMyPhotoPath={useMyPhotoPath}/>
+                    useMyPhotoPath={useMyPhotoPath}
+                    chooseLocationPath={chooseLocationPath}/>
             </Route>
         </Switch>
     )
