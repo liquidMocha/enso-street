@@ -14,6 +14,7 @@ import EditAddressPage from "./EditAddressPage";
 const PostItemHomePage = () => {
     let history = useHistory();
     const [item, setItem] = useState(defaultItem);
+    const [editedLocation, setEditedLocation] = useState();
     const updateTitle = (value) => setItem({...item, title: value});
     const updateImageUrl = (value) => setItem({...item, imageUrl: value});
     const onCategoryChange = (selectedOption) => setItem({...item, categories: selectedOption});
@@ -37,10 +38,17 @@ const PostItemHomePage = () => {
         });
     };
 
+    const onSelectEditLocation = (location) => {
+        setEditedLocation(location);
+
+        history.push(editAddressPath);
+    };
+
     const useMyPhotoPath = '/use-my-photo';
     const chooseLocationPath = '/choose-location';
     const priceAndDeliveryPath = '/price-and-delivery';
     const previewPath = '/preview';
+    const editAddressPath = '/edit-address';
 
     return (
         <Switch>
@@ -69,12 +77,18 @@ const PostItemHomePage = () => {
                 />
             </Route>
             <Route exact path={chooseLocationPath}>
-                <ChooseLocationPage onLocationChange={onLocationChange}
-                                    backLink={priceAndDeliveryPath}
-                                    pathAfterApplyLocation={priceAndDeliveryPath}/>
+                <ChooseLocationPage
+                    onLocationChange={onLocationChange}
+                    backLink={priceAndDeliveryPath}
+                    pathAfterApplyLocation={priceAndDeliveryPath}
+                    onChooseLocationToEdit={onSelectEditLocation}
+                />
             </Route>
-            <Route exact path="/edit-address">
-                <EditAddressPage/>
+            <Route exact path={editAddressPath}>
+                <EditAddressPage
+                    location={editedLocation}
+                    pathAfterConfirm={chooseLocationPath}
+                />
             </Route>
             <Route exact path={previewPath}>
                 <Preview item={item} onPostingItem={onPostingItem}/>

@@ -38,10 +38,6 @@ const ChooseLocationPage = (props) => {
         history.push(props.pathAfterApplyLocation);
     };
 
-    const openEditLocationPageFor = (location) => {
-        history.push('/edit-address', location);
-    };
-
     const onAddressChange = (event, {suggestion, suggestionValue, suggestionIndex, sectionIndex, method}) => {
         setStreet(`${suggestion.houseNumber ? suggestion.houseNumber : ''} ${suggestion.street}`);
         setCity(suggestion.city);
@@ -119,7 +115,7 @@ const ChooseLocationPage = (props) => {
                         <FontAwesomeIcon className='choose-location-saved-address-row-edit-button'
                                          icon={faEdit}
                                          onClick={() => {
-                                             openEditLocationPageFor(location)
+                                             props.onChooseLocationToEdit(location)
                                          }}
                         />
                     </div>
@@ -132,6 +128,7 @@ const ChooseLocationPage = (props) => {
 ChooseLocationPage.propTypes = {
     backLink: PropTypes.string.isRequired,
     pathAfterApplyLocation: PropTypes.string.isRequired,
+    onChooseLocationToEdit: PropTypes.func,
     onLocationChange: PropTypes.func
 };
 

@@ -6,10 +6,12 @@ import {updateItem} from "../../../services/ItemService";
 import {defaultItem} from "../../postItem/PostItemConstants";
 import UseMyPhoto from "../../postItem/UseMyPhoto";
 import ChooseLocationPage from "../../postItem/ChooseLocationPage";
+import EditAddressPage from "../../postItem/EditAddressPage";
 
 const MyItemsRouter = () => {
     let history = useHistory();
     const [editedItem, setEditedItem] = useState();
+    const [editedLocation, setEditedLocation] = useState();
     const updateTitle = (value) => setEditedItem({...editedItem, title: value});
     const updateImageUrl = (value) => setEditedItem({...editedItem, imageUrl: value});
     const onCategoryChange = (selectedOption) => setEditedItem({...editedItem, categories: selectedOption});
@@ -44,9 +46,16 @@ const MyItemsRouter = () => {
             });
     };
 
+    const onSelectEditLocation = (location) => {
+        setEditedLocation(location);
+
+        history.push(editAddressPath);
+    };
+
     const useMyPhotoPath = '/my-item-edit/use-my-photo';
     const chooseLocationPath = '/my-item/choose-location';
     const editItemPath = '/my-item-edit';
+    const editAddressPath = '/my-item/edit-address';
 
     return (
         <Switch>
@@ -74,9 +83,18 @@ const MyItemsRouter = () => {
                 <UseMyPhoto onImageUrlChange={updateImageUrl}/>
             </Route>
             <Route exact path={chooseLocationPath}>
-                <ChooseLocationPage onLocationChange={onLocationChange}
-                                    backLink={editItemPath}
-                                    pathAfterApplyLocation={editItemPath}/>
+                <ChooseLocationPage
+                    onLocationChange={onLocationChange}
+                    backLink={editItemPath}
+                    pathAfterApplyLocation={editItemPath}
+                    onChooseLocationToEdit={onSelectEditLocation}
+                />
+            </Route>
+            <Route exact path={editAddressPath}>
+                <EditAddressPage
+                    location={editedLocation}
+                    pathAfterConfirm={chooseLocationPath}
+                />
             </Route>
         </Switch>
     )

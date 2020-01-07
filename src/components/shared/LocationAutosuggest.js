@@ -1,6 +1,7 @@
 import React, {useState} from "react";
 import Autosuggest from "react-autosuggest";
 import {autosuggestAddress} from "../../services/LocationService";
+import PropTypes from 'prop-types';
 
 const LocationAutosuggest = (props) => {
     const [suggestedAddresses, setSuggestedAddresses] = useState([]);
@@ -49,6 +50,10 @@ const LocationAutosuggest = (props) => {
             focusInputOnSuggestionClick={false}
             inputProps={inputProps}/>
     )
+};
+
+LocationAutosuggest.propTypes = {
+    onAddressChange: PropTypes.func
 };
 
 export default LocationAutosuggest
