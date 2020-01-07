@@ -12,21 +12,23 @@ const MyItemsRouter = () => {
     let history = useHistory();
     const [editedItem, setEditedItem] = useState();
     const [editedLocation, setEditedLocation] = useState();
-    const updateTitle = (value) => setEditedItem({...editedItem, title: value});
-    const updateImageUrl = (value) => setEditedItem({...editedItem, imageUrl: value});
-    const onCategoryChange = (selectedOption) => setEditedItem({...editedItem, categories: selectedOption});
-    const onConditionChange = (selectedCondition) => setEditedItem({...editedItem, condition: selectedCondition});
-    const onDescriptionChange = (description) => setEditedItem({...editedItem, description});
-    const onDailyRentalChange = (price) => setEditedItem({...editedItem, rentalDailyPrice: Number(price)});
-    const onDepositChange = (price) => setEditedItem({...editedItem, deposit: Number(price)});
-    const onCanBeDeliveredChange = () => setEditedItem({...editedItem, canBeDelivered: !editedItem.canBeDelivered});
-    const onDeliveryStartingPriceChange = (price) => setEditedItem({...editedItem, deliveryStarting: Number(price)});
-    const onDeliveryAdditionalPriceChange = (price) => setEditedItem({
-        ...editedItem,
-        deliveryAdditional: Number(price)
-    });
-    const onLocationChange = (location) => setEditedItem({...editedItem, location: location});
-
+    const updateTitle = (value) => setEditedItem(prevState => ({...prevState, title: value}));
+    const updateImageUrl = (value) => setEditedItem(prevState => ({...prevState, imageUrl: value}));
+    const onCategoryChange = (selectedOption) =>
+        setEditedItem(prevState => ({...prevState, categories: selectedOption}));
+    const onConditionChange = (selectedCondition) =>
+        setEditedItem(prevState => ({...prevState, condition: selectedCondition}));
+    const onDescriptionChange = (description) => setEditedItem(prevState => ({...prevState, description}));
+    const onDailyRentalChange = (price) =>
+        setEditedItem(prevState => ({...prevState, rentalDailyPrice: Number(price)}));
+    const onDepositChange = (price) => setEditedItem(prevState => ({...prevState, deposit: Number(price)}));
+    const onCanBeDeliveredChange = () =>
+        setEditedItem(prevState => ({...prevState, canBeDelivered: !editedItem.canBeDelivered}));
+    const onDeliveryStartingPriceChange = (price) =>
+        setEditedItem(prevState => ({...prevState, deliveryStarting: Number(price)}));
+    const onDeliveryAdditionalPriceChange = (price) =>
+        setEditedItem(prevState => ({...prevState, deliveryAdditional: Number(price)}));
+    const onLocationChange = (location) => setEditedItem(prevState => ({...prevState, location: location}));
 
     const onClickMyItemCard = (item) => {
         setEditedItem(item);

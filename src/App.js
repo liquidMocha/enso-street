@@ -19,11 +19,15 @@ class App extends React.Component {
             <BrowserRouter>
                 <div id='app-content'>
                     <Route exact path="/" component={HomePage}/>
-                    <Route path="/menu"
-                           component={(props) => <MenuPage {...props} baseUrl={BASE_URL}
-                                                           isLoggedIn={isUserLoggedIn}/>}/>
-                    <Route path="/login" component={(props) => <LoginPage {...props} baseUrl={BASE_URL}/>}/>
-                    <Route path="/sign-up" component={(props) => <SignUpPage {...props} baseUrl={BASE_URL}/>}/>
+                    <Route path='/menu'>
+                        <MenuPage baseUrl={BASE_URL} isLoggedIn={isUserLoggedIn}/>
+                    </Route>
+                    <Route path='/login'>
+                        <LoginPage baseUrl={BASE_URL}/>
+                    </Route>
+                    <Route path='/sign-up'>
+                        <SignUpPage baseUrl={BASE_URL}/>
+                    </Route>
                     <MyItemsRouter/>
                     <PostItemHomePage/>
                     <Route exact path="/search-result" component={SearchResults}/>

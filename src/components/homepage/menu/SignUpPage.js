@@ -6,6 +6,7 @@ import OAuthButtons from "./OAuthButtons";
 import '../../../styles/Input.scss';
 import InputWithError from "../../shared/InputWithError";
 import TitleBar from "../../shared/TitleBar";
+import PropTypes from 'prop-types';
 
 function SignUpPage(props) {
     const [email, setEmail] = useState('');
@@ -46,8 +47,7 @@ function SignUpPage(props) {
                                     onChange={(value) => {
                                         setEmail(value)
                                     }}
-                                    shouldError={() => email === ''}
-                    />
+                                    shouldError={() => email === ''}/>
                 </div>
                 <div>
                     <label>
@@ -82,5 +82,9 @@ function SignUpPage(props) {
         </div>
     );
 }
+
+SignUpPage.propTypes = {
+    baseUrl: PropTypes.string.isRequired
+};
 
 export default SignUpPage

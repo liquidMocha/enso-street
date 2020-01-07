@@ -11,7 +11,6 @@ import {useHistory} from "react-router-dom";
 import LocationAutosuggest from "../shared/LocationAutosuggest";
 
 const HomePage = () => {
-
     const [searchExpanded, expandSearch] = useState(false);
     const [coordinates, setCoordinates] = useState(null);
     const [displayLocation, setDisplayLocation] = useState(null);
