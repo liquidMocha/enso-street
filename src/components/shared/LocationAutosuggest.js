@@ -5,14 +5,11 @@ import PropTypes from 'prop-types';
 
 const LocationAutosuggest = (props) => {
     const [suggestedAddresses, setSuggestedAddresses] = useState([]);
-    const [addressValue, setAddressValue] = useState('');
+    const [addressValue, setAddressValue] = useState(props.address || '');
 
-    const onSuggestionsFetchRequested = ({value}) => {
-        autosuggestAddress(value).then(addresses => {
-            setSuggestedAddresses(addresses);
-        }).catch(error => {
-            console.error(error);
-        })
+    const onSuggestionsFetchRequested = async ({value}) => {
+        const suggestedAddresses = await autosuggestAddress(value);
+        setSuggestedAddresses(suggestedAddresses);
     };
 
     const onSuggestionsClearRequested = () => {
@@ -48,12 +45,14 @@ const LocationAutosuggest = (props) => {
             onSuggestionSelected={props.onAddressChange}
             renderSuggestion={renderSuggestion}
             focusInputOnSuggestionClick={false}
-            inputProps={inputProps}/>
+            inputProps={inputProps}
+        />
     )
 };
 
 LocationAutosuggest.propTypes = {
-    onAddressChange: PropTypes.func
+    onAddressChange: PropTypes.func,
+    address: PropTypes.string
 };
 
 export default LocationAutosuggest

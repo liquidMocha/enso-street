@@ -1,28 +1,12 @@
-import React, {useEffect, useState} from "react";
-import * as SearchService from "../../services/SearchService";
+import React from "react";
+import PropTypes from 'prop-types';
 
 const SearchResults = (props) => {
-    const [searchResults, setSearchResults] = useState([]);
-
-    useEffect(() => {
-        const coordinates = props.location.state.coordinates;
-        const address = props.location.state.address;
-        const searchLocation = coordinates ? {
-            latitude: coordinates.latitude,
-            longitude: coordinates.longitude
-        } : {address};
-
-        SearchService.search('', searchLocation)
-            .then(searchResults => {
-                setSearchResults(searchResults);
-            });
-    }, [props.location.state]);
-
     return (
         <div>
-            {searchResults.map(result => {
+            {props.results.map(result => {
                 return (
-                    <div>
+                    <div key={result.id}>
                         title: {result.title},
                         ${result.rentaldailyprice}/day,
                         zip code: {result.zipcode},
@@ -32,6 +16,10 @@ const SearchResults = (props) => {
             })}
         </div>
     )
+};
+
+SearchResults.propTypes = {
+    results: PropTypes.array.isRequired
 };
 
 export default SearchResults

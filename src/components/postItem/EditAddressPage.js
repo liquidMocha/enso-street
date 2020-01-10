@@ -31,6 +31,12 @@ const EditAddressPage = (props) => {
         setZipCode(suggestion.zipCode);
     };
 
+    const locationAutosuggestInitialValue = () => {
+        if (initialAddress) {
+            return `${initialAddress.street}, ${initialAddress.city}, ${initialAddress.state}, ${initialAddress.zipCode}`
+        }
+    };
+
     return (
         <div>
             <PostItemTitleBar backLink="/price-and-delivery/choose-location"
@@ -39,7 +45,7 @@ const EditAddressPage = (props) => {
             <label>Nick Name*</label>
             <InputWithError type='text' value={nickname} onChange={setNickName}/>
             <label>Address*</label>
-            <LocationAutosuggest onAddressChange={onAddressChange}/>
+            <LocationAutosuggest onAddressChange={onAddressChange} address={locationAutosuggestInitialValue()}/>
             <button onClick={handleClickConfirm}>Confirm</button>
         </div>
     )

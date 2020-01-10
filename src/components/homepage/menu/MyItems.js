@@ -64,13 +64,13 @@ const MyItems = (props) => {
         return 0;
     };
 
-    const deleteItemById = (itemId) => {
-        deleteItem(itemId).then(() => {
-            const itemsLeft = items.filter(existingItem => {
-                return existingItem.id !== itemId
-            });
-            setItems(itemsLeft);
-        })
+    const deleteItemById = async (itemId) => {
+        await deleteItem(itemId);
+        const itemsLeft = items.filter(existingItem => {
+            return existingItem.id !== itemId
+        });
+
+        setItems(itemsLeft);
     };
 
     const onItemSave = (item) => {

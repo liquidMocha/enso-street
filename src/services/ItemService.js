@@ -82,20 +82,20 @@ export const updateItem = (item) => {
         rentalDailyPrice: item.rentalDailyPrice,
         searchable: item.searchable,
         title: item.title,
-        condition: item.condition.value,
-        categories: item.categories.map(category => {
+        condition: item.condition ? item.condition.value : null,
+        categories: item.categories ? item.categories.map(category => {
             return category.value
-        }),
+        }) : null,
         description: item.description,
         canBeDelivered: item.canBeDelivered,
         deliveryStarting: item.deliveryStarting,
         deliveryAdditional: item.deliveryAdditional,
         deposit: item.deposit,
-        location: {
+        location: item.location ? {
             street: item.location.street,
             zipCode: item.location.zipCode,
             city: item.location.city,
             state: item.location.state
-        }
+        } : null
     }, {withCredentials: true});
 };

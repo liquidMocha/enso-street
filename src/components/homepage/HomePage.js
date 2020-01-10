@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import '../../styles/Button.scss';
 import '../../styles/Input.scss';
 import '../../styles/HomePage.scss';
@@ -7,29 +7,49 @@ import {faMapMarkerAlt, faSearch} from '@fortawesome/free-solid-svg-icons';
 import '../../styles/Sizing.scss';
 import TitleBar from "../shared/TitleBar";
 import {reverseGeocode} from "../../services/LocationService";
-import {useHistory} from "react-router-dom";
 import LocationAutosuggest from "../shared/LocationAutosuggest";
+import PropTypes from 'prop-types';
+import SearchExpander from "./SearchExpander";
 
-const HomePage = () => {
+const HomePage = (props) => {
     const [searchExpanded, expandSearch] = useState(false);
     const [coordinates, setCoordinates] = useState(null);
     const [displayLocation, setDisplayLocation] = useState(null);
-    const [coordinatesNotAvailable, setCoordinatesNotAvailable] = useState(false);
     const [street, setStreet] = useState('');
     const [city, setCity] = useState('');
     const [state, setState] = useState('');
     const [zipCode, setZipCode] = useState('');
-    const history = useHistory();
+    const [useAddress, setUserAddress] = useState(false);
 
-    const search = () => {
-        history.push('/search-result', {coordinates, address: `${street}, ${city}, ${state}, ${zipCode}`});
-    };
+    useEffect(() => {
+        navigator.geolocation.getCurrentPosition((async position => {
+            const latitude = position.coords.latitude;
+            const longitude = position.coords.longitude;
+            setCoordinates({
+                latitude: latitude,
+                longitude: longitude
+            });
+
+            const locationLabel = await reverseGeocode({latitude, longitude});
+            setDisplayLocation(locationLabel);
+        }), () => {
+        })
+    }, []);
 
     const onAddressChange = (event, {suggestion}) => {
+        setUserAddress(true);
         setStreet(`${suggestion.houseNumber ? suggestion.houseNumber : ''} ${suggestion.street}`);
         setCity(suggestion.city);
         setState(suggestion.state);
         setZipCode(suggestion.zipCode);
+    };
+
+    const onClickingSearch = () => {
+        if (useAddress) {
+            props.onSearch({address: `${street}, ${city}, ${state}, ${zipCode}`});
+        } else {
+            props.onSearch(coordinates);
+        }
     };
 
     return (
@@ -38,53 +58,28 @@ const HomePage = () => {
             <div>
                 {searchExpanded ?
                     <>
-                        <div className='input-size input-field'
-                             onClick={() => {
-                             }}>
+                        <div className='input-size input-field'>
                             <FontAwesomeIcon icon={faSearch}/>
                             Item name
                         </div>
-                        {coordinatesNotAvailable ?
-                            <LocationAutosuggest onAddressChange={onAddressChange}/> :
-                            <div className='input-size input-field'
-                                 onClick={() => {
-                                     navigator.geolocation.getCurrentPosition((position => {
-                                         const latitude = position.coords.latitude;
-                                         const longitude = position.coords.longitude;
-                                         setCoordinates({
-                                             latitude: latitude,
-                                             longitude: longitude
-                                         });
-
-                                         reverseGeocode({latitude, longitude})
-                                             .then(locationLabel => {
-                                                 setDisplayLocation(locationLabel);
-                                             });
-                                     }), () => {
-                                         setCoordinatesNotAvailable(true)
-                                     })
-                                 }}>
-                                <FontAwesomeIcon icon={faMapMarkerAlt}/>
-                                {displayLocation ? displayLocation :
-                                    (coordinates ?
-                                        `${coordinates.latitude}, ${coordinates.longitude}`
-                                        : 'Add location')}
-                            </div>}
-                        <button id='home-page-search-button' onClick={search}>Search</button>
+                        <div>
+                            <LocationAutosuggest onAddressChange={onAddressChange} address={displayLocation}/>
+                            <FontAwesomeIcon icon={faMapMarkerAlt}/>
+                        </div>
+                        <button id='home-page-search-button' onClick={onClickingSearch}>Search</button>
                     </>
                     :
-                    <div className='input-size input-field'
-                         id='location-opener'
-                         onClick={() => {
-                             expandSearch(true);
-                         }}>
-                        <FontAwesomeIcon icon={faSearch}/>
-                        Search Enso Street
-                    </div>
+                    <SearchExpander expandSearch={() => {
+                        expandSearch(true)
+                    }}/>
                 }
             </div>
         </div>
     )
+};
+
+HomePage.propTypes = {
+    onSearch: PropTypes.func.isRequired
 };
 
 export default HomePage;

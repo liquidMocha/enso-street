@@ -70,7 +70,6 @@ const MenuPage = (props) => {
                 </div>
             )
         }
-
     };
 
     return (
