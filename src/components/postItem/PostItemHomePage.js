@@ -10,6 +10,7 @@ import {postItem} from "../../services/ItemService";
 import EditItem from "./EditItem";
 import ChooseLocationPage from "./ChooseLocationPage";
 import EditAddressPage from "./EditAddressPage";
+import PostItemProgressContext from "./PostItemProgressContext";
 
 const PostItemHomePage = () => {
     let history = useHistory();
@@ -51,66 +52,72 @@ const PostItemHomePage = () => {
     const editAddressPath = '/edit-address';
 
     return (
-        <Switch>
-            <Route exact path="/post-item">
-                <PostItemPage item={item} onTitleChange={updateTitle} useMyPhotoPath={useMyPhotoPath}/>
-            </Route>
-            <Route exact path={useMyPhotoPath}>
-                <UseMyPhoto onImageUrlChange={updateImageUrl}/>
-            </Route>
-            <Route exact path="/details">
-                <PostItemDetailPage
-                    item={item}
-                    onCategoryChange={onCategoryChange}
-                    onConditionChange={onConditionChange}
-                    onDescriptionChange={onDescriptionChange}
-                />
-            </Route>
-            <Route exact path={priceAndDeliveryPath}>
-                <PriceAndDelivery
-                    item={item}
-                    onDailyRentalChange={onDailyRentalChange}
-                    onDepositChange={onDepositChange}
-                    onCanBeDeliveredChange={onCanBeDeliveredChange}
-                    onDeliveryStartingPriceChange={onDeliveryStartingPriceChange}
-                    onDeliveryAdditionalPriceChange={onDeliveryAdditionalPriceChange}
-                />
-            </Route>
-            <Route exact path={chooseLocationPath}>
-                <ChooseLocationPage
-                    onLocationChange={onLocationChange}
-                    backLink={priceAndDeliveryPath}
-                    pathAfterApplyLocation={priceAndDeliveryPath}
-                    onChooseLocationToEdit={onSelectEditLocation}
-                />
-            </Route>
-            <Route exact path={editAddressPath}>
-                <EditAddressPage
-                    location={editedLocation}
-                    pathAfterConfirm={chooseLocationPath}
-                />
-            </Route>
-            <Route exact path={previewPath}>
-                <Preview item={item} onPostingItem={onPostingItem}/>
-            </Route>
-            <Route exact path="/edit-complete-item">
-                <EditItem
-                    item={item}
-                    backLink={previewPath}
-                    onTitleChange={updateTitle}
-                    onCategoryChange={onCategoryChange}
-                    onConditionChange={onConditionChange}
-                    onDescriptionChange={onDescriptionChange}
-                    onDailyRentalChange={onDailyRentalChange}
-                    onDepositChange={onDepositChange}
-                    onCanBeDeliveredChange={onCanBeDeliveredChange}
-                    onDeliveryStartingPriceChange={onDeliveryStartingPriceChange}
-                    onDeliveryAdditionalPriceChange={onDeliveryAdditionalPriceChange}
-                    onClickingPost={onPostingItem}
-                    useMyPhotoPath={useMyPhotoPath}
-                    chooseLocationPath={chooseLocationPath}/>
-            </Route>
-        </Switch>
+        <PostItemProgressContext.Provider value={{
+            firstStepDone: item.title !== '' && item.imageUrl !== '',
+            secondStepDone: item.categories.length !== 0,
+            thirdStepDone: true
+        }}>
+            <Switch>
+                <Route exact path="/post-item">
+                    <PostItemPage item={item} onTitleChange={updateTitle} useMyPhotoPath={useMyPhotoPath}/>
+                </Route>
+                <Route exact path={useMyPhotoPath}>
+                    <UseMyPhoto onImageUrlChange={updateImageUrl}/>
+                </Route>
+                <Route exact path="/details">
+                    <PostItemDetailPage
+                        item={item}
+                        onCategoryChange={onCategoryChange}
+                        onConditionChange={onConditionChange}
+                        onDescriptionChange={onDescriptionChange}
+                    />
+                </Route>
+                <Route exact path={priceAndDeliveryPath}>
+                    <PriceAndDelivery
+                        item={item}
+                        onDailyRentalChange={onDailyRentalChange}
+                        onDepositChange={onDepositChange}
+                        onCanBeDeliveredChange={onCanBeDeliveredChange}
+                        onDeliveryStartingPriceChange={onDeliveryStartingPriceChange}
+                        onDeliveryAdditionalPriceChange={onDeliveryAdditionalPriceChange}
+                    />
+                </Route>
+                <Route exact path={chooseLocationPath}>
+                    <ChooseLocationPage
+                        onLocationChange={onLocationChange}
+                        backLink={priceAndDeliveryPath}
+                        pathAfterApplyLocation={priceAndDeliveryPath}
+                        onChooseLocationToEdit={onSelectEditLocation}
+                    />
+                </Route>
+                <Route exact path={editAddressPath}>
+                    <EditAddressPage
+                        location={editedLocation}
+                        pathAfterConfirm={chooseLocationPath}
+                    />
+                </Route>
+                <Route exact path={previewPath}>
+                    <Preview item={item} onPostingItem={onPostingItem}/>
+                </Route>
+                <Route exact path="/edit-complete-item">
+                    <EditItem
+                        item={item}
+                        backLink={previewPath}
+                        onTitleChange={updateTitle}
+                        onCategoryChange={onCategoryChange}
+                        onConditionChange={onConditionChange}
+                        onDescriptionChange={onDescriptionChange}
+                        onDailyRentalChange={onDailyRentalChange}
+                        onDepositChange={onDepositChange}
+                        onCanBeDeliveredChange={onCanBeDeliveredChange}
+                        onDeliveryStartingPriceChange={onDeliveryStartingPriceChange}
+                        onDeliveryAdditionalPriceChange={onDeliveryAdditionalPriceChange}
+                        onClickingPost={onPostingItem}
+                        useMyPhotoPath={useMyPhotoPath}
+                        chooseLocationPath={chooseLocationPath}/>
+                </Route>
+            </Switch>
+        </PostItemProgressContext.Provider>
     )
 };
 
