@@ -1,5 +1,4 @@
-import { combineReducers } from "redux";
-import searchCriteria from "./searchCriteria";
-import postedItem from "./postedItem";
+import {combineReducers} from "redux";
 
-export default combineReducers({ searchCriteria, postedItem });
+const dummyReducer = (state, action) => {return null;};
+export default combineReducers({dummyReducer});
