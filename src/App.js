@@ -8,7 +8,7 @@ import {isUserLoggedIn} from "./services/UserService";
 import {ToastContainer} from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
 import {BASE_URL} from "./services/Constants";
-import PostItemHomePage from "./components/postItem/PostItemHomePage";
+import PostItemRouter from "./components/postItem/PostItemRouter";
 import MyItemsRouter from "./components/homepage/menu/MyItemsRouter";
 import HomePageRouter from "./components/homepage/HomePageRouter";
 
@@ -28,7 +28,7 @@ class App extends React.Component {
                         <SignUpPage baseUrl={BASE_URL}/>
                     </Route>
                     <MyItemsRouter/>
-                    <PostItemHomePage/>
+                    <PostItemRouter/>
                 </div>
                 <ToastContainer position='bottom-center' autoClose={2000} hideProgressBar={true} closeOnClick
                                 draggable={false}/>

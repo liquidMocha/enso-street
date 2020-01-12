@@ -11,8 +11,10 @@ import EditItem from "./EditItem";
 import ChooseLocationPage from "./ChooseLocationPage";
 import EditAddressPage from "./EditAddressPage";
 import PostItemProgressContext from "./PostItemProgressContext";
+import {getUploadLink, uploadImage} from "../../services/ImageService";
+import Jimp from "jimp";
 
-const PostItemHomePage = () => {
+const PostItemRouter = () => {
     let history = useHistory();
     const [item, setItem] = useState(defaultItem);
     const [editedLocation, setEditedLocation] = useState();
@@ -45,6 +47,19 @@ const PostItemHomePage = () => {
         history.push(editAddressPath);
     };
 
+    const onUpdatingImageUrl = async (imageUrl) => {
+        updateImageUrl(imageUrl);
+
+        const image = await Jimp.read(imageUrl);
+        const compressedImage = image.scaleToFit(110, 100).getBufferAsync(Jimp.MIME_PNG);
+
+        const uploadRequest = await getUploadLink();
+
+        await uploadImage(await compressedImage, uploadRequest.uploadRequest);
+
+        setItem((prevItem) => ({...prevItem, imageUrl: uploadRequest.imageUrl}));
+    };
+
     const useMyPhotoPath = '/use-my-photo';
     const chooseLocationPath = '/choose-location';
     const priceAndDeliveryPath = '/price-and-delivery';
@@ -62,7 +77,7 @@ const PostItemHomePage = () => {
                     <PostItemPage item={item} onTitleChange={updateTitle} useMyPhotoPath={useMyPhotoPath}/>
                 </Route>
                 <Route exact path={useMyPhotoPath}>
-                    <UseMyPhoto onImageUrlChange={updateImageUrl}/>
+                    <UseMyPhoto onImageUrlChange={onUpdatingImageUrl}/>
                 </Route>
                 <Route exact path="/details">
                     <PostItemDetailPage
@@ -121,4 +136,4 @@ const PostItemHomePage = () => {
     )
 };
 
-export default PostItemHomePage
+export default PostItemRouter
