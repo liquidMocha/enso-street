@@ -10,6 +10,7 @@ import "../../../styles/MyItem.scss";
 import "../../../styles/Input.scss";
 import {toast} from "react-toastify";
 import MyItemCard from "./MyItemCard";
+import MyItemCardSkeleton from "./MyItemCardSkeleton";
 
 const MyItems = (props) => {
     const [items, setItems] = useState([]);
@@ -129,17 +130,23 @@ const MyItems = (props) => {
                 />
                 <FontAwesomeIcon icon={faSearch}/>
             </div>
-            {visibleItems.map(item => {
-                return (<MyItemCard key={item.id}
-                                    item={item}
-                                    onDelete={onItemDelete}
-                                    onSave={onItemSave}
-                                    onChangeRentalDailyPrice={onChangeRentalDailyPrice}
-                                    onChangeSearchability={onChangeSearchability}
-                                    onCardClick={props.onClickItemCard}
-                    />
-                )
-            })}
+            {visibleItems.length === 0 ?
+                <>
+                    <MyItemCardSkeleton/>
+                    <MyItemCardSkeleton/>
+                    <MyItemCardSkeleton/>
+                </> :
+                visibleItems.map(item => {
+                    return (<MyItemCard key={item.id}
+                                        item={item}
+                                        onDelete={onItemDelete}
+                                        onSave={onItemSave}
+                                        onChangeRentalDailyPrice={onChangeRentalDailyPrice}
+                                        onChangeSearchability={onChangeSearchability}
+                                        onCardClick={props.onClickItemCard}
+                        />
+                    )
+                })}
             <Modal isOpen={deleteModalStatus.isOpen}
                    className='delete-item-modal'
                    overlayClassName="delete-item-modal-overlay">
