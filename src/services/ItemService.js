@@ -56,6 +56,7 @@ export const updateItem = (item) => {
         rentalDailyPrice: item.rentalDailyPrice,
         searchable: item.searchable,
         title: item.title,
+        imageUrl: item.imageUrl,
         condition: item.condition ? item.condition.value : null,
         categories: item.categories ? item.categories.map(category => {
             return category.value
