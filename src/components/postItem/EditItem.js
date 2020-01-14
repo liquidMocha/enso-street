@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import React from "react";
+import React, {useState} from "react";
 import PostItemTitleBar from "../shared/PostItemTitleBar";
 import PostImageInput from "./PostImageInput";
 import InputWithError from "../shared/InputWithError";
@@ -10,11 +10,20 @@ import DescriptionTextInput from "./DescriptionTextInput";
 import DeliveryToggle from "./DeliveryToggle";
 import DeliveryFeeInputSection from "./DeliveryFeeInputSection";
 import LocationInput from "./LocationInput";
+import ClipLoader from "react-spinners/ClipLoader";
 
 const EditItem = (props) => {
     const item = props.item;
     const title = item.title;
     const canBeDelivered = item.canBeDelivered;
+
+    const [displaySpinner, setDisplaySpinner] = useState(false);
+
+    const onClickingPost = async () => {
+        setDisplaySpinner(true);
+        await props.onClickingPost();
+        setDisplaySpinner(false);
+    };
 
     return (
         <div>
@@ -61,7 +70,12 @@ const EditItem = (props) => {
                     onDeliveryAdditionalPriceChange={props.onDeliveryAdditionalPriceChange}
                 /> : null
             }
-            <button className='preview-button' onClick={props.onClickingPost}>Post</button>
+            <button className='preview-button' onClick={onClickingPost} disabled={displaySpinner}>
+                {displaySpinner ? <ClipLoader
+                    loading={true}
+                    size={15}
+                /> : 'Update'}
+            </button>
         </div>
     )
 };
