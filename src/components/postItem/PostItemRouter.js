@@ -29,10 +29,9 @@ const PostItemRouter = () => {
     const onLocationChange = (location) => setItem({...item, location: location});
 
     const onPostingItem = () => {
-        history.push('/my-items');
-
-        postItem(item).then(() => {
+        return postItem(item).then(() => {
             setItem(defaultItem);
+            history.push('/my-items');
         }).catch((error) => {
             console.log('failed posting item');
             console.error(error);

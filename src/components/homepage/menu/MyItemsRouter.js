@@ -36,11 +36,10 @@ const MyItemsRouter = () => {
     };
 
     const onPostingItem = () => {
-        history.push('/my-items');
-
-        updateItem(editedItem)
+        return updateItem(editedItem)
             .then(() => {
                 setEditedItem(defaultItem);
+                history.push('/my-items');
             })
             .catch((error) => {
                 console.log('failed posting item');

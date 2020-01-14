@@ -1,13 +1,16 @@
 import PropTypes from 'prop-types';
-import React from "react";
+import React, {useState} from "react";
 import PostItemTitleBar from "../shared/PostItemTitleBar";
 import "../../styles/Image.scss";
 import "../../styles/Preview.scss";
 import {useHistory} from "react-router-dom";
+import ClipLoader from "react-spinners/ClipLoader";
 
 const Preview = (props) => {
     const item = props.item;
     let history = useHistory();
+
+    const [displaySpinner, setDisplaySpinner] = useState(false);
 
     const renderCategories = () => {
         return item.categories.map(category => {
@@ -17,6 +20,12 @@ const Preview = (props) => {
 
     const onClickingEdit = () => {
         history.push('/edit-complete-item');
+    };
+
+    const onClickingPost = async () => {
+        setDisplaySpinner(true);
+        await props.onPostingItem();
+        setDisplaySpinner(false);
     };
 
     return (
@@ -53,8 +62,13 @@ const Preview = (props) => {
                 </div>
                 : null}
             <div className='horizontal-layout' id='preview-buttons'>
-                <button className='preview-button' onClick={onClickingEdit}>Edit</button>
-                <button className='preview-button' onClick={props.onPostingItem}>Post</button>
+                <button className='preview-button' onClick={onClickingEdit} disabled={displaySpinner}>Edit</button>
+                <button className='preview-button' onClick={onClickingPost} disabled={displaySpinner}>
+                    {displaySpinner ? <ClipLoader
+                        loading={true}
+                        size={15}
+                    /> : 'Post'}
+                </button>
             </div>
         </div>
     )
