@@ -20,6 +20,7 @@ const HomePage = (props) => {
     const [state, setState] = useState('');
     const [zipCode, setZipCode] = useState('');
     const [useAddress, setUserAddress] = useState(false);
+    const [searchTerm, setSearchTerm] = useState(null);
 
     useEffect(() => {
         navigator.geolocation.getCurrentPosition((async position => {
@@ -46,9 +47,9 @@ const HomePage = (props) => {
 
     const onClickingSearch = () => {
         if (useAddress) {
-            props.onSearch({address: `${street}, ${city}, ${state}, ${zipCode}`});
+            props.onSearch(searchTerm, {address: `${street}, ${city}, ${state}, ${zipCode}`});
         } else {
-            props.onSearch(coordinates);
+            props.onSearch(searchTerm, coordinates);
         }
     };
 
@@ -58,10 +59,11 @@ const HomePage = (props) => {
             <div>
                 {searchExpanded ?
                     <>
-                        <div className='input-size input-field'>
-                            <FontAwesomeIcon icon={faSearch}/>
-                            Item name
-                        </div>
+                        <FontAwesomeIcon icon={faSearch}/><input type='text'
+                                                                 placeholder='Item name'
+                                                                 onChange={(event) => {
+                                                                     setSearchTerm(event.target.value)
+                                                                 }}/>
                         <div>
                             <LocationAutosuggest onAddressChange={onAddressChange} address={displayLocation}/>
                             <FontAwesomeIcon icon={faMapMarkerAlt}/>

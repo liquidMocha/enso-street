@@ -9,10 +9,10 @@ const HomePageRouter = () => {
 
     let history = useHistory();
 
-    const onSearch = async (location) => {
+    const onSearch = async (keyword, location) => {
         history.push('/search-result');
 
-        const results = await SearchService.search('', location);
+        const results = await SearchService.search(keyword, location);
         setSearchResult(results);
     };
 
