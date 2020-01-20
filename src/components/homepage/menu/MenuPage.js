@@ -12,9 +12,9 @@ const MenuPage = (props) => {
         isUserLoggedIn();
     }, []);
 
-    const isUserLoggedIn = () => {
+    const isUserLoggedIn = async () => {
         const isLoggedIn = props.isLoggedIn();
-        setIsLoggedIn(isLoggedIn);
+        setIsLoggedIn(await isLoggedIn);
     };
 
     const logout = () => {
