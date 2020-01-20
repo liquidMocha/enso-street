@@ -6,8 +6,8 @@ import * as serviceWorker from './serviceWorker';
 import * as ReactGA from 'react-ga';
 import {Provider} from "react-redux";
 import store from "./redux/store";
-require("babel-core/register");
-require("babel-polyfill");
+import "babel-core/register";
+import "babel-polyfill";
 
 ReactGA.initialize('UA-148905897-1', {
     gaOptions: {

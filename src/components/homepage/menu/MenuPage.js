@@ -10,20 +10,11 @@ const MenuPage = (props) => {
 
     useEffect(() => {
         isUserLoggedIn();
-    });
+    }, []);
 
-    const isUserLoggedIn = async () => {
-        await props.isLoggedIn()
-            .then((response) => {
-                if (response.data.loggedIn) {
-                    setIsLoggedIn(true);
-                } else {
-                    setIsLoggedIn(false);
-                }
-            })
-            .catch((_) => {
-                setIsLoggedIn(false);
-            })
+    const isUserLoggedIn = () => {
+        const isLoggedIn = props.isLoggedIn();
+        setIsLoggedIn(isLoggedIn);
     };
 
     const logout = () => {
