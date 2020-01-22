@@ -25,8 +25,11 @@ export const updateLocation = (location) => {
         });
 };
 
-export const autosuggestAddress = (searchTerm) => {
-    return axios.get(baseUrl + `/locations/autosuggest/${searchTerm}`, {withCredentials: true})
+export const autosuggestAddress = (searchTerm, {latitude, longitude}) => {
+    return axios.get(baseUrl + `/locations/autosuggest/${searchTerm}`, {
+        params: {latitude, longitude},
+        withCredentials: true
+    })
         .then(response => {
             return response.data;
         });

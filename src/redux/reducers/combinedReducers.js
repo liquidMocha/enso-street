@@ -1,4 +1,4 @@
 import {combineReducers} from "redux";
+import {currentLocation} from "../current_location/currentLocation";
 
-const dummyReducer = (state, action) => {return null;};
-export default combineReducers({dummyReducer});
+export default combineReducers({currentLocation});

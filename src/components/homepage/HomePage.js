@@ -10,8 +10,11 @@ import {reverseGeocode} from "../../services/LocationService";
 import LocationAutosuggest from "../shared/LocationAutosuggest";
 import PropTypes from 'prop-types';
 import SearchExpander from "./SearchExpander";
+import {useDispatch} from "react-redux";
+import {UPDATE_LOCATION_ACTION} from "../../redux/current_location/CurrentLocaitonActions";
 
 const HomePage = (props) => {
+    const dispatch = useDispatch();
     const [searchExpanded, expandSearch] = useState(false);
     const [coordinates, setCoordinates] = useState(null);
     const [displayLocation, setDisplayLocation] = useState(null);
@@ -30,6 +33,8 @@ const HomePage = (props) => {
                 latitude: latitude,
                 longitude: longitude
             });
+
+            dispatch(UPDATE_LOCATION_ACTION({latitude, longitude}));
 
             const locationLabel = await reverseGeocode({latitude, longitude});
             setDisplayLocation(locationLabel);

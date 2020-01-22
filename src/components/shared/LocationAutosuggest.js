@@ -2,13 +2,15 @@ import React, {useState} from "react";
 import Autosuggest from "react-autosuggest";
 import {autosuggestAddress} from "../../services/LocationService";
 import PropTypes from 'prop-types';
+import {useSelector} from "react-redux";
 
 const LocationAutosuggest = (props) => {
+    const coordinates = useSelector(state => state.currentLocation);
     const [suggestedAddresses, setSuggestedAddresses] = useState([]);
     const [addressValue, setAddressValue] = useState(props.address || '');
 
     const onSuggestionsFetchRequested = async ({value}) => {
-        const suggestedAddresses = await autosuggestAddress(value);
+        const suggestedAddresses = await autosuggestAddress(value, coordinates);
         setSuggestedAddresses(suggestedAddresses);
     };
 
