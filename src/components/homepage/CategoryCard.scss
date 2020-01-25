@@ -1,0 +1,34 @@
+.category-card {
+  position: relative;
+  height: 130px;
+  width: 100%;
+
+  img {
+    width: 100%;
+    border-radius: 5px;
+    position: absolute;
+  }
+
+  div.category-card-texts {
+    box-sizing: border-box;
+    color: white;
+    width: 100%;
+    position: absolute;
+    background-color: rgba(0, 0, 0, 0.5);
+    bottom: 0;
+    text-align: end;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+    padding-right: 5px;
+
+    hr {
+      border-color: white;
+    }
+
+    p {
+      all: unset;
+      display: block;
+    }
+  }
+
+}

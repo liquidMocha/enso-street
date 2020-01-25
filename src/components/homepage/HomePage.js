@@ -12,6 +12,7 @@ import PropTypes from 'prop-types';
 import SearchExpander from "./SearchExpander";
 import {useDispatch} from "react-redux";
 import {UPDATE_LOCATION_ACTION} from "../../redux/current_location/CurrentLocaitonActions";
+import CategoryCard from "./CategoryCard";
 
 const HomePage = (props) => {
     const dispatch = useDispatch();
@@ -64,14 +65,15 @@ const HomePage = (props) => {
             <div>
                 {searchExpanded ?
                     <>
-                        <FontAwesomeIcon icon={faSearch}/><input type='text'
-                                                                 placeholder='Item name'
-                                                                 onChange={(event) => {
-                                                                     setSearchTerm(event.target.value)
-                                                                 }}/>
+                        <FontAwesomeIcon icon={faSearch}/>
+                        <input type='text'
+                               placeholder='Item name'
+                               onChange={(event) => {
+                                   setSearchTerm(event.target.value)
+                               }}/>
                         <div>
-                            <LocationAutosuggest onAddressChange={onAddressChange} address={displayLocation}/>
                             <FontAwesomeIcon icon={faMapMarkerAlt}/>
+                            <LocationAutosuggest onAddressChange={onAddressChange} address={displayLocation}/>
                         </div>
                         <button id='home-page-search-button' onClick={onClickingSearch}>Search</button>
                     </>
@@ -80,6 +82,38 @@ const HomePage = (props) => {
                         expandSearch(true)
                     }}/>
                 }
+            </div>
+            <div className='category-cards'>
+                <CategoryCard
+                    imageSource='https://enso-street-item-photos.s3.us-east-2.amazonaws.com/category-images/home+maintenance.JPG'
+                    name='Home Maintenance'
+                    approximateItemCount='2000+'
+                />
+                <CategoryCard
+                    imageSource='https://enso-street-item-photos.s3.us-east-2.amazonaws.com/category-images/garden+and+patio+3.JPG'
+                    name='Garden & Patio'
+                    approximateItemCount='2000+'
+                />
+                <CategoryCard
+                    imageSource='https://enso-street-item-photos.s3.us-east-2.amazonaws.com/category-images/party+and+events.jpg'
+                    name='Party & Events'
+                    approximateItemCount='2000+'
+                />
+                <CategoryCard
+                    imageSource='https://enso-street-item-photos.s3.us-east-2.amazonaws.com/category-images/novelty+electronics.JPG'
+                    name='Try Before You Buy'
+                    approximateItemCount='2000+'
+                />
+                <CategoryCard
+                    imageSource='https://enso-street-item-photos.s3.us-east-2.amazonaws.com/category-images/baby+and+kids+2.jpg'
+                    name='Baby & Kids'
+                    approximateItemCount='2000+'
+                />
+                <CategoryCard
+                    imageSource='https://enso-street-item-photos.s3.us-east-2.amazonaws.com/category-images/DIY+home+improvement+2.jpg'
+                    name='DIY Home Improvement'
+                    approximateItemCount='2000+'
+                />
             </div>
         </div>
     )
