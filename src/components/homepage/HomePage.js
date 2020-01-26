@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from "react";
+import React, {useEffect, useRef, useState} from "react";
 import '../../styles/Button.scss';
 import '../../styles/Input.scss';
 import '../../styles/HomePage.scss';
@@ -25,6 +25,7 @@ const HomePage = (props) => {
     const [zipCode, setZipCode] = useState('');
     const [useAddress, setUserAddress] = useState(false);
     const [searchTerm, setSearchTerm] = useState(null);
+    const searchTermInputElement = useRef(null);
 
     useEffect(() => {
         navigator.geolocation.getCurrentPosition((async position => {
@@ -52,10 +53,14 @@ const HomePage = (props) => {
     };
 
     const onClickingSearch = () => {
-        if (useAddress) {
-            props.onSearch(searchTerm, {address: `${street}, ${city}, ${state}, ${zipCode}`});
+        if (searchTerm) {
+            if (useAddress) {
+                props.onSearch(searchTerm, {address: `${street}, ${city}, ${state}, ${zipCode}`});
+            } else {
+                props.onSearch(searchTerm, coordinates);
+            }
         } else {
-            props.onSearch(searchTerm, coordinates);
+            searchTermInputElement.current.focus();
         }
     };
 
@@ -70,7 +75,9 @@ const HomePage = (props) => {
                                placeholder='Item name'
                                onChange={(event) => {
                                    setSearchTerm(event.target.value)
-                               }}/>
+                               }}
+                               ref={searchTermInputElement}
+                        />
                         <div>
                             <FontAwesomeIcon icon={faMapMarkerAlt}/>
                             <LocationAutosuggest onAddressChange={onAddressChange} address={displayLocation}/>
