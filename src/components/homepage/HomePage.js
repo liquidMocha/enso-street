@@ -87,32 +87,32 @@ const HomePage = (props) => {
                 <CategoryCard
                     imageSource='https://enso-street-item-photos.s3.us-east-2.amazonaws.com/category-images/home+maintenance.JPG'
                     name='Home Maintenance'
-                    approximateItemCount='2000+'
+                    categoryKey='home-maintenance'
                 />
                 <CategoryCard
                     imageSource='https://enso-street-item-photos.s3.us-east-2.amazonaws.com/category-images/garden+and+patio+3.JPG'
                     name='Garden & Patio'
-                    approximateItemCount='2000+'
+                    categoryKey='garden-and-patio'
                 />
                 <CategoryCard
                     imageSource='https://enso-street-item-photos.s3.us-east-2.amazonaws.com/category-images/party+and+events.jpg'
                     name='Party & Events'
-                    approximateItemCount='2000+'
+                    categoryKey='party-and-events'
                 />
                 <CategoryCard
                     imageSource='https://enso-street-item-photos.s3.us-east-2.amazonaws.com/category-images/novelty+electronics.JPG'
                     name='Try Before You Buy'
-                    approximateItemCount='2000+'
+                    categoryKey='novelty-electronics'
                 />
                 <CategoryCard
                     imageSource='https://enso-street-item-photos.s3.us-east-2.amazonaws.com/category-images/baby+and+kids+2.jpg'
                     name='Baby & Kids'
-                    approximateItemCount='2000+'
+                    categoryKey='baby-and-kids'
                 />
                 <CategoryCard
                     imageSource='https://enso-street-item-photos.s3.us-east-2.amazonaws.com/category-images/DIY+home+improvement+2.jpg'
                     name='DIY Home Improvement'
-                    approximateItemCount='2000+'
+                    categoryKey='diy-home-improvement'
                 />
             </div>
         </div>

@@ -6,7 +6,6 @@ const initialState = {
 };
 
 export const currentLocation = (state = initialState, action) => {
-    console.log('action: ', action);
     if (action.type === UPDATE_LOCATION) {
         return {
             latitude: action.location.latitude,

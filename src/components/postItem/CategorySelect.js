@@ -1,13 +1,13 @@
 import React, {useEffect, useState} from "react";
 import Select from "react-select";
-import {getAllCategories} from "../../services/CategoryService";
+import CategoryService from "../../services/CategoryService";
 
 const CategorySelect = (props) => {
     const [allCategoryOptions, setCategories] = useState([]);
     const categories = props.categories;
 
     useEffect(() => {
-        getAllCategories().then(result => {
+        CategoryService.getAllCategories().then(result => {
             const options = result.data.map(category => {
                 const label = categoryOptions.get(category.name);
                 return {value: category.name, label: label};
