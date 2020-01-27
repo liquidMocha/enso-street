@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from 'prop-types';
 import SearchResultCard from "./SearchResultCard";
 import TitleBar from "../shared/TitleBar";
-import '../../styles/SearchResults.scss'
+import './SearchResults.scss'
 
 const SearchResults = (props) => {
     return (

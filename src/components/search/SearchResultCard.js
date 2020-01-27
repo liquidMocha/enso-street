@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import React from "react";
-import '../../styles/SearchResultCard.scss';
+import './SearchResultCard.scss';
 
 const SearchResultCard = (props) => {
     return (
