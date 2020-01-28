@@ -16,7 +16,7 @@ class App extends React.Component {
     render() {
         return (
             <BrowserRouter>
-                <div id='app-content'>
+                <main id='app-content'>
                     <HomePageRouter/>
                     <Route path='/menu'>
                         <MenuPage baseUrl={BASE_URL} isLoggedIn={isUserLoggedIn}/>
@@ -29,7 +29,7 @@ class App extends React.Component {
                     </Route>
                     <MyItemsRouter/>
                     <PostItemRouter/>
-                </div>
+                </main>
                 <ToastContainer position='bottom-center' autoClose={2000} hideProgressBar={true} closeOnClick
                                 draggable={false}/>
             </BrowserRouter>

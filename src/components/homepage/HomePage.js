@@ -90,7 +90,7 @@ const HomePage = (props) => {
                     }}/>
                 }
             </div>
-            <div className='category-cards'>
+            <section className='category-cards'>
                 <CategoryCard
                     imageSource='https://enso-street-item-photos.s3.us-east-2.amazonaws.com/category-images/home+maintenance.JPG'
                     name='Home Maintenance'
@@ -121,7 +121,7 @@ const HomePage = (props) => {
                     name='DIY Home Improvement'
                     categoryKey='diy-home-improvement'
                 />
-            </div>
+            </section>
         </div>
     )
 };
