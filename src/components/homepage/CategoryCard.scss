@@ -1,4 +1,5 @@
-.category-card {
+figure.category-card {
+  margin: 0;
   position: relative;
   height: 130px;
   width: 100%;
@@ -10,7 +11,7 @@
     position: absolute;
   }
 
-  div.category-card-texts {
+  figcaption.category-card-texts {
     box-sizing: border-box;
     color: white;
     width: 100%;

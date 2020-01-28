@@ -31,14 +31,14 @@ const CategoryCard = (props) => {
     }, [count]);
 
     return (
-        <div className='category-card'>
+        <figure className='category-card'>
             <img src={props.imageSource} alt={props.name}/>
-            <div className='category-card-texts'>
+            <figcaption className='category-card-texts'>
                 <p>{props.name}</p>
                 <hr/>
                 <p>{countDisplay}</p>
-            </div>
-        </div>
+            </figcaption>
+        </figure>
     )
 };
 
