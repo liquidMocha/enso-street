@@ -3,14 +3,18 @@ import React from "react";
 import DollarInput from "../../shared/DollarInput";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faSave, faTrashAlt} from "@fortawesome/free-regular-svg-icons";
+import './MyItemCard.scss';
 
 const MyItemCard = (props) => {
     return (
-        <div key={props.item.id} className='my-item-card' onClick={() => {
-            props.onCardClick(props.item);
-        }}>
+        <div key={props.item.id}
+             className='my-item-card'
+             onClick={() => {
+                 props.onCardClick(props.item);
+             }}
+        >
             <div className='column-layout my-item-card-content'>
-                <div className='my-item-card-title'>{props.item.title}</div>
+                <h1 className='my-item-card-title'>{props.item.title}</h1>
                 <div className='row-layout my-item-card-content-data'>
                     <div className='my-item-image-container'>
                         <img src={props.item.imageUrl} alt='item'/>
@@ -24,7 +28,7 @@ const MyItemCard = (props) => {
                                          onChange={(event) => {
                                              props.onChangeRentalDailyPrice(event, props.item.id);
                                          }}
-                            />per day
+                            /><h5>per day</h5>
                         </div>
                         <span className='my-item-card-show-on-site' onClick={(event => event.stopPropagation())}>
                             <input type='checkbox'
