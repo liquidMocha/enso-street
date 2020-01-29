@@ -1,5 +1,18 @@
-.category-cards {
-  .category-card {
-    margin-bottom: 15px;
+#home-page {
+  .category-cards {
+    .category-card {
+      margin-bottom: 15px;
+    }
+  }
+
+  .input-with-icon {
+    margin-bottom: 20px;
+    input {
+      width: 100%;
+    }
+  }
+
+  section {
+    margin-bottom: 25px;
   }
 }

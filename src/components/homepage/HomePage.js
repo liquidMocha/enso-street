@@ -4,7 +4,6 @@ import '../../styles/Input.scss';
 import '../../styles/HomePage.scss';
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faMapMarkerAlt, faSearch} from '@fortawesome/free-solid-svg-icons';
-import '../../styles/Sizing.scss';
 import TitleBar from "../shared/TitleBar";
 import {reverseGeocode} from "../../services/LocationService";
 import LocationAutosuggest from "../shared/LocationAutosuggest";
@@ -13,6 +12,7 @@ import SearchExpander from "./SearchExpander";
 import {useDispatch} from "react-redux";
 import {UPDATE_LOCATION_ACTION} from "../../redux/current_location/CurrentLocaitonActions";
 import CategoryCard from "./CategoryCard";
+import InputWithIcon from "../shared/InputWithIcon";
 
 const HomePage = (props) => {
     const dispatch = useDispatch();
@@ -65,31 +65,33 @@ const HomePage = (props) => {
     };
 
     return (
-        <div>
+        <div id='home-page'>
             <TitleBar/>
-            <div>
+            <section>
                 {searchExpanded ?
                     <>
-                        <FontAwesomeIcon icon={faSearch}/>
-                        <input type='text'
-                               placeholder='Item name'
-                               onChange={(event) => {
-                                   setSearchTerm(event.target.value)
-                               }}
-                               ref={searchTermInputElement}
-                        />
-                        <div>
+                        <InputWithIcon>
+                            <FontAwesomeIcon icon={faSearch}/>
+                            <input type='text'
+                                   placeholder='Item name'
+                                   onChange={(event) => {
+                                       setSearchTerm(event.target.value)
+                                   }}
+                                   ref={searchTermInputElement}
+                            />
+                        </InputWithIcon>
+                        <InputWithIcon>
                             <FontAwesomeIcon icon={faMapMarkerAlt}/>
                             <LocationAutosuggest onAddressChange={onAddressChange} address={displayLocation}/>
-                        </div>
-                        <button id='home-page-search-button' onClick={onClickingSearch}>Search</button>
+                        </InputWithIcon>
+                        <button onClick={onClickingSearch}>Search</button>
                     </>
                     :
                     <SearchExpander expandSearch={() => {
                         expandSearch(true)
                     }}/>
                 }
-            </div>
+            </section>
             <section className='category-cards'>
                 <CategoryCard
                     imageSource='https://enso-street-item-photos.s3.us-east-2.amazonaws.com/category-images/home+maintenance.JPG'

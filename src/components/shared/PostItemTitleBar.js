@@ -8,7 +8,7 @@ const PostItemTitleBar = (props) => {
     let history = useHistory();
 
     return (
-        <div id='date-range-picker-title-bar' className='fixed-title-bar'>
+        <div className='fixed-title-bar'>
             {props.hideBackButton ? <span/> :
                 <span onClick={() => {
                     history.push(props.backLink)
@@ -16,14 +16,15 @@ const PostItemTitleBar = (props) => {
                 <FontAwesomeIcon icon={faAngleLeft}/>
             </span>
             }
-            <span className='fixed-title-bar__title--font'>{props.title}</span>
+            <h1>{props.title}</h1>
             {props.renderRightItem ?
                 props.renderRightItem() :
-                <span onClick={() => {
-                    history.push('/')
-                }}>
+                <h3 className='fixed-title-bar__right-element'
+                    onClick={() => {
+                        history.push('/')
+                    }}>
                     Cancel
-                </span>
+                </h3>
             }
         </div>
     )

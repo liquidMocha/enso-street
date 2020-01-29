@@ -43,7 +43,7 @@ const PriceAndDelivery = (props) => {
                 /> :
                 null}
             <Link to='/preview'>
-                <button id='preview-button' className='home-page-button'>
+                <button id='preview-button'>
                     Preview
                 </button>
             </Link>

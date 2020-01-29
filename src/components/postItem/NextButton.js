@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 const NextButton = (props) => {
     return (
         <Link to={props.destination}>
-            <button id='next-button' className='home-page-button'>
+            <button id='next-button'>
                 Next
             </button>
         </Link>

@@ -5,6 +5,7 @@ import DollarInput from "../shared/DollarInput";
 const DeliveryFeeInputSection = (props) => {
     return (
         <div id='price-and-delivery-fee-section'>
+            Delivery fee
             <div>
                 <DollarInput
                     value={props.deliveryStarting}

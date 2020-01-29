@@ -1,26 +1,37 @@
+@import 'src/styles/Variables';
+
 #my-items-search {
   position: relative;
 
-  svg {
-    position: absolute;
-    top: 5px;
-    right: 10px;
+  input {
+    width: 100%;
   }
+}
+
+#my-items-page-title {
+  display: flex;
+  justify-content: space-between;
+
+  svg {
+    margin-right: 10px;
+  }
+
+  margin-bottom: 20px;
 }
 
 .my-item-card {
   display: flex;
   flex-direction: row;
   height: 140px;
-  width: calc(100% - 20px);
+  width: 100%;
   margin-bottom: 10px;
-  padding: 10px;
-  border-radius: 5px;
+  padding: 10px 20px;
+  border-radius: $normal-border-radius;
   box-shadow: 5px 5px 5px #e6e6e6, -5px 5px 5px #e6e6e6;
 
   .my-item-card-content {
     display: flex;
-    flex: 4;
+    flex: 9;
     height: 100%;
 
     .my-item-card-title {
@@ -48,8 +59,47 @@
       }
 
       .my-item-card-rental-price {
-        width: 80%;
-        margin-bottom: 10px;
+        width: 100%;
+
+        input {
+          width: 50%;
+        }
+      }
+
+      .my-item-card-second-column {
+        .my-item-card-show-on-site {
+          position: relative;
+          margin-top: 10px;
+
+          input[type=checkbox] {
+            height: unset;
+            appearance: none;
+            -webkit-appearance: none;
+            background-color: white;
+            border: 1px solid black;
+            padding: 8px;
+            border-radius: 3px;
+            margin: 0 10px 0 0;
+            display: inline-block;
+            position: relative;
+          }
+
+          input[type=checkbox]:checked {
+            background-color: white;
+            border: 1px solid black;
+            color: black;
+          }
+
+          input[type=checkbox]:checked:after {
+            content: '\2714';
+            font-size: 14px;
+            position: absolute;
+            top: 0;
+            left: 3px;
+            color: black;
+          }
+
+        }
       }
 
       .column-layout {
@@ -61,7 +111,6 @@
   .my-item-card-buttons {
     flex: 1;
     align-items: flex-end;
-    margin-right: 15px;
     font-size: 20px;
 
     svg {

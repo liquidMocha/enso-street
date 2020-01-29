@@ -8,10 +8,10 @@ const TitleBar = () => {
 
     return (
         <div className='fixed-title-bar'>
-            <div id='enso-street-title' onClick={() => {
+            <h1 id='enso-street-title' onClick={() => {
                 history.push('/')
             }}>Enso Street
-            </div>
+            </h1>
             <MenuButton onClick={() => {
                 history.push('/menu')
             }}/>

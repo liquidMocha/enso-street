@@ -27,11 +27,11 @@ const MenuPage = (props) => {
     const links = () => {
         if (isLoggedIn) {
             return (
-                <>
+                <section>
                     <Link to={'post-item'} id='post-item-button'>
-                        <div className='home-page-button'>
+                        <button>
                             Post Items
-                        </div>
+                        </button>
                     </Link>
                     <div id='menu-page-button-group'>
                         <Link to={'my-items'} id='post-item-button'>
@@ -43,20 +43,20 @@ const MenuPage = (props) => {
                             Log Out
                         </div>
                     </div>
-                </>
+                </section>
             )
         } else {
             return (
                 <div id='menu-page-button-group'>
                     <Link to='login' id='login-button'>
-                        <div className='home-page-button'>
+                        <button>
                             Log in
-                        </div>
+                        </button>
                     </Link>
                     <Link to='sign-up' id='sign-up-button'>
-                        <div className='home-page-button'>
+                        <button>
                             Sign up
-                        </div>
+                        </button>
                     </Link>
                 </div>
             )

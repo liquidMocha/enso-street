@@ -15,7 +15,7 @@ const MyItemCard = (props) => {
                     <div className='my-item-image-container'>
                         <img src={props.item.imageUrl} alt='item'/>
                     </div>
-                    <div className='column-layout'>
+                    <div className='column-layout my-item-card-second-column'>
                         <div className='my-item-card-rental-price'>
                             <DollarInput value={props.item.rentalDailyPrice}
                                          onClick={(event) => {
@@ -24,16 +24,17 @@ const MyItemCard = (props) => {
                                          onChange={(event) => {
                                              props.onChangeRentalDailyPrice(event, props.item.id);
                                          }}
-                                         description='per day'/>
+                            />per day
                         </div>
-                        <div onClick={(event => event.stopPropagation())}>
+                        <span className='my-item-card-show-on-site' onClick={(event => event.stopPropagation())}>
                             <input type='checkbox'
                                    checked={props.item.searchable || false}
                                    onChange={(() => {
                                        props.onChangeSearchability(props.item.id);
                                    })}
-                            /> Show on site
-                        </div>
+                            />
+                            Show on site
+                        </span>
                     </div>
                 </div>
             </div>

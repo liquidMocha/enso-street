@@ -2,16 +2,18 @@ import PropTypes from 'prop-types';
 import React, {useEffect, useReducer} from "react";
 import {deleteItem, getAllItemsForUser, updateItem} from "../../../services/ItemService";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {faAngleLeft, faPlus, faSearch} from "@fortawesome/free-solid-svg-icons";
+import {faPlus, faSearch} from "@fortawesome/free-solid-svg-icons";
 import {useHistory} from "react-router-dom";
 import Modal from 'react-modal';
 import "../../../styles/Spacing.scss";
-import "../../../styles/MyItem.scss";
+import "./MyItem.scss";
 import "../../../styles/Input.scss";
 import {toast} from "react-toastify";
 import MyItemCard from "./MyItemCard";
 import MyItemCardSkeleton from "./MyItemCardSkeleton";
 import _ from "lodash";
+import InputWithIcon from "../../shared/InputWithIcon";
+import TitleBar from "../../shared/TitleBar";
 
 const byCreatedOn = (a, b) => {
     const timeA = a.createdOn;
@@ -206,27 +208,24 @@ const MyItems = (props) => {
 
     return (
         <div>
-            <div className='fixed-title-bar'>
-                <span onClick={() => {
-                    history.push('/menu')
-                }}>
-                    <FontAwesomeIcon icon={faAngleLeft}/> Back
-                </span>
-                <span className='fixed-title-bar__title--font'>My Items</span>
-                <span onClick={() => {
+            <TitleBar/>
+            <section id='my-items-page-title'>
+                <h1>My Items</h1>
+                <h1 onClick={() => {
                     history.push('/post-item')
-                }}><FontAwesomeIcon icon={faPlus}/>Add</span>
-            </div>
-            <div id='my-items-search'>
-                <input type='text'
-                       className='input-field'
-                       placeholder='Search my item'
-                       onChange={(event => {
-                           dispatch({type: CHANGE_SEARCH_TERM, payload: event.target.value.toLocaleLowerCase()});
-                       })}
-                />
-                <FontAwesomeIcon icon={faSearch}/>
-            </div>
+                }}><FontAwesomeIcon icon={faPlus}/>Add</h1>
+            </section>
+            <section id='my-items-search'>
+                <InputWithIcon>
+                    <FontAwesomeIcon icon={faSearch}/>
+                    <input type='text'
+                           placeholder='Search my item'
+                           onChange={(event => {
+                               dispatch({type: CHANGE_SEARCH_TERM, payload: event.target.value.toLocaleLowerCase()});
+                           })}
+                    />
+                </InputWithIcon>
+            </section>
             {state.loading ?
                 <>
                     <MyItemCardSkeleton/>

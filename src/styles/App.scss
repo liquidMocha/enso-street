@@ -1,17 +1,41 @@
-.App {
-  height: 100%;
-}
+@import './Variables.scss';
 
 * {
   font-family: 'Lato', sans-serif;
 }
 
-#app-content {
-  margin-top: 50px;
-  margin-left: 20px;
-  margin-right: 20px;
+*, *:before, *:after {
+  box-sizing: border-box;
 }
 
 a {
   text-decoration: none;
+}
+
+input {
+  border: 1px solid grey;
+  border-radius: $normal-border-radius;
+  padding: 5px;
+  height: 40px;
+}
+
+#app-content {
+  margin-top: 80px;
+  margin-left: 20px;
+  margin-right: 20px;
+}
+
+h1 {
+  all: unset;
+  font-size: 20px;
+}
+
+h3 {
+  all: unset;
+  font-size: 16px;
+}
+
+h5 {
+  all: unset;
+  font-size: 14px;
 }
