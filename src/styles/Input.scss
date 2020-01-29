@@ -30,8 +30,9 @@ input[type=number] {
   margin: auto;
 
   input[type=file] {
-    height: 0;
+    visibility: hidden;
     overflow: hidden;
+    height: 0;
     width: 0;
   }
 
