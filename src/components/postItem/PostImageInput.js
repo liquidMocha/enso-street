@@ -10,13 +10,7 @@ const PostImageInput = (props) => {
 
     return (
         <div>
-            {imageUrl ?
-                <img src={imageUrl}
-                     alt='User provided item'
-                     onLoad={() => {
-                         props.onImageLoad(imageUrl);
-                     }}/> : null
-            }
+            {imageUrl ? <img src={imageUrl} alt='User provided item'/> : null}
             <Link to={props.useMyPhotoPath}
                   className='center-aligned'
                   id='use-my-photo'
@@ -30,8 +24,7 @@ const PostImageInput = (props) => {
 
 PostImageInput.propTypes = {
     imageUrl: PropTypes.string,
-    useMyPhotoPath: PropTypes.string.isRequired,
-    onImageLoad: PropTypes.func.isRequired
+    useMyPhotoPath: PropTypes.string.isRequired
 };
 
 export default PostImageInput

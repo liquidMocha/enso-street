@@ -4,6 +4,8 @@ import {faCamera, faImages} from "@fortawesome/free-solid-svg-icons";
 import "../../styles/Input.scss";
 import {useHistory} from "react-router-dom";
 import PropTypes from 'prop-types';
+import Jimp from "jimp";
+import {getUploadLink, uploadImage} from "../../services/ImageService";
 
 const UseMyPhoto = (props) => {
     let history = useHistory();
@@ -13,7 +15,15 @@ const UseMyPhoto = (props) => {
             history.goBack();
 
             const localImageUrl = URL.createObjectURL(event.target.files[0]);
+
             props.onImageUrlChange(localImageUrl);
+
+            const image = await Jimp.read(localImageUrl);
+            const compressedImage = image.scaleToFit(110, 100).getBufferAsync(Jimp.MIME_PNG);
+            const {uploadRequest, imageUrl} = await getUploadLink();
+            await uploadImage(await compressedImage, uploadRequest);
+
+            props.onImageUrlChange(imageUrl);
         }
     };
 
