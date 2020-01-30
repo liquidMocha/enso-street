@@ -27,6 +27,7 @@ export const PostItemPage = (props) => {
                 />
                 <PostImageInput imageUrl={props.item.imageUrl}
                                 useMyPhotoPath={props.useMyPhotoPath}
+                                onLocalImageLoad={props.onLocalImageLoad}
                 />
                 <NextButton destination='/details'/>
             </div>
@@ -37,7 +38,8 @@ export const PostItemPage = (props) => {
 PostItemPage.propTypes = {
     item: PropTypes.any,
     onTitleChange: PropTypes.func,
-    useMyPhotoPath: PropTypes.string.isRequired
+    useMyPhotoPath: PropTypes.string.isRequired,
+    onLocalImageLoad: PropTypes.func.isRequired
 };
 
 export default PostItemPage;
