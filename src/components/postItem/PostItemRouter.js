@@ -11,6 +11,7 @@ import EditItem from "./EditItem";
 import ChooseLocationPage from "./ChooseLocationPage";
 import EditAddressPage from "./EditAddressPage";
 import PostItemProgressContext from "./PostItemProgressContext";
+import {resizeAndUploadImage} from "../../services/ImageService";
 
 const PostItemRouter = () => {
     let history = useHistory();
@@ -44,6 +45,12 @@ const PostItemRouter = () => {
         history.push(editAddressPath);
     };
 
+    const onImageLoad = async (localImageUrl) => {
+        const imageUrl = await resizeAndUploadImage(localImageUrl);
+
+        updateImageUrl(imageUrl);
+    };
+
     const useMyPhotoPath = '/use-my-photo';
     const chooseLocationPath = '/choose-location';
     const priceAndDeliveryPath = '/price-and-delivery';
@@ -58,7 +65,11 @@ const PostItemRouter = () => {
         }}>
             <Switch>
                 <Route exact path="/post-item">
-                    <PostItemPage item={item} onTitleChange={updateTitle} useMyPhotoPath={useMyPhotoPath}/>
+                    <PostItemPage item={item}
+                                  onTitleChange={updateTitle}
+                                  useMyPhotoPath={useMyPhotoPath}
+                                  onImageLoad={onImageLoad}
+                    />
                 </Route>
                 <Route exact path={useMyPhotoPath}>
                     <UseMyPhoto onImageUrlChange={updateImageUrl}/>
@@ -113,7 +124,8 @@ const PostItemRouter = () => {
                         onDeliveryAdditionalPriceChange={onDeliveryAdditionalPriceChange}
                         onClickingPost={onPostingItem}
                         useMyPhotoPath={useMyPhotoPath}
-                        chooseLocationPath={chooseLocationPath}/>
+                        chooseLocationPath={chooseLocationPath}
+                        onImageLoad={onImageLoad}/>
                 </Route>
             </Switch>
         </PostItemProgressContext.Provider>

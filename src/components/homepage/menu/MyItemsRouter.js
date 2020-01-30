@@ -7,6 +7,7 @@ import {defaultItem} from "../../postItem/PostItemConstants";
 import UseMyPhoto from "../../postItem/UseMyPhoto";
 import ChooseLocationPage from "../../postItem/ChooseLocationPage";
 import EditAddressPage from "../../postItem/EditAddressPage";
+import {resizeAndUploadImage} from "../../../services/ImageService";
 
 const MyItemsRouter = () => {
     let history = useHistory();
@@ -53,6 +54,12 @@ const MyItemsRouter = () => {
         history.push(editAddressPath);
     };
 
+    const onImageLoad = async (localImageUrl) => {
+        const imageUrl = await resizeAndUploadImage(localImageUrl);
+
+        updateImageUrl(imageUrl);
+    };
+
     const useMyPhotoPath = '/my-item-edit/use-my-photo';
     const chooseLocationPath = '/my-item/choose-location';
     const editItemPath = '/my-item-edit';
@@ -78,7 +85,8 @@ const MyItemsRouter = () => {
                     onDeliveryAdditionalPriceChange={onDeliveryAdditionalPriceChange}
                     onClickingPost={onPostingItem}
                     useMyPhotoPath={useMyPhotoPath}
-                    chooseLocationPath={chooseLocationPath}/>
+                    chooseLocationPath={chooseLocationPath}
+                    onImageLoad={onImageLoad}/>
             </Route>
             <Route exact path={useMyPhotoPath}>
                 <UseMyPhoto onImageUrlChange={updateImageUrl}/>

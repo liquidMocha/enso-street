@@ -30,7 +30,10 @@ const EditItem = (props) => {
             <PostItemTitleBar backLink={props.backLink}
                               title='Post Items'
             />
-            <PostImageInput imageUrl={item.imageUrl} useMyPhotoPath={props.useMyPhotoPath}/>
+            <PostImageInput imageUrl={item.imageUrl}
+                            useMyPhotoPath={props.useMyPhotoPath}
+                            onImageLoad={props.onImageLoad}
+            />
             <InputWithError id='item-title-input' type='text'
                             onChange={props.onTitleChange}
                             value={title}
@@ -94,7 +97,8 @@ EditItem.propTypes = {
     onCanBeDeliveredChange: PropTypes.func,
     onDeliveryStartingPriceChange: PropTypes.func,
     onDeliveryAdditionalPriceChange: PropTypes.func,
-    onClickingPost: PropTypes.func
+    onClickingPost: PropTypes.func,
+    onImageLoad: PropTypes.func.isRequired
 };
 
 export default EditItem
