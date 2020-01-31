@@ -1,5 +1,5 @@
 import React from "react";
-import "../../styles/DollarInput.scss";
+import "./DollarInput.scss";
 
 const DollarInput = (props) => {
     return (

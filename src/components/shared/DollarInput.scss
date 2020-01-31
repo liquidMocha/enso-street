@@ -1,9 +1,10 @@
-@import './Variables.scss';
+@import 'src/styles/Variables';
 
 .dollar-input {
   display: flex;
 
   input {
+    width: 100%;
     border-radius: 0 $normal-border-radius $normal-border-radius 0;
   }
 

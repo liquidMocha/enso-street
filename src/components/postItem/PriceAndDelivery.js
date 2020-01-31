@@ -3,7 +3,7 @@ import React from "react";
 import PostItemTitleBar from "../shared/PostItemTitleBar";
 import {Link} from "react-router-dom";
 import "../../styles/Input.scss";
-import "../../styles/PriceAndDelivery.scss";
+import "./PriceAndDelivery.scss";
 import RentalPriceInputSection from "./RentalPriceInputSection";
 import DeliveryToggle from "./DeliveryToggle";
 import DeliveryFeeInputSection from "./DeliveryFeeInputSection";

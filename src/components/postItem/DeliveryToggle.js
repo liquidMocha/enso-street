@@ -1,6 +1,7 @@
 import PropTypes from 'prop-types';
 import React from "react";
 import Toggle from "./Toggle";
+import '../../styles/font.scss';
 
 const DeliveryToggle = (props) => {
     return (
