@@ -34,9 +34,11 @@ const CategoryCard = (props) => {
         <figure className='category-card'>
             <img src={props.imageSource} alt={props.name}/>
             <figcaption className='category-card-texts'>
-                <h1>{props.name}</h1>
-                <hr/>
-                <h5>{countDisplay}</h5>
+                <div>
+                    <h1>{props.name}</h1>
+                    <hr/>
+                    <h5>{countDisplay}</h5>
+                </div>
             </figcaption>
         </figure>
     )

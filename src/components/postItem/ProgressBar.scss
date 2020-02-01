@@ -1,15 +1,17 @@
-hr {
-  color: black;
-  height: 1px;
-  border: none;
-  border-top: 0.5px solid black;
-  width: 39%;
-}
+.progress-bar {
+  hr {
+    color: black;
+    height: 1px;
+    border: none;
+    border-top: 0.5px solid black;
+    width: 39%;
+  }
 
-#progress-circles {
-  margin-top: 5px;
-}
+  #progress-circles {
+    margin-top: 5px;
+  }
 
-.circle-number {
-  font-size: 12px;
+  .circle-number {
+    font-size: 12px;
+  }
 }

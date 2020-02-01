@@ -10,7 +10,7 @@ const ProgressBar = () => {
     const iconTransform = 'down-1';
 
     return (
-        <div>
+        <div className='progress-bar'>
             <div className='horizontal-layout'>
                 <div>Title & Photo</div>
                 <div>Details</div>
