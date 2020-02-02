@@ -1,10 +1,27 @@
-.search-result-card-image-container {
-  position: relative;
-  text-align: center;
-}
+@import "../../styles/Variables";
 
-.search-result-card-title {
-  position: absolute;
-  bottom: 8px;
-  left: 16px;
+.search-result-card {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid grey;
+  border-radius: $normal-border-radius;
+
+  .search-result-card-image-container {
+    position: relative;
+  }
+
+  .search-result-card-title {
+    position: absolute;
+    bottom: 8px;
+    left: 16px;
+  }
+
+  .search-result-card__details {
+    padding: 10px;
+    border-top: 1px solid grey;
+  }
+
+  .search-result-card__details-location {
+    color: grey;
+  }
 }

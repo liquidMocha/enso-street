@@ -4,13 +4,17 @@ import './SearchResultCard.scss';
 
 const SearchResultCard = (props) => {
     return (
-        <div>
+        <div className='search-result-card'>
             <section className='search-result-card-image-container'>
-                <img src={props.imageUrl} alt={props.title}/>
-                <div className='search-result-card-title'>{props.title}</div>
+                <figure className=''>
+                    <img src={props.imageUrl} alt={props.title}/>
+                </figure>
+                <h5 className='search-result-card-title'>{props.title}</h5>
             </section>
-            <div>${props.dailyRentalPrice}/day</div>
-            <div>{props.city}, {props.zipCode}</div>
+            <section className='search-result-card__details'>
+                <div>${props.dailyRentalPrice}/day</div>
+                <div className='search-result-card__details-location'>{props.city}, {props.zipCode}</div>
+            </section>
         </div>
     )
 };

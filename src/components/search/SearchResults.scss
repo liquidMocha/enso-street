@@ -1,5 +1,13 @@
+$margin-between-search-result-columns: 20px;
+
 .search-results {
   > div {
-    width: 50%;
+    width: calc(50% - (#{$margin-between-search-result-columns} / 2));
+    display: inline-flex;
+    margin-bottom: 20px;
+  }
+
+  div:nth-child(odd) {
+    margin-right: $margin-between-search-result-columns;
   }
 }
