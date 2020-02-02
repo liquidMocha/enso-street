@@ -6,6 +6,12 @@
   border: 1px solid grey;
   border-radius: $normal-border-radius;
 
+  img {
+    height: 170px;
+    width: 100%;
+    object-fit: contain;
+  }
+
   .search-result-card-image-container {
     position: relative;
   }

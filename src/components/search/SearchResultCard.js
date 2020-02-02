@@ -6,7 +6,7 @@ const SearchResultCard = (props) => {
     return (
         <div className='search-result-card'>
             <section className='search-result-card-image-container'>
-                <figure className=''>
+                <figure>
                     <img src={props.imageUrl} alt={props.title}/>
                 </figure>
                 <h5 className='search-result-card-title'>{props.title}</h5>
