@@ -45,8 +45,11 @@ const PostItemRouter = () => {
         history.push(editAddressPath);
     };
 
-    const onLocalImageLoad = async (localImageUrl) => {
-        await resizeAndUploadImage(localImageUrl);
+    const onLocalImageLoad = async (imageUrl) => {
+        if (imageUrl.startsWith('blob')) {
+            const uploadedImageUrl = await resizeAndUploadImage(imageUrl);
+            updateImageUrl(uploadedImageUrl);
+        }
     };
 
     const useMyPhotoPath = '/use-my-photo';
