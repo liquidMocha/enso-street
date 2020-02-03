@@ -1,41 +1,26 @@
-import React, {useEffect, useRef, useState} from "react";
+import React, {useEffect, useState} from "react";
 import '../../styles/Button.scss';
 import '../../styles/Input.scss';
 import '../../styles/HomePage.scss';
-import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {faMapMarkerAlt, faSearch} from '@fortawesome/free-solid-svg-icons';
 import TitleBar from "../shared/TitleBar";
 import {reverseGeocode} from "../../services/LocationService";
-import LocationAutosuggest from "../shared/LocationAutosuggest";
 import PropTypes from 'prop-types';
-import SearchExpander from "./SearchExpander";
 import {useDispatch} from "react-redux";
 import {UPDATE_LOCATION_ACTION} from "../../redux/current_location/CurrentLocaitonActions";
 import CategoryCard from "./CategoryCard";
-import InputWithIcon from "../shared/InputWithIcon";
+import ExpandableSearchBar from "../shared/ExpandableSearchBar";
+import {UPDATE_SEARCH_COORDINATES_ACTION} from "../../redux/search/searchActions";
 
 const HomePage = (props) => {
-    const dispatch = useDispatch();
-    const [searchExpanded, expandSearch] = useState(false);
-    const [coordinates, setCoordinates] = useState(null);
     const [displayLocation, setDisplayLocation] = useState(null);
-    const [street, setStreet] = useState('');
-    const [city, setCity] = useState('');
-    const [state, setState] = useState('');
-    const [zipCode, setZipCode] = useState('');
-    const [useAddress, setUserAddress] = useState(false);
-    const [searchTerm, setSearchTerm] = useState(null);
-    const searchTermInputElement = useRef(null);
+
+    const dispatch = useDispatch();
 
     useEffect(() => {
         navigator.geolocation.getCurrentPosition((async position => {
             const latitude = position.coords.latitude;
             const longitude = position.coords.longitude;
-            setCoordinates({
-                latitude: latitude,
-                longitude: longitude
-            });
-
+            dispatch(UPDATE_SEARCH_COORDINATES_ACTION({latitude, longitude}));
             dispatch(UPDATE_LOCATION_ACTION({latitude, longitude}));
 
             const locationLabel = await reverseGeocode({latitude, longitude});
@@ -44,54 +29,13 @@ const HomePage = (props) => {
         })
     }, []);
 
-    const onAddressChange = (event, {suggestion}) => {
-        setUserAddress(true);
-        setStreet(`${suggestion.houseNumber ? suggestion.houseNumber : ''} ${suggestion.street}`);
-        setCity(suggestion.city);
-        setState(suggestion.state);
-        setZipCode(suggestion.zipCode);
-    };
-
-    const onClickingSearch = () => {
-        if (searchTerm) {
-            if (useAddress) {
-                props.onSearch(searchTerm, {address: `${street}, ${city}, ${state}, ${zipCode}`});
-            } else {
-                props.onSearch(searchTerm, coordinates);
-            }
-        } else {
-            searchTermInputElement.current.focus();
-        }
-    };
-
     return (
         <div id='home-page'>
             <TitleBar/>
-            <section>
-                {searchExpanded ?
-                    <>
-                        <InputWithIcon>
-                            <FontAwesomeIcon icon={faSearch}/>
-                            <input type='text'
-                                   placeholder='Item name'
-                                   onChange={(event) => {
-                                       setSearchTerm(event.target.value)
-                                   }}
-                                   ref={searchTermInputElement}
-                            />
-                        </InputWithIcon>
-                        <InputWithIcon>
-                            <FontAwesomeIcon icon={faMapMarkerAlt}/>
-                            <LocationAutosuggest onAddressChange={onAddressChange} address={displayLocation}/>
-                        </InputWithIcon>
-                        <button onClick={onClickingSearch}>Search</button>
-                    </>
-                    :
-                    <SearchExpander expandSearch={() => {
-                        expandSearch(true)
-                    }}/>
-                }
-            </section>
+            <ExpandableSearchBar
+                onSearch={props.onSearch}
+                displayLocation={displayLocation}
+            />
             <section className='category-cards'>
                 <CategoryCard
                     imageSource='https://enso-street-item-photos.s3.us-east-2.amazonaws.com/category-images/home+maintenance.JPG'

@@ -1,5 +1,5 @@
 import React from "react";
-import '../../styles/TitleBar.scss'
+import './TitleBar.scss'
 import MenuButton from "./MenuButton";
 import {useHistory} from "react-router-dom";
 
