@@ -50,7 +50,7 @@ const HomePage = () => {
                 />
                 <CategoryCard
                     imageSource='https://enso-street-item-photos.s3.us-east-2.amazonaws.com/category-images/novelty+electronics.JPG'
-                    name='Try Before You Buy'
+                    name='Novelty Electronics'
                     categoryKey='novelty-electronics'
                 />
                 <CategoryCard
