@@ -1,11 +1,13 @@
-import React, {useState} from "react";
+import React from "react";
 import {Route, Switch, useHistory} from "react-router-dom";
 import HomePage from "./HomePage";
 import * as SearchService from "../../services/SearchService";
 import SearchResults from "../search/SearchResults";
+import {useDispatch} from "react-redux";
+import {UPDATE_SEARCH_RESULTS_ACTION} from "../../redux/search/searchActions";
 
 const HomePageRouter = () => {
-    const [searchResults, setSearchResult] = useState([]);
+    const dispatch = useDispatch();
 
     let history = useHistory();
 
@@ -13,7 +15,7 @@ const HomePageRouter = () => {
         history.push('/search-result');
 
         const results = await SearchService.search(keyword, location);
-        setSearchResult(results);
+        dispatch(UPDATE_SEARCH_RESULTS_ACTION(results));
     };
 
     return (
@@ -22,7 +24,7 @@ const HomePageRouter = () => {
                 <HomePage onSearch={onSearch}/>
             </Route>
             <Route exact path="/search-result">
-                <SearchResults results={searchResults}/>
+                <SearchResults/>
             </Route>
         </Switch>
     )

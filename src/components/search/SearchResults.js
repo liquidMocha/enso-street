@@ -1,15 +1,19 @@
 import React from "react";
-import PropTypes from 'prop-types';
 import SearchResultCard from "./SearchResultCard";
 import TitleBar from "../shared/TitleBar";
 import './SearchResults.scss'
+import ExpandableSearchBar from "../shared/ExpandableSearchBar";
+import {useSelector} from "react-redux";
 
-const SearchResults = (props) => {
+const SearchResults = () => {
+    const results = useSelector(state => state.searchData.searchResults);
+
     return (
         <div>
             <TitleBar/>
+            <ExpandableSearchBar displayLocation=''/>
             <section className='search-results'>
-                {props.results.map(result => {
+                {results.map(result => {
                     return (
                         <SearchResultCard
                             key={result.id}
@@ -24,10 +28,6 @@ const SearchResults = (props) => {
             </section>
         </div>
     )
-};
-
-SearchResults.propTypes = {
-    results: PropTypes.array.isRequired
 };
 
 export default SearchResults

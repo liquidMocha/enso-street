@@ -8,13 +8,17 @@ import PropTypes from "prop-types";
 import {useDispatch, useSelector} from "react-redux";
 import {
     UPDATE_SEARCH_ADDRESS_ACTION,
+    UPDATE_SEARCH_RESULTS_ACTION,
     UPDATE_SEARCH_TERM_ACTION,
     USE_ADDRESS_FOR_SEARCH_ACTION
 } from "../../redux/search/searchActions";
+import * as SearchService from "../../services/SearchService";
+import {useHistory} from "react-router-dom";
 
 const ExpandableSearchBar = (props) => {
     const [searchExpanded, expandSearch] = useState(false);
     const searchTermInputElement = useRef(null);
+    let history = useHistory();
 
     const dispatch = useDispatch();
     const searchTerm = useSelector(state => state.searchData.searchTerm);
@@ -35,13 +39,20 @@ const ExpandableSearchBar = (props) => {
     const onClickingSearch = () => {
         if (searchTerm) {
             if (useAddress) {
-                props.onSearch(searchTerm, {address: `${address.street}, ${address.city}, ${address.state}, ${address.zipCode}`});
+                onSearch(searchTerm, {address: `${address.street}, ${address.city}, ${address.state}, ${address.zipCode}`});
             } else {
-                props.onSearch(searchTerm, coordinates);
+                onSearch(searchTerm, coordinates);
             }
         } else {
             searchTermInputElement.current.focus();
         }
+    };
+
+    const onSearch = async (keyword, location) => {
+        history.push('/search-result');
+
+        const results = await SearchService.search(keyword, location);
+        dispatch(UPDATE_SEARCH_RESULTS_ACTION(results));
     };
 
     return (
@@ -74,7 +85,6 @@ const ExpandableSearchBar = (props) => {
 };
 
 ExpandableSearchBar.propTypes = {
-    onSearch: PropTypes.func.isRequired,
     displayLocation: PropTypes.string
 };
 

@@ -4,14 +4,13 @@ import '../../styles/Input.scss';
 import '../../styles/HomePage.scss';
 import TitleBar from "../shared/TitleBar";
 import {reverseGeocode} from "../../services/LocationService";
-import PropTypes from 'prop-types';
 import {useDispatch} from "react-redux";
 import {UPDATE_LOCATION_ACTION} from "../../redux/current_location/CurrentLocaitonActions";
 import CategoryCard from "./CategoryCard";
 import ExpandableSearchBar from "../shared/ExpandableSearchBar";
 import {UPDATE_SEARCH_COORDINATES_ACTION} from "../../redux/search/searchActions";
 
-const HomePage = (props) => {
+const HomePage = () => {
     const [displayLocation, setDisplayLocation] = useState(null);
 
     const dispatch = useDispatch();
@@ -32,10 +31,7 @@ const HomePage = (props) => {
     return (
         <div id='home-page'>
             <TitleBar/>
-            <ExpandableSearchBar
-                onSearch={props.onSearch}
-                displayLocation={displayLocation}
-            />
+            <ExpandableSearchBar displayLocation={displayLocation}/>
             <section className='category-cards'>
                 <CategoryCard
                     imageSource='https://enso-street-item-photos.s3.us-east-2.amazonaws.com/category-images/home+maintenance.JPG'
@@ -70,10 +66,6 @@ const HomePage = (props) => {
             </section>
         </div>
     )
-};
-
-HomePage.propTypes = {
-    onSearch: PropTypes.func.isRequired
 };
 
 export default HomePage;

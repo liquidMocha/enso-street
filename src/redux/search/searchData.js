@@ -1,6 +1,7 @@
 import {
     UPDATE_SEARCH_ADDRESS,
     UPDATE_SEARCH_COORDINATES,
+    UPDATE_SEARCH_RESULTS,
     UPDATE_SEARCH_TERM,
     USE_ADDRESS_FOR_SEARCH
 } from "./searchActions";
@@ -45,6 +46,11 @@ export const searchData = (state = initialState, action) => {
             return {
                 ...newState,
                 useAddress: true
+            };
+        case UPDATE_SEARCH_RESULTS:
+            return {
+                ...newState,
+                searchResults: action.searchResults
             };
         default:
             return state;
