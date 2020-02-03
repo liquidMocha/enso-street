@@ -14,6 +14,7 @@ import {
 } from "../../redux/search/searchActions";
 import * as SearchService from "../../services/SearchService";
 import {useHistory} from "react-router-dom";
+import './ExpandableSearchBar.scss';
 
 const ExpandableSearchBar = (props) => {
     const [searchExpanded, expandSearch] = useState(false);
@@ -56,7 +57,7 @@ const ExpandableSearchBar = (props) => {
     };
 
     return (
-        <section>
+        <section className='expandable-search-bar'>
             {searchExpanded ?
                 <>
                     <InputWithIcon>
