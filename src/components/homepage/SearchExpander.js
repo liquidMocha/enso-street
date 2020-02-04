@@ -11,14 +11,18 @@ const SearchExpander = (props) => {
         }}>
             <InputWithIcon>
                 <FontAwesomeIcon icon={faSearch}/>
-                <input placeholder='Search Enso Street'/>
+                <input placeholder='Search Enso Street'
+                       value={props.displayValue}
+                       readOnly={true}
+                />
             </InputWithIcon>
         </div>
     )
 };
 
 SearchExpander.propTypes = {
-    expandSearch: PropTypes.func.isRequired
+    expandSearch: PropTypes.func.isRequired,
+    displayValue: PropTypes.string
 };
 
 export default SearchExpander

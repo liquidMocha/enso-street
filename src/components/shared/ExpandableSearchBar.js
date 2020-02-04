@@ -67,6 +67,7 @@ const ExpandableSearchBar = (props) => {
                                onChange={(event) => {
                                    dispatch(UPDATE_SEARCH_TERM_ACTION(event.target.value))
                                }}
+                               value={searchTerm}
                                ref={searchTermInputElement}
                         />
                     </InputWithIcon>
@@ -77,9 +78,12 @@ const ExpandableSearchBar = (props) => {
                     <button onClick={onClickingSearch}>Search</button>
                 </>
                 :
-                <SearchExpander expandSearch={() => {
-                    expandSearch(true)
-                }}/>
+                <SearchExpander
+                    expandSearch={() => {
+                        expandSearch(true)
+                    }}
+                    displayValue={searchTerm}
+                />
             }
         </section>
     )

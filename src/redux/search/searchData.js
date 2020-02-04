@@ -8,7 +8,7 @@ import {
 import _ from "lodash";
 
 const initialState = {
-    searchTerm: null,
+    searchTerm: '',
     useAddress: false,
     address: {
         street: '',
