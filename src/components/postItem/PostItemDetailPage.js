@@ -3,7 +3,7 @@ import React from "react";
 import PostItemTitleBar from "../shared/PostItemTitleBar";
 import NextButton from "./NextButton";
 import "../../styles/Input.scss";
-import "../../styles/PostItemDetailPage.scss";
+import "./PostItemDetailPage.scss";
 import CategorySelect from "./CategorySelect";
 import ConditionSelect from "./ConditionSelect";
 import DescriptionTextInput from "./DescriptionTextInput";

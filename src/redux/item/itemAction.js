@@ -1,6 +1,5 @@
 import {getItemById} from "../../services/ItemService";
 
-export const UPDATE_CURRENT_ITEM = 'UPDATE_CURRENT_ITEM';
 export const FETCH_ITEM = 'FETCH_ITEM';
 export const RECEIVE_ITEM = 'RECEIVE_ITEM';
 

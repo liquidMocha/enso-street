@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import React, {useEffect, useState} from "react";
 import PostItemTitleBar from "../shared/PostItemTitleBar";
 import '../../styles/Input.scss';
-import '../../styles/ChooseLocationPage.scss';
+import './ChooseLocationPage.scss';
 import '../../styles/Spacing.scss';
 import {useHistory} from "react-router-dom";
 import {createLocation, getLocations} from "../../services/LocationService";

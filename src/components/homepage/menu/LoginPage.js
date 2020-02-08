@@ -1,5 +1,5 @@
 import React from "react";
-import '../../../styles/LoginPage.scss';
+import './LoginPage.scss';
 import LoginForm from "./LoginForm";
 import '../../../styles/Button.scss';
 import OAuthButtons from "./OAuthButtons";

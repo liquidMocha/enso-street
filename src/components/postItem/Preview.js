@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import React, {useState} from "react";
 import PostItemTitleBar from "../shared/PostItemTitleBar";
 import "../../styles/Image.scss";
-import "../../styles/Preview.scss";
+import "./Preview.scss";
 import {useHistory} from "react-router-dom";
 import ClipLoader from "react-spinners/ClipLoader";
 

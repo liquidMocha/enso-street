@@ -1,5 +1,5 @@
 import React from "react";
-import '../../styles/MenuButton.scss';
+import './MenuButton.scss';
 
 const MenuButton = (props) => {
 

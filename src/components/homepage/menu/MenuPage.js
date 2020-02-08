@@ -2,7 +2,7 @@ import React, {useEffect, useState} from "react";
 import {Link} from "react-router-dom";
 import TitleBar from "../../shared/TitleBar";
 import axios from "axios";
-import '../../../styles/MenuPage.scss';
+import './MenuPage.scss';
 import PropTypes from 'prop-types';
 
 const MenuPage = (props) => {

@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import axios from 'axios';
-import '../../../styles/SignUpPage.scss';
+import './SignUpPage.scss';
 import * as ReactGA from "react-ga";
 import OAuthButtons from "./OAuthButtons";
 import '../../../styles/Input.scss';
