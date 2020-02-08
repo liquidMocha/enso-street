@@ -1,0 +1,18 @@
+#item-detail-page {
+  .item-detail__detail-top {
+    border-bottom: 1px solid grey;
+    padding-bottom: 5px;
+  }
+
+  .item-detail__detail-bottom {
+    margin-top: 5px;
+  }
+
+  footer {
+    left: 0;
+    right: 0;
+    bottom: 0;
+    position: fixed;
+    padding: 10px;
+  }
+}

@@ -17,6 +17,7 @@ const SearchResults = () => {
                     return (
                         <SearchResultCard
                             key={result.id}
+                            id={result.id}
                             city={result.city}
                             imageUrl={result.imageUrl}
                             title={result.title}

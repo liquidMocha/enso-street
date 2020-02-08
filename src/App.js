@@ -11,6 +11,7 @@ import {BASE_URL} from "./services/Constants";
 import PostItemRouter from "./components/postItem/PostItemRouter";
 import MyItemsRouter from "./components/homepage/menu/MyItemsRouter";
 import HomePageRouter from "./components/homepage/HomePageRouter";
+import ItemDetail from "./components/search/ItemDetail";
 
 class App extends React.Component {
     render() {
@@ -26,6 +27,9 @@ class App extends React.Component {
                     </Route>
                     <Route path='/sign-up'>
                         <SignUpPage baseUrl={BASE_URL}/>
+                    </Route>
+                    <Route path='/item-detail/:itemId'>
+                        <ItemDetail/>
                     </Route>
                     <MyItemsRouter/>
                     <PostItemRouter/>

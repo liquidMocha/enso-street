@@ -1,10 +1,15 @@
 import PropTypes from 'prop-types';
 import React from "react";
 import './SearchResultCard.scss';
+import {useHistory} from "react-router-dom";
 
 const SearchResultCard = (props) => {
+    let history = useHistory();
+
     return (
-        <div className='search-result-card'>
+        <div className='search-result-card' onClick={() => {
+            history.push(`/item-detail/${props.id}`);
+        }}>
             <section className='search-result-card-image-container'>
                 <figure>
                     <img src={props.imageUrl} alt={props.title}/>
@@ -20,6 +25,7 @@ const SearchResultCard = (props) => {
 };
 
 SearchResultCard.propTypes = {
+    id: PropTypes.string.isRequired,
     imageUrl: PropTypes.string.isRequired,
     title: PropTypes.string.isRequired,
     dailyRentalPrice: PropTypes.number.isRequired,

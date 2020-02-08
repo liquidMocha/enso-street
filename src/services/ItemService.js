@@ -74,3 +74,7 @@ export const updateItem = (item) => {
         } : null
     }, {withCredentials: true});
 };
+
+export const getItemById = async (itemId) => {
+    return (await axios.get(`${BASE_URL}${itemsPath}/${itemId}`)).data;
+};
