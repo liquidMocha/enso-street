@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import React from 'react';
 import './LoginPage.scss';
 import LoginForm from './LoginForm';
@@ -6,15 +7,19 @@ import OAuthButtons from './OAuthButtons';
 import '../../../styles/Spacing.scss';
 import TitleBar from '../../shared/TitleBar';
 
-const LoginPage = (props) => (
+const LoginPage = ({ baseUrl }) => (
   <div className="column-layout">
     <TitleBar />
     <div className="login-page-title">Login</div>
-    <OAuthButtons baseUrl={props.baseUrl} />
+    <OAuthButtons baseUrl={baseUrl} />
     <div>OR</div>
-    <LoginForm baseUrl={props.baseUrl} />
+    <LoginForm baseUrl={baseUrl} />
     <div>Forget password</div>
   </div>
 );
+
+LoginPage.propTypes = {
+  baseUrl: PropTypes.string.isRequired,
+};
 
 export default LoginPage;
