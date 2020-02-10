@@ -1,44 +1,24 @@
-import axios from "axios";
+import axios from 'axios';
 
 const baseUrl = '/api';
 
-export const getLocations = () => {
-    return axios.get(baseUrl + '/locations', {withCredentials: true})
-        .then(response => {
-            return response.data;
-        })
-};
+export const getLocations = () => axios.get(`${baseUrl}/locations`, { withCredentials: true })
+  .then((response) => response.data);
 
-export const createLocation = (location) => {
-    return axios.put(baseUrl + '/locations', {location},
-        {withCredentials: true})
-        .then(response => {
-            return response.data;
-        })
-};
+export const createLocation = (location) => axios.put(`${baseUrl}/locations`, { location },
+  { withCredentials: true })
+  .then((response) => response.data);
 
-export const updateLocation = (location) => {
-    return axios.put(baseUrl + `/locations/${location.id}`, {location},
-        {withCredentials: true})
-        .then(response => {
-            return response.data;
-        });
-};
+export const updateLocation = (location) => axios.put(`${baseUrl}/locations/${location.id}`, { location },
+  { withCredentials: true })
+  .then((response) => response.data);
 
-export const autosuggestAddress = (searchTerm, {latitude, longitude}) => {
-    return axios.get(baseUrl + `/locations/autosuggest/${searchTerm}`, {
-        params: {latitude, longitude},
-        withCredentials: true
-    })
-        .then(response => {
-            return response.data;
-        });
-};
+export const autosuggestAddress = (searchTerm, { latitude, longitude }) => axios.get(`${baseUrl}/locations/autosuggest/${searchTerm}`, {
+  params: { latitude, longitude },
+  withCredentials: true,
+})
+  .then((response) => response.data);
 
-export const reverseGeocode = (coordinates) => {
-    return axios.get(baseUrl + `/locations/reverseGeocode`, {
-        params: {latitude: coordinates.latitude, longitude: coordinates.longitude}
-    }).then(response => {
-        return response.data;
-    });
-};
+export const reverseGeocode = (coordinates) => axios.get(`${baseUrl}/locations/reverseGeocode`, {
+  params: { latitude: coordinates.latitude, longitude: coordinates.longitude },
+}).then((response) => response.data);

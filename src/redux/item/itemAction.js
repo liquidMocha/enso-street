@@ -1,24 +1,16 @@
-import {getItemById} from "../../services/ItemService";
+import { getItemById } from '../../services/ItemService';
 
 export const FETCH_ITEM = 'FETCH_ITEM';
 export const RECEIVE_ITEM = 'RECEIVE_ITEM';
 
-export const fetchItemAction = (itemId) => ({
-    type: FETCH_ITEM,
-    itemId
-});
+export const fetchItemAction = (itemId) => ({ type: FETCH_ITEM, itemId });
 
-export const receiveItemAction = (item) => ({
-    type: RECEIVE_ITEM,
-    item
-});
+export const receiveItemAction = (item) => ({ type: RECEIVE_ITEM, item });
 
-export const getItem = (itemId) => {
-    return dispatch => {
-        dispatch(fetchItemAction(itemId));
+export const getItem = (itemId) => (dispatch) => {
+  dispatch(fetchItemAction(itemId));
 
-        return getItemById(itemId).then(
-            item => dispatch(receiveItemAction(item))
-        );
-    }
+  return getItemById(itemId).then(
+    (item) => dispatch(receiveItemAction(item)),
+  );
 };

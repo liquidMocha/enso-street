@@ -1,14 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import PostItemTitleBar from '../shared/PostItemTitleBar';
 import NextButton from './NextButton';
-import InputWithError from '../shared/InputWithError';
 import PostImageInput from './PostImageInput';
 import ProgressBar from './ProgressBar';
 import '../../styles/Input.scss';
 import '../../styles/Button.scss';
 import '../../styles/App.scss';
 import '../../styles/Image.scss';
+import InputWithError from '../shared/InputWithError';
+import PostItemTitleBar from '../shared/PostItemTitleBar';
 
 const PostItemPage = ({
   onTitleChange, item, useMyPhotoPath, onLocalImageLoad,
