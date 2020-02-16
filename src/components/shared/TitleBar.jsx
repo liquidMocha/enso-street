@@ -17,12 +17,17 @@ const TitleBar = () => {
         Enso Street
       </h1>
       <div id="title-bar__right-section">
-        <FontAwesomeIcon icon={faShoppingCart} />
+        <FontAwesomeIcon
+          icon={faShoppingCart}
+          onClick={() => {
+            history.push('my-cart');
+          }}
+        />
         <FontAwesomeIcon
           icon={faBars}
           className="menu-button-container"
           onClick={() => {
-            history.push('/menu');
+            history.push('menu');
           }}
         />
       </div>

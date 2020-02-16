@@ -12,6 +12,7 @@ import MyItemsRouter from './components/homepage/menu/MyItemsRouter';
 import HomePageRouter from './components/homepage/HomePageRouter';
 import ItemDetail from './components/search/ItemDetail';
 import { isUserLoggedIn } from './services/UserService';
+import MyCart from './components/cart/MyCart';
 
 const App = () => (
   <BrowserRouter>
@@ -28,6 +29,9 @@ const App = () => (
       </Route>
       <Route path="/item-detail/:itemId">
         <ItemDetail />
+      </Route>
+      <Route path="/my-cart">
+        <MyCart />
       </Route>
       <MyItemsRouter />
       <PostItemRouter />

@@ -5,6 +5,7 @@ import { useParams } from 'react-router-dom';
 import TowLineDollarDisplay from './TowLineDollarDisplay';
 import TitleBar from '../shared/TitleBar';
 import { getItem } from '../../redux/item/itemAction';
+import { addToCart } from '../../redux/cart/cartAction';
 
 const ItemDetail = () => {
   const { itemId } = useParams();
@@ -48,7 +49,7 @@ const ItemDetail = () => {
             </div>
           </section>
           <footer>
-            <button>
+            <button type="button" onClick={dispatch(addToCart(itemId))}>
               Add to cart
             </button>
           </footer>
