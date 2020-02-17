@@ -24,11 +24,11 @@
 
   #title-bar__right-section {
     display: flex;
-    font-size: 21px;
+    font-size: 25px;
     justify-self: end;
 
-    svg {
-      margin-left: 20px;
+    > svg {
+      margin-left: 15px;
     }
   }
 }

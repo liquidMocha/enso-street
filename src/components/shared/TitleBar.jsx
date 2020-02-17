@@ -3,9 +3,43 @@ import './TitleBar.scss';
 import { useHistory } from 'react-router-dom';
 import { faBars, faShoppingCart } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { useSelector } from 'react-redux';
+
+function cartWithCount(history, count) {
+  return (
+    <span
+      className="fa-layers fa-fw"
+      onClick={() => {
+        history.push('my-cart');
+      }}
+    >
+      <FontAwesomeIcon icon={faShoppingCart} />
+      <span
+        className="fa-layers-counter fa-layers-top-right fa-lg"
+        style={{ background: 'Tomato' }}
+      >
+        {count}
+      </span>
+    </span>
+  );
+}
 
 const TitleBar = () => {
   const history = useHistory();
+  const count = useSelector(
+    (state) => {
+      const itemBatches = [...state.cart.cart.values()];
+      if (itemBatches.length === 0) {
+        return 0;
+      }
+      if (itemBatches.length === 1) {
+        return itemBatches[0].length;
+      }
+
+      return itemBatches.reduce((a, b) => a.length + b.length, 0);
+    },
+  );
+
   return (
     <div className="fixed-title-bar">
       <h1
@@ -17,12 +51,16 @@ const TitleBar = () => {
         Enso Street
       </h1>
       <div id="title-bar__right-section">
-        <FontAwesomeIcon
-          icon={faShoppingCart}
-          onClick={() => {
-            history.push('my-cart');
-          }}
-        />
+        {count === 0 ? (
+          <FontAwesomeIcon
+            icon={faShoppingCart}
+            onClick={() => {
+              history.push('my-cart');
+            }}
+          />
+        )
+          : (cartWithCount(history, count))}
+
         <FontAwesomeIcon
           icon={faBars}
           className="menu-button-container"
