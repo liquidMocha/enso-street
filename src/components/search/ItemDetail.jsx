@@ -1,7 +1,8 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import './ItemDetail.scss';
-import { useParams, useHistory } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
+import { toast } from 'react-toastify';
 import TowLineDollarDisplay from './TowLineDollarDisplay';
 import TitleBar from '../shared/TitleBar';
 import { getItem } from '../../redux/item/itemAction';
@@ -10,7 +11,6 @@ import { addToCart } from '../../redux/cart/cartAction';
 const ItemDetail = () => {
   const { itemId } = useParams();
   const dispatch = useDispatch();
-  const history = useHistory();
 
   useEffect(() => {
     dispatch(getItem(itemId));
@@ -20,7 +20,7 @@ const ItemDetail = () => {
 
   const onClickingAddToCart = (itemToAdd) => {
     dispatch(addToCart(itemToAdd));
-    history.goBack();
+    toast.success('Added to cart');
   };
 
   return (
