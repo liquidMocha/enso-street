@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import './ItemDetail.scss';
-import { useParams } from 'react-router-dom';
+import { useParams, useHistory } from 'react-router-dom';
 import TowLineDollarDisplay from './TowLineDollarDisplay';
 import TitleBar from '../shared/TitleBar';
 import { getItem } from '../../redux/item/itemAction';
@@ -10,12 +10,18 @@ import { addToCart } from '../../redux/cart/cartAction';
 const ItemDetail = () => {
   const { itemId } = useParams();
   const dispatch = useDispatch();
+  const history = useHistory();
 
   useEffect(() => {
     dispatch(getItem(itemId));
   }, []);
 
   const currentItem = useSelector((state) => state.item.currentItem);
+
+  const onClickingAddToCart = (itemToAdd) => {
+    dispatch(addToCart(itemToAdd));
+    history.goBack();
+  };
 
   return (
     <div id="item-detail-page">
@@ -49,7 +55,10 @@ const ItemDetail = () => {
             </div>
           </section>
           <footer>
-            <button type="button" onClick={dispatch(addToCart(itemId))}>
+            <button
+              type="button"
+              onClick={() => onClickingAddToCart(itemId)}
+            >
               Add to cart
             </button>
           </footer>
