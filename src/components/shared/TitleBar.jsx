@@ -5,12 +5,17 @@ import { faBars, faShoppingCart } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useSelector } from 'react-redux';
 
+
+function navigateToCart(history) {
+  history.push('/my-cart');
+}
+
 function cartWithCount(history, count) {
   return (
     <span
       className="fa-layers fa-fw"
       onClick={() => {
-        history.push('my-cart');
+        navigateToCart(history);
       }}
     >
       <FontAwesomeIcon icon={faShoppingCart} />
@@ -46,7 +51,7 @@ const TitleBar = () => {
           <FontAwesomeIcon
             icon={faShoppingCart}
             onClick={() => {
-              history.push('my-cart');
+              navigateToCart(history);
             }}
           />
         )
