@@ -4,7 +4,6 @@ import '../../styles/Input.scss';
 import '../../styles/HomePage.scss';
 import { useDispatch } from 'react-redux';
 import TitleBar from '../shared/TitleBar';
-import { reverseGeocode } from '../../services/LocationService';
 import { UPDATE_LOCATION_ACTION } from '../../redux/current_location/CurrentLocaitonActions';
 import CategoryCard from './CategoryCard';
 import ExpandableSearchBar from '../shared/ExpandableSearchBar';
@@ -22,8 +21,7 @@ const HomePage = () => {
       dispatch(UPDATE_SEARCH_COORDINATES_ACTION({ latitude, longitude }));
       dispatch(UPDATE_LOCATION_ACTION({ latitude, longitude }));
 
-      const locationLabel = await reverseGeocode({ latitude, longitude });
-      setDisplayLocation(locationLabel);
+      setDisplayLocation('Using Current Location');
     }), () => {
     });
   }, []);

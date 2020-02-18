@@ -18,7 +18,3 @@ export const autosuggestAddress = (searchTerm, { latitude, longitude }) => axios
   withCredentials: true,
 })
   .then((response) => response.data);
-
-export const reverseGeocode = (coordinates) => axios.get(`${baseUrl}/locations/reverseGeocode`, {
-  params: { latitude: coordinates.latitude, longitude: coordinates.longitude },
-}).then((response) => response.data);
