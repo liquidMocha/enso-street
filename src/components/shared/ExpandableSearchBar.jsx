@@ -15,6 +15,7 @@ import {
 } from '../../redux/search/searchActions';
 import * as SearchService from '../../services/SearchService';
 import './ExpandableSearchBar.scss';
+import ColoredButton from './ColoredButton';
 
 const ExpandableSearchBar = ({ displayLocation }) => {
   const [searchExpanded, expandSearch] = useState(false);
@@ -77,7 +78,7 @@ const ExpandableSearchBar = ({ displayLocation }) => {
               <FontAwesomeIcon icon={faMapMarkerAlt} />
               <LocationAutosuggest onAddressChange={onAddressChange} address={displayLocation} />
             </InputWithIcon>
-            <button type="button" onClick={onClickingSearch}>Search</button>
+            <ColoredButton buttonText="Search" mode="dark" onClick={onClickingSearch} />
           </>
         )
         : (

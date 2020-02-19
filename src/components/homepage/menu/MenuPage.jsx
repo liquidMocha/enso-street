@@ -4,6 +4,7 @@ import './MenuPage.scss';
 import PropTypes from 'prop-types';
 import TitleBar from '../../shared/TitleBar';
 import { logout } from '../../../services/UserService';
+import ColoredButton from '../../shared/ColoredButton';
 
 const MenuPage = (props) => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -28,9 +29,7 @@ const MenuPage = (props) => {
       return (
         <section>
           <Link to="post-item" id="post-item-button">
-            <button type="button">
-              Post Items
-            </button>
+            <ColoredButton buttonText="Post Items" mode="light" />
           </Link>
           <div id="menu-page-button-group">
             <Link to="my-items" id="post-item-button">
@@ -48,14 +47,10 @@ const MenuPage = (props) => {
     return (
       <div id="menu-page-button-group">
         <Link to="login" id="login-button">
-          <button type="button">
-            Log in
-          </button>
+          <ColoredButton buttonText="Log in" mode="light" />
         </Link>
         <Link to="sign-up" id="sign-up-button">
-          <button type="button">
-            Sign up
-          </button>
+          <ColoredButton buttonText="Sign Up" mode="light" />
         </Link>
       </div>
     );
@@ -81,7 +76,7 @@ const MenuPage = (props) => {
 };
 
 MenuPage.propTypes = {
-  isLoggedIn: PropTypes.func.isRequired
+  isLoggedIn: PropTypes.func.isRequired,
 };
 
 export default MenuPage;

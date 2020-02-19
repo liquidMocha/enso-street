@@ -7,6 +7,7 @@ import TowLineDollarDisplay from './TowLineDollarDisplay';
 import TitleBar from '../shared/TitleBar';
 import { getItem } from '../../redux/item/itemAction';
 import { addToCart } from '../../redux/cart/cartAction';
+import ColoredButton from '../shared/ColoredButton';
 
 const ItemDetail = () => {
   const { itemId } = useParams();
@@ -55,12 +56,11 @@ const ItemDetail = () => {
             </div>
           </section>
           <footer>
-            <button
-              type="button"
+            <ColoredButton
+              buttonText="Add to cart"
+              mode="dark"
               onClick={() => onClickingAddToCart(itemId)}
-            >
-              Add to cart
-            </button>
+            />
           </footer>
         </>
       ) : <div>Fetching</div>}

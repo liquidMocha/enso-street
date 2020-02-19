@@ -10,6 +10,7 @@ import { createLocation, getLocations } from '../../services/LocationService';
 import PostItemTitleBar from '../shared/PostItemTitleBar';
 import Toggle from './Toggle';
 import LocationAutosuggest from '../shared/LocationAutosuggest';
+import ColoredButton from '../shared/ColoredButton';
 
 const ChooseLocationPage = ({
   onLocationChange,
@@ -97,7 +98,7 @@ const ChooseLocationPage = ({
                 onChange={((event) => setNickName(event.target.value))}
               />
             </div>
-            <button type="button" onClick={handleClickConfirm}>Confirm</button>
+            <ColoredButton buttonText="Confirm" mode="dark" onClick={handleClickConfirm} />
           </div>
         )
         : null}
