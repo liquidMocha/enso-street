@@ -7,6 +7,7 @@ import OAuthButtons from './OAuthButtons';
 import '../../../styles/Input.scss';
 import InputWithError from '../../shared/InputWithError';
 import TitleBar from '../../shared/TitleBar';
+import ColoredButton from '../../shared/ColoredButton';
 
 function SignUpPage({ baseUrl }) {
   const [email, setEmail] = useState('');
@@ -80,7 +81,12 @@ function SignUpPage({ baseUrl }) {
             value={password}
           />
         </div>
-        <button id="sign-up-submit-button" type="button" onClick={onSubmitSignUpForm}>Sign Up</button>
+        <ColoredButton
+          id="sign-up-submit-button"
+          buttonText="Sign Up"
+          onClick={onSubmitSignUpForm}
+          mode="dark"
+        />
       </form>
       {signUpFailed ? 'sign up failed' : null}
       <div id="agree-terms-claim">

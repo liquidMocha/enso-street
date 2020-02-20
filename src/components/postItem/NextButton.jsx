@@ -1,12 +1,11 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
+import ColoredButton from '../shared/ColoredButton';
 
 const NextButton = ({ destination }) => (
   <Link to={destination}>
-    <button type="button" id="next-button">
-      Next
-    </button>
+    <ColoredButton buttonText="Next" id="next-button" />
   </Link>
 );
 

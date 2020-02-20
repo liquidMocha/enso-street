@@ -9,6 +9,7 @@ import DeliveryToggle from './DeliveryToggle';
 import DeliveryFeeInputSection from './DeliveryFeeInputSection';
 import ProgressBar from './ProgressBar';
 import LocationInput from './LocationInput';
+import ColoredButton from '../shared/ColoredButton';
 
 const PriceAndDelivery = ({
   item,
@@ -50,9 +51,7 @@ const PriceAndDelivery = ({
       )
       : null}
     <Link to="/preview">
-      <button id="preview-button">
-        Preview
-      </button>
+      <ColoredButton buttonText="Preview" mode="dark" />
     </Link>
   </div>
 );

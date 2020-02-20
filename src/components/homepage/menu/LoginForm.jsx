@@ -2,6 +2,7 @@ import PropTypes from 'prop-types';
 import React, { useState } from 'react';
 import axios from 'axios';
 import InputWithError from '../../shared/InputWithError';
+import ColoredButton from '../../shared/ColoredButton';
 
 const LoginForm = (props) => {
   const [loginSuccessful, setLoginSuccessful] = useState(false);
@@ -51,7 +52,7 @@ const LoginForm = (props) => {
           value={password}
         />
       </div>
-      <button id="login-button" type="button" onClick={onLogin}>Log In</button>
+      <ColoredButton id="login-button" buttonText="Log In" mode="dark" onClick={onLogin} />
       {!loginSuccessful && loginClicked ? 'login failed' : null}
       {loginSuccessful && loginClicked ? 'login successful' : null}
     </form>

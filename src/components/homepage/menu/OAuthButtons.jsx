@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import GoogleLogin from 'react-google-login';
 import React, { useState } from 'react';
 import axios from 'axios';
-import '../../../styles/Button.scss';
+import ColoredButton from '../../shared/ColoredButton';
 
 const OAuthButtons = ({ baseUrl }) => {
   const [loggedInUser, setLoggedInUser] = useState('');
@@ -37,9 +37,7 @@ const OAuthButtons = ({ baseUrl }) => {
         onFailure={onGoogleSignInFailure}
         cookiePolicy="single_host_origin"
         render={(renderProps) => (
-          <button type="button" onClick={renderProps.onClick} disabled={renderProps.disabled}>
-            Continue with Google
-          </button>
+          <ColoredButton buttonText="Continue with Google" onClick={renderProps.onClick} disabled={renderProps.disabled} />
         )}
       />
       {loggedInUser || null}

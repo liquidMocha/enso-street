@@ -5,6 +5,7 @@ import PostItemTitleBar from '../shared/PostItemTitleBar';
 import InputWithError from '../shared/InputWithError';
 import { updateLocation } from '../../services/LocationService';
 import LocationAutosuggest from '../shared/LocationAutosuggest';
+import ColoredButton from '../shared/ColoredButton';
 
 const EditAddressPage = ({ location, pathAfterConfirm }) => {
   const initialAddress = location;
@@ -49,7 +50,7 @@ const EditAddressPage = ({ location, pathAfterConfirm }) => {
       <InputWithError type="text" value={nickname} onChange={setNickName} id="edit-address-page-nickname-input" shouldError={() => nickname === ''} />
       <label>Address*</label>
       <LocationAutosuggest onAddressChange={onAddressChange} address={locationAutosuggestInitialValue()} />
-      <button type="button" onClick={handleClickConfirm}>Confirm</button>
+      <ColoredButton buttonText="Confirm" mode="dark" onClick={handleClickConfirm} />
     </div>
   );
 };
