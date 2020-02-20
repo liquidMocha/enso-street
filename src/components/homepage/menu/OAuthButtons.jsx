@@ -37,7 +37,7 @@ const OAuthButtons = ({ baseUrl }) => {
         onFailure={onGoogleSignInFailure}
         cookiePolicy="single_host_origin"
         render={(renderProps) => (
-          <ColoredButton buttonText="Continue with Google" onClick={renderProps.onClick} disabled={renderProps.disabled} />
+          <ColoredButton buttonText="Continue with Google" onClick={renderProps.onClick} disabled={renderProps.disabled} mode="dark" />
         )}
       />
       {loggedInUser || null}

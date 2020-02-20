@@ -2,12 +2,15 @@ import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import './MenuPage.scss';
 import PropTypes from 'prop-types';
+import { useDispatch } from 'react-redux';
 import TitleBar from '../../shared/TitleBar';
 import { logout } from '../../../services/UserService';
 import ColoredButton from '../../shared/ColoredButton';
+import { logoutAction } from '../../../redux/reducers/rootReducer';
 
 const MenuPage = (props) => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const dispatch = useDispatch();
 
   const isUserLoggedIn = async () => {
     setIsLoggedIn(await props.isLoggedIn());
@@ -18,6 +21,7 @@ const MenuPage = (props) => {
   }, []);
 
   const onClickLogout = () => {
+    dispatch(logoutAction());
     logout()
       .then(() => {
         setIsLoggedIn(false);
