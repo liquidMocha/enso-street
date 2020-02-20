@@ -6,7 +6,20 @@ const initialState = {
   fetchingCurrentItem: false,
 };
 
-export const item = (state = initialState, action) => {
+function mapToConditionText(condition) {
+  if (condition === 1) {
+    return 'Like New';
+  }
+  if (condition === 2) {
+    return 'Normal Wear';
+  }
+  if (condition === 3) {
+    return 'Functional';
+  }
+  return '';
+}
+
+export default (state = initialState, action) => {
   const newState = _.cloneDeep(state);
 
   switch (action.type) {
@@ -14,7 +27,12 @@ export const item = (state = initialState, action) => {
       return { ...newState, fetchingCurrentItem: true };
     }
     case RECEIVE_ITEM: {
-      return { currentItem: action.item, fetchingCurrentItem: false };
+      const conditionText = mapToConditionText(action.item.condition);
+
+      return {
+        currentItem: { ...action.item, condition: conditionText },
+        fetchingCurrentItem: false,
+      };
     }
     default: {
       return state;
