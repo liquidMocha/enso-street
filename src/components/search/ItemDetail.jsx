@@ -3,7 +3,9 @@ import { useDispatch, useSelector } from 'react-redux';
 import './ItemDetail.scss';
 import { useParams } from 'react-router-dom';
 import { toast } from 'react-toastify';
-import TowLineDollarDisplay from './TowLineDollarDisplay';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faLuggageCart, faTruckPickup } from '@fortawesome/free-solid-svg-icons';
+import TwoLineDollarDisplay from './TwoLineDollarDisplay';
 import TitleBar from '../shared/TitleBar';
 import { getItem } from '../../redux/item/itemAction';
 import { addToCart } from '../../redux/cart/cartAction';
@@ -34,24 +36,46 @@ const ItemDetail = () => {
           </figure>
           <section className="item-detail__detail-top">
             <h1>{currentItem.title}</h1>
-            <section>
-              <TowLineDollarDisplay
-                amount={currentItem.rentalDailyPrice}
-                label="Per day"
-              />
-              <TowLineDollarDisplay
+            <div>
+              <h3>
+                (
+                {currentItem.condition}
+                )
+              </h3>
+            </div>
+            <section className="item-detail__price-section">
+              <TwoLineDollarDisplay
                 amount={currentItem.deposit}
                 label="Deposit"
+              />
+              <TwoLineDollarDisplay
+                amount={currentItem.rentalDailyPrice}
+                label="Per day"
               />
             </section>
           </section>
           <section className="item-detail__detail-bottom">
+            {currentItem.canBeDelivered
+              ? (
+                <section className="item-detail__delivery-price">
+                  <FontAwesomeIcon icon={faLuggageCart} />
+                  Can be delivered: $
+                  {currentItem.deliveryStarting}
+                  {' '}
+                  (3 miles) + $
+                  {currentItem.deliveryAdditional}
+                  /mile
+                </section>
+              )
+              : (
+                <section>
+                  <FontAwesomeIcon icon={faTruckPickup} />
+                  {' '}
+                  Pickup Only
+                </section>
+              )}
             <div>
-              <label>Condition</label>
-              <h3>{currentItem.condition}</h3>
-            </div>
-            <div>
-              <label>Description</label>
+              <h5>Description</h5>
               <p>{currentItem.description}</p>
             </div>
           </section>

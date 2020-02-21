@@ -1,0 +1,8 @@
+.two-line-dollar-display {
+  display: flex;
+  flex-direction: column;
+
+  span.two-line-dollar-display__dollar-amount {
+    font-weight: bold;
+  }
+}
