@@ -61,7 +61,7 @@ const TitleBar = () => {
           icon={faBars}
           className="menu-button-container"
           onClick={() => {
-            history.push('menu');
+            history.push('/menu');
           }}
         />
       </div>
