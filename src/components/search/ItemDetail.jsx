@@ -14,9 +14,11 @@ import ColoredButton from '../shared/ColoredButton';
 const ItemDetail = () => {
   const { itemId } = useParams();
   const dispatch = useDispatch();
+  const coordinates = useSelector((state) => state.currentLocation);
+  const distance = useSelector((state) => state.item.distance) || 0;
 
   useEffect(() => {
-    dispatch(getItem(itemId));
+    dispatch(getItem(itemId, coordinates));
   }, []);
 
   const currentItem = useSelector((state) => state.item.currentItem);
@@ -55,6 +57,9 @@ const ItemDetail = () => {
             </section>
           </section>
           <section className="item-detail__detail-bottom">
+            {distance}
+            {' '}
+            miles
             {currentItem.canBeDelivered
               ? (
                 <section className="item-detail__delivery-price">

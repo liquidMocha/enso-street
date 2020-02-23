@@ -18,3 +18,12 @@ export const autosuggestAddress = (searchTerm, { latitude, longitude }) => axios
   withCredentials: true,
 })
   .then((response) => response.data);
+
+export const getDistance = (start, end) => axios.get(`${baseUrl}/locations/distance`, {
+  params: {
+    startLatitude: start.latitude,
+    startLongitude: start.longitude,
+    endLatitude: end.latitude,
+    endLongitude: end.longitude,
+  },
+}).then((response) => response.data.distance);

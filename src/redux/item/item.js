@@ -1,5 +1,5 @@
 import _ from 'lodash';
-import { FETCH_ITEM, RECEIVE_ITEM } from './itemAction';
+import { FETCH_ITEM, RECEIVE_ITEM, UPDATE_ITEM_DISTANCE } from './itemAction';
 
 const initialState = {
   currentItem: null,
@@ -33,6 +33,9 @@ export default (state = initialState, action) => {
         currentItem: { ...action.item, condition: conditionText },
         fetchingCurrentItem: false,
       };
+    }
+    case UPDATE_ITEM_DISTANCE: {
+      return { ...newState, distance: action.distance };
     }
     default: {
       return state;
