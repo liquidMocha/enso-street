@@ -15,7 +15,7 @@ const ItemDetail = () => {
   const { itemId } = useParams();
   const dispatch = useDispatch();
   const coordinates = useSelector((state) => state.currentLocation);
-  const distance = useSelector((state) => state.item.distance) || 0;
+  const distance = useSelector((state) => state.item.distance) || 0.0;
 
   useEffect(() => {
     dispatch(getItem(itemId, coordinates));
@@ -57,7 +57,7 @@ const ItemDetail = () => {
             </section>
           </section>
           <section className="item-detail__detail-bottom">
-            {distance}
+            {distance.toFixed(1)}
             {' '}
             miles
             {currentItem.canBeDelivered

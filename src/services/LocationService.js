@@ -26,4 +26,4 @@ export const getDistance = (start, end) => axios.get(`${baseUrl}/locations/dista
     endLatitude: end.latitude,
     endLongitude: end.longitude,
   },
-}).then((response) => response.data.distance);
+}).then((response) => Number(response.data.distance));
