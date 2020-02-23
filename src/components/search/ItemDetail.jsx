@@ -4,7 +4,7 @@ import './ItemDetail.scss';
 import { useParams } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faLuggageCart, faTruckPickup } from '@fortawesome/free-solid-svg-icons';
+import { faMapMarkerAlt, faLuggageCart, faTruckPickup } from '@fortawesome/free-solid-svg-icons';
 import TwoLineDollarDisplay from './TwoLineDollarDisplay';
 import TitleBar from '../shared/TitleBar';
 import { getItem } from '../../redux/item/itemAction';
@@ -57,9 +57,12 @@ const ItemDetail = () => {
             </section>
           </section>
           <section className="item-detail__detail-bottom">
-            {distance.toFixed(1)}
-            {' '}
-            miles
+            <section>
+              <FontAwesomeIcon icon={faMapMarkerAlt} />
+              {distance.toFixed(1)}
+              {' '}
+              miles
+            </section>
             {currentItem.canBeDelivered
               ? (
                 <section className="item-detail__delivery-price">
