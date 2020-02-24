@@ -68,10 +68,10 @@ const ItemDetail = () => {
                 <section className="item-detail__delivery-price">
                   <FontAwesomeIcon icon={faLuggageCart} />
                   Can be delivered: $
-                  {currentItem.deliveryStarting}
+                  {(currentItem.deliveryStarting).toFixed(0)}
                   {' '}
                   (3 miles) + $
-                  {currentItem.deliveryAdditional}
+                  {(currentItem.deliveryAdditional).toFixed(0)}
                   /mile
                 </section>
               )
