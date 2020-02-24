@@ -6,14 +6,14 @@ const TwoLineDollarDisplay = ({ amount, label }) => (
   <div className="two-line-dollar-display">
     <span className="two-line-dollar-display__dollar-amount">
       $
-      {amount}
+      {amount.toFixed(0)}
     </span>
     <h5>{label}</h5>
   </div>
 );
 
 TwoLineDollarDisplay.propTypes = {
-  amount: PropTypes.string.isRequired,
+  amount: PropTypes.number.isRequired,
   label: PropTypes.string.isRequired,
 };
 

@@ -16,7 +16,7 @@ const DollarInput = ({ onClick, value, onChange }) => (
 
 DollarInput.propTypes = {
   onClick: PropTypes.func,
-  value: PropTypes.string.isRequired,
+  value: PropTypes.number.isRequired,
   onChange: PropTypes.func.isRequired,
 };
 

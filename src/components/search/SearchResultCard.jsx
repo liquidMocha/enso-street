@@ -24,7 +24,7 @@ const SearchResultCard = ({
       <section className="search-result-card__details">
         <div>
           $
-          {dailyRentalPrice}
+          {dailyRentalPrice.toFixed(0)}
           /day
         </div>
         <div className="search-result-card__details-location">
