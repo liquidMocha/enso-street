@@ -4,6 +4,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSave, faTrashAlt } from '@fortawesome/free-regular-svg-icons';
 import DollarInput from '../../shared/DollarInput';
 import './MyItemCard.scss';
+import Checkbox from '../../shared/Checkbox';
 
 const MyItemCard = ({
   item, onCardClick, onChangeRentalDailyPrice, onChangeSearchability, onDelete, onSave,
@@ -35,12 +36,11 @@ const MyItemCard = ({
             <h5>per day</h5>
           </div>
           <span className="my-item-card-show-on-site" onClick={((event) => event.stopPropagation())}>
-            <input
-              type="checkbox"
+            <Checkbox
               checked={item.searchable || false}
-              onChange={(() => {
+              onChange={() => {
                 onChangeSearchability(item.id);
-              })}
+              }}
             />
             Show on site
           </span>
