@@ -13,9 +13,16 @@ const MyCart = () => {
     dispatch(refreshCart());
   }, []);
 
-  const buildOwnerSections = () => ownerItemBatch.map(
-    (value, key) => <OwnerSection key={key.email} owner={key} items={value} />,
-  );
+  const buildOwnerSections = () => {
+    const sections = [];
+    ownerItemBatch.forEach((value, key) => {
+      sections.push(
+        <OwnerSection key={key.email} owner={key} items={value} />,
+      );
+    });
+
+    return sections;
+  };
 
   return (
     <div className="my-cart">
