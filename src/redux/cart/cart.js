@@ -1,5 +1,5 @@
 import _ from 'lodash';
-import { UPDATE_CART } from './cartAction';
+import { ADD_TO_CART_SELECTION, UPDATE_CART } from './cartAction';
 
 const initialState = {
   cart: new Map(),
@@ -15,6 +15,14 @@ export const cart = (state = initialState, action) => {
         newCart.set(ownerBatch.owner, ownerBatch.items);
       });
       return { ...newState, cart: newCart };
+    }
+    case ADD_TO_CART_SELECTION: {
+      newState.cart.forEach((items) => {
+        const addedItem = items.find((item) => item.id === action.itemId);
+        addedItem.selected = true;
+      });
+
+      return newState;
     }
     default: {
       return state;
