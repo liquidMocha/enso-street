@@ -3,6 +3,9 @@ workflows:
   deploy-to-heroku:
     jobs:
       - build
+      - wait-for-approval:
+          type: approval
+          requires: build
       - heroku/deploy-via-git:
           requires:
             - build
