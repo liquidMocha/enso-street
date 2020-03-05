@@ -9,7 +9,7 @@ workflows:
             - build
       - heroku/deploy-via-git:
           requires:
-            - build
+            - wait-for-approval
 
 version: 2.1
 orbs:
