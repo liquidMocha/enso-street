@@ -8,14 +8,16 @@ workflows:
           requires:
             - build
       - heroku/deploy-via-git:
+          name: development-deployment
           app-name: enso-street
           requires:
             - wait-for-approval
       - wait-for-production-approval:
           type: approval
           requires:
-            - heroku/deploy-via-git
+            - development-deployment
       - heroku/deploy-via-git:
+          name: production-deployment
           app-name: enso-street-web-ui-prod
           requires:
             - wait-for-production-approval
