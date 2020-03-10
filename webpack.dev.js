@@ -1,26 +1,27 @@
-const merge = require('webpack-merge');
-const common = require('./webpack.common.js');
 const webpack = require('webpack');
+const merge = require('webpack-merge');
+const TerserPlugin = require('terser-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
+const common = require('./webpack.common.js');
 
 module.exports = merge(common, {
-    mode: 'development',
-    devtool: 'inline-source-map',
-    devServer: {
-        historyApiFallback: true,
-        contentBase: './dist',
-        port: 3000,
-        https: true,
-        proxy: {
-            '/api/**':
-                {
-                    target: 'https://localhost:8080',
-                    secure: false
-                }
-        }
-    },
-    plugins: [
-        new webpack.DefinePlugin({
-            'process.env.REACT_APP_SERVER_URL': JSON.stringify('https://localhost:8080')
-        })
-    ]
+  mode: 'production',
+  optimization: {
+    minimize: true,
+    minimizer: [new TerserPlugin(), new OptimizeCSSAssetsPlugin({})],
+  },
+  plugins: [
+    new MiniCssExtractPlugin({
+      filename: '[name].css',
+      chunkFilename: '[id].css',
+    }),
+    new webpack.DefinePlugin({
+        'process.env.REACT_APP_SERVER_URL': JSON.stringify("https://enso-street-backend.herokuapp.com"),
+        'process.env.REACT_APP_googleClientId': JSON.stringify("600326466228-h28741e5k0gksv3440nnn688rnl967bb.apps.googleusercontent.com")
+    })
+  ],
+  module: {
+    rules: [],
+  },
 });

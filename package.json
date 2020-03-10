@@ -75,9 +75,9 @@
     "workbox-webpack-plugin": "4.3.1"
   },
   "scripts": {
-    "startDev": "webpack-dev-server --open --config webpack.dev.js",
+    "startDev": "webpack-dev-server --open --config webpack.local.js",
     "startHttpDev": "webpack-dev-server --open --config webpack-http.dev.js",
-    "build": "webpack --config webpack.prod.js",
+    "build": "webpack --config webpack.dev.js",
     "test": "node scripts/test.js",
     "start": "node Server.js"
   },
