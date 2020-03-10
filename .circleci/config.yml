@@ -11,6 +11,14 @@ workflows:
           app-name: enso-street
           requires:
             - wait-for-approval
+      - wait-for-production-approval:
+          type: approval
+          requires:
+            - heroku/deploy-via-git
+      - heroku/deploy-via-git:
+          app-name: enso-street-web-ui-prod
+          requires:
+            - wait-for-production-approval
 
 version: 2.1
 orbs:
