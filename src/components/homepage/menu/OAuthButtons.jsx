@@ -8,6 +8,8 @@ const OAuthButtons = ({ baseUrl }) => {
   const [loggedInUser, setLoggedInUser] = useState('');
   const [userImage, setUserImage] = useState('');
 
+  console.log(`google client id: ${process.env.REACT_APP_googleClientId}`);
+
   const onGoogleSignIn = (googleUser) => {
     console.log(googleUser);
     const profile = googleUser.getBasicProfile();
