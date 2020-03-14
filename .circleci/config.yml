@@ -2,11 +2,11 @@ workflows:
   version: 2.1
   deploy-to-heroku:
     jobs:
-      - tests
+      - build
       - wait-for-approval:
           type: approval
           requires:
-            - tests
+            - build
       - heroku/deploy-via-git:
           name: development-deployment
           app-name: enso-street
@@ -27,7 +27,7 @@ orbs:
   heroku: circleci/heroku@1.0.1
 
 jobs:
-  tests:
+  build:
     working_directory: ~/enso-street
     docker:
       - image: circleci/node:8-browsers
