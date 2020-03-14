@@ -1,10 +1,18 @@
 const express = require('express');
 const path = require('path');
 const proxy = require('http-proxy-middleware');
+const fs = require('fs');
 
 const port = process.env.PORT || 3000;
 const app = express();
+
+fs.writeFileSync(
+  `${__dirname}/config/env.js`,
+  `var config = ${process.env.CLIENT_ENV};`,
+);
+
 app.use(express.static(__dirname));
+app.use(express.static(`${__dirname}/config`));
 
 console.log(`server url: ${process.env.REACT_APP_SERVER_URL}`);
 console.log(`REACT_APP_googleClientId: ${process.env.REACT_APP_googleClientId}`);
