@@ -20,7 +20,8 @@ module.exports = merge(common, {
   },
   plugins: [
     new webpack.DefinePlugin({
-      'process.env.REACT_APP_SERVER_URL': JSON.stringify('https://localhost:8080'),
+      REACT_APP_SERVER_URL: JSON.stringify('https://localhost:8080'),
+      REACT_APP_googleClientId: JSON.stringify('google-client-id'),
     }),
   ],
 });
