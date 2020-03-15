@@ -9,6 +9,7 @@ const OAuthButtons = ({ baseUrl }) => {
   const [userImage, setUserImage] = useState('');
 
   console.log(`google client id: ${process.env.REACT_APP_googleClientId}`);
+  console.log(`google client id from env: ${REACT_APP_googleClientId}`);
 
   const onGoogleSignIn = (googleUser) => {
     console.log(googleUser);
@@ -33,7 +34,7 @@ const OAuthButtons = ({ baseUrl }) => {
   return (
     <div className="login-buttons">
       <GoogleLogin
-        clientId={process.env.REACT_APP_googleClientId}
+        clientId={REACT_APP_googleClientId}
         buttonText="Continue With Google"
         onSuccess={onGoogleSignIn}
         onFailure={onGoogleSignInFailure}

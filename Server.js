@@ -8,8 +8,8 @@ const app = express();
 
 fs.writeFileSync(
   `${__dirname}/config/env.js`,
-  `var process.env.REACT_APP_SERVER_URL = ${process.env.REACT_APP_SERVER_URL};`
-  + `var process.env.REACT_APP_googleClientId = ${process.env.REACT_APP_googleClientId};`,
+  `var REACT_APP_SERVER_URL = '${process.env.REACT_APP_SERVER_URL}';`
+  + `var REACT_APP_googleClientId = '${process.env.REACT_APP_googleClientId}';`,
 );
 
 app.use(express.static(__dirname));
