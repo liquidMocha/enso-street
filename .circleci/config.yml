@@ -3,15 +3,11 @@ workflows:
   deploy-to-heroku:
     jobs:
       - tests
-      - wait-for-approval:
-          type: approval
-          requires:
-            - tests
       - heroku/deploy-via-git:
           name: development-deployment
           app-name: enso-street
           requires:
-            - wait-for-approval
+            - tests
       - wait-for-production-approval:
           type: approval
           requires:
