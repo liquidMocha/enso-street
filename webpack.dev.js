@@ -16,10 +16,6 @@ module.exports = merge(common, {
       filename: '[name].css',
       chunkFilename: '[id].css',
     }),
-    new webpack.DefinePlugin({
-      REACT_APP_SERVER_URL: JSON.stringify('https://enso-street-backend.herokuapp.com'),
-      REACT_APP_googleClientId: JSON.stringify('600326466228-h28741e5k0gksv3440nnn688rnl967bb.apps.googleusercontent.com'),
-    }),
   ],
   module: {
     rules: [],
