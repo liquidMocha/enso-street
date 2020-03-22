@@ -8,7 +8,7 @@ import OAuthButtons from './OAuthButtons';
 import '../../../styles/Input.scss';
 import InputWithError from '../../shared/InputWithError';
 import TitleBar from '../../shared/TitleBar';
-import ColoredButton from '../../shared/ColoredButton';
+import DisableableButton from '../../shared/DisableableButton';
 
 function SignUpPage({ baseUrl }) {
   const [email, setEmail] = useState('');
@@ -19,22 +19,23 @@ function SignUpPage({ baseUrl }) {
 
   useEffect(() => ReactGA.pageview('/sign-up'));
 
-  const onSubmitSignUpForm = (event) => {
-    event.preventDefault();
+  const onSubmitSignUpForm = async () => {
     if (password.length < 8) {
       setSignUpFailed(true);
       return;
     }
-    axios.post(`${baseUrl}/users/createUser`, {
-      email,
-      name,
-      password,
-    })
-      .then(() => {
-        setSignUpFailed(false);
-        history.push('/login');
-      })
-      .catch(() => setSignUpFailed(true));
+
+    try {
+      await axios.post(`${baseUrl}/users/createUser`, {
+        email,
+        name,
+        password,
+      });
+      setSignUpFailed(false);
+      history.push('/login');
+    } catch (e) {
+      setSignUpFailed(true);
+    }
   };
 
   return (
@@ -43,7 +44,7 @@ function SignUpPage({ baseUrl }) {
       <div>Join EnsoStreet</div>
       <OAuthButtons baseUrl={baseUrl} />
       <div>OR</div>
-      <form onSubmit={onSubmitSignUpForm}>
+      <form>
         <div>
           <label>
             Email
@@ -86,11 +87,10 @@ function SignUpPage({ baseUrl }) {
             value={password}
           />
         </div>
-        <ColoredButton
+        <DisableableButton
           id="sign-up-submit-button"
           buttonText="Sign Up"
           onClick={onSubmitSignUpForm}
-          mode="dark"
         />
       </form>
       {signUpFailed ? 'sign up failed' : null}
