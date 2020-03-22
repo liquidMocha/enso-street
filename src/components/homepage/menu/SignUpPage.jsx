@@ -3,6 +3,7 @@ import axios from 'axios';
 import './SignUpPage.scss';
 import * as ReactGA from 'react-ga';
 import PropTypes from 'prop-types';
+import { useHistory } from 'react-router-dom';
 import OAuthButtons from './OAuthButtons';
 import '../../../styles/Input.scss';
 import InputWithError from '../../shared/InputWithError';
@@ -14,6 +15,7 @@ function SignUpPage({ baseUrl }) {
   const [name, setName] = useState('');
   const [password, setPassword] = useState('');
   const [signUpFailed, setSignUpFailed] = useState(false);
+  const history = useHistory();
 
   useEffect(() => ReactGA.pageview('/sign-up'));
 
@@ -28,7 +30,10 @@ function SignUpPage({ baseUrl }) {
       name,
       password,
     })
-      .then(() => setSignUpFailed(false))
+      .then(() => {
+        setSignUpFailed(false);
+        history.push('/login');
+      })
       .catch(() => setSignUpFailed(true));
   };
 
