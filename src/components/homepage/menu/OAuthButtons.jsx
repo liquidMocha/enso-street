@@ -2,26 +2,30 @@ import PropTypes from 'prop-types';
 import GoogleLogin from 'react-google-login';
 import React, { useState } from 'react';
 import axios from 'axios';
+import { useHistory } from 'react-router-dom';
 import ColoredButton from '../../shared/ColoredButton';
 
 const OAuthButtons = ({ baseUrl }) => {
   const [loggedInUser, setLoggedInUser] = useState('');
   const [userImage, setUserImage] = useState('');
+  const history = useHistory();
 
-  const onGoogleSignIn = (googleUser) => {
+  const onGoogleSignIn = async (googleUser) => {
     console.log(googleUser);
     const profile = googleUser.getBasicProfile();
     setLoggedInUser(profile.getName());
     setUserImage(profile.getImageUrl());
     const idToken = googleUser.getAuthResponse().id_token;
 
-    axios.post(`${baseUrl}/users/googleSignOn`, {
-      idToken,
-    }, { withCredentials: true }).then((response) => {
-      console.log('response from googleSignOn: ', response);
-    }).catch((error) => {
+    try {
+      await axios.post(`${baseUrl}/users/googleSignOn`, {
+        idToken,
+      }, { withCredentials: true });
+
+      history.push('/');
+    } catch (error) {
       console.log('error from googleSignOn: ', error);
-    });
+    }
   };
 
   const onGoogleSignInFailure = () => {
