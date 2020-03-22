@@ -1,8 +1,9 @@
 import PropTypes from 'prop-types';
 import React, { useState } from 'react';
 import axios from 'axios';
+import { useHistory } from 'react-router-dom';
 import InputWithError from '../../shared/InputWithError';
-import ColoredButton from '../../shared/ColoredButton';
+import DisableableButton from '../../shared/DisableableButton';
 
 const LoginForm = (props) => {
   const [loginSuccessful, setLoginSuccessful] = useState(false);
@@ -10,20 +11,21 @@ const LoginForm = (props) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
-  const onLogin = (event) => {
-    event.preventDefault();
+  const history = useHistory();
+  const onLogin = async () => {
     setLoginClicked(false);
-    axios.post(`${props.baseUrl}/users/login`, {
-      email,
-      password,
-    }, { withCredentials: true })
-      .then(() => {
-        setLoginClicked(true);
-        setLoginSuccessful(true);
-      }).catch(() => {
-        setLoginClicked(true);
-        setLoginSuccessful(false);
-      });
+
+    try {
+      await axios.post(`${props.baseUrl}/users/login`, {
+        email,
+        password,
+      }, { withCredentials: true });
+
+      history.push('/');
+    } catch (e) {
+      setLoginClicked(true);
+      setLoginSuccessful(false);
+    }
   };
 
   return (
@@ -52,9 +54,8 @@ const LoginForm = (props) => {
           value={password}
         />
       </div>
-      <ColoredButton id="login-button" buttonText="Log In" mode="dark" onClick={onLogin} />
+      <DisableableButton onClick={onLogin} id="login-button" buttonText="Log In" />
       {!loginSuccessful && loginClicked ? 'login failed' : null}
-      {loginSuccessful && loginClicked ? 'login successful' : null}
     </form>
   );
 };
