@@ -3,7 +3,11 @@ import React from 'react';
 import './MyCartItemCard.scss';
 import { useDispatch } from 'react-redux';
 import Checkbox from '../shared/Checkbox';
-import { addToCartSelectionAction } from '../../redux/cart/cartAction';
+import {
+  addToCart,
+  addToCartSelectionAction,
+  removeOneInstance,
+} from '../../redux/cart/cartAction';
 import ItemCounter from './ItemCounter';
 
 const highlightCard = (highlighted) => (highlighted ? ' highlight' : '');
@@ -35,8 +39,12 @@ const MyCartItemCard = ({ item }) => {
         X
         <ItemCounter
           count={item.quantity}
-          decrement={() => {}}
-          increment={() => {}}
+          decrement={() => {
+            dispatch(removeOneInstance(item.id));
+          }}
+          increment={() => {
+            dispatch(addToCart(item.id));
+          }}
         />
       </section>
     </div>

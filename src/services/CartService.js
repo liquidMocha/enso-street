@@ -7,6 +7,10 @@ export const addItemToCart = (itemId) => axios.put(
   BASE_URL + cartPath, { itemId }, { withCredentials: true },
 );
 
+export const removeOneInstanceFromCart = (itemId) => axios.delete(
+  BASE_URL + cartPath, { data: { itemId }, withCredentials: true },
+);
+
 export const getCart = async () => {
   const { data } = await axios.get(BASE_URL + cartPath, { withCredentials: true });
 
