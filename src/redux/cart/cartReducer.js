@@ -1,5 +1,5 @@
 import _ from 'lodash';
-import { ADD_TO_CART_SELECTION, UPDATE_CART } from './cartAction';
+import { ADD_TO_CART_SELECTION, REMOVE_FROM_CART_SELECTION, UPDATE_CART } from './cartAction';
 import Cart from './Cart';
 
 const initialState = {
@@ -18,17 +18,15 @@ export const cartReducer = (state = initialState, action) => {
       const newCart = newState.cart;
       const { itemId } = action;
 
-      const selectedBatch = newCart.ownerBatches.find((ownerBatch) => ownerBatch.selected);
-      if (selectedBatch) {
-        const item = selectedBatch.items.find((itemInCheckoutBatch) => itemInCheckoutBatch.id === itemId);
-        if (item) {
-          item.selected = true;
-        }
-      } else {
-        const ownerBatch = newCart.ownerBatches.find((batch) => batch.hasItem(itemId));
-        ownerBatch.selected = true;
-        ownerBatch.items.find((item) => item.id === itemId).selected = true;
-      }
+      newCart.selectItem(itemId);
+
+      return newState;
+    }
+    case REMOVE_FROM_CART_SELECTION: {
+      const newCart = newState.cart;
+      const { itemId } = action;
+
+      newCart.deselectItem(itemId);
 
       return newState;
     }

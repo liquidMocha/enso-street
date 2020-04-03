@@ -1,6 +1,6 @@
 export default class Item {
   constructor({
-    id, title, rentalDailyPrice, imageUrl, quantity
+    id, title, rentalDailyPrice, imageUrl, quantity,
   }) {
     this.id = id;
     this.title = title;
@@ -10,11 +10,11 @@ export default class Item {
     this.selected = false;
   }
 
-  select = () => {
+  select() {
     this.selected = true;
-  };
+  }
 
-  deselect = () => {
+  deselect() {
     this.selected = false;
   }
 }

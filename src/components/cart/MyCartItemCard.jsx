@@ -6,7 +6,7 @@ import Checkbox from '../shared/Checkbox';
 import {
   addToCart,
   addToCartSelectionAction,
-  removeFromCartAction,
+  removeFromCartAction, removeFromCartSelectionAction,
 } from '../../redux/cart/cartAction';
 import ItemCounter from './ItemCounter';
 
@@ -19,7 +19,11 @@ const MyCartItemCard = ({ item }) => {
     <div className={`my-cart__item-card${highlightCard(item.selected)}`}>
       <Checkbox
         onChange={() => {
-          dispatch(addToCartSelectionAction(item.id));
+          if (item.selected) {
+            dispatch(removeFromCartSelectionAction(item.id));
+          } else {
+            dispatch(addToCartSelectionAction(item.id));
+          }
         }}
         checked={item.selected}
       />

@@ -8,7 +8,7 @@ import { refreshCart } from '../../redux/cart/cartAction';
 const MyCart = () => {
   const ownerItemBatch = useSelector((state) => state.cart.cart.ownerBatches);
   const subtotal = useSelector((state) => {
-    const selectedBatch = state.cart.cart.ownerBatches.find((batch) => batch.selected);
+    const selectedBatch = state.cart.cart.getSelectedBatch();
     if (selectedBatch) {
       return selectedBatch.items
         .filter((item) => item.selected)
@@ -17,7 +17,7 @@ const MyCart = () => {
     return 0;
   });
 
-  const displaySubtotal = useSelector((state) => state.cart.cart.ownerBatches.some((batch) => batch.selected));
+  const displaySubtotal = useSelector((state) => state.cart.cart.hasItemSelected());
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -28,7 +28,11 @@ const MyCart = () => {
     const sections = [];
     ownerItemBatch.forEach((ownerBatch) => {
       sections.push(
-        <OwnerSection key={ownerBatch.owner.email} owner={ownerBatch.owner} items={ownerBatch.items} />,
+        <OwnerSection
+          key={ownerBatch.owner.email}
+          owner={ownerBatch.owner}
+          items={ownerBatch.items}
+        />,
       );
     });
 
