@@ -5,7 +5,7 @@ import './ItemCounter.scss';
 const ItemCounter = ({ count, increment, decrement }) => (
   <div className="item-counter">
     <div onClick={decrement}>-</div>
-    {count}
+    <div className="item-counter__number">{count}</div>
     <div onClick={increment}>+</div>
   </div>
 );

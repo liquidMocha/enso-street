@@ -1,3 +1,8 @@
 .item-counter {
   display: flex;
+  font-size: 20px;
+
+  .item-counter__number {
+    margin: 0 10px;
+  }
 }
