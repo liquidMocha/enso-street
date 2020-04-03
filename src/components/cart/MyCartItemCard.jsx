@@ -6,7 +6,7 @@ import Checkbox from '../shared/Checkbox';
 import {
   addToCart,
   addToCartSelectionAction,
-  removeOneInstance,
+  removeFromCartAction,
 } from '../../redux/cart/cartAction';
 import ItemCounter from './ItemCounter';
 
@@ -36,11 +36,11 @@ const MyCartItemCard = ({ item }) => {
         </span>
       </section>
       <section className="my-cart_-item-card--third-column">
-        X
+        <div onClick={() => dispatch(removeFromCartAction(item.id, true))}>X</div>
         <ItemCounter
           count={item.quantity}
           decrement={() => {
-            dispatch(removeOneInstance(item.id));
+            dispatch(removeFromCartAction(item.id));
           }}
           increment={() => {
             dispatch(addToCart(item.id));

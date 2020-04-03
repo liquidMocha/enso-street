@@ -1,4 +1,4 @@
-import { addItemToCart, getCart, removeOneInstanceFromCart } from '../../services/CartService';
+import { addItemToCart, getCart, removeFromCart } from '../../services/CartService';
 
 export const UPDATE_CART = 'UPDATE_CART';
 export const ADD_TO_CART_SELECTION = 'ADD_TO_CART_SELECTION';
@@ -22,7 +22,7 @@ export const addToCart = (itemId) => async (dispatch) => {
   dispatch(refreshCart());
 };
 
-export const removeOneInstance = (itemId) => async (dispatch) => {
-  await removeOneInstanceFromCart(itemId);
+export const removeFromCartAction = (itemId, removeAll) => async (dispatch) => {
+  await removeFromCart(itemId, removeAll);
   dispatch(refreshCart());
 };
