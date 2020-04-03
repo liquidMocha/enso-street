@@ -32,8 +32,8 @@ function cartWithCount(history, count) {
 const TitleBar = () => {
   const history = useHistory();
   const count = useSelector(
-    (state) => [...state.cart.cart.values()]
-      .reduce((total, currentBatch) => total + currentBatch.length, 0),
+    (state) => [...state.cart.cart.ownerBatches]
+      .reduce((total, currentBatch) => total + currentBatch.size(), 0),
   );
 
   return (

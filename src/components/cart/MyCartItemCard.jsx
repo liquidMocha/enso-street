@@ -56,7 +56,7 @@ MyCartItemCard.propTypes = {
     id: PropTypes.string,
     imageUrl: PropTypes.string,
     title: PropTypes.string,
-    rentalDailyPrice: PropTypes.string,
+    rentalDailyPrice: PropTypes.number,
     selected: PropTypes.bool,
     quantity: PropTypes.number,
   }).isRequired,

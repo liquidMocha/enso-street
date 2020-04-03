@@ -6,7 +6,18 @@ import './MyCart.scss';
 import { refreshCart } from '../../redux/cart/cartAction';
 
 const MyCart = () => {
-  const ownerItemBatch = useSelector((state) => state.cart.cart);
+  const ownerItemBatch = useSelector((state) => state.cart.cart.ownerBatches);
+  const subtotal = useSelector((state) => {
+    const selectedBatch = state.cart.cart.ownerBatches.find((batch) => batch.selected);
+    if (selectedBatch) {
+      return selectedBatch.items
+        .filter((item) => item.selected)
+        .reduce((aggregate, item) => aggregate + item.rentalDailyPrice * item.quantity, 0);
+    }
+    return 0;
+  });
+
+  const displaySubtotal = useSelector((state) => state.cart.cart.ownerBatches.some((batch) => batch.selected));
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -15,9 +26,9 @@ const MyCart = () => {
 
   const buildOwnerSections = () => {
     const sections = [];
-    ownerItemBatch.forEach((value, key) => {
+    ownerItemBatch.forEach((ownerBatch) => {
       sections.push(
-        <OwnerSection key={key.email} owner={key} items={value} />,
+        <OwnerSection key={ownerBatch.owner.email} owner={ownerBatch.owner} items={ownerBatch.items} />,
       );
     });
 
@@ -29,6 +40,16 @@ const MyCart = () => {
       <TitleBar />
       My Cart
       {buildOwnerSections()}
+      {displaySubtotal ? (
+        <div className="footer">
+          Subtotal:
+          $
+          {subtotal}
+          {' '}
+          /day
+        </div>
+      ) : null}
+
     </div>
   );
 };
