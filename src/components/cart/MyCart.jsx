@@ -5,6 +5,18 @@ import OwnerSection from './OwnerSection';
 import './MyCart.scss';
 import { refreshCart } from '../../redux/cart/cartAction';
 
+const subtotalFooter = (subtotal) => (
+  <div className="footer">
+    Subtotal:
+    $
+    {subtotal}
+    {' '}
+    /day
+    <div>Confirm Order</div>
+  </div>
+);
+
+
 const MyCart = () => {
   const ownerItemBatch = useSelector((state) => state.cart.cart.ownerBatches);
   const subtotal = useSelector((state) => {
@@ -44,16 +56,7 @@ const MyCart = () => {
       <TitleBar />
       My Cart
       {buildOwnerSections()}
-      {displaySubtotal ? (
-        <div className="footer">
-          Subtotal:
-          $
-          {subtotal}
-          {' '}
-          /day
-        </div>
-      ) : null}
-
+      {displaySubtotal ? (subtotalFooter(subtotal)) : null}
     </div>
   );
 };
