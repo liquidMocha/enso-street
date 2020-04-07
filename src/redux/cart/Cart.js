@@ -6,7 +6,7 @@ export default class Cart {
   constructor(ownerBatches) {
     this.ownerBatches = ownerBatches.map(
       (ownerBatch) => new OwnerBatch({
-        owner: new Owner({ name: ownerBatch.owner.name, email: ownerBatch.owner.email }),
+        owner: new Owner({ name: ownerBatch.ownerName, email: ownerBatch.ownerEmail }),
         items: ownerBatch.items.map(
           (item) => new Item({
             id: item.id,

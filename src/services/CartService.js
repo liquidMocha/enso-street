@@ -14,5 +14,5 @@ export const removeFromCart = (itemId, removeAll) => axios.delete(
 export const getCart = async () => {
   const { data } = await axios.get(BASE_URL + cartPath, { withCredentials: true });
 
-  return data;
+  return data.ownerBatches;
 };
