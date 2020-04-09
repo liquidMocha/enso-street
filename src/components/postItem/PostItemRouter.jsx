@@ -96,8 +96,7 @@ const PostItemRouter = () => {
         <Route exact path={chooseLocationPath}>
           <ChooseLocationPage
             onLocationChange={onLocationChange}
-            backLink={priceAndDeliveryPath}
-            pathAfterApplyLocation={priceAndDeliveryPath}
+            exitPath={priceAndDeliveryPath}
             onChooseLocationToEdit={onSelectEditLocation}
           />
         </Route>

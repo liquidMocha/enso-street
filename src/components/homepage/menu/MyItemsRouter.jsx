@@ -85,8 +85,7 @@ const MyItemsRouter = () => {
       <Route exact path={chooseLocationPath}>
         <ChooseLocationPage
           onLocationChange={onLocationChange}
-          backLink={editItemPath}
-          pathAfterApplyLocation={editItemPath}
+          exitPath={editItemPath}
           onChooseLocationToEdit={onSelectEditLocation}
         />
       </Route>

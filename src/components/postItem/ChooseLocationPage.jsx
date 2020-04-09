@@ -14,8 +14,7 @@ import ColoredButton from '../shared/ColoredButton';
 
 const ChooseLocationPage = ({
   onLocationChange,
-  pathAfterApplyLocation,
-  backLink,
+  exitPath,
   onChooseLocationToEdit,
 }) => {
   const [street, setStreet] = useState('');
@@ -39,7 +38,7 @@ const ChooseLocationPage = ({
     const selectedLocation = locations.filter((location) => location.id === locationId)[0];
 
     onLocationChange(selectedLocation);
-    history.push(pathAfterApplyLocation);
+    history.push(exitPath);
   };
 
   const onAddressChange = (event, {
@@ -68,14 +67,14 @@ const ChooseLocationPage = ({
     }).then((locationId) => {
       onLocationChange({
         id: locationId, street, city, state, zipCode, nickname,
-      }); history.push(pathAfterApplyLocation);
+      }); history.push(exitPath);
     });
   };
 
   return (
     <div id="choose-location-page">
       <PostItemTitleBar
-        backLink={backLink}
+        backLink={exitPath}
         title="Location"
         renderRightItem={renderApplyButton}
       />
@@ -133,8 +132,7 @@ const ChooseLocationPage = ({
 };
 
 ChooseLocationPage.propTypes = {
-  backLink: PropTypes.string.isRequired,
-  pathAfterApplyLocation: PropTypes.string.isRequired,
+  exitPath: PropTypes.string.isRequired,
   onChooseLocationToEdit: PropTypes.func.isRequired,
   onLocationChange: PropTypes.func.isRequired,
 };
