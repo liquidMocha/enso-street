@@ -13,7 +13,7 @@ const subtotalFooter = (subtotal, history) => (
     {subtotal}
     {' '}
     /day
-    <div>Confirm Order</div>
+    <div>Check Out</div>
   </div>
 );
 

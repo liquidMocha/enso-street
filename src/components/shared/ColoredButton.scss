@@ -7,6 +7,7 @@ button.light-button {
   font-size: 16px;
   background-color: white;
   border: 1px solid black;
+  -webkit-appearance: none;
 }
 
 button.dark-button {
@@ -16,4 +17,5 @@ button.dark-button {
   font-size: 16px;
   background-color: $button-background-color;
   border: none;
+  -webkit-appearance: none;
 }

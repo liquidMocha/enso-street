@@ -1,4 +1,6 @@
 .my-cart {
+  margin-bottom: 70px;
+
   .owner-section {
     margin-bottom: 10px;
   }
@@ -15,5 +17,6 @@
     display: flex;
     align-items: center;
     flex-direction: column;
+    background-color: white;
   }
 }
