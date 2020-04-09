@@ -8,6 +8,7 @@ const DeliveryOrPickupSection = () => {
     <div>
       <Checkbox onChange={() => setPickup(!pickup)} checked={pickup} />
       I'd like to pickup
+      <section>Delivery Address</section>
     </div>
   );
 };

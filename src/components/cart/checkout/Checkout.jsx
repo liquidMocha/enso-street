@@ -7,6 +7,14 @@ import CustomerInformation from './CustomerInformation';
 import DeliveryContact from './DeliveryContact';
 import OrderDetails from './OrderDetails';
 
+function calculateRentalDays(startDateTime, endDateTime) {
+  const MILLISECONDS_IN_A_DAY = 1000 * 60 * 60 * 24;
+
+  return (
+    (new Date(endDateTime).getTime() - new Date(startDateTime))
+    / MILLISECONDS_IN_A_DAY).toFixed();
+}
+
 const Checkout = () => {
   const [rentDate, setRentDate] = useState();
   const [returnDate, setReturnDate] = useState();
@@ -23,7 +31,7 @@ const Checkout = () => {
       <DeliveryOrPickupSection />
       <CustomerInformation />
       <DeliveryContact />
-      <OrderDetails />
+      <OrderDetails rentalDays={calculateRentalDays(rentDate, returnDate)} />
       <ColoredButton buttonText="Confirm Order" mode="light" />
     </div>
   );

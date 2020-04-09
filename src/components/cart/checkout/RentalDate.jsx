@@ -8,10 +8,20 @@ const RentalDate = ({
     Rental Date
     <section>
       <label htmlFor="checkout-rent-date">Start</label>
-      <input id="checkout-rent-date" type="datetime-local" value={rentDate} onChange={onRentDateChange} />
-      <br/>
+      <input
+        id="checkout-rent-date"
+        type="datetime-local"
+        value={rentDate}
+        onChange={(e) => onRentDateChange(e.target.value)}
+      />
+      <br />
       <label htmlFor="checkout-return-date">End</label>
-      <input id="checkout-return-date" type="datetime-local" value={returnDate} onChange={onReturnDateChange} />
+      <input
+        id="checkout-return-date"
+        type="datetime-local"
+        value={returnDate}
+        onChange={(e) => onReturnDateChange(e.target.value)}
+      />
     </section>
   </div>
 );
