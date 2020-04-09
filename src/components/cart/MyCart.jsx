@@ -1,12 +1,13 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { useHistory } from 'react-router-dom';
 import TitleBar from '../shared/TitleBar';
 import OwnerSection from './OwnerSection';
 import './MyCart.scss';
 import { refreshCart } from '../../redux/cart/cartAction';
 
-const subtotalFooter = (subtotal) => (
-  <div className="footer">
+const subtotalFooter = (subtotal, history) => (
+  <div className="footer" onClick={() => { history.push('/checkout'); }}>
     Subtotal:
     $
     {subtotal}
@@ -18,6 +19,7 @@ const subtotalFooter = (subtotal) => (
 
 
 const MyCart = () => {
+  const history = useHistory();
   const ownerItemBatch = useSelector((state) => state.cart.cart.ownerBatches);
   const subtotal = useSelector((state) => {
     const selectedBatch = state.cart.cart.getSelectedBatch();
@@ -56,7 +58,7 @@ const MyCart = () => {
       <TitleBar />
       My Cart
       {buildOwnerSections()}
-      {displaySubtotal ? (subtotalFooter(subtotal)) : null}
+      {displaySubtotal ? (subtotalFooter(subtotal, history)) : null}
     </div>
   );
 };
