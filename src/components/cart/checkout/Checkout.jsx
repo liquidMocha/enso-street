@@ -15,9 +15,16 @@ function calculateRentalDays(startDateTime, endDateTime) {
     / MILLISECONDS_IN_A_DAY).toFixed();
 }
 
+function defaultReturnDate() {
+  const twoDaysFromToday = new Date();
+  twoDaysFromToday.setDate(new Date().getDate() + 2);
+  return (twoDaysFromToday).toISOString().substr(0, 16);
+}
+
 const Checkout = () => {
-  const [rentDate, setRentDate] = useState();
-  const [returnDate, setReturnDate] = useState();
+  const today = (new Date()).toISOString().substr(0, 16);
+  const [rentDate, setRentDate] = useState(today);
+  const [returnDate, setReturnDate] = useState(defaultReturnDate());
 
   return (
     <div className="confirm-checkout-page">

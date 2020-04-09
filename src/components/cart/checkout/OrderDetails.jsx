@@ -5,7 +5,7 @@ import { useSelector } from 'react-redux';
 function displayItems(selectedItems, rentalDays) {
   return (
     selectedItems.map((item) => (
-      <section>
+      <section key={item.id}>
         <img src={item.imageUrl} alt={item.title} />
         <section>
           <div>{item.title}</div>
