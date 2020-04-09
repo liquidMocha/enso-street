@@ -3,10 +3,10 @@ import PersonInfo from './PersonInfo';
 
 const CustomerInformation = () => {
   return (
-    <div>
-      Customer Information
+    <section>
+      <h1>Customer Information</h1>
       <PersonInfo />
-    </div>
+    </section>
   );
 };
 

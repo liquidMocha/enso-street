@@ -5,11 +5,12 @@ const DeliveryOrPickupSection = () => {
   const [pickup, setPickup] = useState(false);
 
   return (
-    <div>
+    <section>
       <Checkbox onChange={() => setPickup(!pickup)} checked={pickup} />
-      I'd like to pickup
-      <section>Delivery Address</section>
-    </div>
+      I&apos;d like to pickup
+      <br />
+      <h1>Delivery Address</h1>
+    </section>
   );
 };
 

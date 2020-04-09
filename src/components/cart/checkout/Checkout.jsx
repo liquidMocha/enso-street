@@ -6,6 +6,7 @@ import DeliveryOrPickupSection from './DeliveryOrPickupSection';
 import CustomerInformation from './CustomerInformation';
 import DeliveryContact from './DeliveryContact';
 import OrderDetails from './OrderDetails';
+import './Checkout.scss';
 
 function calculateRentalDays(startDateTime, endDateTime) {
   const MILLISECONDS_IN_A_DAY = 1000 * 60 * 60 * 24;

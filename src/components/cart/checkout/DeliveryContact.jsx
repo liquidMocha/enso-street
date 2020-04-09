@@ -2,10 +2,10 @@ import React from 'react';
 import PersonInfo from './PersonInfo';
 
 const DeliveryContact = () => (
-  <div>
-    Delivery Contact
+  <section>
+    <h1>Delivery Contact</h1>
     <PersonInfo />
-  </div>
+  </section>
 );
 
 export default DeliveryContact;

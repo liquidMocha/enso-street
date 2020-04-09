@@ -5,8 +5,8 @@ const RentalDate = ({
   rentDate, returnDate, onRentDateChange, onReturnDateChange,
 }) => {
   return (
-    <div>
-      Rental Date
+    <section>
+      <h1>Rental Date</h1>
       <section>
         <label htmlFor="checkout-rent-date">Start</label>
         <input
@@ -27,7 +27,7 @@ const RentalDate = ({
           step={30 * 60}
         />
       </section>
-    </div>
+    </section>
   );
 };
 
