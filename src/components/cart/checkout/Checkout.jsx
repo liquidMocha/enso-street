@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import React, { useState } from 'react';
 import TitleBar from '../../shared/TitleBar';
 import RentalDate from './RentalDate';
@@ -22,7 +23,7 @@ function defaultReturnDate() {
   return (twoDaysFromToday).toISOString().substr(0, 16);
 }
 
-const Checkout = () => {
+const Checkout = ({ deliveryLocation, chooseLocationPath }) => {
   const today = (new Date()).toISOString().substr(0, 16);
   const [rentDate, setRentDate] = useState(today);
   const [returnDate, setReturnDate] = useState(defaultReturnDate());
@@ -36,13 +37,21 @@ const Checkout = () => {
         returnDate={returnDate}
         onReturnDateChange={setReturnDate}
       />
-      <DeliveryOrPickupSection />
+      <DeliveryOrPickupSection
+        chooseLocationPath={chooseLocationPath}
+        location={deliveryLocation}
+      />
       <CustomerInformation />
       <DeliveryContact />
       <OrderDetails rentalDays={calculateRentalDays(rentDate, returnDate)} />
       <ColoredButton buttonText="Confirm Order" mode="light" />
     </div>
   );
+};
+
+Checkout.propTypes = {
+  deliveryLocation: PropTypes.any.isRequired,
+  chooseLocationPath: PropTypes.string.isRequired,
 };
 
 export default Checkout;

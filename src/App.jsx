@@ -13,7 +13,7 @@ import HomePageRouter from './components/homepage/HomePageRouter';
 import ItemDetail from './components/search/ItemDetail';
 import { isUserLoggedIn } from './services/UserService';
 import MyCart from './components/cart/MyCart';
-import Checkout from './components/cart/checkout/Checkout';
+import CheckoutRouter from './components/cart/checkout/CheckoutRouter';
 
 const App = () => (
   <BrowserRouter>
@@ -34,9 +34,7 @@ const App = () => (
       <Route path="/my-cart">
         <MyCart />
       </Route>
-      <Route path="/checkout">
-        <Checkout />
-      </Route>
+      <CheckoutRouter />
       <MyItemsRouter />
       <PostItemRouter />
     </main>
