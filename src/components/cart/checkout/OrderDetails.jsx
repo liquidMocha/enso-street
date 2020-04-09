@@ -32,7 +32,8 @@ function displayItems(selectedItems, rentalDays) {
 }
 
 const OrderDetails = ({ rentalDays }) => {
-  const selectedItems = useSelector((state) => state.cart.cart.getSelectedBatch().items);
+  const selectedItems = useSelector((state) => state.cart.cart.getSelectedBatch().items
+    .filter((item) => item.selected));
 
   return (
     <section className="confirm-checkout__order-details">
