@@ -54,7 +54,8 @@ const ChooseLocationPage = ({
     <span onClick={() => {
       onLocationChange({
         street, city, state, zipCode,
-      }); history.goBack();
+      });
+      history.goBack();
     }}
     >
       Apply
@@ -67,7 +68,8 @@ const ChooseLocationPage = ({
     }).then((locationId) => {
       onLocationChange({
         id: locationId, street, city, state, zipCode, nickname,
-      }); history.push(exitPath);
+      });
+      history.push(exitPath);
     });
   };
 

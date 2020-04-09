@@ -8,15 +8,13 @@ import Preview from './Preview';
 import { defaultItem } from './PostItemConstants';
 import { postItem } from '../../services/ItemService';
 import EditItem from './EditItem';
-import ChooseLocationPage from './ChooseLocationPage';
-import EditAddressPage from './EditAddressPage';
 import PostItemProgressContext from './PostItemProgressContext';
 import { resizeAndUploadImage } from '../../services/ImageService';
+import ChooseLocation from '../shared/ChooseLocation';
 
 const PostItemRouter = () => {
   const history = useHistory();
   const [item, setItem] = useState(defaultItem);
-  const [editedLocation, setEditedLocation] = useState();
   const updateTitle = (value) => setItem({ ...item, title: value });
   const updateImageUrl = (value) => setItem({ ...item, imageUrl: value });
   const onCategoryChange = (selectedOption) => setItem({ ...item, categories: selectedOption });
@@ -48,13 +46,6 @@ const PostItemRouter = () => {
   const chooseLocationPath = '/choose-location';
   const priceAndDeliveryPath = '/price-and-delivery';
   const previewPath = '/preview';
-  const editAddressPath = '/edit-address';
-
-  const onSelectEditLocation = (location) => {
-    setEditedLocation(location);
-
-    history.push(editAddressPath);
-  };
 
   return (
     <PostItemProgressContext.Provider value={{
@@ -93,19 +84,11 @@ const PostItemRouter = () => {
             onDeliveryAdditionalPriceChange={onDeliveryAdditionalPriceChange}
           />
         </Route>
-        <Route exact path={chooseLocationPath}>
-          <ChooseLocationPage
-            onLocationChange={onLocationChange}
-            exitPath={priceAndDeliveryPath}
-            onChooseLocationToEdit={onSelectEditLocation}
-          />
-        </Route>
-        <Route exact path={editAddressPath}>
-          <EditAddressPage
-            location={editedLocation}
-            pathAfterConfirm={chooseLocationPath}
-          />
-        </Route>
+        <ChooseLocation
+          exitPath={priceAndDeliveryPath}
+          onLocationChange={onLocationChange}
+          path={chooseLocationPath}
+        />
         <Route exact path={previewPath}>
           <Preview item={item} onPostingItem={onPostingItem} />
         </Route>
