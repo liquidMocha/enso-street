@@ -25,7 +25,7 @@ const PostItemRouter = () => {
   const onCanBeDeliveredChange = () => setItem({ ...item, canBeDelivered: !item.canBeDelivered });
   const onDeliveryStartingPriceChange = (price) => setItem({ ...item, deliveryStarting: Number(price) });
   const onDeliveryAdditionalPriceChange = (price) => setItem({ ...item, deliveryAdditional: Number(price) });
-  const onLocationChange = (location) => setItem({ ...item, location });
+  const onLocationChange = (location) => setItem({ ...item, location: { address: location } });
 
   const onPostingItem = () => postItem(item).then(() => {
     setItem(defaultItem);

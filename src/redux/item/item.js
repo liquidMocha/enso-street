@@ -7,13 +7,13 @@ const initialState = {
 };
 
 function mapToConditionText(condition) {
-  if (condition === 1) {
+  if (condition === 'like-new') {
     return 'Like New';
   }
-  if (condition === 2) {
+  if (condition === 'normal-wear') {
     return 'Normal Wear';
   }
-  if (condition === 3) {
+  if (condition === 'functional') {
     return 'Functional';
   }
   return '';
@@ -30,7 +30,14 @@ export default (state = initialState, action) => {
       const conditionText = mapToConditionText(action.item.condition);
 
       return {
-        currentItem: { ...action.item, condition: conditionText },
+        currentItem: {
+          ...action.item,
+          condition: conditionText,
+          deposit: Number(action.item.deposit),
+          rentalDailyPrice: Number(action.item.rentalDailyPrice),
+          deliveryAdditional: Number(action.item.deliveryAdditional),
+          deliveryStarting: Number(action.item.deliveryStarting),
+        },
         fetchingCurrentItem: false,
       };
     }

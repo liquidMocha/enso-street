@@ -1,13 +1,13 @@
 import PropTypes from 'prop-types';
 import React, { useState } from 'react';
-import { Route, Switch, useHistory } from 'react-router-dom';
+import { Route, useHistory } from 'react-router-dom';
 import ChooseLocationPage from '../postItem/ChooseLocationPage';
 import EditAddressPage from '../postItem/EditAddressPage';
 
 const ChooseLocation = ({ path, onLocationChange, exitPath }) => {
   const history = useHistory();
   const [editedLocation, setEditedLocation] = useState();
-  const editAddressPath = '/edit-address';
+  const editAddressPath = `${path}/edit-address`;
 
   const onSelectEditLocation = (location) => {
     setEditedLocation(location);
@@ -16,7 +16,7 @@ const ChooseLocation = ({ path, onLocationChange, exitPath }) => {
   };
 
   return (
-    <Switch>
+    <>
       <Route exact path={path}>
         <ChooseLocationPage
           onLocationChange={onLocationChange}
@@ -24,13 +24,13 @@ const ChooseLocation = ({ path, onLocationChange, exitPath }) => {
           onChooseLocationToEdit={onSelectEditLocation}
         />
       </Route>
-      <Route exact path={editAddressPath}>
+      <Route path={editAddressPath}>
         <EditAddressPage
           location={editedLocation}
           pathAfterConfirm={path}
         />
       </Route>
-    </Switch>
+    </>
   );
 };
 

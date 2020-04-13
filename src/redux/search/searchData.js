@@ -50,7 +50,9 @@ export const searchData = (state = initialState, action) => {
     case UPDATE_SEARCH_RESULTS:
       return {
         ...newState,
-        searchResults: action.searchResults,
+        searchResults: action.searchResults.map(
+          (result) => ({ ...result, dailyRentalPrice: Number(result.dailyRentalPrice) }),
+        ),
       };
     default:
       return state;

@@ -23,6 +23,6 @@ export const getItem = (itemId, searchCoordinates) => (dispatch) => {
     .then((item) => {
       dispatch(receiveItemAction(item));
 
-      dispatch(getItemDistanceAction(item.location, searchCoordinates));
+      dispatch(getItemDistanceAction(item.coordinates, searchCoordinates));
     });
 };

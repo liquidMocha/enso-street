@@ -4,14 +4,14 @@ import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEdit } from '@fortawesome/free-regular-svg-icons';
 
-const LocationInput = ({ location, chooseLocationPath }) => {
+const LocationInput = ({ address, chooseLocationPath }) => {
   const displayLocation = () => {
     let result = '';
-    if (location.street) {
-      result += location.street;
+    if (address.street) {
+      result += address.street;
     }
-    if (location.zipCode) {
-      result += `, ${location.zipCode}`;
+    if (address.zipCode) {
+      result += `, ${address.zipCode}`;
     }
     return result;
   };
@@ -31,7 +31,7 @@ const LocationInput = ({ location, chooseLocationPath }) => {
 };
 
 LocationInput.propTypes = {
-  location: PropTypes.shape({
+  address: PropTypes.shape({
     street: PropTypes.string,
     zipCode: PropTypes.string,
   }).isRequired,

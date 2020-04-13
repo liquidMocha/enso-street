@@ -11,10 +11,12 @@ export const defaultItem = {
   deliveryAdditional: 3,
   location: {
     id: '',
-    street: '',
-    city: '',
-    state: '',
-    zipCode: null,
+    address: {
+      street: '',
+      city: '',
+      state: '',
+      zipCode: null,
+    },
     nickname: '',
   },
 };

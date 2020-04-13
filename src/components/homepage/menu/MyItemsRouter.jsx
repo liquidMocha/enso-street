@@ -21,11 +21,15 @@ const MyItemsRouter = () => {
   const onCanBeDeliveredChange = () => setEditedItem((prevState) => ({ ...prevState, canBeDelivered: !editedItem.canBeDelivered }));
   const onDeliveryStartingPriceChange = (price) => setEditedItem((prevState) => ({ ...prevState, deliveryStarting: Number(price) }));
   const onDeliveryAdditionalPriceChange = (price) => setEditedItem((prevState) => ({ ...prevState, deliveryAdditional: Number(price) }));
-  const onLocationChange = (location) => setEditedItem((prevState) => ({ ...prevState, location }));
+  const onLocationChange = (location) => setEditedItem((prevState) => ({ ...prevState, location: { address: location } }));
+
+  const useMyPhotoPath = '/my-item-edit/use-my-photo';
+  const chooseLocationPath = '/my-item/choose-location';
+  const editItemPath = '/my-item-edit';
 
   const onClickMyItemCard = (item) => {
     setEditedItem(item);
-    history.push('/my-item-edit');
+    history.push(editItemPath);
   };
 
   const onPostingItem = () => updateItem(editedItem)
@@ -41,10 +45,6 @@ const MyItemsRouter = () => {
   const onLocalImageLoad = async (localImageUrl) => {
     await resizeAndUploadImage(localImageUrl);
   };
-
-  const useMyPhotoPath = '/my-item-edit/use-my-photo';
-  const chooseLocationPath = '/my-item/choose-location';
-  const editItemPath = '/my-item-edit';
 
   return (
     <Switch>

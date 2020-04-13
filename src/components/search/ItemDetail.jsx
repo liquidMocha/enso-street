@@ -16,12 +16,11 @@ const ItemDetail = () => {
   const dispatch = useDispatch();
   const coordinates = useSelector((state) => state.currentLocation);
   const distance = useSelector((state) => state.item.distance) || 0.0;
+  const currentItem = useSelector((state) => state.item.currentItem);
 
   useEffect(() => {
     dispatch(getItem(itemId, coordinates));
   }, []);
-
-  const currentItem = useSelector((state) => state.item.currentItem);
 
   const onClickingAddToCart = (itemToAdd) => {
     dispatch(addToCart(itemToAdd));

@@ -63,7 +63,7 @@ const EditItem = (props) => {
       />
       <LocationInput
         chooseLocationPath={props.chooseLocationPath}
-        location={item.location}
+        address={item.location.address}
       />
       <DeliveryToggle
         canBeDelivered={canBeDelivered}

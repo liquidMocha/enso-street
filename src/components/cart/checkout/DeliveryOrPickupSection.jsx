@@ -12,7 +12,7 @@ const DeliveryOrPickupSection = ({ chooseLocationPath, location }) => {
       I&apos;d like to pickup
       <br />
       <h1>Delivery Address</h1>
-      <LocationInput chooseLocationPath={chooseLocationPath} location={location} />
+      <LocationInput chooseLocationPath={chooseLocationPath} address={location} />
     </section>
   );
 };

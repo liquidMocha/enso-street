@@ -5,7 +5,7 @@ import ColoredButton from '../shared/ColoredButton';
 
 const NextButton = ({ destination }) => (
   <Link to={destination}>
-    <ColoredButton buttonText="Next" id="next-button" />
+    <ColoredButton buttonText="Next" id="next-button" mode="dark" />
   </Link>
 );
 

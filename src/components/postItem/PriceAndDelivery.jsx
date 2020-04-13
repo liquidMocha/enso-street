@@ -34,7 +34,7 @@ const PriceAndDelivery = ({
     />
     <LocationInput
       chooseLocationPath="/choose-location"
-      location={item.location}
+      address={item.location.address}
     />
     <DeliveryToggle
       canBeDelivered={item.canBeDelivered}
