@@ -8,7 +8,7 @@ const CustomerInformation = ({ value, onEdit }) => (
   <section>
     <h1>Customer Information</h1>
     <FontAwesomeIcon icon={faEdit} onClick={onEdit} />
-    <PersonInfo fullName={`${value.firstName} ${value.lastName}`} phone={value.phone} email={value.email} />
+    <PersonInfo fullName={`${value.firstName || ''} ${value.lastName || ''}`} phone={value.phone} email={value.email} />
   </section>
 );
 

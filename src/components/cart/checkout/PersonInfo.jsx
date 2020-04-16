@@ -1,21 +1,22 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import './PersonInfo.scss';
 
 const PersonInfo = ({ fullName, phone, email }) => (
-  <div>
+  <section className="person-info">
     <div>
-      Full Name
+      <label>Full Name</label>
       <span>{fullName}</span>
     </div>
     <div>
-      Phone
+      <label>Phone</label>
       <span>{phone}</span>
     </div>
     <div>
-      Email
+      <label>Email</label>
       <span>{email}</span>
     </div>
-  </div>
+  </section>
 );
 
 PersonInfo.propTypes = {

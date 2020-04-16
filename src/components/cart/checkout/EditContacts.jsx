@@ -3,9 +3,10 @@ import React from 'react';
 import TitleBar from '../../shared/TitleBar';
 import ContactCard from './ContactCard';
 import ColoredButton from '../../shared/ColoredButton';
+import './EditContacts.scss';
 
 const EditContacts = ({ contacts, onEditContact, onContactChange }) => (
-  <div>
+  <div className="manage-contacts">
     <TitleBar />
     <ColoredButton
       buttonText="Add New Contact"

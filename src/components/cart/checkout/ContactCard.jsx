@@ -1,25 +1,28 @@
 import PropTypes from 'prop-types';
 import React from 'react';
+import './ContactCard.scss';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEdit } from '@fortawesome/free-regular-svg-icons';
 
 const ContactCard = ({ contact, onClick, onClickEditContact }) => (
-  <div onClick={() => { onClick(); }}>
-    <div>
-      Full Name
-      {' '}
-      {`${contact.firstName} ${contact.lastName}`}
-    </div>
-    <div>
-      Phone
-      {' '}
-      {contact.phone}
-    </div>
-    <div>
-      Email
-      {' '}
-      {contact.email}
-    </div>
+  <div
+    onClick={() => { onClick(); }}
+    className="contact-card"
+  >
+    <section className="contact-card__content">
+      <div>
+        <label>Full Name</label>
+        {`${contact.firstName} ${contact.lastName}`}
+      </div>
+      <div>
+        <label>Phone</label>
+        {contact.phone}
+      </div>
+      <div>
+        <label>Email</label>
+        {contact.email}
+      </div>
+    </section>
     <div onClick={(event) => {
       event.stopPropagation();
       onClickEditContact(contact);
