@@ -31,7 +31,6 @@ const PostItemRouter = () => {
     setItem(defaultItem);
     history.push('/my-items');
   }).catch((error) => {
-    console.log('failed posting item');
     console.error(error);
   });
 

@@ -23,7 +23,14 @@ function defaultReturnDate() {
   return (twoDaysFromToday).toISOString().substr(0, 16);
 }
 
-const Checkout = ({ deliveryLocation, chooseLocationPath }) => {
+const Checkout = ({
+  deliveryLocation,
+  customerInformation,
+  deliveryContact,
+  chooseLocationPath,
+  onEditCustomerInfo,
+  onEditDeliveryInfo,
+}) => {
   const today = (new Date()).toISOString().substr(0, 16);
   const [rentDate, setRentDate] = useState(today);
   const [returnDate, setReturnDate] = useState(defaultReturnDate());
@@ -41,8 +48,14 @@ const Checkout = ({ deliveryLocation, chooseLocationPath }) => {
         chooseLocationPath={chooseLocationPath}
         location={deliveryLocation}
       />
-      <CustomerInformation />
-      <DeliveryContact />
+      <CustomerInformation
+        value={customerInformation}
+        onEdit={() => { onEditCustomerInfo(); }}
+      />
+      <DeliveryContact
+        value={deliveryContact}
+        onEdit={() => { onEditDeliveryInfo(); }}
+      />
       <OrderDetails rentalDays={calculateRentalDays(rentDate, returnDate)} />
       <ColoredButton buttonText="Confirm Order" mode="light" />
     </div>
@@ -51,7 +64,32 @@ const Checkout = ({ deliveryLocation, chooseLocationPath }) => {
 
 Checkout.propTypes = {
   deliveryLocation: PropTypes.any.isRequired,
+  customerInformation: PropTypes.shape({
+    name: PropTypes.string,
+    phone: PropTypes.string,
+    email: PropTypes.string,
+  }),
+  deliveryContact: PropTypes.shape({
+    name: PropTypes.string,
+    phone: PropTypes.string,
+    email: PropTypes.string,
+  }),
   chooseLocationPath: PropTypes.string.isRequired,
+  onEditCustomerInfo: PropTypes.func.isRequired,
+  onEditDeliveryInfo: PropTypes.func.isRequired,
+};
+
+Checkout.defaultProps = {
+  customerInformation: {
+    name: '',
+    phone: '',
+    email: '',
+  },
+  deliveryContact: {
+    name: '',
+    phone: '',
+    email: '',
+  },
 };
 
 export default Checkout;
