@@ -73,7 +73,7 @@ const MyProfile = ({ onSaveProfile }) => {
         onClick={() => {
           dispatch(updateUserProfileAction(
             {
-              firstName, lastName, phone, email,
+              firstName, lastName, phone, email, profileName,
             },
           ));
           onSaveProfile();
