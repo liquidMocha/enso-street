@@ -28,11 +28,7 @@ const byCreatedOn = (a, b) => {
 
 const onItemSave = (item) => {
   toast.success('Item save successful!');
-  updateItem({
-    id: item.id,
-    rentalDailyPrice: item.rentalDailyPrice,
-    searchable: item.searchable,
-  }).then(() => {
+  updateItem(item).then(() => {
     console.log('updated');
   });
 };
@@ -58,102 +54,102 @@ const END_LOADING = 'END_LOADING';
 const CHANGE_RENTAL_DAILY_PRICE = 'CHANGE_RENTAL_DAILY_PRICE';
 const CHANGE_SEARCHABILITY = 'CHANGE_SEARCHABILITY';
 
-const MyItems = (props) => {
-  const history = useHistory();
+const myItemsReducer = (state, action) => {
+  const newState = _.cloneDeep(state);
 
-  const myItemsReducer = (state, action) => {
-    const newState = _.cloneDeep(state);
-
-    switch (action.type) {
-      case FETCH_MY_ITEMS: {
+  switch (action.type) {
+    case FETCH_MY_ITEMS: {
+      return {
+        ...newState,
+        items: action.payload,
+        visibleItems: action.payload,
+        loading: false,
+      };
+    }
+    case CHANGE_SEARCH_TERM: {
+      const searchTerm = action.payload;
+      if (searchTerm.length !== 0) {
         return {
           ...newState,
-          items: action.payload,
-          visibleItems: action.payload,
-          loading: false,
-        };
-      }
-      case CHANGE_SEARCH_TERM: {
-        const searchTerm = action.payload;
-        if (searchTerm.length !== 0) {
-          return {
-            ...newState,
-            visibleItems: filterItemBySearchTerm(state.items, searchTerm),
-            searchTerm,
-          };
-        }
-        return {
-          ...newState,
+          visibleItems: filterItemBySearchTerm(state.items, searchTerm),
           searchTerm,
         };
       }
-      case CLICK_ITEM_DELETE: {
-        return {
-          ...newState,
-          deleteModalStatus: {
-            isOpen: true,
-            itemId: action.payload,
-          },
-        };
-      }
-      case CONFIRM_ITEM_DELETE: {
-        return {
-          ...newState,
-          items: state.items.filter((existingItem) => existingItem.id !== state.deleteModalStatus.itemId),
-          visibleItems: state.visibleItems.filter((existingItem) => existingItem.id !== state.deleteModalStatus.itemId),
-          deleteModalStatus: {
-            isOpen: false,
-            itemId: '',
-          },
-        };
-      }
-      case CANCEL_ITEM_DELETE: {
-        return {
-          ...newState,
-          deleteModalStatus: {
-            isOpen: false,
-            itemId: '',
-          },
-        };
-      }
-      case START_LOADING: {
-        return {
-          ...newState,
-          loading: true,
-        };
-      }
-      case END_LOADING: {
-        return {
-          ...newState,
-          loading: false,
-        };
-      }
-      case CHANGE_RENTAL_DAILY_PRICE: {
-        const newPrice = action.payload.price;
-        const { itemId } = action.payload;
-
-        const newItems = newState.items;
-        const newItem = newItems.find((updatedItem) => updatedItem.id === itemId);
-        newItem.rentalDailyPrice = newPrice;
-        return {
-          ...newState,
-          items: newItems,
-        };
-      }
-      case CHANGE_SEARCHABILITY: {
-        const itemId = action.payload;
-        const newItems = newState.items;
-        const newItem = newItems.find((updatedItem) => updatedItem.id === itemId);
-        newItem.searchable = !newItem.searchable;
-        return {
-          ...newState,
-          items: newItems,
-        };
-      }
-      default:
-        throw new Error('Unexpected action in MyItems.');
+      return {
+        ...newState,
+        searchTerm,
+      };
     }
-  };
+    case CLICK_ITEM_DELETE: {
+      return {
+        ...newState,
+        deleteModalStatus: {
+          isOpen: true,
+          itemId: action.payload,
+        },
+      };
+    }
+    case CONFIRM_ITEM_DELETE: {
+      return {
+        ...newState,
+        items: state.items.filter((existingItem) => existingItem.id !== state.deleteModalStatus.itemId),
+        visibleItems: state.visibleItems.filter((existingItem) => existingItem.id !== state.deleteModalStatus.itemId),
+        deleteModalStatus: {
+          isOpen: false,
+          itemId: '',
+        },
+      };
+    }
+    case CANCEL_ITEM_DELETE: {
+      return {
+        ...newState,
+        deleteModalStatus: {
+          isOpen: false,
+          itemId: '',
+        },
+      };
+    }
+    case START_LOADING: {
+      return {
+        ...newState,
+        loading: true,
+      };
+    }
+    case END_LOADING: {
+      return {
+        ...newState,
+        loading: false,
+      };
+    }
+    case CHANGE_RENTAL_DAILY_PRICE: {
+      const newPrice = action.payload.price;
+      const { itemId } = action.payload;
+
+      const newItems = newState.items;
+      const newItem = newItems.find((updatedItem) => updatedItem.id === itemId);
+      newItem.rentalDailyPrice = newPrice;
+      return {
+        ...newState,
+        items: newItems,
+      };
+    }
+    case CHANGE_SEARCHABILITY: {
+      const itemId = action.payload;
+      const newItems = newState.items;
+      const newItem = newItems.find((updatedItem) => updatedItem.id === itemId);
+      newItem.searchable = !newItem.searchable;
+      return {
+        ...newState,
+        items: newItems,
+      };
+    }
+    default:
+      return state;
+  }
+};
+
+const MyItems = (props) => {
+  const history = useHistory();
 
   const [state, dispatch] = useReducer(myItemsReducer, {
     items: [],
