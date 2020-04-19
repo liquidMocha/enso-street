@@ -31,14 +31,29 @@ function displayItems(selectedItems, rentalDays) {
   );
 }
 
+function calculateItemSubtotal(selectedItems, rentalDays) {
+  return selectedItems.reduce(
+    (total, item) => total + item.rentalDailyPrice * item.quantity * rentalDays, 0,
+  );
+}
+
 const OrderDetails = ({ rentalDays }) => {
-  const selectedItems = useSelector((state) => state.cart.cart.getSelectedBatch().items
-    .filter((item) => item.selected));
+  const selectedItems = useSelector(
+    (state) => state.cart.cart.getSelectedBatch().items
+      .filter((item) => item.selected),
+  );
 
   return (
     <section className="confirm-checkout__order-details">
       <h1>Order Details</h1>
       {displayItems(selectedItems, rentalDays)}
+      <section>
+        <label>Subtotal: </label>
+        <span>
+          $
+          {calculateItemSubtotal(selectedItems, rentalDays)}
+        </span>
+      </section>
     </section>
   );
 };
