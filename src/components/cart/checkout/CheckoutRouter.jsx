@@ -1,45 +1,46 @@
-import { useHistory, Route, Switch } from 'react-router-dom';
-import React, { useEffect, useState } from 'react';
+import { Route, Switch, useHistory } from 'react-router-dom';
+import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import Checkout from './Checkout';
 import ChooseLocation from '../../shared/ChooseLocation';
 import EditContacts from './EditContacts';
-import { addContactAction, getUserProfileAction } from '../../../redux/user/UserAction';
+import { addContactAction } from '../../../redux/user/UserAction';
 import EditContact from './EditContact';
+import MyProfile from '../../userprofile/MyProfile';
 
 const CheckoutRouter = () => {
   const CHECKOUT_PATH = '/checkout';
   const CHOOSE_LOCATION_PATH = '/checkout/choose-location';
   const EDIT_CONTACTS_PATH = '/checkout/manage-contacts';
   const EDIT_CONTACT_PATH = '/checkout/edit-contact';
+  const MY_PROFILE_PATH = '/my-profile';
   const [deliveryLocation, setDeliveryLocation] = useState({
     street: 'default street',
     zipCode: 'default zip',
   });
   const [editedContact, setEditedContact] = useState({});
-  const [customerInformation, setCustomerInformation] = useState({});
   const [deliveryContact, setDeliveryContact] = useState({});
-  const [editingCustomerInfo, setEditingCustomerInfo] = useState(false);
   const dispatch = useDispatch();
   const userProfile = useSelector((state) => state.user);
   const history = useHistory();
 
-  useEffect(() => {
-    dispatch(getUserProfileAction());
-  }, []);
-
   const editCustomerInfo = () => {
-    setEditingCustomerInfo(true);
-    history.push(EDIT_CONTACTS_PATH);
+    history.push(MY_PROFILE_PATH);
   };
 
   const editDeliveryContact = () => {
-    setEditingCustomerInfo(false);
     history.push(EDIT_CONTACTS_PATH);
+  };
+
+  const onSaveProfile = () => {
+    history.push(CHECKOUT_PATH);
   };
 
   return (
     <Switch>
+      <Route exact path={MY_PROFILE_PATH}>
+        <MyProfile onSaveProfile={onSaveProfile} />
+      </Route>
       <Route exact path={EDIT_CONTACT_PATH}>
         <EditContact
           contact={editedContact}
@@ -51,17 +52,13 @@ const CheckoutRouter = () => {
       </Route>
       <Route exact path={EDIT_CONTACTS_PATH}>
         <EditContacts
-          contacts={userProfile.profile.contacts}
+          contacts={userProfile.contacts}
           onEditContact={(contact) => {
             setEditedContact(contact);
             history.push(EDIT_CONTACT_PATH);
           }}
           onContactChange={(contact) => {
-            if (editingCustomerInfo) {
-              setCustomerInformation(contact);
-            } else {
-              setDeliveryContact(contact);
-            }
+            setDeliveryContact(contact);
             history.push(CHECKOUT_PATH);
           }}
         />
@@ -71,7 +68,7 @@ const CheckoutRouter = () => {
           deliveryLocation={deliveryLocation}
           chooseLocationPath={CHOOSE_LOCATION_PATH}
           editContactPath={EDIT_CONTACTS_PATH}
-          customerInformation={customerInformation}
+          customerInformation={userProfile}
           deliveryContact={deliveryContact}
           editContactsPath={EDIT_CONTACTS_PATH}
           onEditCustomerInfo={() => editCustomerInfo()}

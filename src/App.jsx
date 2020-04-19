@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import './styles/App.scss';
 import { BrowserRouter, Route } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
+import { useDispatch } from 'react-redux';
 import LoginPage from './components/homepage/menu/LoginPage';
 import SignUpPage from './components/homepage/menu/SignUpPage';
 import MenuPage from './components/homepage/menu/MenuPage';
@@ -14,38 +15,47 @@ import ItemDetail from './components/search/ItemDetail';
 import { isUserLoggedIn } from './services/UserService';
 import MyCart from './components/cart/MyCart';
 import CheckoutRouter from './components/cart/checkout/CheckoutRouter';
+import { getUserProfileAction } from './redux/user/UserAction';
 
-const App = () => (
-  <BrowserRouter>
-    <main id="app-content">
-      <HomePageRouter />
-      <Route path="/menu">
-        <MenuPage isLoggedIn={isUserLoggedIn} />
-      </Route>
-      <Route path="/login">
-        <LoginPage baseUrl={BASE_URL} />
-      </Route>
-      <Route path="/sign-up">
-        <SignUpPage baseUrl={BASE_URL} />
-      </Route>
-      <Route path="/item-detail/:itemId">
-        <ItemDetail />
-      </Route>
-      <Route path="/my-cart">
-        <MyCart />
-      </Route>
-      <CheckoutRouter />
-      <MyItemsRouter />
-      <PostItemRouter />
-    </main>
-    <ToastContainer
-      position="bottom-center"
-      autoClose={2000}
-      hideProgressBar
-      closeOnClick
-      draggable={false}
-    />
-  </BrowserRouter>
-);
+const App = () => {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getUserProfileAction());
+  }, []);
+
+  return (
+    <BrowserRouter>
+      <main id="app-content">
+        <HomePageRouter />
+        <Route path="/menu">
+          <MenuPage isLoggedIn={isUserLoggedIn} />
+        </Route>
+        <Route path="/login">
+          <LoginPage baseUrl={BASE_URL} />
+        </Route>
+        <Route path="/sign-up">
+          <SignUpPage baseUrl={BASE_URL} />
+        </Route>
+        <Route path="/item-detail/:itemId">
+          <ItemDetail />
+        </Route>
+        <Route path="/my-cart">
+          <MyCart />
+        </Route>
+        <CheckoutRouter />
+        <MyItemsRouter />
+        <PostItemRouter />
+      </main>
+      <ToastContainer
+        position="bottom-center"
+        autoClose={2000}
+        hideProgressBar
+        closeOnClick
+        draggable={false}
+      />
+    </BrowserRouter>
+  );
+};
 
 export default App;

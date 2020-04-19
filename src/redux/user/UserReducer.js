@@ -2,9 +2,11 @@ import { UPDATE_USER_PROFILE } from './UserAction';
 
 const initialState = {
   name: '',
-  profile: {
-    contacts: [],
-  },
+  firstName: null,
+  lastName: null,
+  phone: null,
+  email: null,
+  contacts: [],
 };
 
 export default (state = initialState, action) => {
@@ -13,15 +15,17 @@ export default (state = initialState, action) => {
       const profile = action.userProfile;
       return {
         name: profile.name,
-        profile: {
-          contacts: profile.contacts.map((contact) => ({
-            id: contact.id,
-            firstName: contact.firstName,
-            lastName: contact.lastName,
-            phone: contact.phone,
-            email: contact.email,
-          })),
-        },
+        firstName: profile.firstName,
+        lastName: profile.lastName,
+        phone: profile.phone,
+        email: profile.email,
+        contacts: profile.contacts.map((contact) => ({
+          id: contact.id,
+          firstName: contact.firstName,
+          lastName: contact.lastName,
+          phone: contact.phone,
+          email: contact.email,
+        })),
       };
     }
     default: {

@@ -4,7 +4,7 @@ import ErrorMessage from './ErrorMessage';
 import '../../styles/Input.scss';
 
 const InputWithError = ({
-  id, type, placeholder, shouldError, value, onChange,
+  id, type, placeholder, shouldError, value, onChange, disabled,
 }) => {
   const [displayError, setDisplayError] = useState(false);
 
@@ -19,6 +19,7 @@ const InputWithError = ({
         onChange={((event) => onChange(event.target.value))}
         onBlur={() => { setDisplayError(shouldError()); }}
         value={value}
+        disabled={disabled}
       />
       {displayError ? <ErrorMessage message="This field is required" /> : null}
     </div>
@@ -32,10 +33,12 @@ InputWithError.propTypes = {
   shouldError: PropTypes.func.isRequired,
   onChange: PropTypes.func.isRequired,
   value: PropTypes.string.isRequired,
+  disabled: PropTypes.bool,
 };
 
 InputWithError.defaultProps = {
   placeholder: '',
+  disabled: false,
 };
 
 export default InputWithError;

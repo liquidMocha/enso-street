@@ -17,7 +17,7 @@ const EditContact = ({ contact, onSaveContact }) => {
         onChange={(value) => { setFirstName(value); }}
         value={firstName}
         id="edit-contact-first-name"
-        shouldError={false}
+        shouldError={() => false}
       />
       <div>Last Name</div>
       <InputWithError
@@ -25,7 +25,7 @@ const EditContact = ({ contact, onSaveContact }) => {
         onChange={(value) => { setLastName(value); }}
         value={lastName}
         id="edit-contact-last-name"
-        shouldError={false}
+        shouldError={() => false}
       />
       <div>Phone</div>
       <InputWithError
@@ -33,7 +33,7 @@ const EditContact = ({ contact, onSaveContact }) => {
         onChange={(value) => { setPhone(value); }}
         value={phone}
         id="edit-contact-phone"
-        shouldError={false}
+        shouldError={() => false}
       />
       <div>Email</div>
       <InputWithError
@@ -41,7 +41,7 @@ const EditContact = ({ contact, onSaveContact }) => {
         onChange={(value) => { setEmail(value); }}
         value={email}
         id="edit-contact-email"
-        shouldError={false}
+        shouldError={() => false}
       />
       <ColoredButton
         buttonText="Save"
