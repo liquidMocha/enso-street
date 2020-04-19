@@ -3,12 +3,15 @@ import GoogleLogin from 'react-google-login';
 import React, { useState } from 'react';
 import axios from 'axios';
 import { useHistory } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
 import ColoredButton from '../../shared/ColoredButton';
+import InitializeUser from '../../../InitializeUser';
 
 const OAuthButtons = ({ baseUrl }) => {
   const [loggedInUser, setLoggedInUser] = useState('');
   const [userImage, setUserImage] = useState('');
   const history = useHistory();
+  const dispatch = useDispatch();
 
   const onGoogleSignIn = async (googleUser) => {
     console.log(googleUser);
@@ -22,6 +25,7 @@ const OAuthButtons = ({ baseUrl }) => {
         idToken,
       }, { withCredentials: true });
 
+      InitializeUser(dispatch);
       history.push('/');
     } catch (error) {
       console.log('error from googleSignOn: ', error);

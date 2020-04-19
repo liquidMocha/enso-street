@@ -2,14 +2,17 @@ import PropTypes from 'prop-types';
 import React, { useState } from 'react';
 import axios from 'axios';
 import { useHistory } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
 import InputWithError from '../../shared/InputWithError';
 import DisableableButton from '../../shared/DisableableButton';
+import InitializeUser from '../../../InitializeUser';
 
 const LoginForm = (props) => {
   const [loginSuccessful, setLoginSuccessful] = useState(false);
   const [loginClicked, setLoginClicked] = useState(false);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const dispatch = useDispatch();
 
   const history = useHistory();
   const onLogin = async () => {
@@ -21,6 +24,7 @@ const LoginForm = (props) => {
         password,
       }, { withCredentials: true });
 
+      InitializeUser(dispatch);
       history.push('/');
     } catch (e) {
       setLoginClicked(true);

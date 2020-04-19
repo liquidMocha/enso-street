@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import './styles/App.scss';
 import { BrowserRouter, Route } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
@@ -15,14 +15,11 @@ import ItemDetail from './components/search/ItemDetail';
 import { isUserLoggedIn } from './services/UserService';
 import MyCart from './components/cart/MyCart';
 import CheckoutRouter from './components/cart/checkout/CheckoutRouter';
-import { getUserProfileAction } from './redux/user/UserAction';
+import InitializeUser from './InitializeUser';
 
 const App = () => {
   const dispatch = useDispatch();
-
-  useEffect(() => {
-    dispatch(getUserProfileAction());
-  }, []);
+  InitializeUser(dispatch);
 
   return (
     <BrowserRouter>
