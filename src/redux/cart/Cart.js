@@ -14,6 +14,7 @@ export default class Cart {
             imageUrl: item.imageUrl,
             rentalDailyPrice: item.rentalDailyPrice,
             quantity: item.quantity,
+            canBeDelivered: item.canBeDelivered,
           }),
         ),
       }),

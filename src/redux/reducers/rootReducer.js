@@ -1,7 +1,7 @@
 import { combineReducers } from 'redux';
 import { searchData } from '../search/searchData';
 import { currentLocation } from '../current_location/currentLocation';
-import { cartReducer } from '../cart/cartReducer';
+import cart from '../cart/cartReducer';
 import UserReducer from '../user/UserReducer';
 import item from '../item/item';
 
@@ -12,7 +12,7 @@ export const logoutAction = () => ({
 });
 
 const appReducer = combineReducers({
-  currentLocation, searchData, item, cart: cartReducer, user: UserReducer,
+  currentLocation, searchData, item, cart, user: UserReducer,
 });
 
 export default (state, action) => {

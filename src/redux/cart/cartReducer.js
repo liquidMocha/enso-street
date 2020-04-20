@@ -6,7 +6,7 @@ const initialState = {
   cart: new Cart([]),
 };
 
-export const cartReducer = (state = initialState, action) => {
+export default (state = initialState, action) => {
   const newState = _.cloneDeep(state);
 
   switch (action.type) {
