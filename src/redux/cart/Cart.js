@@ -21,6 +21,16 @@ export default class Cart {
     );
   }
 
+  pickupOnly() {
+    return this.getSelectedBatch().items
+      .filter((item) => item.selected)
+      .some((item) => !item.canBeDelivered);
+  }
+
+  getSelectedItems() {
+    return this.getSelectedBatch().items.filter((item) => item.selected);
+  }
+
   hasItemSelected() {
     return !!this.getSelectedBatch();
   }

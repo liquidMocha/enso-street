@@ -38,10 +38,7 @@ function calculateItemSubtotal(selectedItems, rentalDays) {
 }
 
 const OrderDetails = ({ rentalDays, deliveryPrice }) => {
-  const selectedItems = useSelector(
-    (state) => state.cart.cart.getSelectedBatch().items
-      .filter((item) => item.selected),
-  );
+  const selectedItems = useSelector((state) => state.cart.cart.getSelectedItems());
 
   return (
     <section className="confirm-checkout__order-details">

@@ -1,5 +1,6 @@
 import PropTypes from 'prop-types';
 import React, { useEffect, useState } from 'react';
+import { useSelector } from 'react-redux';
 import TitleBar from '../../shared/TitleBar';
 import RentalDate from './RentalDate';
 import ColoredButton from '../../shared/ColoredButton';
@@ -35,7 +36,8 @@ const Checkout = ({
   const [rentDate, setRentDate] = useState(today);
   const [returnDate, setReturnDate] = useState(defaultReturnDate());
   const [deliveryFee, setDeliveryFee] = useState(0);
-  const [renterPickup, setRenterPickup] = useState(false);
+  const pickupOnly = useSelector((state) => state.cart.cart.pickupOnly());
+  const [renterPickup, setRenterPickup] = useState(pickupOnly);
 
   useEffect(() => {
     if (renterPickup) {
@@ -54,12 +56,15 @@ const Checkout = ({
         returnDate={returnDate}
         onReturnDateChange={setReturnDate}
       />
-      <DeliveryOrPickupSection
-        chooseLocationPath={chooseLocationPath}
-        location={deliveryLocation}
-        onRenterPickupChange={() => setRenterPickup(!renterPickup)}
-        renterPickup={renterPickup}
-      />
+      {pickupOnly
+        ? null : (
+          <DeliveryOrPickupSection
+            chooseLocationPath={chooseLocationPath}
+            location={deliveryLocation}
+            onRenterPickupChange={() => setRenterPickup(!renterPickup)}
+            renterPickup={renterPickup}
+          />
+        )}
       <CustomerInformation
         value={customerInformation}
         onEdit={onEditCustomerInfo}
