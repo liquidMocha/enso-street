@@ -6,6 +6,7 @@ const initialState = {
   lastName: null,
   phone: null,
   email: null,
+  defaultAddress: null,
   contacts: [],
 };
 
@@ -19,6 +20,7 @@ export default (state = initialState, action) => {
         lastName: profile.lastName,
         phone: profile.phone,
         email: profile.email,
+        defaultAddress: profile.defaultAddress,
         contacts: profile.contacts.map((contact) => ({
           id: contact.id,
           firstName: contact.firstName,

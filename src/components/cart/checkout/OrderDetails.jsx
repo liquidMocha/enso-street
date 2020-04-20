@@ -37,7 +37,7 @@ function calculateItemSubtotal(selectedItems, rentalDays) {
   );
 }
 
-const OrderDetails = ({ rentalDays }) => {
+const OrderDetails = ({ rentalDays, deliveryPrice }) => {
   const selectedItems = useSelector(
     (state) => state.cart.cart.getSelectedBatch().items
       .filter((item) => item.selected),
@@ -53,6 +53,11 @@ const OrderDetails = ({ rentalDays }) => {
           $
           {calculateItemSubtotal(selectedItems, rentalDays)}
         </span>
+        <label>Delivery: </label>
+        <span>
+          $
+          {deliveryPrice}
+        </span>
       </section>
     </section>
   );
@@ -60,6 +65,7 @@ const OrderDetails = ({ rentalDays }) => {
 
 OrderDetails.propTypes = {
   rentalDays: PropTypes.number.isRequired,
+  deliveryPrice: PropTypes.number.isRequired,
 };
 
 export default OrderDetails;

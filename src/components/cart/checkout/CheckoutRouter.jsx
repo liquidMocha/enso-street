@@ -14,10 +14,16 @@ const CheckoutRouter = () => {
   const EDIT_CONTACTS_PATH = '/checkout/manage-contacts';
   const EDIT_CONTACT_PATH = '/checkout/edit-contact';
   const MY_PROFILE_PATH = '/my-profile';
-  const [deliveryLocation, setDeliveryLocation] = useState({
-    street: 'default street',
-    zipCode: 'default zip',
+  const defaultAddress = useSelector((state) => {
+    if (state.user.defaultAddress) {
+      return {
+        street: state.user.defaultAddress.street,
+        zipCode: state.user.defaultAddress.zipCode,
+      };
+    }
+    return null;
   });
+  const [deliveryLocation, setDeliveryLocation] = useState(null);
   const [editedContact, setEditedContact] = useState({});
   const [deliveryContact, setDeliveryContact] = useState({});
   const dispatch = useDispatch();
@@ -65,7 +71,7 @@ const CheckoutRouter = () => {
       </Route>
       <Route exact path={CHECKOUT_PATH}>
         <Checkout
-          deliveryLocation={deliveryLocation}
+          deliveryLocation={deliveryLocation || defaultAddress}
           chooseLocationPath={CHOOSE_LOCATION_PATH}
           editContactPath={EDIT_CONTACTS_PATH}
           customerInformation={userProfile}

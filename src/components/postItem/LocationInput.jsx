@@ -4,15 +4,18 @@ import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEdit } from '@fortawesome/free-regular-svg-icons';
 
-const LocationInput = ({ address, chooseLocationPath }) => {
+const LocationInput = ({ address, chooseLocationPath, displayReassurance }) => {
   const displayLocation = () => {
     let result = '';
-    if (address.street) {
-      result += address.street;
+    if (address) {
+      if (address.street) {
+        result += address.street;
+      }
+      if (address.zipCode) {
+        result += `, ${address.zipCode}`;
+      }
     }
-    if (address.zipCode) {
-      result += `, ${address.zipCode}`;
-    }
+
     return result;
   };
 
@@ -25,7 +28,9 @@ const LocationInput = ({ address, chooseLocationPath }) => {
           <FontAwesomeIcon icon={faEdit} />
         </Link>
       </div>
-      <span className="deemphasize">Public search will only show vague location of the item.</span>
+      {displayReassurance
+        ? <span className="deemphasize">Public search will only show vague location of the item.</span>
+        : null}
     </div>
   );
 };
@@ -34,8 +39,14 @@ LocationInput.propTypes = {
   address: PropTypes.shape({
     street: PropTypes.string,
     zipCode: PropTypes.string,
-  }).isRequired,
+  }),
   chooseLocationPath: PropTypes.string.isRequired,
+  displayReassurance: PropTypes.bool,
+};
+
+LocationInput.defaultProps = {
+  displayReassurance: true,
+  address: null,
 };
 
 export default LocationInput;
