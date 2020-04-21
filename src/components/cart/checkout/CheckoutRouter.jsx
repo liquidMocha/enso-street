@@ -18,6 +18,8 @@ const CheckoutRouter = () => {
     if (state.user.defaultAddress) {
       return {
         street: state.user.defaultAddress.street,
+        city: state.user.defaultAddress.city,
+        state: state.user.defaultAddress.state,
         zipCode: state.user.defaultAddress.zipCode,
       };
     }
@@ -77,8 +79,8 @@ const CheckoutRouter = () => {
           customerInformation={userProfile}
           deliveryContact={deliveryContact}
           editContactsPath={EDIT_CONTACTS_PATH}
-          onEditCustomerInfo={() => editCustomerInfo()}
-          onEditDeliveryInfo={() => editDeliveryContact()}
+          onEditCustomerInfo={editCustomerInfo}
+          onEditDeliveryInfo={editDeliveryContact}
         />
       </Route>
       <ChooseLocation
