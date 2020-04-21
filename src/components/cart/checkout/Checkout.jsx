@@ -9,6 +9,14 @@ import CustomerInformation from './CustomerInformation';
 import DeliveryContact from './DeliveryContact';
 import OrderDetails from './OrderDetails';
 import './Checkout.scss';
+import { getDeliveryPrice } from '../../../services/TransactionService';
+import OrderSummary from './OrderSummary';
+
+function calculateItemSubtotal(selectedItems, rentalDays) {
+  return selectedItems.reduce(
+    (total, item) => total + item.rentalDailyPrice * item.quantity * rentalDays, 0,
+  );
+}
 
 function calculateRentalDays(startDateTime, endDateTime) {
   const MILLISECONDS_IN_A_DAY = 1000 * 60 * 60 * 24;
@@ -35,15 +43,32 @@ const Checkout = ({
   const today = (new Date()).toISOString().substr(0, 16);
   const [rentDate, setRentDate] = useState(today);
   const [returnDate, setReturnDate] = useState(defaultReturnDate());
+  const [rentalDays, setRentalDays] = useState(0);
   const [deliveryFee, setDeliveryFee] = useState(0);
   const pickupOnly = useSelector((state) => state.cart.cart.pickupOnly());
   const [renterPickup, setRenterPickup] = useState(pickupOnly);
+  const selectedItems = useSelector((state) => state.cart.cart.getSelectedItems());
+  const [calculatingDeliveryPrice, setCalculatingDeliveryPrice] = useState(false);
+  const [subtotal, setSubtotal] = useState(0);
+
+  useEffect(() => {
+    setRentalDays(calculateRentalDays(rentDate, returnDate));
+  }, [rentDate, returnDate]);
+
+  useEffect(() => {
+    setSubtotal(calculateItemSubtotal(selectedItems, rentalDays));
+  }, [selectedItems, rentalDays]);
 
   useEffect(() => {
     if (renterPickup) {
       setDeliveryFee(0);
     } else {
-      setDeliveryFee(0);
+      setCalculatingDeliveryPrice(true);
+      getDeliveryPrice(selectedItems.map((item) => item.id), deliveryLocation)
+        .then((fee) => {
+          setDeliveryFee(fee);
+          setCalculatingDeliveryPrice(false);
+        });
     }
   }, [deliveryLocation, renterPickup]);
 
@@ -76,9 +101,11 @@ const Checkout = ({
             onEdit={onEditDeliveryInfo}
           />
         )}
-      <OrderDetails
-        rentalDays={calculateRentalDays(rentDate, returnDate)}
-        deliveryPrice={deliveryFee}
+      <OrderDetails rentalDays={rentalDays} deliveryPrice={deliveryFee} />
+      <OrderSummary
+        calculatingDeliveryFee={calculatingDeliveryPrice}
+        deliveryFee={deliveryFee}
+        subtotal={subtotal}
       />
       <ColoredButton buttonText="Confirm Order" mode="light" />
     </div>

@@ -31,38 +31,19 @@ function displayItems(selectedItems, rentalDays) {
   );
 }
 
-function calculateItemSubtotal(selectedItems, rentalDays) {
-  return selectedItems.reduce(
-    (total, item) => total + item.rentalDailyPrice * item.quantity * rentalDays, 0,
-  );
-}
-
-const OrderDetails = ({ rentalDays, deliveryPrice }) => {
+const OrderDetails = ({ rentalDays }) => {
   const selectedItems = useSelector((state) => state.cart.cart.getSelectedItems());
 
   return (
     <section className="confirm-checkout__order-details">
       <h1>Order Details</h1>
       {displayItems(selectedItems, rentalDays)}
-      <section>
-        <label>Subtotal: </label>
-        <span>
-          $
-          {calculateItemSubtotal(selectedItems, rentalDays)}
-        </span>
-        <label>Delivery: </label>
-        <span>
-          $
-          {deliveryPrice}
-        </span>
-      </section>
     </section>
   );
 };
 
 OrderDetails.propTypes = {
   rentalDays: PropTypes.number.isRequired,
-  deliveryPrice: PropTypes.number.isRequired,
 };
 
 export default OrderDetails;
