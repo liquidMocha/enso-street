@@ -6,11 +6,12 @@ import 'react-datepicker/dist/react-datepicker.css';
 const RentalDate = ({
   rentDate, returnDate, onRentDateChange, onReturnDateChange,
 }) => (
-  <section>
+  <section className="rental-date-selection">
     <h1>Rental Date</h1>
     <section>
       <label>Start</label>
       <DatePicker
+        className="rental-date-selection__date-picker"
         selected={rentDate}
         onChange={(date) => onRentDateChange(date)}
         showTimeSelect
@@ -19,9 +20,11 @@ const RentalDate = ({
         timeCaption="time"
         dateFormat="MMMM d, yyyy h aa"
       />
-      <br />
+    </section>
+    <section>
       <label>Return</label>
       <DatePicker
+        className="rental-date-selection__date-picker"
         selected={returnDate}
         onChange={(date) => onReturnDateChange(date)}
         showTimeSelect

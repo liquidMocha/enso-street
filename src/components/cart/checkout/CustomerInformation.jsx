@@ -3,9 +3,10 @@ import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEdit } from '@fortawesome/free-regular-svg-icons';
 import PersonInfo from './PersonInfo';
+import './CustomerInformation.scss';
 
 const CustomerInformation = ({ value, onEdit }) => (
-  <section>
+  <section className="customer-information">
     <h1>Customer Information</h1>
     <FontAwesomeIcon icon={faEdit} onClick={onEdit} />
     <PersonInfo fullName={`${value.firstName || ''} ${value.lastName || ''}`} phone={value.phone} email={value.email} />

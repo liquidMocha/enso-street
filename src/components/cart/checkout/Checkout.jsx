@@ -49,6 +49,7 @@ const Checkout = ({
   const [renterPickup, setRenterPickup] = useState(pickupOnly);
   const selectedItems = useSelector((state) => state.cart.cart.getSelectedItems());
   const [calculatingDeliveryPrice, setCalculatingDeliveryPrice] = useState(false);
+  const [deliverySameAsCustomer, setDeliverySameAsCustomer] = useState(false);
   const [subtotal, setSubtotal] = useState(0);
 
   useEffect(() => {
@@ -99,6 +100,8 @@ const Checkout = ({
           <DeliveryContact
             value={deliveryContact}
             onEdit={onEditDeliveryInfo}
+            onChangeSameAsCustomer={() => { setDeliverySameAsCustomer(!deliverySameAsCustomer); }}
+            sameAsCustomer={deliverySameAsCustomer}
           />
         )}
       <OrderDetails rentalDays={rentalDays} deliveryPrice={deliveryFee} />
