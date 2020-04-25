@@ -29,7 +29,7 @@ function calculateRentalDays(startDateTime, endDateTime) {
 function defaultReturnDate() {
   const twoDaysFromToday = new Date();
   twoDaysFromToday.setDate(new Date().getDate() + 2);
-  return (twoDaysFromToday).toISOString().substr(0, 16);
+  return twoDaysFromToday;
 }
 
 const Checkout = ({
@@ -40,7 +40,7 @@ const Checkout = ({
   onEditCustomerInfo,
   onEditDeliveryInfo,
 }) => {
-  const today = (new Date()).toISOString().substr(0, 16);
+  const today = new Date();
   const [rentDate, setRentDate] = useState(today);
   const [returnDate, setReturnDate] = useState(defaultReturnDate());
   const [rentalDays, setRentalDays] = useState(0);

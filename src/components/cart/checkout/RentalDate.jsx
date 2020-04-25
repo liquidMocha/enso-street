@@ -1,36 +1,39 @@
 import PropTypes from 'prop-types';
 import React from 'react';
+import DatePicker from 'react-datepicker';
+import 'react-datepicker/dist/react-datepicker.css';
 
 const RentalDate = ({
   rentDate, returnDate, onRentDateChange, onReturnDateChange,
-}) => {
-  return (
+}) => (
+  <section>
+    <h1>Rental Date</h1>
     <section>
-      <h1>Rental Date</h1>
-      <section>
-        <label htmlFor="checkout-rent-date">Start</label>
-        <input
-          id="checkout-rent-date"
-          type="datetime-local"
-          value={rentDate}
-          onChange={(e) => onRentDateChange(e.target.value)}
-          step={30 * 60}
-        />
-        <br />
-        <label htmlFor="checkout-return-date">End</label>
-        <input
-          id="checkout-return-date"
-          type="datetime-local"
-          value={returnDate}
-          onChange={(e) => onReturnDateChange(e.target.value)}
-          min={rentDate}
-          step={30 * 60}
-        />
-      </section>
+      <label>Start</label>
+      <DatePicker
+        selected={rentDate}
+        onChange={(date) => onRentDateChange(date)}
+        showTimeSelect
+        timeFormat="HH"
+        timeIntervals={60}
+        timeCaption="time"
+        dateFormat="MMMM d, yyyy h aa"
+      />
+      <br />
+      <label>Return</label>
+      <DatePicker
+        selected={returnDate}
+        onChange={(date) => onReturnDateChange(date)}
+        showTimeSelect
+        timeFormat="HH"
+        timeIntervals={60}
+        timeCaption="time"
+        dateFormat="MMMM d, yyyy h aa"
+        minDate={rentDate}
+      />
     </section>
-  );
-};
-
+  </section>
+);
 RentalDate.propTypes = {
   rentDate: PropTypes.string.isRequired,
   onRentDateChange: PropTypes.func.isRequired,
