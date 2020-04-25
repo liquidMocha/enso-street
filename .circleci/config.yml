@@ -52,9 +52,9 @@ jobs:
           command: |
             npm test
 
-      - run:
-          name: browser tests
-          command: |
-            nohup bash -c 'npm run startHttpDev' &
-            sleep 5
-            ./node_modules/nightwatch/bin/nightwatch
+#      - run:
+#          name: browser tests
+#          command: |
+#            nohup bash -c 'npm run startHttpDev' &
+#            sleep 5
+#            ./node_modules/nightwatch/bin/nightwatch
