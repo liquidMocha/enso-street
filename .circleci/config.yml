@@ -26,7 +26,7 @@ jobs:
   tests:
     working_directory: ~/enso-street
     docker:
-      - image: circleci/node:8-browsers
+      - image: circleci/node:12.0.0-browsers
 
     steps:
       - checkout
