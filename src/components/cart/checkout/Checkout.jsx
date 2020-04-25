@@ -22,8 +22,8 @@ function calculateRentalDays(startDateTime, endDateTime) {
   const MILLISECONDS_IN_A_DAY = 1000 * 60 * 60 * 24;
 
   return (
-    (new Date(endDateTime).getTime() - new Date(startDateTime))
-    / MILLISECONDS_IN_A_DAY).toFixed();
+    ((new Date(endDateTime).getTime() - new Date(startDateTime))
+    / MILLISECONDS_IN_A_DAY) + 1).toFixed();
 }
 
 function defaultReturnDate() {
