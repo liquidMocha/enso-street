@@ -42,7 +42,10 @@ const MyItemsRouter = () => {
     });
 
   const onLocalImageLoad = async (localImageUrl) => {
-    await resizeAndUploadImage(localImageUrl);
+    if (localImageUrl.startsWith('blob')) {
+      const uploadedImageUrl = await resizeAndUploadImage(localImageUrl);
+      updateImageUrl(uploadedImageUrl);
+    }
   };
 
   return (
