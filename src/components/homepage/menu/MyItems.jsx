@@ -3,7 +3,6 @@ import React, { useEffect, useReducer } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlus, faSearch } from '@fortawesome/free-solid-svg-icons';
 import { useHistory } from 'react-router-dom';
-import Modal from 'react-modal';
 import '../../../styles/Spacing.scss';
 import './MyItem.scss';
 import '../../../styles/Input.scss';
@@ -14,6 +13,7 @@ import MyItemCardSkeleton from './MyItemCardSkeleton';
 import { deleteItem, getAllItemsForUser, updateItem } from '../../../services/ItemService';
 import InputWithIcon from '../../shared/InputWithIcon';
 import TitleBar from '../../shared/TitleBar';
+import DeleteItemModal from '../../cart/DeleteItemModal';
 
 const byCreatedOn = (a, b) => {
   const timeA = a.createdOn;
@@ -190,7 +190,7 @@ const MyItems = (props) => {
   };
 
   return (
-    <div>
+    <div className="my-items">
       <TitleBar />
       <section id="my-items-page-title">
         <h1>My Items</h1>
@@ -233,27 +233,15 @@ const MyItems = (props) => {
             onCardClick={props.onClickItemCard}
           />
         ))}
-      <Modal
+      <DeleteItemModal
+        onDelete={() => {
+          deleteItemById(state.deleteModalStatus.itemId);
+        }}
+        onCancel={() => {
+          dispatch({ type: CANCEL_ITEM_DELETE });
+        }}
         isOpen={state.deleteModalStatus.isOpen}
-        className="delete-item-modal"
-        overlayClassName="delete-item-modal-overlay"
-      >
-        <div>Are you sure you want to delete this item?</div>
-        <div className="modal-button-group">
-          <div onClick={() => {
-            deleteItemById(state.deleteModalStatus.itemId);
-          }}
-          >
-            Delete
-          </div>
-          <div onClick={() => {
-            dispatch({ type: CANCEL_ITEM_DELETE });
-          }}
-          >
-            Cancel
-          </div>
-        </div>
-      </Modal>
+      />
     </div>
   );
 };

@@ -1,19 +1,22 @@
 import PropTypes from 'prop-types';
-import React from 'react';
+import React, { useState } from 'react';
 import './MyCartItemCard.scss';
 import { useDispatch } from 'react-redux';
 import Checkbox from '../shared/Checkbox';
 import {
   addToCart,
   addToCartSelectionAction,
-  removeFromCartAction, removeFromCartSelectionAction,
+  removeFromCartAction,
+  removeFromCartSelectionAction,
 } from '../../redux/cart/cartAction';
 import ItemCounter from './ItemCounter';
+import DeleteItemModal from './DeleteItemModal';
 
 const highlightCard = (highlighted) => (highlighted ? ' highlight' : '');
 
 const MyCartItemCard = ({ item }) => {
   const dispatch = useDispatch();
+  const [showDeleteModal, setShowDeleteModal] = useState(false);
 
   return (
     <div className={`my-cart__item-card${highlightCard(item.selected)}`}>
@@ -40,17 +43,29 @@ const MyCartItemCard = ({ item }) => {
         </span>
       </section>
       <section className="my-cart_-item-card--third-column">
-        <div onClick={() => dispatch(removeFromCartAction(item.id, true))}>X</div>
+        <div onClick={() => setShowDeleteModal(true)}>X</div>
         <ItemCounter
           count={item.quantity}
           decrement={() => {
-            dispatch(removeFromCartAction(item.id));
+            if (item.quantity === 1) {
+              setShowDeleteModal(true);
+            } else {
+              dispatch(removeFromCartAction(item.id));
+            }
           }}
           increment={() => {
             dispatch(addToCart(item.id));
           }}
         />
       </section>
+      <DeleteItemModal
+        isOpen={showDeleteModal}
+        onDelete={() => {
+          dispatch(removeFromCartAction(item.id, true));
+          setShowDeleteModal(false);
+        }}
+        onCancel={() => setShowDeleteModal(false)}
+      />
     </div>
   );
 };
