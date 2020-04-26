@@ -5,7 +5,6 @@ import EditItem from '../../postItem/EditItem';
 import { updateItem } from '../../../services/ItemService';
 import { defaultItem } from '../../postItem/PostItemConstants';
 import UseMyPhoto from '../../postItem/UseMyPhoto';
-import { resizeAndUploadImage } from '../../../services/ImageService';
 import ChooseLocation from '../../shared/ChooseLocation';
 
 const MyItemsRouter = () => {
@@ -41,13 +40,6 @@ const MyItemsRouter = () => {
       console.error(error);
     });
 
-  const onLocalImageLoad = async (localImageUrl) => {
-    if (localImageUrl.startsWith('blob')) {
-      const uploadedImageUrl = await resizeAndUploadImage(localImageUrl);
-      updateImageUrl(uploadedImageUrl);
-    }
-  };
-
   return (
     <Switch>
       <Route exact path="/my-items">
@@ -69,7 +61,7 @@ const MyItemsRouter = () => {
           onClickingPost={onPostingItem}
           useMyPhotoPath={useMyPhotoPath}
           chooseLocationPath={chooseLocationPath}
-          onLocalImageLoad={onLocalImageLoad}
+          onLocalImageLoad={updateImageUrl}
         />
       </Route>
       <Route exact path={useMyPhotoPath}>

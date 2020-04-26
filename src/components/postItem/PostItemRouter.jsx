@@ -9,7 +9,6 @@ import { defaultItem } from './PostItemConstants';
 import { postItem } from '../../services/ItemService';
 import EditItem from './EditItem';
 import PostItemProgressContext from './PostItemProgressContext';
-import { resizeAndUploadImage } from '../../services/ImageService';
 import ChooseLocation from '../shared/ChooseLocation';
 
 const PostItemRouter = () => {
@@ -34,13 +33,6 @@ const PostItemRouter = () => {
     console.error(error);
   });
 
-  const onLocalImageLoad = async (imageUrl) => {
-    if (imageUrl.startsWith('blob')) {
-      const uploadedImageUrl = await resizeAndUploadImage(imageUrl);
-      updateImageUrl(uploadedImageUrl);
-    }
-  };
-
   const useMyPhotoPath = '/use-my-photo';
   const chooseLocationPath = '/choose-location';
   const priceAndDeliveryPath = '/price-and-delivery';
@@ -59,7 +51,7 @@ const PostItemRouter = () => {
             item={item}
             onTitleChange={updateTitle}
             useMyPhotoPath={useMyPhotoPath}
-            onLocalImageLoad={onLocalImageLoad}
+            onLocalImageLoad={updateImageUrl}
           />
         </Route>
         <Route exact path={useMyPhotoPath}>
@@ -107,7 +99,7 @@ const PostItemRouter = () => {
             onClickingPost={onPostingItem}
             useMyPhotoPath={useMyPhotoPath}
             chooseLocationPath={chooseLocationPath}
-            onLocalImageLoad={onLocalImageLoad}
+            onLocalImageLoad={updateImageUrl}
           />
         </Route>
       </Switch>

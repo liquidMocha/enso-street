@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faImage } from '@fortawesome/free-solid-svg-icons';
 import PropTypes from 'prop-types';
+import { resizeAndUploadImage } from '../../services/ImageService';
 
 const PostImageInput = ({ imageUrl, onLocalImageLoad, useMyPhotoPath }) => (
   <div>
@@ -11,8 +12,11 @@ const PostImageInput = ({ imageUrl, onLocalImageLoad, useMyPhotoPath }) => (
         <img
           src={imageUrl}
           alt="User provided item"
-          onLoad={() => {
-            onLocalImageLoad(imageUrl);
+          onLoad={async () => {
+            if (imageUrl.startsWith('blob')) {
+              const uploadedImageUrl = await resizeAndUploadImage(imageUrl);
+              onLocalImageLoad(uploadedImageUrl);
+            }
           }}
         />
       ) : null}
