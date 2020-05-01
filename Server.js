@@ -15,9 +15,6 @@ fs.writeFileSync(
 app.use(express.static(__dirname));
 app.use(express.static(`${__dirname}/config`));
 
-console.log(`server url: ${process.env.REACT_APP_SERVER_URL}`);
-console.log(`REACT_APP_googleClientId: ${process.env.REACT_APP_googleClientId}`);
-
 app.use(
   '/api',
   proxy({ target: process.env.REACT_APP_SERVER_URL, changeOrigin: true }),
