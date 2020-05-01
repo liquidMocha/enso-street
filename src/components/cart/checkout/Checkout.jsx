@@ -1,6 +1,7 @@
 import PropTypes from 'prop-types';
 import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
+import { useStripe, useElements, CardElement } from '@stripe/react-stripe-js';
 import TitleBar from '../../shared/TitleBar';
 import RentalDate from './RentalDate';
 import ColoredButton from '../../shared/ColoredButton';
@@ -9,7 +10,7 @@ import CustomerInformation from './CustomerInformation';
 import DeliveryContact from './DeliveryContact';
 import OrderDetails from './OrderDetails';
 import './Checkout.scss';
-import { getDeliveryPrice } from '../../../services/TransactionService';
+import { createPaymentIntent, getDeliveryPrice } from '../../../services/TransactionService';
 import OrderSummary from './OrderSummary';
 
 function calculateItemSubtotal(selectedItems, rentalDays) {
@@ -51,6 +52,7 @@ const Checkout = ({
   const [calculatingDeliveryPrice, setCalculatingDeliveryPrice] = useState(false);
   const [deliverySameAsCustomer, setDeliverySameAsCustomer] = useState(false);
   const [subtotal, setSubtotal] = useState(0);
+  const [confirmOrderDisabled, setConfirmOrderDisabled] = useState(true);
 
   useEffect(() => {
     setRentalDays(calculateRentalDays(rentDate, returnDate));
@@ -72,6 +74,60 @@ const Checkout = ({
         });
     }
   }, [deliveryLocation, renterPickup]);
+
+  const stripe = useStripe();
+  const elements = useElements();
+  useEffect(() => {
+    if (!stripe || !elements) {
+      setConfirmOrderDisabled(true);
+    } else {
+      setConfirmOrderDisabled(false);
+    }
+  }, [stripe, elements]);
+
+
+  const processPayment = async () => {
+    setConfirmOrderDisabled(true);
+    if (!stripe || !elements) {
+      // Stripe.js has not yet loaded.
+      // Make sure to disable form submission until Stripe.js has loaded.
+      return;
+    }
+
+    const stripeClientSecret = await createPaymentIntent(
+      selectedItems,
+      !renterPickup,
+      renterPickup ? null : deliveryLocation,
+      rentalDays,
+    );
+
+    const result = await stripe.confirmCardPayment(stripeClientSecret, {
+      payment_method: {
+        card: elements.getElement(CardElement),
+        billing_details: {
+          name: customerInformation.name,
+        },
+      },
+    });
+
+    if (result.error) {
+      console.log(result.error.message);
+      if (result.error.decline_code === 'insufficient_funds') {
+        // show message
+      }
+    } else {
+      // The payment has been processed!
+      if (result.paymentIntent.status === 'succeeded') {
+        console.log('succeeded');
+        console.log(result);
+        // Show a success message to your customer
+        // There's a risk of the customer closing the window before callback
+        // execution. Set up a webhook or plugin to listen for the
+        // payment_intent.succeeded event that handles any business critical
+        // post-payment actions.
+      }
+    }
+  };
 
   return (
     <div className="confirm-checkout-page">
@@ -110,7 +166,13 @@ const Checkout = ({
         deliveryFee={deliveryFee}
         subtotal={subtotal}
       />
-      <ColoredButton buttonText="Confirm Order" mode="light" />
+      <CardElement />
+      <ColoredButton
+        buttonText="Confirm Order"
+        mode="light"
+        onClick={processPayment}
+        disabled={confirmOrderDisabled}
+      />
     </div>
   );
 };
