@@ -17,7 +17,7 @@ const RentalDate = ({
         showTimeSelect
         timeFormat="HH"
         timeIntervals={60}
-        timeCaption="time"
+        timeCaption="Hour"
         dateFormat="MMMM d, yyyy h aa"
       />
     </section>
@@ -30,7 +30,7 @@ const RentalDate = ({
         showTimeSelect
         timeFormat="HH"
         timeIntervals={60}
-        timeCaption="time"
+        timeCaption="Hour"
         dateFormat="MMMM d, yyyy h aa"
         minDate={rentDate}
       />
