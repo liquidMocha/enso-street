@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
-import { useStripe, useElements, CardElement } from '@stripe/react-stripe-js';
+import { CardElement, useElements, useStripe } from '@stripe/react-stripe-js';
 import TitleBar from '../../shared/TitleBar';
 import RentalDate from './RentalDate';
 import ColoredButton from '../../shared/ColoredButton';
@@ -19,12 +19,16 @@ function calculateItemSubtotal(selectedItems, rentalDays) {
   );
 }
 
-function calculateRentalDays(startDateTime, endDateTime) {
-  const MILLISECONDS_IN_A_DAY = 1000 * 60 * 60 * 24;
-
-  return (
-    ((new Date(endDateTime).getTime() - new Date(startDateTime))
-    / MILLISECONDS_IN_A_DAY) + 1).toFixed();
+function calculateRentalDays(startDate, endDate) {
+  const date1 = new Date(startDate);
+  const date2 = new Date(endDate);
+  return Math.floor(
+    (
+      Date.UTC(date2.getFullYear(), date2.getMonth(), date2.getDate())
+      - Date.UTC(date1.getFullYear(), date1.getMonth(), date1.getDate())
+    )
+    / (1000 * 60 * 60 * 24),
+  ) + 1;
 }
 
 function defaultReturnDate() {
@@ -98,7 +102,8 @@ const Checkout = ({
       selectedItems,
       !renterPickup,
       renterPickup ? null : deliveryLocation,
-      rentalDays,
+      rentDate,
+      returnDate,
     );
 
     const result = await stripe.confirmCardPayment(stripeClientSecret, {
