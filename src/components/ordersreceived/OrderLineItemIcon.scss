@@ -1,0 +1,15 @@
+.order-line-item-icon {
+  position: relative;
+  img {
+    width: auto;
+    height: auto;
+    object-fit: contain;
+  }
+
+  .fa-layers {
+    position: absolute;
+    z-index: 1000;
+    bottom: -24px;
+    right: 0;
+  }
+}

@@ -1,0 +1,36 @@
+.order-received-card {
+  border: solid 1px black;
+  padding: 10px;
+
+  .order-received-card__action-buttons {
+    display: flex;
+    justify-content: space-around;
+
+    button {
+      all: unset;
+    }
+  }
+
+  .status-indicator--pending {
+    background-color: yellow;
+  }
+
+  .status-indicator--confirmed {
+    background-color: #2196F3;
+  }
+
+  .status-indicator--cancelled {
+    background-color: gray;
+  }
+
+  .order-received-card__order-line-items {
+    display: flex;
+    justify-content: start;
+    height: 130px;
+    align-items: flex-end;
+
+    .order-line-item-icon {
+      margin-right: 20px;
+    }
+  }
+}

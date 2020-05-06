@@ -18,6 +18,7 @@ import { isUserLoggedIn } from './services/UserService';
 import MyCart from './components/cart/MyCart';
 import CheckoutRouter from './components/cart/checkout/CheckoutRouter';
 import InitializeUser from './InitializeUser';
+import OrdersReceivedPage from './components/ordersreceived/OrdersReceivedPage';
 
 const stripePromise = loadStripe('pk_test_iiYBIcKzGSXfI7I4YdqXQyRX00aBp7Oras');
 
@@ -44,6 +45,9 @@ const App = () => {
           </Route>
           <Route path="/my-cart">
             <MyCart />
+          </Route>
+          <Route path="/orders-received">
+            <OrdersReceivedPage />
           </Route>
           <CheckoutRouter />
           <MyItemsRouter />

@@ -75,7 +75,10 @@
     "ts-pnp": "1.1.2",
     "url-loader": "2.1.0",
     "webpack-manifest-plugin": "2.0.4",
-    "workbox-webpack-plugin": "4.3.1"
+    "workbox-webpack-plugin": "4.3.1",
+    "enzyme": "^3.10.0",
+    "enzyme-adapter-react-16": "^1.15.1",
+    "babel-polyfill": "^6.26.0"
   },
   "scripts": {
     "startDev": "webpack-dev-server --open --config webpack.local.js",
@@ -107,11 +110,8 @@
     "axios-mock-adapter": "^1.17.0",
     "babel-core": "^6.26.3",
     "babel-loader": "^8.0.6",
-    "babel-polyfill": "^6.26.0",
     "chromedriver": "^81.0.0",
     "css-loader": "^3.2.0",
-    "enzyme": "^3.10.0",
-    "enzyme-adapter-react-16": "^1.15.1",
     "eslint": "^6.8.0",
     "eslint-config-airbnb": "^18.0.1",
     "eslint-plugin-react": "^7.18.3",
