@@ -21,12 +21,7 @@ const OrdersReceivedPage = () => {
         numberOfOrders={orders.length}
       />
       {orders.map((order) => (
-        <OrderReceivedCard
-          orderLineItems={order.orderLineItems}
-          returnTime={new Date(order.returnTime)}
-          startTime={new Date(order.startTime)}
-          status={order.status}
-        />
+        <OrderReceivedCard order={order} />
       ))}
     </section>
   );

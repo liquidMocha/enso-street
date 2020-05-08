@@ -1,4 +1,4 @@
-import { getOrdersReceived } from '../../services/OrderService';
+import { cancelOrder, getOrdersReceived } from '../../services/OrderService';
 
 export const REFRESH_ORDER_RECEIVED = 'REFRESH_ORDER_RECEIVED';
 
@@ -9,4 +9,10 @@ const refreshOrderReceived = (orders) => ({
 
 export const getOrderReceivedAction = () => async (dispatch) => {
   dispatch(refreshOrderReceived(await getOrdersReceived()));
+};
+
+export const cancelOrderAction = (orderId) => async (dispatch) => {
+  await cancelOrder(orderId);
+
+  dispatch(getOrderReceivedAction());
 };

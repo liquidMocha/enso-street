@@ -1,7 +1,8 @@
 export default class Order {
   constructor({
-    status, isDeliver, startTime, returnTime, orderLineItems,
+    id, status, isDeliver, startTime, returnTime, orderLineItems,
   }) {
+    this.id = id;
     this.status = status;
     this.isDeliver = isDeliver;
     this.startTime = startTime;
