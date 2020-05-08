@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux';
 import React from 'react';
 import OrderLineItemIcon from './OrderLineItemIcon';
 import './OrderReceivedCard.scss';
-import { cancelOrderAction } from '../../redux/order/OrderAction';
+import { cancelOrderAction, confirmOrderAction } from '../../redux/order/OrderAction';
 
 const OrderReceivedCard = ({ order }) => {
   const { startTime, returnTime } = order;
@@ -13,7 +13,7 @@ const OrderReceivedCard = ({ order }) => {
     if (order.status === 'PENDING') {
       return (
         <section className="order-received-card__action-buttons">
-          <button>Confirm</button>
+          <button onClick={() => { dispatch(confirmOrderAction(order.id)); }}>Confirm</button>
           <button onClick={() => { dispatch(cancelOrderAction(order.id)); }}>Cancel</button>
         </section>
       );
