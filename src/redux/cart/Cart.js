@@ -15,6 +15,7 @@ export default class Cart {
             rentalDailyPrice: item.rentalDailyPrice,
             quantity: item.quantity,
             canBeDelivered: item.canBeDelivered,
+            deposit: item.deposit,
           }),
         ),
       }),

@@ -2,7 +2,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import './OrderSummary.scss';
 
-const OrderSummary = ({ subtotal, deliveryFee, calculatingDeliveryFee }) => (
+const OrderSummary = ({
+  subtotal, deliveryFee, deposits, calculatingDeliveryFee,
+}) => (
   <section className="checkout__order-summary">
     <section>
       <label>Subtotal: </label>
@@ -17,6 +19,13 @@ const OrderSummary = ({ subtotal, deliveryFee, calculatingDeliveryFee }) => (
       </span>
     </section>
     <section>
+      <label>Deposits: </label>
+      <span>
+        $
+        {deposits}
+      </span>
+    </section>
+    <section>
       <label className="checkout__order-summary--emphasis">Order total: </label>
       <span>{calculatingDeliveryFee ? 'calculating...' : `$${subtotal + deliveryFee}`}</span>
     </section>
@@ -26,6 +35,7 @@ const OrderSummary = ({ subtotal, deliveryFee, calculatingDeliveryFee }) => (
 OrderSummary.propTypes = {
   subtotal: PropTypes.number.isRequired,
   deliveryFee: PropTypes.number.isRequired,
+  deposits: PropTypes.number.isRequired,
   calculatingDeliveryFee: PropTypes.bool.isRequired,
 };
 

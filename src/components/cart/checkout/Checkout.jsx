@@ -19,6 +19,12 @@ function calculateItemSubtotal(selectedItems, rentalDays) {
   );
 }
 
+function calculateDeposits(selectedItems) {
+  return selectedItems.reduce(
+    (total, item) => total + item.deposit * item.quantity, 0,
+  );
+}
+
 function calculateRentalDays(startDate, endDate) {
   const date1 = new Date(startDate);
   const date2 = new Date(endDate);
@@ -57,6 +63,7 @@ const Checkout = ({
   const [deliverySameAsCustomer, setDeliverySameAsCustomer] = useState(false);
   const [subtotal, setSubtotal] = useState(0);
   const [confirmOrderDisabled, setConfirmOrderDisabled] = useState(true);
+  const [deposits, setDeposits] = useState(0);
 
   useEffect(() => {
     setRentalDays(calculateRentalDays(rentDate, returnDate));
@@ -65,6 +72,10 @@ const Checkout = ({
   useEffect(() => {
     setSubtotal(calculateItemSubtotal(selectedItems, rentalDays));
   }, [selectedItems, rentalDays]);
+
+  useEffect(() => {
+    setDeposits(calculateDeposits(selectedItems));
+  }, [selectedItems]);
 
   useEffect(() => {
     if (renterPickup) {
@@ -170,6 +181,7 @@ const Checkout = ({
         calculatingDeliveryFee={calculatingDeliveryPrice}
         deliveryFee={deliveryFee}
         subtotal={subtotal}
+        deposits={deposits}
       />
       <CardElement />
       <ColoredButton

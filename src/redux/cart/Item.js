@@ -1,6 +1,6 @@
 export default class Item {
   constructor({
-    id, title, rentalDailyPrice, imageUrl, quantity, canBeDelivered,
+    id, title, rentalDailyPrice, imageUrl, quantity, canBeDelivered, deposit,
   }) {
     this.id = id;
     this.title = title;
@@ -9,6 +9,7 @@ export default class Item {
     this.quantity = quantity;
     this.canBeDelivered = canBeDelivered;
     this.selected = false;
+    this.deposit = deposit;
   }
 
   select() {
