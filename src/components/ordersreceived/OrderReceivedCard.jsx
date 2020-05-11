@@ -13,33 +13,42 @@ const OrderReceivedCard = ({ order }) => {
     if (order.status === 'PENDING') {
       return (
         <section className="order-received-card__action-buttons">
-          <button onClick={() => { dispatch(confirmOrderAction(order.id)); }}>Confirm</button>
-          <button onClick={() => { dispatch(cancelOrderAction(order.id)); }}>Cancel</button>
-        </section>
-      );
-    } if (order.status === 'CONFIRMED') {
-      return (
-        <section className="order-received-card__action-buttons">
-          <button>Confirm Return</button>
+          <button type="button" onClick={() => { dispatch(confirmOrderAction(order.id)); }}>Confirm</button>
+          <button type="button" onClick={() => { dispatch(cancelOrderAction(order.id)); }}>Cancel</button>
         </section>
       );
     }
+
+    if (order.status === 'CONFIRMED') {
+      return (
+        <section className="order-received-card__action-buttons">
+          <button type="button">Confirm Return</button>
+        </section>
+      );
+    }
+
     return null;
   };
 
-  const statusIndicator = () => {
+  const orderStatus = () => {
     if (order.status === 'PENDING') {
       return (<span className="status-indicator--pending">Pending</span>);
     }
     if (order.status === 'CONFIRMED') {
       return (<span className="status-indicator--confirmed">Confirmed</span>);
     }
+    if (order.status === 'EXPIRED') {
+      return (<span className="status-indicator--expired">Expired</span>);
+    }
     return <span className="status-indicator--cancelled">Cancelled</span>;
   };
 
   return (
     <section className="order-received-card">
-      {statusIndicator()}
+      <div className="order-received-card__top-row">
+        {order.renter.fullName}
+        {orderStatus()}
+      </div>
       <div>
         {`${startTime.getMonth() + 1}/${startTime.getDate()}/${startTime.getFullYear()}`}
         {' '}
@@ -70,6 +79,9 @@ OrderReceivedCard.propTypes = {
       imageUrl: PropTypes.string,
       quantity: PropTypes.number,
     })).isRequired,
+    renter: PropTypes.shape({
+      fullName: PropTypes.string.isRequired,
+    }).isRequired,
   }).isRequired,
 };
 

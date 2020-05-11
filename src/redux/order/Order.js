@@ -1,6 +1,6 @@
 export default class Order {
   constructor({
-    id, status, isDeliver, startTime, returnTime, orderLineItems,
+    id, status, isDeliver, startTime, returnTime, orderLineItems, renter,
   }) {
     this.id = id;
     this.status = status;
@@ -8,5 +8,6 @@ export default class Order {
     this.startTime = startTime;
     this.returnTime = returnTime;
     this.orderLineItems = orderLineItems;
+    this.renter = renter;
   }
 }

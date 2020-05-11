@@ -14,6 +14,7 @@ export default (state = initialState, action) => {
         status: order.status,
         startTime: new Date(order.startTime),
         returnTime: new Date(order.returnTime),
+        renter: order.renter,
         orderLineItems: order.orderLineItems.map(
           (orderLineItem) => new OrderLineItem(
             orderLineItem.orderItem.imageUrl,

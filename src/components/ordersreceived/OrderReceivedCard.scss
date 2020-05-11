@@ -2,6 +2,11 @@
   border: solid 1px black;
   padding: 10px;
 
+  .order-received-card__top-row {
+    display: flex;
+    justify-content: space-between;
+  }
+
   .order-received-card__action-buttons {
     display: flex;
     justify-content: space-around;
@@ -21,6 +26,10 @@
 
   .status-indicator--cancelled {
     background-color: gray;
+  }
+
+  .status-indicator--expired {
+    background-color: darkorchid;
   }
 
   .order-received-card__order-line-items {
