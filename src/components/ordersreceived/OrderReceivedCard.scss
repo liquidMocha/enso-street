@@ -32,6 +32,10 @@
     background-color: darkorchid;
   }
 
+  .status-indicator--completed {
+    background-color: green;
+  }
+
   .order-received-card__order-line-items {
     display: flex;
     justify-content: start;

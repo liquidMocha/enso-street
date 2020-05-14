@@ -3,7 +3,11 @@ import { useDispatch } from 'react-redux';
 import React from 'react';
 import OrderLineItemIcon from './OrderLineItemIcon';
 import './OrderReceivedCard.scss';
-import { cancelOrderAction, confirmOrderAction } from '../../redux/order/OrderAction';
+import {
+  cancelOrderAction,
+  completeOrderAction,
+  confirmOrderAction,
+} from '../../redux/order/OrderAction';
 
 const OrderReceivedCard = ({ order }) => {
   const { startTime, returnTime } = order;
@@ -22,7 +26,7 @@ const OrderReceivedCard = ({ order }) => {
     if (order.status === 'CONFIRMED') {
       return (
         <section className="order-received-card__action-buttons">
-          <button type="button">Confirm Return</button>
+          <button type="button" onClick={() => { dispatch(completeOrderAction(order.id)); }}>Confirm Return</button>
         </section>
       );
     }
@@ -39,6 +43,9 @@ const OrderReceivedCard = ({ order }) => {
     }
     if (order.status === 'EXPIRED') {
       return (<span className="status-indicator--expired">Expired</span>);
+    }
+    if (order.status === 'COMPLETED') {
+      return (<span className="status-indicator--completed">Completed</span>);
     }
     return <span className="status-indicator--cancelled">Cancelled</span>;
   };
