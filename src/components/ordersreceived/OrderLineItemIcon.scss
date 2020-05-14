@@ -9,7 +9,9 @@
   .fa-layers {
     position: absolute;
     z-index: 1000;
-    bottom: -24px;
+    bottom: 25px;
     right: 0;
+    height:0;
+    width: 0;
   }
 }
