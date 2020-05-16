@@ -1,12 +1,15 @@
-#login-form {
-  width: 100%;
-}
+#login-page {
+  #login-form {
+    width: 100%;
+    margin-bottom: 20px;
+  }
 
-.login-page-title {
-  margin-bottom: 10px;
-}
+  .login-page-title {
+    margin-bottom: 10px;
+  }
 
-.login-buttons {
-  width: 100%;
-  margin-bottom: 10px;
+  .login-buttons {
+    width: 100%;
+    margin-bottom: 10px;
+  }
 }
