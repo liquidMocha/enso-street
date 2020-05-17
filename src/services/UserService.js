@@ -15,3 +15,5 @@ export const isUserLoggedIn = async () => {
 };
 
 export const logout = async () => axios.get(`${baseUrl}/users/logout`, { withCredentials: true });
+
+export const resetPassword = async (userEmail) => axios.post(`${baseUrl}/users/forget-password`, { email: userEmail });

@@ -2,9 +2,11 @@ import React, { useState } from 'react';
 import TitleBar from '../../shared/TitleBar';
 import InputWithError from '../../shared/InputWithError';
 import ColoredButton from '../../shared/ColoredButton';
+import { resetPassword } from '../../../services/UserService';
 
 const ForgetPassword = () => {
   const [email, setEmail] = useState();
+  const [resetClicked, setResetClicked] = useState(false);
 
   return (
     <div>
@@ -13,11 +15,19 @@ const ForgetPassword = () => {
       <InputWithError
         id="forget-password-email-field"
         onChange={setEmail}
-        shouldError={() => email}
+        shouldError={() => !email}
         type="text"
         value={email}
       />
-      <ColoredButton buttonText="Reset Password" mode="dark" />
+      <ColoredButton
+        onClick={() => {
+          setResetClicked(true);
+          resetPassword(email);
+        }}
+        buttonText="Reset Password"
+        mode="dark"
+      />
+      {resetClicked ? <section>Please check your email to reset your password</section> : null}
     </div>
   );
 };
