@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import TitleBar from '../../shared/TitleBar';
 import InputWithError from '../../shared/InputWithError';
 import ColoredButton from '../../shared/ColoredButton';
-import { resetPassword } from '../../../services/UserService';
+import { forgetPassword } from '../../../services/UserService';
 
 const ForgetPassword = () => {
   const [email, setEmail] = useState();
@@ -22,9 +22,9 @@ const ForgetPassword = () => {
       <ColoredButton
         onClick={() => {
           setResetClicked(true);
-          resetPassword(email);
+          forgetPassword(email);
         }}
-        buttonText="Reset Password"
+        buttonText="Forget Password"
         mode="dark"
       />
       {resetClicked ? <section>Please check your email to reset your password</section> : null}

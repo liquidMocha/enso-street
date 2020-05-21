@@ -20,6 +20,7 @@ import CheckoutRouter from './components/cart/checkout/CheckoutRouter';
 import InitializeUser from './InitializeUser';
 import OrdersReceivedPage from './components/ordersreceived/OrdersReceivedPage';
 import ForgetPassword from './components/homepage/menu/ForgetPassword';
+import ResetPassword from './components/homepage/menu/ResetPassword';
 
 const stripePromise = loadStripe('pk_test_iiYBIcKzGSXfI7I4YdqXQyRX00aBp7Oras');
 
@@ -52,6 +53,9 @@ const App = () => {
           </Route>
           <Route path="/forget-password">
             <ForgetPassword />
+          </Route>
+          <Route path="/reset-password/">
+            <ResetPassword />
           </Route>
           <CheckoutRouter />
           <MyItemsRouter />
