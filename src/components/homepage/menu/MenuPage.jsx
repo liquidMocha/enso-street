@@ -70,7 +70,7 @@ const MenuPage = (props) => {
         {links()}
       </div>
       <div id="secondary-options" className="column-layout">
-        <div>How it works?</div>
+        <Link to="how-it-works">How it works?</Link>
         <div>Contact Us</div>
       </div>
       <div id="menu-page-policy-section" className="column-layout">
