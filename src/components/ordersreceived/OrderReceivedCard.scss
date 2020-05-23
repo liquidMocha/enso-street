@@ -21,19 +21,19 @@
   }
 
   .status-indicator--confirmed {
-    background-color: #2196F3;
+    background-color: green;
   }
 
   .status-indicator--cancelled {
-    background-color: gray;
+    background-color: red;
   }
 
   .status-indicator--expired {
-    background-color: darkorchid;
+    background-color: grey;
   }
 
   .status-indicator--completed {
-    background-color: green;
+    background-color: #2196F3;
   }
 
   .order-received-card__order-line-items {

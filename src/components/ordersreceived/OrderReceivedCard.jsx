@@ -39,7 +39,7 @@ const OrderReceivedCard = ({ order }) => {
       return (<span className="status-indicator--pending">Pending</span>);
     }
     if (order.status === 'CONFIRMED') {
-      return (<span className="status-indicator--confirmed">Confirmed</span>);
+      return (<span className="status-indicator--confirmed">Active</span>);
     }
     if (order.status === 'EXPIRED') {
       return (<span className="status-indicator--expired">Expired</span>);
