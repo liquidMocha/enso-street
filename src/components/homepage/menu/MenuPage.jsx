@@ -35,10 +35,12 @@ const MenuPage = (props) => {
           <Link to="post-item" id="post-item-button">
             <ColoredButton buttonText="Post Items" mode="light" />
           </Link>
-          <Link to="orders-received" id="orders-received-button">
-            <ColoredButton buttonText="Orders Received" mode="light" />
-          </Link>
           <div id="menu-page-button-group">
+            <Link to="orders-received" id="orders-received-button">
+              <div className="menu-page-options">
+                Orders Received
+              </div>
+            </Link>
             <Link to="my-items" id="post-item-button">
               <div className="menu-page-options">
                 My Items
