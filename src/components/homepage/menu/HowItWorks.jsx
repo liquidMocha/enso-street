@@ -7,13 +7,19 @@ const HowItWorks = () => (
     <p><strong>How it works</strong></p>
     <p>Enso Street makes it safe and easy to rent tools and equipment from other people. People who need stuff can save money and space, and people with extra stuff can earn money from renting out their stuff when they are not using it. Enso Street connects renters and owners and provides insurance for your peace of mind.</p>
 
-    <p>4 easy steps to use as a renter</p>
-
+    <p>
+      4 easy steps to use as a
+      <strong> renter</strong>
+    </p>
     <p>1. Sign up or log in through google account</p>
     <p>2. Search and rent out what you need near desired location</p>
     <p>3. Rental gets delivered by owner (or you can pick it up from owner)</p>
     <p>4. Rental gets picked up by owner (or you can return it to owner)</p>
-    <p>6 easy steps to use as an owner</p>
+
+    <p>
+      6 easy steps to use as an
+      <strong> owner</strong>
+    </p>
     <p>1. Sign up or log in through google account</p>
     <p>2. Post items for rent</p>
     <p>3. Complete profile information, including bank account (so that you can get paid :D)</p>
