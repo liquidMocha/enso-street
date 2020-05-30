@@ -36,15 +36,16 @@ const MenuPage = (props) => {
             <ColoredButton buttonText="Post Items" mode="light" />
           </Link>
           <div id="menu-page-button-group">
-            <Link to="orders-received" id="orders-received-button">
-              <div className="menu-page-options">
-                Orders Received
-              </div>
+            <Link to="orders-received" id="orders-received-button" className="menu-page-options">
+              Orders Received
             </Link>
             <Link to="my-items" id="post-item-button">
               <div className="menu-page-options">
                 My Items
               </div>
+            </Link>
+            <Link to="my-account" className="menu-page-options">
+              My Account
             </Link>
             <div id="logout-button" className="menu-page-options" onClick={onClickLogout}>
               Log Out
