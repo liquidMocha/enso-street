@@ -23,6 +23,7 @@ import ForgetPassword from './components/homepage/menu/ForgetPassword';
 import ResetPassword from './components/homepage/menu/ResetPassword';
 import HowItWorks from './components/homepage/menu/HowItWorks';
 import MyAccount from './components/homepage/menu/MyAccount';
+import BankAccount from './components/homepage/menu/BankAccount';
 
 const stripePromise = loadStripe('pk_test_iiYBIcKzGSXfI7I4YdqXQyRX00aBp7Oras');
 
@@ -64,6 +65,9 @@ const App = () => {
           </Route>
           <Route path="/my-account">
             <MyAccount />
+          </Route>
+          <Route path="/bank-account">
+            <BankAccount />
           </Route>
           <CheckoutRouter />
           <MyItemsRouter />

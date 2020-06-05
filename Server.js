@@ -9,7 +9,10 @@ const app = express();
 fs.writeFileSync(
   `${__dirname}/config/env.js`,
   `var REACT_APP_SERVER_URL = '${process.env.REACT_APP_SERVER_URL}';`
-  + `var REACT_APP_googleClientId = '${process.env.REACT_APP_googleClientId}';`,
+  + `var REACT_APP_googleClientId = '${process.env.REACT_APP_googleClientId}';`
+  + `var STRIPE_EXPRESS_BASE_URL = '${process.env.STRIPE_EXPRESS_BASE_URL}';`
+  + `var STRIPE_CLIENT_ID = '${process.env.STRIPE_CLIENT_ID}';`
+  + `var STRIPE_REDIRECT_URI = '${process.env.STRIPE_REDIRECT_URI}';`,
 );
 
 app.use(express.static(__dirname));
