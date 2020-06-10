@@ -1,9 +1,23 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useSelector } from 'react-redux';
+import { useLocation } from 'react-router-dom';
 import TitleBar from '../../shared/TitleBar';
+import { connectStripeUser } from '../../../services/UserService';
+
+function useQuery() {
+  return new URLSearchParams(useLocation().search);
+}
 
 const BankAccount = () => {
   const user = useSelector((state) => state.user);
+  const query = useQuery();
+
+  useEffect(() => {
+    const stripeAuthorizationCode = query.get('code');
+    if (stripeAuthorizationCode) {
+      connectStripeUser(stripeAuthorizationCode);
+    }
+  }, []);
 
   // TODO: randomize the CSRF token
   return (

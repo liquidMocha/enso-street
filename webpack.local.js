@@ -22,6 +22,9 @@ module.exports = merge(common, {
     new webpack.DefinePlugin({
       REACT_APP_SERVER_URL: JSON.stringify('https://localhost:8080'),
       REACT_APP_googleClientId: JSON.stringify('google-client-id'),
+      STRIPE_EXPRESS_BASE_URL: JSON.stringify('https://connect.stripe.com/express/oauth/authorize'),
+      STRIPE_CLIENT_ID: JSON.stringify('stripe_client_id'),
+      STRIPE_REDIRECT_URI: JSON.stringify('https://enso-street.herokuapp.com/'),
     }),
   ],
 });

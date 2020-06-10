@@ -19,3 +19,5 @@ export const logout = async () => axios.get(`${baseUrl}/users/logout`, { withCre
 export const forgetPassword = async (userEmail) => axios.post(`${baseUrl}/users/forget-password`, { email: userEmail });
 
 export const resetPassword = async (password, token) => axios.post(`${baseUrl}/users/reset-password`, { password, token });
+
+export const connectStripeUser = async (stripeAuthorizationCode) => axios.post(`${baseUrl}/users/connect-stripe`, { stripeAuthorizationCode }, { withCredentials: true });
