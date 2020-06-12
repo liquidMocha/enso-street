@@ -82,6 +82,7 @@ const ChooseLocationPage = ({
       />
       <label>Address*</label>
       <LocationAutosuggest onAddressChange={onAddressChange} />
+      Save this address
       <Toggle
         value={saveThisAddress}
         onChange={() => {

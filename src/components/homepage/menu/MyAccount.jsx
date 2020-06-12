@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import TitleBar from '../../shared/TitleBar';
 import './MenuPage.scss';
 
-const MyAccount = ({ contactListPath }) => (
+const MyAccount = ({ contactListPath, addressBookPath }) => (
   <div className="menu-page column-layout">
     <TitleBar />
     <div id="menu-page-body">
@@ -16,7 +16,7 @@ const MyAccount = ({ contactListPath }) => (
           <Link to="/bank-account" className="menu-page-options">
             Bank Account
           </Link>
-          <Link className="menu-page-options">
+          <Link to={addressBookPath} className="menu-page-options">
             Address Book
           </Link>
           <Link to={contactListPath} className="menu-page-options">
@@ -30,6 +30,7 @@ const MyAccount = ({ contactListPath }) => (
 
 MyAccount.propTypes = {
   contactListPath: PropTypes.string.isRequired,
+  addressBookPath: PropTypes.string.isRequired,
 };
 
 export default MyAccount;

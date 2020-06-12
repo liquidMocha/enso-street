@@ -3,6 +3,7 @@ import Autosuggest from 'react-autosuggest';
 import PropTypes from 'prop-types';
 import { useSelector } from 'react-redux';
 import { autosuggestAddress } from '../../services/LocationService';
+import './LocationAutosuggest.scss';
 
 const LocationAutosuggest = ({ address, onAddressChange }) => {
   const coordinates = useSelector((state) => state.currentLocation);
@@ -48,6 +49,7 @@ const LocationAutosuggest = ({ address, onAddressChange }) => {
 
   return (
     <Autosuggest
+      className="location-autosuggest"
       suggestions={suggestedAddresses}
       onSuggestionsFetchRequested={onSuggestionsFetchRequested}
       onSuggestionsClearRequested={onSuggestionsClearRequested}
