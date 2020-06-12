@@ -47,9 +47,6 @@ const MenuPage = (props) => {
             <Link to="my-account" className="menu-page-options">
               My Account
             </Link>
-            <Link to="bank-account" className="menu-page-options">
-              Bank Account
-            </Link>
             <div id="logout-button" className="menu-page-options" onClick={onClickLogout}>
               Log Out
             </div>

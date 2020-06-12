@@ -6,7 +6,7 @@ import ChooseLocation from '../../shared/ChooseLocation';
 import EditContacts from './EditContacts';
 import { addContactAction } from '../../../redux/user/UserAction';
 import EditContact from './EditContact';
-import MyProfile from '../../userprofile/MyProfile';
+import AccountInformation from '../../homepage/menu/AccountInformation';
 
 const CheckoutRouter = () => {
   const CHECKOUT_PATH = '/checkout';
@@ -47,7 +47,7 @@ const CheckoutRouter = () => {
   return (
     <Switch>
       <Route exact path={MY_PROFILE_PATH}>
-        <MyProfile onSaveProfile={onSaveProfile} />
+        <AccountInformation onSaveProfile={onSaveProfile} />
       </Route>
       <Route exact path={EDIT_CONTACT_PATH}>
         <EditContact

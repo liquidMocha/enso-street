@@ -2,6 +2,7 @@ import PropTypes from 'prop-types';
 import React, { useState } from 'react';
 import InputWithError from '../../shared/InputWithError';
 import ColoredButton from '../../shared/ColoredButton';
+import TitleBar from '../../shared/TitleBar';
 
 const EditContact = ({ contact, onSaveContact }) => {
   const [firstName, setFirstName] = useState(contact.firstName);
@@ -11,6 +12,7 @@ const EditContact = ({ contact, onSaveContact }) => {
 
   return (
     <div>
+      <TitleBar />
       <div>First Name</div>
       <InputWithError
         type="text"
