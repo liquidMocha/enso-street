@@ -22,6 +22,9 @@ const MyAccount = ({ contactListPath, addressBookPath }) => (
           <Link to={contactListPath} className="menu-page-options">
             Contact List
           </Link>
+          <Link to="/change-password" className="menu-page-options">
+            Change Password
+          </Link>
         </div>
       </section>
     </div>

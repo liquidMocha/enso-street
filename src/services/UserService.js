@@ -21,3 +21,5 @@ export const forgetPassword = async (userEmail) => axios.post(`${baseUrl}/users/
 export const resetPassword = async (password, token) => axios.post(`${baseUrl}/users/reset-password`, { password, token });
 
 export const connectStripeUser = async (stripeAuthorizationCode) => axios.post(`${baseUrl}/users/connect-stripe`, { stripeAuthorizationCode }, { withCredentials: true });
+
+export const updatePassword = async (currentPassword, newPassword) => axios.post(`${baseUrl}/users/update-password`, { currentPassword, newPassword }, { withCredentials: true });

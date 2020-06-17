@@ -32,13 +32,14 @@ InputWithError.propTypes = {
   placeholder: PropTypes.string,
   shouldError: PropTypes.func.isRequired,
   onChange: PropTypes.func.isRequired,
-  value: PropTypes.string.isRequired,
+  value: PropTypes.string,
   disabled: PropTypes.bool,
 };
 
 InputWithError.defaultProps = {
   placeholder: '',
   disabled: false,
+  value: '',
 };
 
 export default InputWithError;
