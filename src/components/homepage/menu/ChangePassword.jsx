@@ -1,13 +1,19 @@
 import React, { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import TitleBar from '../../shared/TitleBar';
 import InputWithError from '../../shared/InputWithError';
 import ButtonWithSpinner from '../../shared/ButtonWithSpinner';
 import './ChangePassword.scss';
+import { updatePasswordAction } from '../../../redux/user/UserAction';
 
 const ChangePassword = () => {
   const [currentPassword, setCurrentPassword] = useState();
   const [newPassword, setNewPassword] = useState();
   const [repeatNewPassword, setRepeatNewPassword] = useState();
+  const updatingPassword = useSelector((state) => state.user.updatingPassword);
+  const updatePasswordError = useSelector((state) => state.user.updatePasswordError);
+
+  const dispatch = useDispatch();
 
   return (
     <div className="change-password-page">
@@ -38,9 +44,12 @@ const ChangePassword = () => {
       />
       <ButtonWithSpinner
         text="Update Password"
-        onClickingPost={() => {}}
-        displaySpinner={false}
+        onClickingPost={() => {
+          dispatch(updatePasswordAction(currentPassword, newPassword));
+        }}
+        displaySpinner={updatingPassword}
       />
+      {updatePasswordError ? <p>Failed to update password.</p> : null}
     </div>
   );
 };
