@@ -23,6 +23,7 @@ const BankAccount = () => {
   return (
     <div>
       <TitleBar />
+      <p>Enso Street uses Stripe to get you paid quickly and keep your personal and payment information secure. Thousands of companies around the world trust Stripe to process payments for their users. Set up a Stripe account to get paid with Enso Street.</p>
       <a href={`${STRIPE_EXPRESS_BASE_URL}?`
         + `redirect_uri=${STRIPE_REDIRECT_URI}&`
         + `client_id=${STRIPE_CLIENT_ID}&`

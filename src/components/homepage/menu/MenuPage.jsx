@@ -74,7 +74,7 @@ const MenuPage = (props) => {
       </div>
       <div id="secondary-options" className="column-layout">
         <Link to="how-it-works">How it works?</Link>
-        <div>Contact Us</div>
+        <a href="mailto: info@ensostreet.com">Contact Us</a>
       </div>
       <div id="menu-page-policy-section" className="column-layout">
         <div>Privacy Policy</div>
