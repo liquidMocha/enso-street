@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import './OrderSummary.scss';
 
 const OrderSummary = ({
-  subtotal, deliveryFee, deposits, calculatingDeliveryFee,
+  subtotal, deliveryFee, deposits, calculatingDeliveryFee, renterPickup,
 }) => (
   <section className="checkout__order-summary">
     <section>
@@ -12,12 +12,15 @@ const OrderSummary = ({
         {`$${subtotal}`}
       </span>
     </section>
-    <section>
-      <label>Delivery: </label>
-      <span>
-        {calculatingDeliveryFee ? 'calculating...' : `$${deliveryFee}`}
-      </span>
-    </section>
+    {renterPickup ? null
+      : (
+        <section>
+          <label>Delivery: </label>
+          <span>
+            {calculatingDeliveryFee ? 'calculating...' : `$${deliveryFee}`}
+          </span>
+        </section>
+      )}
     <section>
       <label>Deposits: </label>
       <span>
@@ -37,6 +40,11 @@ OrderSummary.propTypes = {
   deliveryFee: PropTypes.number.isRequired,
   deposits: PropTypes.number.isRequired,
   calculatingDeliveryFee: PropTypes.bool.isRequired,
+  renterPickup: PropTypes.bool,
+};
+
+OrderSummary.defaultProps = {
+  renterPickup: false,
 };
 
 export default OrderSummary;
