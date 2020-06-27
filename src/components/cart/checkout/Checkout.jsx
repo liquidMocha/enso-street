@@ -182,6 +182,7 @@ const Checkout = ({
         deliveryFee={deliveryFee}
         subtotal={subtotal}
         deposits={deposits}
+        renterPickup={renterPickup}
       />
       <CardElement />
       <ColoredButton

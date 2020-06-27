@@ -30,7 +30,7 @@ const OrderSummary = ({
     </section>
     <section>
       <label className="checkout__order-summary--emphasis">Order total: </label>
-      <span>{calculatingDeliveryFee ? 'calculating...' : `$${subtotal + deliveryFee}`}</span>
+      <span>{calculatingDeliveryFee ? 'calculating...' : `$${subtotal + deliveryFee + deposits}`}</span>
     </section>
   </section>
 );
