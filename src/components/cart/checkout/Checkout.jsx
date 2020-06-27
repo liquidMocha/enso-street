@@ -131,21 +131,16 @@ const Checkout = ({
       },
     });
 
+    console.log('Confirm card payment result: ', result);
+
     if (result.error) {
-      console.log(result.error.message);
       if (result.error.decline_code === 'insufficient_funds') {
-        // show message
       }
     } else {
-      // The payment has been processed!
-      if (result.paymentIntent.status === 'succeeded') {
-        console.log('succeeded');
-        console.log(result);
-        selectedItems.forEach((item) => {
-          dispatch(removeFromCartAction(item.id, true));
-        });
-        history.push('/');
-      }
+      selectedItems.forEach((item) => {
+        dispatch(removeFromCartAction(item.id, true));
+      });
+      history.push('/');
     }
   };
 
