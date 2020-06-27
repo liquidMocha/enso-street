@@ -2,6 +2,7 @@ import PropTypes from 'prop-types';
 import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { CardElement, useElements, useStripe } from '@stripe/react-stripe-js';
+import { useHistory } from 'react-router-dom';
 import TitleBar from '../../shared/TitleBar';
 import RentalDate from './RentalDate';
 import ColoredButton from '../../shared/ColoredButton';
@@ -64,6 +65,7 @@ const Checkout = ({
   const [subtotal, setSubtotal] = useState(0);
   const [confirmOrderDisabled, setConfirmOrderDisabled] = useState(true);
   const [deposits, setDeposits] = useState(0);
+  const history = useHistory();
 
   useEffect(() => {
     setRentalDays(calculateRentalDays(rentDate, returnDate));
@@ -80,6 +82,7 @@ const Checkout = ({
   useEffect(() => {
     if (renterPickup) {
       setDeliveryFee(0);
+      setCalculatingDeliveryPrice(false);
     } else {
       setCalculatingDeliveryPrice(true);
       getDeliveryPrice(selectedItems.map((item) => item.id), deliveryLocation)
@@ -136,6 +139,7 @@ const Checkout = ({
       if (result.paymentIntent.status === 'succeeded') {
         console.log('succeeded');
         console.log(result);
+        history.push('/');
         // Show a success message to your customer
         // There's a risk of the customer closing the window before callback
         // execution. Set up a webhook or plugin to listen for the
