@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import React, { useEffect, useState } from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { CardElement, useElements, useStripe } from '@stripe/react-stripe-js';
 import { useHistory } from 'react-router-dom';
 import TitleBar from '../../shared/TitleBar';
@@ -13,6 +13,7 @@ import OrderDetails from './OrderDetails';
 import './Checkout.scss';
 import { createPaymentIntent, getDeliveryPrice } from '../../../services/TransactionService';
 import OrderSummary from './OrderSummary';
+import { removeFromCartAction } from '../../../redux/cart/cartAction';
 
 function calculateItemSubtotal(selectedItems, rentalDays) {
   return selectedItems.reduce(
@@ -65,6 +66,7 @@ const Checkout = ({
   const [subtotal, setSubtotal] = useState(0);
   const [confirmOrderDisabled, setConfirmOrderDisabled] = useState(true);
   const [deposits, setDeposits] = useState(0);
+  const dispatch = useDispatch();
   const history = useHistory();
 
   useEffect(() => {
@@ -139,12 +141,10 @@ const Checkout = ({
       if (result.paymentIntent.status === 'succeeded') {
         console.log('succeeded');
         console.log(result);
+        selectedItems.forEach((item) => {
+          dispatch(removeFromCartAction(item.id, true));
+        });
         history.push('/');
-        // Show a success message to your customer
-        // There's a risk of the customer closing the window before callback
-        // execution. Set up a webhook or plugin to listen for the
-        // payment_intent.succeeded event that handles any business critical
-        // post-payment actions.
       }
     }
   };
