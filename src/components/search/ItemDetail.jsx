@@ -81,7 +81,7 @@ const ItemDetail = () => {
                   Pickup Only
                 </section>
               )}
-            <div>
+            <div id="item-detail__description">
               <h5>Description</h5>
               <p>{currentItem.description}</p>
             </div>
