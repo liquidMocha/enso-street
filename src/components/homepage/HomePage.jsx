@@ -32,37 +32,37 @@ const HomePage = () => {
       <ExpandableSearchBar displayLocation={displayLocation} />
       <section className="category-cards">
         <CategoryCard
-          imageSource="https://enso-street-item-photos.s3.us-east-2.amazonaws.com/category-images/home+maintenance.JPG"
+          imageSource="https://enso-street-item-photos.s3.us-east-2.amazonaws.com/category-images/home+maintenance.png"
           name="Home Maintenance"
           categoryKey="home-maintenance"
           categoryName="home maintenance"
         />
         <CategoryCard
-          imageSource="https://enso-street-item-photos.s3.us-east-2.amazonaws.com/category-images/garden+and+patio+3.JPG"
+          imageSource="https://enso-street-item-photos.s3.us-east-2.amazonaws.com/category-images/garden+and+patio+3.png"
           name="Garden & Patio"
           categoryKey="garden-and-patio"
           categoryName="garden and patio"
         />
         <CategoryCard
-          imageSource="https://enso-street-item-photos.s3.us-east-2.amazonaws.com/category-images/party+and+events.jpg"
+          imageSource="https://enso-street-item-photos.s3.us-east-2.amazonaws.com/category-images/party+and+events.png"
           name="Party & Events"
           categoryKey="party-and-events"
           categoryName="party and events"
         />
         <CategoryCard
-          imageSource="https://enso-street-item-photos.s3.us-east-2.amazonaws.com/category-images/novelty+electronics.JPG"
+          imageSource="https://enso-street-item-photos.s3.us-east-2.amazonaws.com/category-images/novelty+electronics.png"
           name="Novelty Electronics"
           categoryKey="novelty-electronics"
           categoryName="novelty electronics"
         />
         <CategoryCard
-          imageSource="https://enso-street-item-photos.s3.us-east-2.amazonaws.com/category-images/baby+and+kids+2.jpg"
+          imageSource="https://enso-street-item-photos.s3.us-east-2.amazonaws.com/category-images/baby+and+kids+2.png"
           name="Baby & Kids"
           categoryKey="baby-and-kids"
           categoryName="baby and kids"
         />
         <CategoryCard
-          imageSource="https://enso-street-item-photos.s3.us-east-2.amazonaws.com/category-images/DIY+home+improvement+2.jpg"
+          imageSource="https://enso-street-item-photos.s3.us-east-2.amazonaws.com/category-images/DIY+home+improvement+2.png"
           name="DIY Home Improvement"
           categoryKey="diy-home-improvement"
           categoryName="diy home improvement"
