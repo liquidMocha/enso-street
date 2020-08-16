@@ -11,6 +11,7 @@ import DescriptionTextInput from './DescriptionTextInput';
 import DeliveryToggle from './DeliveryToggle';
 import DeliveryFeeInputSection from './DeliveryFeeInputSection';
 import LocationInput from './LocationInput';
+import './EditItem.scss';
 
 const EditItem = (props) => {
   const { item } = props;
@@ -26,7 +27,7 @@ const EditItem = (props) => {
   };
 
   return (
-    <div>
+    <div className="edit-item">
       <PostItemTitleBar
         backLink={props.backLink}
         title="Post Items"
