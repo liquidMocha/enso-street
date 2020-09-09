@@ -11,7 +11,7 @@ const uploadImage = (image, uploadRequest) => axios.put(uploadRequest, image, { 
 
 export async function resizeAndUploadImage(localImageUrl) {
   const image = await Jimp.read(localImageUrl);
-  const compressedImage = image.scaleToFit(110, 100).getBufferAsync(Jimp.MIME_PNG);
+  const compressedImage = image.getBufferAsync(Jimp.MIME_PNG);
   const { uploadRequest, imageUrl } = await getUploadLink();
   await uploadImage(await compressedImage, uploadRequest);
   return imageUrl;
