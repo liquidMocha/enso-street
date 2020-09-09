@@ -56,7 +56,7 @@ const ItemDetail = () => {
             </section>
           </section>
           <section className="item-detail__detail-bottom">
-            <section>
+            <section className="item-detail__delivery-distance">
               <FontAwesomeIcon icon={faMapMarkerAlt} />
               {distance.toFixed(1)}
               {' '}

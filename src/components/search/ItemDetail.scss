@@ -7,6 +7,12 @@
   .item-detail__detail-bottom {
     margin-top: 5px;
 
+    .item-detail__delivery-distance {
+      svg {
+        margin-right: 10px;
+      }
+    }
+
     .item-detail__delivery-price {
       svg {
         margin-right: 10px;
