@@ -82,6 +82,16 @@ const ItemDetail = () => {
                 </section>
               )}
             <div id="item-detail__description">
+              <h5>Discounts applied at checkout:</h5>
+              <br />
+              <h5>1-3 days: Daily Rate</h5>
+              <br />
+              <h5>4-9 days: 15% off</h5>
+              <br />
+              <h5>10-20 days: 25% off</h5>
+              <br />
+              <h5>20+ days: 35% off</h5>
+              <br />
               <h5>Description</h5>
               <p>{currentItem.description}</p>
             </div>

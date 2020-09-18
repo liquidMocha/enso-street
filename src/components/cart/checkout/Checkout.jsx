@@ -16,9 +16,18 @@ import OrderSummary from './OrderSummary';
 import { removeFromCartAction } from '../../../redux/cart/cartAction';
 
 function calculateItemSubtotal(selectedItems, rentalDays) {
+  let discount = 1;
+  if (rentalDays >= 4 && rentalDays <= 9) {
+    discount = 0.85;
+  } else if (rentalDays >= 10 && rentalDays <= 20) {
+    discount = 0.75;
+  } else if (rentalDays > 20) {
+    discount = 0.65;
+  }
+
   return selectedItems.reduce(
     (total, item) => total + item.rentalDailyPrice * item.quantity * rentalDays, 0,
-  );
+  ) * discount;
 }
 
 function calculateDeposits(selectedItems) {
@@ -78,8 +87,13 @@ const Checkout = ({
   }, [selectedItems, rentalDays]);
 
   useEffect(() => {
-    setDeposits(calculateDeposits(selectedItems));
-  }, [selectedItems]);
+    const calculatedDeposits = calculateDeposits(selectedItems);
+    if (subtotal < calculatedDeposits) {
+      setDeposits(calculatedDeposits);
+    } else {
+      setDeposits(0);
+    }
+  }, [selectedItems, subtotal]);
 
   useEffect(() => {
     if (renterPickup) {
