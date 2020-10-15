@@ -36,14 +36,16 @@ const ItemDetail = () => {
             <img src={currentItem.imageUrl} alt={currentItem.title} />
           </figure>
           <section className="item-detail__detail-top">
-            <h1>{currentItem.title}</h1>
-            <div>
-              <h3>
-                (
-                {currentItem.condition}
-                )
-              </h3>
-            </div>
+            <section>
+              <h1>{currentItem.title}</h1>
+              <div>
+                <h3>
+                  (
+                  {currentItem.condition}
+                  )
+                </h3>
+              </div>
+            </section>
             <section className="item-detail__price-section">
               <TwoLineDollarDisplay
                 amount={currentItem.deposit}
