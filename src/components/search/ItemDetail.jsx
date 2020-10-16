@@ -36,25 +36,30 @@ const ItemDetail = () => {
             <img src={currentItem.imageUrl} alt={currentItem.title} />
           </figure>
           <section className="item-detail__detail-top">
-            <section>
-              <h1>{currentItem.title}</h1>
-              <div>
-                <h3>
-                  (
-                  {currentItem.condition}
-                  )
-                </h3>
-              </div>
+            <section className="item-detail__overview">
+              <section>
+                <h1>{currentItem.title}</h1>
+                <div>
+                  <h3>
+                    (
+                    {currentItem.condition}
+                    )
+                  </h3>
+                </div>
+              </section>
+              <section className="item-detail__price-section">
+                <TwoLineDollarDisplay
+                  amount={currentItem.deposit}
+                  label="Deposit"
+                />
+                <TwoLineDollarDisplay
+                  amount={currentItem.rentalDailyPrice}
+                  label="Per day"
+                />
+              </section>
             </section>
-            <section className="item-detail__price-section">
-              <TwoLineDollarDisplay
-                amount={currentItem.deposit}
-                label="Deposit"
-              />
-              <TwoLineDollarDisplay
-                amount={currentItem.rentalDailyPrice}
-                label="Per day"
-              />
+            <section className="item-detail__owner-alias">
+              <h3>{currentItem.ownerAlias}</h3>
             </section>
           </section>
           <section className="item-detail__detail-bottom">

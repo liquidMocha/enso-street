@@ -2,8 +2,11 @@
   .item-detail__detail-top {
     border-bottom: 1px solid grey;
     padding-bottom: 5px;
-    display: flex;
-    justify-content: space-between;
+
+    .item-detail__overview {
+      display: flex;
+      justify-content: space-between;
+    }
   }
 
   .item-detail__detail-bottom {
