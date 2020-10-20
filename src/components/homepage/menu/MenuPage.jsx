@@ -39,6 +39,9 @@ const MenuPage = (props) => {
             <Link to="orders-received" id="orders-received-button" className="menu-page-options">
               Orders Received
             </Link>
+            <Link to="my-reservations">
+              My Reservations
+            </Link>
             <Link to="my-items" id="post-item-button">
               <div className="menu-page-options">
                 My Items

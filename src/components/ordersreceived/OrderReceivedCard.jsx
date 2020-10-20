@@ -9,11 +9,15 @@ import {
   confirmOrderAction,
 } from '../../redux/order/OrderAction';
 
-const OrderReceivedCard = ({ order }) => {
+const OrderReceivedCard = ({ order, forRenter }) => {
   const { startTime, returnTime } = order;
   const dispatch = useDispatch();
 
   const orderReceivedActions = () => {
+    if (forRenter) {
+      return null;
+    }
+
     if (order.status === 'PENDING') {
       return (
         <section className="order-received-card__action-buttons">
@@ -53,7 +57,7 @@ const OrderReceivedCard = ({ order }) => {
   return (
     <section className="order-received-card">
       <div className="order-received-card__top-row">
-        {order.renter.fullName}
+        {forRenter ? order.executor.alias : order.renter.fullName}
         {orderStatus()}
       </div>
       <div>
@@ -89,7 +93,15 @@ OrderReceivedCard.propTypes = {
     renter: PropTypes.shape({
       fullName: PropTypes.string.isRequired,
     }).isRequired,
+    executor: PropTypes.shape({
+      alias: PropTypes.string.isRequired,
+    }),
   }).isRequired,
+  forRenter: PropTypes.bool,
+};
+
+OrderReceivedCard.defaultProps = {
+  forRenter: false,
 };
 
 export default OrderReceivedCard;
