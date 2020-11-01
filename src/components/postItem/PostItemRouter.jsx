@@ -25,13 +25,19 @@ const PostItemRouter = () => {
   const onDeliveryStartingPriceChange = (price) => setItem({ ...item, deliveryStarting: Number(price) });
   const onDeliveryAdditionalPriceChange = (price) => setItem({ ...item, deliveryAdditional: Number(price) });
   const onLocationChange = (location) => setItem({ ...item, location: { address: location } });
+  const [uploadImageUrl, setUploadImageUrl] = useState();
 
-  const onPostingItem = () => postItem(item).then(() => {
-    setItem(defaultItem);
-    history.push('/my-items');
-  }).catch((error) => {
-    console.error(error);
-  });
+  const onPostingItem = () => {
+    item.imageUrl = uploadImageUrl;
+    return postItem(item)
+      .then(() => {
+        setItem(defaultItem);
+        history.push('/my-items');
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  };
 
   const useMyPhotoPath = '/use-my-photo';
   const chooseLocationPath = '/choose-location';
@@ -51,7 +57,7 @@ const PostItemRouter = () => {
             item={item}
             onTitleChange={updateTitle}
             useMyPhotoPath={useMyPhotoPath}
-            onLocalImageLoad={updateImageUrl}
+            onLocalImageLoad={setUploadImageUrl}
           />
         </Route>
         <Route exact path={useMyPhotoPath}>

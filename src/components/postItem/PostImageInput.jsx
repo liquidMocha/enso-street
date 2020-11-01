@@ -3,7 +3,8 @@ import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faImage } from '@fortawesome/free-solid-svg-icons';
 import PropTypes from 'prop-types';
-import { resizeAndUploadImage } from '../../services/ImageService';
+import Jimp from 'jimp';
+import { getUploadLink, uploadImage } from '../../services/ImageService';
 
 const PostImageInput = ({ imageUrl, onLocalImageLoad, useMyPhotoPath }) => (
   <div>
@@ -14,8 +15,14 @@ const PostImageInput = ({ imageUrl, onLocalImageLoad, useMyPhotoPath }) => (
           alt="User provided item"
           onLoad={async () => {
             if (imageUrl.startsWith('blob')) {
-              const uploadedImageUrl = await resizeAndUploadImage(imageUrl);
-              onLocalImageLoad(uploadedImageUrl);
+              const image = await Jimp.read(imageUrl);
+              const compressedImage = image.getBufferAsync(Jimp.MIME_PNG);
+              const uploadLink = await getUploadLink();
+              const {uploadRequest} = uploadLink;
+              const uploadImageUrl = uploadLink.imageUrl;
+              onLocalImageLoad(uploadImageUrl);
+
+              await uploadImage(await compressedImage, uploadRequest);
             }
           }}
         />

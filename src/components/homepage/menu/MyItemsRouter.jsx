@@ -21,6 +21,7 @@ const MyItemsRouter = () => {
   const onDeliveryStartingPriceChange = (price) => setEditedItem((prevState) => ({ ...prevState, deliveryStarting: Number(price) }));
   const onDeliveryAdditionalPriceChange = (price) => setEditedItem((prevState) => ({ ...prevState, deliveryAdditional: Number(price) }));
   const onLocationChange = (location) => setEditedItem((prevState) => ({ ...prevState, location: { address: location } }));
+  const [uploadImageUrl, setUploadImageUrl] = useState();
 
   const useMyPhotoPath = '/my-item-edit/use-my-photo';
   const chooseLocationPath = '/my-item/choose-location';
@@ -31,14 +32,17 @@ const MyItemsRouter = () => {
     history.push(editItemPath);
   };
 
-  const onPostingItem = () => updateItem(editedItem)
-    .then(() => {
-      setEditedItem(defaultItem);
-      history.push('/my-items');
-    })
-    .catch((error) => {
-      console.error(error);
-    });
+  const onPostingItem = () => {
+    editedItem.imageUrl = uploadImageUrl;
+    return updateItem(editedItem)
+      .then(() => {
+        setEditedItem(defaultItem);
+        history.push('/my-items');
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  };
 
   return (
     <Switch>
@@ -61,7 +65,7 @@ const MyItemsRouter = () => {
           onClickingPost={onPostingItem}
           useMyPhotoPath={useMyPhotoPath}
           chooseLocationPath={chooseLocationPath}
-          onLocalImageLoad={updateImageUrl}
+          onLocalImageLoad={setUploadImageUrl}
         />
       </Route>
       <Route exact path={useMyPhotoPath}>

@@ -4,10 +4,10 @@ import { BASE_URL } from './Constants';
 
 const imagePath = '/image';
 
-const getUploadLink = () => axios.get(`${BASE_URL + imagePath}/signedS3Request`)
+export const getUploadLink = () => axios.get(`${BASE_URL + imagePath}/signedS3Request`)
   .then((response) => response.data);
 
-const uploadImage = (image, uploadRequest) => axios.put(uploadRequest, image, { headers: { 'Content-Type': 'image/jpeg' } });
+export const uploadImage = (image, uploadRequest) => axios.put(uploadRequest, image, { headers: { 'Content-Type': 'image/jpeg' } });
 
 export async function resizeAndUploadImage(localImageUrl) {
   const image = await Jimp.read(localImageUrl);
