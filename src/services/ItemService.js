@@ -39,12 +39,12 @@ export const getAllItemsForUser = () => axios.get(BASE_URL + itemsPath, { withCr
 
 export const deleteItem = (itemId) => axios.delete(`${BASE_URL}${itemsPath}/${itemId}`, { withCredentials: true });
 
-export const updateItem = (item) => {
+export const updateItem = (item, imageUrl) => {
   return axios.put(`${BASE_URL}${itemsPath}/${item.id}`, {
     rentalDailyPrice: item.rentalDailyPrice,
     searchable: item.searchable,
     title: item.title,
-    imageUrl: item.imageUrl,
+    imageUrl: imageUrl || item.imageUrl,
     condition: item.condition ? item.condition.value : null,
     categories: item.categories ? item.categories.map((category) => category.value) : null,
     description: item.description,
