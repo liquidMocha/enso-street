@@ -25,6 +25,8 @@ import HowItWorks from './components/homepage/menu/HowItWorks';
 import MyAccountRouter from './components/homepage/menu/MyAccountRouter';
 import ChangePassword from './components/homepage/menu/ChangePassword';
 import MyReservationsPage from './components/reservations/MyReservationsPage';
+import TermsAndConditions from './components/homepage/menu/TermsAndConditions';
+import PrivacyPolicy from './components/homepage/menu/PrivacyPolicy';
 
 const stripePromise = loadStripe('pk_test_iiYBIcKzGSXfI7I4YdqXQyRX00aBp7Oras');
 
@@ -69,6 +71,12 @@ const App = () => {
           </Route>
           <Route path="/how-it-works">
             <HowItWorks />
+          </Route>
+          <Route path="/terms-and-conditions">
+            <TermsAndConditions />
+          </Route>
+          <Route path="/privacy-policy">
+            <PrivacyPolicy />
           </Route>
           <MyAccountRouter />
           <CheckoutRouter />

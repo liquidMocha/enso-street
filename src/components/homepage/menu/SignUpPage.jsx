@@ -3,7 +3,7 @@ import axios from 'axios';
 import './SignUpPage.scss';
 import * as ReactGA from 'react-ga';
 import PropTypes from 'prop-types';
-import { useHistory } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import OAuthButtons from './OAuthButtons';
 import '../../../styles/Input.scss';
 import InputWithError from '../../shared/InputWithError';
@@ -45,10 +45,8 @@ function SignUpPage({ baseUrl }) {
       <OAuthButtons baseUrl={baseUrl} />
       <div>OR</div>
       <form>
-        <div>
-          <label>
-            Email
-          </label>
+        <label htmlFor="sign-up-email-field">
+          Email
           <InputWithError
             id="sign-up-email-field"
             type="text"
@@ -58,11 +56,9 @@ function SignUpPage({ baseUrl }) {
             shouldError={() => email === ''}
             value={email}
           />
-        </div>
-        <div>
-          <label>
-            Name
-          </label>
+        </label>
+        <label htmlFor="sign-up-name-field">
+          Name
           <InputWithError
             id="sign-up-name-field"
             type="text"
@@ -72,11 +68,9 @@ function SignUpPage({ baseUrl }) {
             shouldError={() => name === ''}
             value={name}
           />
-        </div>
-        <div>
-          <label>
-            Password
-          </label>
+        </label>
+        <label htmlFor="sign-up-password-field">
+          Password
           <InputWithError
             id="sign-up-password-field"
             type="password"
@@ -86,7 +80,7 @@ function SignUpPage({ baseUrl }) {
             shouldError={() => password === ''}
             value={password}
           />
-        </div>
+        </label>
         <DisableableButton
           id="sign-up-submit-button"
           buttonText="Sign Up"
@@ -95,8 +89,13 @@ function SignUpPage({ baseUrl }) {
       </form>
       {signUpFailed ? 'sign up failed' : null}
       <div id="agree-terms-claim">
-        By signing up or logging in, you agree to the Enso Street Terms of Service and Privacy
-        Policy.
+        <p>
+          By signing up or logging in, you agree to the Enso Street
+          <Link to="/terms-and-conditions"> Terms of Service </Link>
+          and
+          <Link to="/privacy-policy"> Privacy Policy</Link>
+          .
+        </p>
       </div>
     </div>
   );

@@ -34,7 +34,6 @@ const MyItemsRouter = () => {
 
   const onPostingItem = async () => {
     const { imageUrl } = await eventualUploadLink;
-    setEditedItem((prevState) => ({ ...prevState, imageUrl }));
     return updateItem(editedItem, imageUrl)
       .then(() => {
         setEditedItem(defaultItem);

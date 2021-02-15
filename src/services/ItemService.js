@@ -39,28 +39,26 @@ export const getAllItemsForUser = () => axios.get(BASE_URL + itemsPath, { withCr
 
 export const deleteItem = (itemId) => axios.delete(`${BASE_URL}${itemsPath}/${itemId}`, { withCredentials: true });
 
-export const updateItem = (item, imageUrl) => {
-  return axios.put(`${BASE_URL}${itemsPath}/${item.id}`, {
-    rentalDailyPrice: item.rentalDailyPrice,
-    searchable: item.searchable,
-    title: item.title,
-    imageUrl: imageUrl || item.imageUrl,
-    condition: item.condition ? item.condition.value : null,
-    categories: item.categories ? item.categories.map((category) => category.value) : null,
-    description: item.description,
-    canBeDelivered: item.canBeDelivered,
-    deliveryStarting: item.deliveryStarting,
-    deliveryAdditional: item.deliveryAdditional,
-    deposit: item.deposit,
-    location: {
-      address: {
-        street: item.location.address.street,
-        zipCode: item.location.address.zipCode,
-        city: item.location.address.city,
-        state: item.location.address.state,
-      },
+export const updateItem = (item, imageUrl) => axios.put(`${BASE_URL}${itemsPath}/${item.id}`, {
+  rentalDailyPrice: item.rentalDailyPrice,
+  searchable: item.searchable,
+  title: item.title,
+  imageUrl: imageUrl || item.imageUrl,
+  condition: item.condition ? item.condition.value : null,
+  categories: item.categories ? item.categories.map((category) => category.value) : null,
+  description: item.description,
+  canBeDelivered: item.canBeDelivered,
+  deliveryStarting: item.deliveryStarting,
+  deliveryAdditional: item.deliveryAdditional,
+  deposit: item.deposit,
+  location: {
+    address: {
+      street: item.location.address.street,
+      zipCode: item.location.address.zipCode,
+      city: item.location.address.city,
+      state: item.location.address.state,
     },
-  }, { withCredentials: true });
-};
+  },
+}, { withCredentials: true });
 
 export const getItemById = async (itemId) => (await axios.get(`${BASE_URL}${itemsPath}/${itemId}`)).data;
