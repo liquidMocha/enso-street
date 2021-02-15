@@ -14,6 +14,7 @@ function SignUpPage({ baseUrl }) {
   const [email, setEmail] = useState('');
   const [name, setName] = useState('');
   const [password, setPassword] = useState('');
+  const [agreeToTerms, setAgreeToTerms] = useState(false);
   const [signUpFailed, setSignUpFailed] = useState(false);
   const history = useHistory();
 
@@ -86,17 +87,24 @@ function SignUpPage({ baseUrl }) {
           buttonText="Sign Up"
           onClick={onSubmitSignUpForm}
         />
+        {signUpFailed ? 'sign up failed' : null}
+        <label id="agree-terms-claim" htmlFor="sign-up-agree-terms">
+          <InputWithError
+            id="sign-up-agree-terms"
+            type="checkbox"
+            onChange={() => { setAgreeToTerms(!agreeToTerms); }}
+            value={agreeToTerms}
+            shouldError={() => !agreeToTerms}
+          />
+          <span>
+            By signing up or logging in, you agree to the Enso Street
+            <Link to="/terms-and-conditions"> Terms of Service </Link>
+            and
+            <Link to="/privacy-policy"> Privacy Policy</Link>
+            .
+          </span>
+        </label>
       </form>
-      {signUpFailed ? 'sign up failed' : null}
-      <div id="agree-terms-claim">
-        <p>
-          By signing up or logging in, you agree to the Enso Street
-          <Link to="/terms-and-conditions"> Terms of Service </Link>
-          and
-          <Link to="/privacy-policy"> Privacy Policy</Link>
-          .
-        </p>
-      </div>
     </div>
   );
 }

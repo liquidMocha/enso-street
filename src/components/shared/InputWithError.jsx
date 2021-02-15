@@ -9,7 +9,7 @@ const InputWithError = ({
   const [displayError, setDisplayError] = useState(false);
 
   return (
-    <div>
+    <>
       <input
         id={id}
         type={type}
@@ -22,7 +22,7 @@ const InputWithError = ({
         disabled={disabled}
       />
       {displayError ? <ErrorMessage message="This field is required" /> : null}
-    </div>
+    </>
   );
 };
 
