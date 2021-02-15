@@ -42,46 +42,40 @@ function SignUpPage({ baseUrl }) {
   return (
     <div className="sign-up-page">
       <TitleBar />
-      <div>Join EnsoStreet</div>
+      <h1>Join EnsoStreet</h1>
       <OAuthButtons baseUrl={baseUrl} />
       <div>OR</div>
       <form>
-        <label htmlFor="sign-up-email-field">
-          Email
-          <InputWithError
-            id="sign-up-email-field"
-            type="text"
-            onChange={(value) => {
-              setEmail(value);
-            }}
-            shouldError={() => email === ''}
-            value={email}
-          />
-        </label>
-        <label htmlFor="sign-up-name-field">
-          Name
-          <InputWithError
-            id="sign-up-name-field"
-            type="text"
-            onChange={(value) => {
-              setName(value);
-            }}
-            shouldError={() => name === ''}
-            value={name}
-          />
-        </label>
-        <label htmlFor="sign-up-password-field">
-          Password
-          <InputWithError
-            id="sign-up-password-field"
-            type="password"
-            onChange={(value) => {
-              setPassword(value);
-            }}
-            shouldError={() => password === ''}
-            value={password}
-          />
-        </label>
+        <InputWithError
+          label="Email"
+          id="sign-up-email-field"
+          type="text"
+          onChange={(value) => {
+            setEmail(value);
+          }}
+          shouldError={() => email === ''}
+          value={email}
+        />
+        <InputWithError
+          label="Name"
+          id="sign-up-name-field"
+          type="text"
+          onChange={(value) => {
+            setName(value);
+          }}
+          shouldError={() => name === ''}
+          value={name}
+        />
+        <InputWithError
+          label="Password"
+          id="sign-up-password-field"
+          type="password"
+          onChange={(value) => {
+            setPassword(value);
+          }}
+          shouldError={() => password === ''}
+          value={password}
+        />
         <DisableableButton
           id="sign-up-submit-button"
           buttonText="Sign Up"

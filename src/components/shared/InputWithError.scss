@@ -1,0 +1,23 @@
+.input-with-error {
+  width: 100%;
+
+  span {
+    display: block;
+    margin-bottom: 10px;
+  }
+}
+
+.input-field {
+  margin-bottom: 10px;
+  border-radius: 3px;
+  padding: 5px;
+  border: 1px solid grey;
+
+  svg {
+    padding-right: 10px;
+  }
+}
+
+.input-field:not([type="checkbox"]) {
+  width: calc(100% - 12px);
+}

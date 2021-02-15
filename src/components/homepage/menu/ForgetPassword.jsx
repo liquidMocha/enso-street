@@ -11,8 +11,8 @@ const ForgetPassword = () => {
   return (
     <div>
       <TitleBar />
-      <label htmlFor="forget-password-email-field">Email: </label>
       <InputWithError
+        label="Email"
         id="forget-password-email-field"
         onChange={setEmail}
         shouldError={() => !email}

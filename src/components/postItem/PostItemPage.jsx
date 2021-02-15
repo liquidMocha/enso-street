@@ -20,8 +20,8 @@ const PostItemPage = ({
       <PostItemTitleBar hideBackButton title="Post Items" />
       <ProgressBar />
       <div>
-        <label>Title</label>
         <InputWithError
+          label="Title"
           id="item-title-input"
           type="text"
           onChange={onTitleChange}

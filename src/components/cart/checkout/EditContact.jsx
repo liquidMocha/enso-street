@@ -11,34 +11,34 @@ const EditContact = ({ contact, onSaveContact }) => {
   const [email, setEmail] = useState(contact.email);
 
   return (
-    <div>
+    <div className="column-layout">
       <TitleBar />
-      <div>First Name</div>
       <InputWithError
+        label="First Name"
         type="text"
         onChange={(value) => { setFirstName(value); }}
         value={firstName}
         id="edit-contact-first-name"
         shouldError={() => false}
       />
-      <div>Last Name</div>
       <InputWithError
+        label="Last Name"
         type="text"
         onChange={(value) => { setLastName(value); }}
         value={lastName}
         id="edit-contact-last-name"
         shouldError={() => false}
       />
-      <div>Phone</div>
       <InputWithError
+        label="Phone"
         type="text"
         onChange={(value) => { setPhone(value); }}
         value={phone}
         id="edit-contact-phone"
         shouldError={() => false}
       />
-      <div>Email</div>
       <InputWithError
+        label="Email"
         type="text"
         onChange={(value) => { setEmail(value); }}
         value={email}

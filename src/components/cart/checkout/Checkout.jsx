@@ -149,6 +149,7 @@ const Checkout = ({
 
     if (result.error) {
       if (result.error.decline_code === 'insufficient_funds') {
+        console.log('Insufficient funds');
       }
     } else {
       selectedItems.forEach((item) => {

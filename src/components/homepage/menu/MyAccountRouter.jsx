@@ -38,7 +38,6 @@ const MyAccountRouter = () => {
         <EditContacts
           contacts={userProfile.contacts}
           onEditContact={(contact) => {
-            console.log('my account edit contacts');
             setEditedContact(contact);
             history.push(EDIT_CONTACT_PATH);
           }}
@@ -49,7 +48,6 @@ const MyAccountRouter = () => {
         <EditContact
           contact={editedContact}
           onSaveContact={(contact) => {
-            console.log('my account edit contact');
             dispatch(addContactAction(contact));
             history.push(EDIT_CONTACTS_PATH);
           }}

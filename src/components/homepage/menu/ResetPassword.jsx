@@ -20,8 +20,8 @@ const ResetPassword = () => {
     <div>
       <TitleBar />
       <section>
-        Please enter your new password
         <InputWithError
+          label="Please enter your new password"
           id="reset-password-field"
           type="password"
           onChange={(value) => {

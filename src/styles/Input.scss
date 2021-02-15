@@ -1,18 +1,3 @@
-.input-field {
-  margin-bottom: 10px;
-  border-radius: 3px;
-  padding: 5px;
-  border: 1px solid grey;
-
-  svg {
-    padding-right: 10px;
-  }
-}
-
-.input-field:not([type="checkbox"]) {
-  width: calc(100% - 12px);
-}
-
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
   /* display: none; <- Crashes Chrome on hover */

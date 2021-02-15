@@ -18,40 +18,40 @@ const AccountInformation = ({ onSaveProfile }) => {
   return (
     <div>
       <TitleBar />
-      <label htmlFor="my-account__profile-name">Profile Name</label>
       <InputWithError
+        label="Profile Name"
         onChange={(value) => { setProfileName(value); }}
         value={profileName}
         shouldError={() => {}}
         id="my-account__profile-name"
         type="text"
       />
-      <label htmlFor="my-account__first-name">First Name</label>
       <InputWithError
+        label="First Name"
         onChange={(value) => { setFirstName(value); }}
         value={firstName}
         shouldError={() => {}}
         id="my-account__first-name"
         type="text"
       />
-      <label htmlFor="my-account__last-name">Last Name</label>
       <InputWithError
+        label="Last Name"
         onChange={(value) => { setLastName(value); }}
         value={lastName}
         shouldError={() => {}}
         id="my-account__last-name"
         type="text"
       />
-      <label htmlFor="my-account__phone">Phone</label>
       <InputWithError
+        label="Phone"
         onChange={(value) => { setPhone(value); }}
         value={phone}
         shouldError={() => {}}
         id="my-account__phone"
         type="text"
       />
-      <label htmlFor="my-account__email">Email</label>
       <InputWithError
+        label="Email"
         onChange={(value) => { setEmail(value); }}
         value={email}
         shouldError={() => {}}
@@ -62,11 +62,9 @@ const AccountInformation = ({ onSaveProfile }) => {
         buttonText="Save"
         mode="light"
         onClick={() => {
-          dispatch(updateUserProfileAction(
-            {
-              firstName, lastName, phone, email, profileName,
-            },
-          ));
+          dispatch(updateUserProfileAction({
+            firstName, lastName, phone, email, profileName,
+          }));
           onSaveProfile();
         }}
       />

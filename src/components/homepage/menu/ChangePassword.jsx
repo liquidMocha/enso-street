@@ -18,24 +18,24 @@ const ChangePassword = () => {
   return (
     <div className="change-password-page">
       <TitleBar />
-      <label>Current Password</label>
       <InputWithError
+        label="Current Password"
         type="password"
         value={currentPassword}
         onChange={((value) => { setCurrentPassword(value); })}
         id="change-password__current-password"
         shouldError={() => {}}
       />
-      <label>New Password</label>
       <InputWithError
+        label="New Password"
         type="password"
         value={newPassword}
         onChange={(value) => { setNewPassword(value); }}
         id="change-password__new-password"
         shouldError={() => newPassword.length < 8}
       />
-      <label>Confirm new password</label>
       <InputWithError
+        label="Confirm new password"
         type="password"
         value={repeatNewPassword}
         onChange={(value) => { setRepeatNewPassword(value); }}

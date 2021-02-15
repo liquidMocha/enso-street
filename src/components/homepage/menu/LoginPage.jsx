@@ -11,7 +11,7 @@ import TitleBar from '../../shared/TitleBar';
 const LoginPage = ({ baseUrl }) => (
   <div className="column-layout" id="login-page">
     <TitleBar />
-    <div className="login-page-title">Login</div>
+    <h1 className="login-page-title">Login</h1>
     <OAuthButtons baseUrl={baseUrl} />
     <div>OR</div>
     <LoginForm baseUrl={baseUrl} />

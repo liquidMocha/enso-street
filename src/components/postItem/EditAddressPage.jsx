@@ -46,10 +46,19 @@ const EditAddressPage = ({ location, pathAfterConfirm }) => {
         backLink="/price-and-delivery/choose-location"
         title="Edit Address"
       />
-      <label>Nick Name*</label>
-      <InputWithError type="text" value={nickname} onChange={setNickName} id="edit-address-page-nickname-input" shouldError={() => nickname === ''} />
+      <InputWithError
+        label="Nick Name*"
+        type="text"
+        value={nickname}
+        onChange={setNickName}
+        id="edit-address-page-nickname-input"
+        shouldError={() => nickname === ''}
+      />
       <label>Address*</label>
-      <LocationAutosuggest onAddressChange={onAddressChange} address={locationAutosuggestInitialValue()} />
+      <LocationAutosuggest
+        onAddressChange={onAddressChange}
+        address={locationAutosuggestInitialValue()}
+      />
       <ColoredButton buttonText="Confirm" mode="dark" onClick={handleClickConfirm} />
     </div>
   );
