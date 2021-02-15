@@ -17,8 +17,8 @@ const PostImageInput = ({ imageUrl, onLocalImageLoad, useMyPhotoPath }) => (
             if (imageUrl.startsWith('blob')) {
               const image = await Jimp.read(imageUrl);
               const compressedImage = image.getBufferAsync(Jimp.MIME_PNG);
-              const uploadLink = getUploadLink();
-              onLocalImageLoad(uploadLink);
+              const uploadLink = await getUploadLink();
+              onLocalImageLoad(uploadLink.imageUrl);
 
               await uploadImage(await compressedImage, (await uploadLink).uploadRequest);
             }
