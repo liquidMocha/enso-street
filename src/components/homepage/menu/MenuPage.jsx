@@ -50,7 +50,18 @@ const MenuPage = (props) => {
             <Link to="my-account" className="menu-page-options">
               My Account
             </Link>
-            <div id="logout-button" className="menu-page-options" onClick={onClickLogout}>
+            <div
+              tabIndex={0}
+              role="button"
+              id="logout-button"
+              className="menu-page-options"
+              onClick={onClickLogout}
+              onKeyPress={(event) => {
+                if (event.key === 'Enter') {
+                  onClickLogout();
+                }
+              }}
+            >
               Log Out
             </div>
           </div>
@@ -80,9 +91,8 @@ const MenuPage = (props) => {
         <a href="mailto: info@ensostreet.com">Contact Us</a>
       </div>
       <div id="menu-page-policy-section" className="column-layout">
-        <div>Privacy Policy</div>
-        <div>Terms & Conditions</div>
-        <div>Cookie Policy</div>
+        <Link to="/privacy-policy">Privacy Policy</Link>
+        <Link to="/terms-and-conditions">Terms & Conditions</Link>
       </div>
     </div>
   );
