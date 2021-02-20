@@ -6,6 +6,10 @@
   height: 130px;
   width: 100%;
 
+  button {
+    all: unset;
+  }
+
   img {
     width: 100%;
     height: 100%;
@@ -28,6 +32,7 @@
     div {
       margin: 10px 10px 5px;
     }
+
     hr {
       border-color: white;
       margin-left: 10%;
@@ -35,5 +40,4 @@
       margin-bottom: 0;
     }
   }
-
 }

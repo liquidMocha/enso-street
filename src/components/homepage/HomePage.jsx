@@ -28,6 +28,11 @@ const HomePage = () => {
     });
   }, []);
 
+  const onClickCategory = (categorySearchTerm) => {
+    setKeyword(categorySearchTerm);
+    setDisplaySearchResults(true);
+  };
+
   return (
     <div id="home-page">
       <TitleBar />
@@ -42,40 +47,52 @@ const HomePage = () => {
         : (
           <section className="category-cards">
             <CategoryCard
+              onClick={() => {
+                onClickCategory('home maintenance');
+              }}
               imageSource="https://enso-street-item-photos.s3.us-east-2.amazonaws.com/category-images/home+maintenance.png"
               name="Home Maintenance"
               categoryKey="home-maintenance"
-              categoryName="home maintenance"
             />
             <CategoryCard
+              onClick={() => {
+                onClickCategory('garden and patio');
+              }}
               imageSource="https://enso-street-item-photos.s3.us-east-2.amazonaws.com/category-images/garden+and+patio+3.png"
               name="Garden & Patio"
               categoryKey="garden-and-patio"
-              categoryName="garden and patio"
             />
             <CategoryCard
+              onClick={() => {
+                onClickCategory('party and events');
+              }}
               imageSource="https://enso-street-item-photos.s3.us-east-2.amazonaws.com/category-images/party+and+events.png"
               name="Party & Events"
               categoryKey="party-and-events"
-              categoryName="party and events"
             />
             <CategoryCard
+              onClick={() => {
+                onClickCategory('novelty electronics');
+              }}
               imageSource="https://enso-street-item-photos.s3.us-east-2.amazonaws.com/category-images/novelty+electronics.png"
               name="Novelty Electronics"
               categoryKey="novelty-electronics"
-              categoryName="novelty electronics"
             />
             <CategoryCard
+              onClick={() => {
+                onClickCategory('baby and kids');
+              }}
               imageSource="https://enso-street-item-photos.s3.us-east-2.amazonaws.com/category-images/baby+and+kids+2.png"
               name="Baby & Kids"
               categoryKey="baby-and-kids"
-              categoryName="baby and kids"
             />
             <CategoryCard
+              onClick={() => {
+                onClickCategory('diy home improvement');
+              }}
               imageSource="https://enso-street-item-photos.s3.us-east-2.amazonaws.com/category-images/DIY+home+improvement+2.png"
               name="DIY Home Improvement"
               categoryKey="diy-home-improvement"
-              categoryName="diy home improvement"
             />
           </section>
         )}

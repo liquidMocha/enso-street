@@ -1,24 +1,13 @@
 import PropTypes from 'prop-types';
 import React, { useEffect, useState } from 'react';
 import './CategoryCard.scss';
-import { useDispatch, useSelector } from 'react-redux';
-import { useHistory } from 'react-router-dom';
 import { getItemCountForCategory } from '../../services/CategoryService';
-import { UPDATE_SEARCH_RESULTS_ACTION, UPDATE_SEARCH_TERM_ACTION } from '../../redux/search/searchActions';
-import * as SearchService from '../../services/SearchService';
 
 const CategoryCard = ({
-  categoryKey, categoryName, imageSource, name,
+  categoryKey, imageSource, name, onClick,
 }) => {
   const [count, setCount] = useState(0);
   const [countDisplay, setCountDisplay] = useState('0');
-
-  const coordinates = useSelector((state) => state.searchData.coordinates);
-  const address = useSelector((state) => state.searchData.address);
-  const useAddress = useSelector((state) => state.searchData.useAddress);
-
-  const dispatch = useDispatch();
-  const history = useHistory();
 
   useEffect(() => {
     async function getItemCount() {
@@ -43,24 +32,17 @@ const CategoryCard = ({
   }, [count]);
 
   return (
-    <figure
-      className="category-card"
-      onClick={async () => {
-        dispatch(UPDATE_SEARCH_TERM_ACTION(categoryName));
-        history.push('/search-result');
-        const location = useAddress ? address : coordinates;
-        const results = await SearchService.search(categoryName, location);
-        dispatch(UPDATE_SEARCH_RESULTS_ACTION(results));
-      }}
-    >
-      <img src={imageSource} alt={name} />
-      <figcaption className="category-card-texts">
-        <div>
-          <h1>{name}</h1>
-          <hr />
-          <h5>{countDisplay}</h5>
-        </div>
-      </figcaption>
+    <figure className="category-card">
+      <button onClick={onClick} type="button">
+        <img src={imageSource} alt={name} />
+        <figcaption className="category-card-texts">
+          <div>
+            <h1>{name}</h1>
+            <hr />
+            <h5>{countDisplay}</h5>
+          </div>
+        </figcaption>
+      </button>
     </figure>
   );
 };
@@ -69,7 +51,7 @@ CategoryCard.propTypes = {
   imageSource: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
   categoryKey: PropTypes.string.isRequired,
-  categoryName: PropTypes.string.isRequired,
+  onClick: PropTypes.func.isRequired,
 };
 
 export default CategoryCard;
