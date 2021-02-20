@@ -12,7 +12,6 @@ import 'react-toastify/dist/ReactToastify.css';
 import { BASE_URL } from './services/Constants';
 import PostItemRouter from './components/postItem/PostItemRouter';
 import MyItemsRouter from './components/homepage/menu/MyItemsRouter';
-import HomePageRouter from './components/homepage/HomePageRouter';
 import ItemDetail from './components/search/ItemDetail';
 import { isUserLoggedIn } from './services/UserService';
 import MyCart from './components/cart/MyCart';
@@ -27,6 +26,7 @@ import ChangePassword from './components/homepage/menu/ChangePassword';
 import MyReservationsPage from './components/reservations/MyReservationsPage';
 import TermsAndConditions from './components/homepage/menu/TermsAndConditions';
 import PrivacyPolicy from './components/homepage/menu/PrivacyPolicy';
+import HomePage from './components/homepage/HomePage';
 
 const stripePromise = loadStripe('pk_test_iiYBIcKzGSXfI7I4YdqXQyRX00aBp7Oras');
 
@@ -38,7 +38,9 @@ const App = () => {
     <Elements stripe={stripePromise}>
       <BrowserRouter>
         <main id="app-content">
-          <HomePageRouter />
+          <Route exact path="/">
+            <HomePage />
+          </Route>
           <Route path="/menu">
             <MenuPage isLoggedIn={isUserLoggedIn} />
           </Route>

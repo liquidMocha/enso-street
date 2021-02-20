@@ -8,10 +8,12 @@ import { UPDATE_LOCATION_ACTION } from '../../redux/current_location/CurrentLoca
 import CategoryCard from './CategoryCard';
 import ExpandableSearchBar from '../shared/ExpandableSearchBar';
 import { UPDATE_SEARCH_COORDINATES_ACTION } from '../../redux/search/searchActions';
+import SearchResults from '../search/SearchResults';
 
 const HomePage = () => {
   const [displayLocation, setDisplayLocation] = useState(null);
-
+  const [displaySearchResults, setDisplaySearchResults] = useState(false);
+  const [keyword, setKeyword] = useState();
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -29,45 +31,54 @@ const HomePage = () => {
   return (
     <div id="home-page">
       <TitleBar />
-      <ExpandableSearchBar displayLocation={displayLocation} />
-      <section className="category-cards">
-        <CategoryCard
-          imageSource="https://enso-street-item-photos.s3.us-east-2.amazonaws.com/category-images/home+maintenance.png"
-          name="Home Maintenance"
-          categoryKey="home-maintenance"
-          categoryName="home maintenance"
-        />
-        <CategoryCard
-          imageSource="https://enso-street-item-photos.s3.us-east-2.amazonaws.com/category-images/garden+and+patio+3.png"
-          name="Garden & Patio"
-          categoryKey="garden-and-patio"
-          categoryName="garden and patio"
-        />
-        <CategoryCard
-          imageSource="https://enso-street-item-photos.s3.us-east-2.amazonaws.com/category-images/party+and+events.png"
-          name="Party & Events"
-          categoryKey="party-and-events"
-          categoryName="party and events"
-        />
-        <CategoryCard
-          imageSource="https://enso-street-item-photos.s3.us-east-2.amazonaws.com/category-images/novelty+electronics.png"
-          name="Novelty Electronics"
-          categoryKey="novelty-electronics"
-          categoryName="novelty electronics"
-        />
-        <CategoryCard
-          imageSource="https://enso-street-item-photos.s3.us-east-2.amazonaws.com/category-images/baby+and+kids+2.png"
-          name="Baby & Kids"
-          categoryKey="baby-and-kids"
-          categoryName="baby and kids"
-        />
-        <CategoryCard
-          imageSource="https://enso-street-item-photos.s3.us-east-2.amazonaws.com/category-images/DIY+home+improvement+2.png"
-          name="DIY Home Improvement"
-          categoryKey="diy-home-improvement"
-          categoryName="diy home improvement"
-        />
-      </section>
+      <ExpandableSearchBar
+        displayLocation={displayLocation}
+        onSearchTermChanges={setKeyword}
+        onSearch={() => { setDisplaySearchResults(true); }}
+        searchTerm={keyword}
+      />
+      {displaySearchResults
+        ? <SearchResults keyword={keyword} />
+        : (
+          <section className="category-cards">
+            <CategoryCard
+              imageSource="https://enso-street-item-photos.s3.us-east-2.amazonaws.com/category-images/home+maintenance.png"
+              name="Home Maintenance"
+              categoryKey="home-maintenance"
+              categoryName="home maintenance"
+            />
+            <CategoryCard
+              imageSource="https://enso-street-item-photos.s3.us-east-2.amazonaws.com/category-images/garden+and+patio+3.png"
+              name="Garden & Patio"
+              categoryKey="garden-and-patio"
+              categoryName="garden and patio"
+            />
+            <CategoryCard
+              imageSource="https://enso-street-item-photos.s3.us-east-2.amazonaws.com/category-images/party+and+events.png"
+              name="Party & Events"
+              categoryKey="party-and-events"
+              categoryName="party and events"
+            />
+            <CategoryCard
+              imageSource="https://enso-street-item-photos.s3.us-east-2.amazonaws.com/category-images/novelty+electronics.png"
+              name="Novelty Electronics"
+              categoryKey="novelty-electronics"
+              categoryName="novelty electronics"
+            />
+            <CategoryCard
+              imageSource="https://enso-street-item-photos.s3.us-east-2.amazonaws.com/category-images/baby+and+kids+2.png"
+              name="Baby & Kids"
+              categoryKey="baby-and-kids"
+              categoryName="baby and kids"
+            />
+            <CategoryCard
+              imageSource="https://enso-street-item-photos.s3.us-east-2.amazonaws.com/category-images/DIY+home+improvement+2.png"
+              name="DIY Home Improvement"
+              categoryKey="diy-home-improvement"
+              categoryName="diy home improvement"
+            />
+          </section>
+        )}
     </div>
   );
 };

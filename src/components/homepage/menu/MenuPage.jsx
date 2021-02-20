@@ -22,10 +22,7 @@ const MenuPage = (props) => {
 
   const onClickLogout = () => {
     dispatch(logoutAction());
-    logout()
-      .then(() => {
-        setIsLoggedIn(false);
-      });
+    logout().then(() => { setIsLoggedIn(false); });
   };
 
   const links = () => {
@@ -39,13 +36,11 @@ const MenuPage = (props) => {
             <Link to="orders-received" id="orders-received-button" className="menu-page-options">
               Orders Received
             </Link>
-            <Link to="my-reservations">
+            <Link to="my-reservations" className="menu-page-options">
               My Reservations
             </Link>
-            <Link to="my-items" id="post-item-button">
-              <div className="menu-page-options">
-                My Items
-              </div>
+            <Link to="my-items" id="post-item-button" className="menu-page-options">
+              My Items
             </Link>
             <Link to="my-account" className="menu-page-options">
               My Account
@@ -87,12 +82,12 @@ const MenuPage = (props) => {
         {links()}
       </div>
       <div id="secondary-options" className="column-layout">
-        <Link to="how-it-works">How it works?</Link>
-        <a href="mailto: info@ensostreet.com">Contact Us</a>
+        <Link to="how-it-works" className="menu-page-options">How it works?</Link>
+        <a href="mailto: info@ensostreet.com" className="menu-page-options">Contact Us</a>
       </div>
       <div id="menu-page-policy-section" className="column-layout">
-        <Link to="/privacy-policy">Privacy Policy</Link>
-        <Link to="/terms-and-conditions">Terms & Conditions</Link>
+        <Link to="/privacy-policy" className="menu-page-options">Privacy Policy</Link>
+        <Link to="/terms-and-conditions" className="menu-page-options">Terms & Conditions</Link>
       </div>
     </div>
   );
