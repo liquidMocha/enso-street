@@ -63,20 +63,26 @@ const Checkout = ({
   onEditDeliveryInfo,
 }) => {
   const today = new Date();
+  const history = useHistory();
   const [rentDate, setRentDate] = useState(today);
   const [returnDate, setReturnDate] = useState(defaultReturnDate());
   const [rentalDays, setRentalDays] = useState(0);
   const [deliveryFee, setDeliveryFee] = useState(0);
   const pickupOnly = useSelector((state) => state.cart.cart.pickupOnly());
   const [renterPickup, setRenterPickup] = useState(pickupOnly);
-  const selectedItems = useSelector((state) => state.cart.cart.getSelectedItems());
+  const selectedItems = useSelector((state) => {
+    const selected = state.cart.cart.getSelectedItems();
+    if (selected.length === 0) {
+      history.push('/my-cart');
+    }
+    return state.cart.cart.getSelectedItems();
+  });
   const [calculatingDeliveryPrice, setCalculatingDeliveryPrice] = useState(false);
   const [deliverySameAsCustomer, setDeliverySameAsCustomer] = useState(false);
   const [subtotal, setSubtotal] = useState(0);
   const [confirmOrderDisabled, setConfirmOrderDisabled] = useState(true);
   const [deposits, setDeposits] = useState(0);
   const dispatch = useDispatch();
-  const history = useHistory();
 
   useEffect(() => {
     setRentalDays(calculateRentalDays(rentDate, returnDate));

@@ -79,4 +79,5 @@ AccountInformation.propTypes = {
 AccountInformation.defaultProps = {
   onSaveProfile: () => {},
 };
+
 export default AccountInformation;

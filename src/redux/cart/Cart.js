@@ -23,13 +23,16 @@ export default class Cart {
   }
 
   pickupOnly() {
-    return this.getSelectedBatch().items
+    const selectedBatch = this.getSelectedBatch();
+    return selectedBatch && this.getSelectedBatch().items
       .filter((item) => item.selected)
       .some((item) => !item.canBeDelivered);
   }
 
   getSelectedItems() {
-    return this.getSelectedBatch().items.filter((item) => item.selected);
+    const selectedBatch = this.getSelectedBatch();
+
+    return (selectedBatch && selectedBatch.items.filter((item) => item.selected)) || [];
   }
 
   hasItemSelected() {

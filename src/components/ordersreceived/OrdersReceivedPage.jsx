@@ -17,9 +17,7 @@ const OrdersReceivedPage = () => {
   return (
     <section id="orders-received-page">
       <TitleBar />
-      <OrderReceivedSummary
-        numberOfOrders={orders.length}
-      />
+      <OrderReceivedSummary numberOfOrders={orders.length} />
       {orders.map((order) => (
         <OrderReceivedCard order={order} />
       ))}

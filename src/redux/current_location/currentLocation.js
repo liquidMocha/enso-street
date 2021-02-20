@@ -5,7 +5,7 @@ const initialState = {
   longitude: undefined,
 };
 
-export const currentLocation = (state = initialState, action) => {
+export default (state = initialState, action) => {
   if (action.type === UPDATE_LOCATION) {
     return {
       latitude: action.location.latitude,

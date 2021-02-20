@@ -7,16 +7,19 @@ import './MyCart.scss';
 import { refreshCart } from '../../redux/cart/cartAction';
 
 const subtotalFooter = (subtotal, history) => (
-  <div className="footer" onClick={() => { history.push('/checkout'); }}>
+  <button
+    type="button"
+    className="footer"
+    onClick={() => { history.push('/checkout'); }}
+  >
     Subtotal:
     $
     {subtotal}
     {' '}
     /day
     <div>Check Out</div>
-  </div>
+  </button>
 );
-
 
 const MyCart = () => {
   const history = useHistory();
