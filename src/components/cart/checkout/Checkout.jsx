@@ -14,6 +14,7 @@ import './Checkout.scss';
 import { createPaymentIntent, getDeliveryPrice } from '../../../services/TransactionService';
 import OrderSummary from './OrderSummary';
 import { removeFromCartAction } from '../../../redux/cart/cartAction';
+import { getSelectedItems, isPickupOnly } from '../../../redux/cart/Cart';
 
 function calculateItemSubtotal(selectedItems, rentalDays) {
   let discount = 1;
@@ -68,14 +69,14 @@ const Checkout = ({
   const [returnDate, setReturnDate] = useState(defaultReturnDate());
   const [rentalDays, setRentalDays] = useState(0);
   const [deliveryFee, setDeliveryFee] = useState(0);
-  const pickupOnly = useSelector((state) => state.cart.cart.pickupOnly());
+  const pickupOnly = useSelector((state) => isPickupOnly(state.cart.cart));
   const [renterPickup, setRenterPickup] = useState(pickupOnly);
   const selectedItems = useSelector((state) => {
-    const selected = state.cart.cart.getSelectedItems();
+    const selected = getSelectedItems(state.cart.cart);
     if (selected.length === 0) {
       history.push('/my-cart');
     }
-    return state.cart.cart.getSelectedItems();
+    return selected;
   });
   const [calculatingDeliveryPrice, setCalculatingDeliveryPrice] = useState(false);
   const [deliverySameAsCustomer, setDeliverySameAsCustomer] = useState(false);

@@ -1,10 +1,12 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
+import { compose, map, path, pipe, } from 'ramda';
 import TitleBar from '../shared/TitleBar';
 import OwnerSection from './OwnerSection';
 import './MyCart.scss';
 import { refreshCart } from '../../redux/cart/cartAction';
+import { hasItemSelected, subtotal as cartSubtotal } from '../../redux/cart/Cart';
 
 const subtotalFooter = (subtotal, history) => (
   <button
@@ -23,38 +25,22 @@ const subtotalFooter = (subtotal, history) => (
 
 const MyCart = () => {
   const history = useHistory();
-  const ownerItemBatch = useSelector((state) => state.cart.cart.ownerBatches);
-  const subtotal = useSelector((state) => {
-    const selectedBatch = state.cart.cart.getSelectedBatch();
-    if (selectedBatch) {
-      return selectedBatch.items
-        .filter((item) => item.selected)
-        .reduce((aggregate, item) => aggregate + item.rentalDailyPrice * item.quantity, 0);
-    }
-    return 0;
-  });
-
-  const displaySubtotal = useSelector((state) => state.cart.cart.hasItemSelected());
+  const ownerItemBatches = useSelector((state) => state.cart.cart.ownerBatches);
+  const subtotal = useSelector(compose(cartSubtotal, path(['cart', 'cart'])));
+  const displaySubtotal = useSelector(pipe(path(['cart', 'cart']), hasItemSelected));
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(refreshCart());
   }, []);
 
-  const buildOwnerSections = () => {
-    const sections = [];
-    ownerItemBatch.forEach((ownerBatch) => {
-      sections.push(
-        <OwnerSection
-          key={ownerBatch.owner.email}
-          owner={ownerBatch.owner}
-          items={ownerBatch.items}
-        />,
-      );
-    });
-
-    return sections;
-  };
+  const buildOwnerSections = () => map((ownerBatch) => (
+    <OwnerSection
+      key={ownerBatch.owner.email}
+      owner={ownerBatch.owner}
+      items={ownerBatch.items}
+    />
+  ), ownerItemBatches);
 
   return (
     <div className="my-cart">

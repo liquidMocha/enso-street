@@ -1,4 +1,30 @@
-import OwnerBatch from './OwnerBatch';
+import {
+  adjust,
+  any,
+  defaultTo,
+  equals,
+  filter,
+  find,
+  findIndex,
+  isNil,
+  lensProp,
+  map,
+  not,
+  over,
+  pipe,
+  product,
+  prop,
+  propEq,
+  props,
+  sum,
+} from 'ramda';
+import OwnerBatch, {
+  deselectItem as deselectOwnerBatchItem,
+  selected,
+  selectedItems,
+  selectItem as selectOwnerBatchItem,
+  size as batchSize,
+} from './OwnerBatch';
 import Owner from './Owner';
 import Item from './Item';
 
@@ -6,7 +32,10 @@ export default class Cart {
   constructor(ownerBatches) {
     this.ownerBatches = ownerBatches.map(
       (ownerBatch) => new OwnerBatch({
-        owner: new Owner({ name: ownerBatch.ownerName, email: ownerBatch.ownerEmail }),
+        owner: new Owner({
+          name: ownerBatch.ownerName,
+          email: ownerBatch.ownerEmail,
+        }),
         items: ownerBatch.items.map(
           (item) => new Item({
             id: item.id,
@@ -21,38 +50,75 @@ export default class Cart {
       }),
     );
   }
-
-  pickupOnly() {
-    const selectedBatch = this.getSelectedBatch();
-    return selectedBatch && this.getSelectedBatch().items
-      .filter((item) => item.selected)
-      .some((item) => !item.canBeDelivered);
-  }
-
-  getSelectedItems() {
-    const selectedBatch = this.getSelectedBatch();
-
-    return (selectedBatch && selectedBatch.items.filter((item) => item.selected)) || [];
-  }
-
-  hasItemSelected() {
-    return !!this.getSelectedBatch();
-  }
-
-  getSelectedBatch() {
-    return this.ownerBatches.find((ownerBatch) => ownerBatch.selected());
-  }
-
-  deselectItem(itemId) {
-    this.getSelectedBatch().deselectItem(itemId);
-  }
-
-  selectItem(itemId) {
-    const selectedBatch = this.getSelectedBatch();
-    if (selectedBatch) {
-      selectedBatch.selectItem(itemId);
-    } else {
-      this.ownerBatches.find((batch) => batch.hasItem(itemId)).selectItem(itemId);
-    }
-  }
 }
+
+export const size = pipe(
+  prop('ownerBatches'),
+  map(batchSize),
+  sum,
+);
+
+export const selectedBatch = pipe(
+  prop('ownerBatches'),
+  find(selected),
+);
+
+export const isPickupOnly = pipe(
+  selectedBatch,
+  selectedItems,
+  map(prop('canBeDelivered')),
+  any(equals(false)),
+);
+
+export const subtotal = pipe(
+  selectedBatch,
+  selectedItems,
+  map(
+    pipe(
+      props(['rentalDailyPrice', 'quantity']),
+      product,
+    ),
+  ),
+  sum,
+);
+
+const findBatchWithItemId = (itemId) => pipe(
+  prop('ownerBatches'),
+  map(prop('items')),
+  pipe(
+    findIndex,
+    any,
+    propEq('id', itemId),
+  ),
+);
+
+export const selectItem = (cart, itemId) => {
+  const findBatchIn = findBatchWithItemId(itemId);
+  const targetOwnerBatchIndex = findBatchIn(cart);
+
+  return over(
+    lensProp('ownerBatches'),
+    adjust(targetOwnerBatchIndex, selectOwnerBatchItem(itemId)),
+    cart,
+  );
+};
+
+export const deselectItem = (cart, itemId) => {
+  const findBatchIn = findBatchWithItemId(itemId);
+  const targetOwnerBatchIndex = findBatchIn(cart);
+
+  return over(
+    lensProp('ownerBatches'),
+    adjust(targetOwnerBatchIndex, deselectOwnerBatchItem(itemId)),
+    cart,
+  );
+};
+
+export const hasItemSelected = pipe(selectedBatch, isNil, not);
+
+export const getSelectedItems = pipe(
+  selectedBatch,
+  prop('items'),
+  defaultTo([]),
+  filter(prop('selected')),
+);

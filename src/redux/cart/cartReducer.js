@@ -1,34 +1,24 @@
-import _ from 'lodash';
+import { assoc } from 'ramda';
 import { ADD_TO_CART_SELECTION, REMOVE_FROM_CART_SELECTION, UPDATE_CART } from './cartAction';
-import Cart from './Cart';
+import Cart, { deselectItem, selectItem } from './Cart';
 
 const initialState = {
   cart: new Cart([]),
 };
 
 export default (state = initialState, action) => {
-  const newState = _.cloneDeep(state);
-
   switch (action.type) {
     case UPDATE_CART: {
       const newCart = new Cart(action.cart);
-      return { ...newState, cart: newCart };
+      return assoc('cart', newCart, state);
     }
     case ADD_TO_CART_SELECTION: {
-      const newCart = newState.cart;
-      const { itemId } = action;
-
-      newCart.selectItem(itemId);
-
-      return newState;
+      const newCart = selectItem(state.cart, action.itemId);
+      return assoc('cart', newCart, state);
     }
     case REMOVE_FROM_CART_SELECTION: {
-      const newCart = newState.cart;
-      const { itemId } = action;
-
-      newCart.deselectItem(itemId);
-
-      return newState;
+      const newCart = deselectItem(state.cart, action.itemId);
+      return assoc('cart', newCart, state);
     }
     default: {
       return state;

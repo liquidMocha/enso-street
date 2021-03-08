@@ -1,3 +1,5 @@
+import { assoc } from 'ramda';
+
 export default class Item {
   constructor({
     id, title, rentalDailyPrice, imageUrl, quantity, canBeDelivered, deposit,
@@ -11,12 +13,8 @@ export default class Item {
     this.selected = false;
     this.deposit = deposit;
   }
-
-  select() {
-    this.selected = true;
-  }
-
-  deselect() {
-    this.selected = false;
-  }
 }
+
+export const select = assoc('selected', true);
+
+export const deselect = assoc('selected', false);
