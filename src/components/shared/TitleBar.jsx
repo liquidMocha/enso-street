@@ -4,8 +4,6 @@ import { useHistory } from 'react-router-dom';
 import { faBars, faShoppingCart } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useSelector } from 'react-redux';
-import { path, pipe } from 'ramda';
-import { size } from '../../redux/cart/Cart';
 
 function navigateToCart(history) {
   history.push('/my-cart');
@@ -32,7 +30,7 @@ function cartWithCount(history, count) {
 
 const TitleBar = () => {
   const history = useHistory();
-  const count = useSelector(pipe(path(['cart', 'cart']), size));
+  const count = useSelector((state) => state.cart.itemCount);
 
   return (
     <div className="fixed-title-bar">

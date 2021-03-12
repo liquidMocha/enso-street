@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { prop } from 'ramda';
 import { BASE_URL } from './Constants';
 
 const cartPath = '/cart';
@@ -16,3 +17,5 @@ export const getCart = async () => {
 
   return data.ownerBatches;
 };
+
+export const getCartItemCount = () => axios.get(`${BASE_URL}${cartPath}/count`, { withCredentials: true }).then(prop('data'));
