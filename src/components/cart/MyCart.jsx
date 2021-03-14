@@ -1,12 +1,15 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
-import { compose, map, path, pipe, } from 'ramda';
+import {
+  compose, map, path, pipe,
+} from 'ramda';
 import TitleBar from '../shared/TitleBar';
-import OwnerSection from './OwnerSection';
+import OwnerSectionItems from './OwnerSection';
 import './MyCart.scss';
 import { refreshCart } from '../../redux/cart/cartAction';
 import { hasItemSelected, subtotal as cartSubtotal } from '../../redux/cart/Cart';
+import OwnerSectionHeader from './OwnerSectionHeader';
 
 const subtotalFooter = (subtotal, history) => (
   <button
@@ -34,19 +37,21 @@ const MyCart = () => {
     dispatch(refreshCart());
   }, []);
 
-  const buildOwnerSections = () => map((ownerBatch) => (
-    <OwnerSection
-      key={ownerBatch.owner.email}
-      owner={ownerBatch.owner}
-      items={ownerBatch.items}
-    />
+  const ownerSections = () => map((ownerBatch) => (
+    <div key={ownerBatch.owner.email}>
+      <OwnerSectionHeader ownerName={ownerBatch.owner.name} />
+      <OwnerSectionItems
+        key={ownerBatch.owner.email}
+        items={ownerBatch.items}
+      />
+    </div>
   ), ownerItemBatches);
 
   return (
     <div className="my-cart">
       <TitleBar />
       My Cart
-      {buildOwnerSections()}
+      {ownerSections()}
       {displaySubtotal ? (subtotalFooter(subtotal, history)) : null}
     </div>
   );
