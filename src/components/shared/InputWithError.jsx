@@ -25,7 +25,7 @@ const InputWithError = ({
         data-lpignore="true"
         onChange={((event) => onChange(event.target.value))}
         onBlur={() => { setDisplayError(shouldError()); }}
-        value={value}
+        value={value || ''}
         disabled={disabled}
         onKeyPress={handleKeyPress}
       />

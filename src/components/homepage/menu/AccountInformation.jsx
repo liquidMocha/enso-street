@@ -1,59 +1,60 @@
-import React, { useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import React, { useEffect, useState } from 'react';
+import { useDispatch } from 'react-redux';
 import PropTypes from 'prop-types';
+import { assoc } from 'ramda';
 import TitleBar from '../../shared/TitleBar';
 import InputWithError from '../../shared/InputWithError';
 import ColoredButton from '../../shared/ColoredButton';
 import { updateUserProfileAction } from '../../../redux/user/UserAction';
+import { getUserProfile } from '../../../services/UserProfileService';
 
 const AccountInformation = ({ onSaveProfile }) => {
-  const user = useSelector((state) => state.user);
   const dispatch = useDispatch();
-  const [profileName, setProfileName] = useState(user.name);
-  const [firstName, setFirstName] = useState(user.firstName);
-  const [lastName, setLastName] = useState(user.lastName);
-  const [phone, setPhone] = useState(user.phone);
-  const [email, setEmail] = useState(user.email);
+  const [userProfile, setUserProfile] = useState({});
+
+  useEffect(() => {
+    getUserProfile().then(setUserProfile);
+  }, []);
 
   return (
     <div>
       <TitleBar />
       <InputWithError
         label="Profile Name"
-        onChange={(value) => { setProfileName(value); }}
-        value={profileName}
+        onChange={(value) => { setUserProfile(assoc('name', value, userProfile)); }}
+        value={userProfile.name}
         shouldError={() => {}}
         id="my-account__profile-name"
         type="text"
       />
       <InputWithError
         label="First Name"
-        onChange={(value) => { setFirstName(value); }}
-        value={firstName}
+        onChange={(value) => { setUserProfile(assoc('firstName', value, userProfile)); }}
+        value={userProfile.firstName}
         shouldError={() => {}}
         id="my-account__first-name"
         type="text"
       />
       <InputWithError
         label="Last Name"
-        onChange={(value) => { setLastName(value); }}
-        value={lastName}
+        onChange={(value) => { setUserProfile(assoc('lastName', value, userProfile)); }}
+        value={userProfile.lastName}
         shouldError={() => {}}
         id="my-account__last-name"
         type="text"
       />
       <InputWithError
         label="Phone"
-        onChange={(value) => { setPhone(value); }}
-        value={phone}
+        onChange={(value) => { setUserProfile(assoc('phone', value, userProfile)); }}
+        value={userProfile.phone}
         shouldError={() => {}}
         id="my-account__phone"
         type="text"
       />
       <InputWithError
         label="Email"
-        onChange={(value) => { setEmail(value); }}
-        value={email}
+        onChange={(value) => { setUserProfile(assoc('email', value, userProfile)); }}
+        value={userProfile.email}
         shouldError={() => {}}
         id="my-account__email"
         type="text"
@@ -63,7 +64,11 @@ const AccountInformation = ({ onSaveProfile }) => {
         mode="light"
         onClick={() => {
           dispatch(updateUserProfileAction({
-            firstName, lastName, phone, email, profileName,
+            firstName: userProfile.firstName,
+            lastName: userProfile.lastName,
+            phone: userProfile.phone,
+            email: userProfile.email,
+            profileName: userProfile.name,
           }));
           onSaveProfile();
         }}

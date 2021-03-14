@@ -1,9 +1,10 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import './TitleBar.scss';
 import { useHistory } from 'react-router-dom';
 import { faBars, faShoppingCart } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useSelector } from 'react-redux';
+import { getUserProfile } from '../../services/UserProfileService';
 
 function navigateToCart(history) {
   history.push('/my-cart');
@@ -17,13 +18,18 @@ function cartWithCount(history, count) {
         navigateToCart(history);
       }}
     >
-      <FontAwesomeIcon icon={faShoppingCart} />
-      <span
-        className="fa-layers-counter fa-layers-top-right fa-lg"
-        style={{ background: 'Tomato' }}
-      >
-        {count}
-      </span>
+      {count !== 0
+        && (
+          <>
+            <FontAwesomeIcon icon={faShoppingCart} />
+            <span
+              className="fa-layers-counter fa-layers-top-right fa-lg"
+              style={{ background: 'Tomato' }}
+            >
+              {count}
+            </span>
+          </>
+        )}
     </span>
   );
 }
@@ -31,6 +37,12 @@ function cartWithCount(history, count) {
 const TitleBar = () => {
   const history = useHistory();
   const count = useSelector((state) => state.cart.itemCount);
+
+  const [firstName, setFirstName] = useState('');
+
+  useEffect(() => {
+    getUserProfile().then((value) => setFirstName(value.firstName));
+  }, []);
 
   return (
     <div className="fixed-title-bar">
@@ -43,16 +55,11 @@ const TitleBar = () => {
         Enso Street
       </h1>
       <div id="title-bar__right-section">
-        {count === 0 ? (
-          <FontAwesomeIcon
-            icon={faShoppingCart}
-            onClick={() => {
-              navigateToCart(history);
-            }}
-          />
-        )
-          : (cartWithCount(history, count))}
-
+        <span className="title-bar__greetings">
+          Hello
+          {` ${firstName}`}
+        </span>
+        {cartWithCount(history, count)}
         <FontAwesomeIcon
           icon={faBars}
           className="menu-button-container"

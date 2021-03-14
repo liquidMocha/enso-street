@@ -1,6 +1,14 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import './ColoredButton.scss';
+import { curry } from 'ramda';
+
+const onEnter = curry((onClick, event) => {
+  if (event.key === 'Enter') {
+    onClick();
+  }
+});
+
 
 const ColoredButton = ({
   id, className, buttonText, onClick, disabled, mode,
@@ -11,6 +19,7 @@ const ColoredButton = ({
     type="button"
     onClick={onClick}
     disabled={disabled}
+    onKeyPress={onEnter(onClick)}
   >
     {buttonText}
   </button>
