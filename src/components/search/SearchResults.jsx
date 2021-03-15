@@ -21,7 +21,7 @@ const SearchResults = ({ keyword }) => {
       location = coordinates;
     }
 
-    SearchService.search(keyword, location).then((response) => setResults(response));
+    SearchService.search(keyword, location).then(setResults);
   }, [keyword, useAddress, coordinates, address]);
 
   return (

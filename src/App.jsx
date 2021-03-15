@@ -11,7 +11,7 @@ import MenuPage from './components/homepage/menu/MenuPage';
 import 'react-toastify/dist/ReactToastify.css';
 import { BASE_URL } from './services/Constants';
 import PostItemRouter from './components/postItem/PostItemRouter';
-import MyItemsRouter from './components/homepage/menu/MyItemsRouter';
+import MyItemsRouter from './components/homepage/menu/myitems/MyItemsRouter';
 import ItemDetail from './components/search/ItemDetail';
 import { isUserLoggedIn } from './services/UserService';
 import MyCart from './components/cart/MyCart';

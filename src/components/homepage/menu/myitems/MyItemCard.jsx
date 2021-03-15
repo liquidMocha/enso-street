@@ -2,9 +2,9 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSave, faTrashAlt } from '@fortawesome/free-regular-svg-icons';
-import DollarInput from '../../shared/DollarInput';
+import DollarInput from '../../../shared/DollarInput';
 import './MyItemCard.scss';
-import Checkbox from '../../shared/Checkbox';
+import Checkbox from '../../../shared/Checkbox';
 
 const MyItemCard = ({
   item, onCardClick, onChangeRentalDailyPrice, onChangeSearchability, onDelete, onSave,
