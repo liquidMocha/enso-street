@@ -12,7 +12,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import { BASE_URL } from './services/Constants';
 import PostItemRouter from './components/postItem/PostItemRouter';
 import MyItemsRouter from './components/homepage/menu/myitems/MyItemsRouter';
-import ItemDetail from './components/search/ItemDetail';
+import Item from './components/search/ItemDetails/Item';
 import { isUserLoggedIn } from './services/UserService';
 import MyCart from './components/cart/MyCart';
 import CheckoutRouter from './components/cart/checkout/CheckoutRouter';
@@ -51,7 +51,7 @@ const App = () => {
             <SignUpPage baseUrl={BASE_URL} />
           </Route>
           <Route path="/item-detail/:itemId">
-            <ItemDetail />
+            <Item />
           </Route>
           <Route path="/my-cart">
             <MyCart />
