@@ -42,7 +42,7 @@ const CheckoutRouter = () => {
   };
 
   const onSaveProfile = () => {
-    history.push(CHECKOUT_PATH);
+    history.goBack();
   };
 
   return (

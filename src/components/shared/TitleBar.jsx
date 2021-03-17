@@ -8,11 +8,7 @@ import { getUserProfile } from '../../services/UserProfileService';
 
 function cartWithCount(history, count) {
   return (
-    <Link
-      to="/my-cart"
-      className="fa-layers fa-fw"
-      id="title-bar-cart-icon"
-    >
+    <Link to="/my-cart" className="fa-layers fa-fw" id="title-bar-cart-icon">
       <FontAwesomeIcon icon={faShoppingCart} />
       {count !== 0
         && (

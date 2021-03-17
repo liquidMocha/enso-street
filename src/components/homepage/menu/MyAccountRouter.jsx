@@ -29,7 +29,7 @@ const MyAccountRouter = () => {
         />
       </Route>
       <Route path="/account-information">
-        <AccountInformation />
+        <AccountInformation onSaveProfile={() => { history.goBack(); }} />
       </Route>
       <Route path="/bank-account">
         <BankAccount />
