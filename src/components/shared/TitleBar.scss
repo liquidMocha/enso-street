@@ -13,9 +13,11 @@
   align-items: center;
   justify-content: space-between;
 
-  h1 {
+  #enso-street-title {
     margin-top: 15px;
     margin-bottom: 15px;
+    font-size: 20px;
+    font-weight: bold;
   }
 
   .fixed-title-bar__right-element {
@@ -29,6 +31,11 @@
 
     > svg {
       margin-left: 15px;
+    }
+
+    #title-bar-cart-icon, #title-bar-cart-icon:visited {
+      margin-left: 20px;
+      color: black;
     }
 
     span {
