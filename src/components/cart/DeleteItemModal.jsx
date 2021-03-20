@@ -8,15 +8,16 @@ const DeleteItemModal = ({ isOpen, onDelete, onCancel }) => (
     isOpen={isOpen}
     className="delete-item-modal"
     overlayClassName="delete-item-modal-overlay"
+    ariaHideApp={false}
   >
     <div>Are you sure you want to delete this item?</div>
     <div className="modal-button-group">
-      <div onClick={onDelete}>
+      <button type="button" onClick={onDelete}>
         Delete
-      </div>
-      <div onClick={onCancel}>
+      </button>
+      <button type="button" onClick={onCancel}>
         Cancel
-      </div>
+      </button>
     </div>
   </Modal>
 );

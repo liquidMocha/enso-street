@@ -26,7 +26,7 @@ const CheckoutRouter = () => {
     return null;
   });
 
-  const [deliveryLocation, setDeliveryLocation] = useState(null);
+  const [deliveryLocation, setDeliveryLocation] = useState();
   const [editedContact, setEditedContact] = useState({});
   const [deliveryContact, setDeliveryContact] = useState({});
   const dispatch = useDispatch();

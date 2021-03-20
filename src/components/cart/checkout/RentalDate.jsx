@@ -9,38 +9,42 @@ const RentalDate = ({
   <section className="rental-date-selection">
     <h1>Rental Date</h1>
     <section>
-      <label>Start</label>
-      <DatePicker
-        className="rental-date-selection__date-picker"
-        selected={rentDate}
-        onChange={(date) => onRentDateChange(date)}
-        showTimeSelect
-        timeFormat="HH"
-        timeIntervals={60}
-        timeCaption="Hour"
-        dateFormat="MMMM d, yyyy h aa"
-      />
+      <label>
+        Start
+        <DatePicker
+          className="rental-date-selection__date-picker"
+          selected={rentDate}
+          onChange={(date) => onRentDateChange(date)}
+          showTimeSelect
+          timeFormat="HH"
+          timeIntervals={60}
+          timeCaption="Hour"
+          dateFormat="MMMM d, yyyy h aa"
+        />
+      </label>
     </section>
     <section>
-      <label>Return</label>
-      <DatePicker
-        className="rental-date-selection__date-picker"
-        selected={returnDate}
-        onChange={(date) => onReturnDateChange(date)}
-        showTimeSelect
-        timeFormat="HH"
-        timeIntervals={60}
-        timeCaption="Hour"
-        dateFormat="MMMM d, yyyy h aa"
-        minDate={rentDate}
-      />
+      <label>
+        Return
+        <DatePicker
+          className="rental-date-selection__date-picker"
+          selected={returnDate}
+          onChange={(date) => onReturnDateChange(date)}
+          showTimeSelect
+          timeFormat="HH"
+          timeIntervals={60}
+          timeCaption="Hour"
+          dateFormat="MMMM d, yyyy h aa"
+          minDate={rentDate}
+        />
+      </label>
     </section>
   </section>
 );
 RentalDate.propTypes = {
-  rentDate: PropTypes.string.isRequired,
+  rentDate: PropTypes.instanceOf(Date).isRequired,
   onRentDateChange: PropTypes.func.isRequired,
-  returnDate: PropTypes.string.isRequired,
+  returnDate: PropTypes.instanceOf(Date).isRequired,
   onReturnDateChange: PropTypes.func.isRequired,
 };
 

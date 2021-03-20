@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { CardElement, useElements, useStripe } from '@stripe/react-stripe-js';
 import { useHistory } from 'react-router-dom';
+import { pluck } from 'ramda';
 import TitleBar from '../../shared/TitleBar';
 import RentalDate from './RentalDate';
 import ColoredButton from '../../shared/ColoredButton';
@@ -108,7 +109,7 @@ const Checkout = ({
       setCalculatingDeliveryPrice(false);
     } else {
       setCalculatingDeliveryPrice(true);
-      getDeliveryPrice(selectedItems.map((item) => item.id), deliveryLocation)
+      getDeliveryPrice(pluck('id', selectedItems), deliveryLocation)
         .then((fee) => {
           setDeliveryFee(fee);
           setCalculatingDeliveryPrice(false);
@@ -217,7 +218,12 @@ const Checkout = ({
 };
 
 Checkout.propTypes = {
-  deliveryLocation: PropTypes.any.isRequired,
+  deliveryLocation: PropTypes.shape({
+    street: PropTypes.string,
+    city: PropTypes.string,
+    state: PropTypes.string,
+    zipCode: PropTypes.string,
+  }),
   customerInformation: PropTypes.shape({
     name: PropTypes.string,
     phone: PropTypes.string,
@@ -234,6 +240,7 @@ Checkout.propTypes = {
 };
 
 Checkout.defaultProps = {
+  deliveryLocation: null,
   customerInformation: {
     name: '',
     phone: '',
