@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Route, Switch, useHistory } from 'react-router-dom';
+import { assoc, not } from 'ramda';
 import PostItemPage from './PostItemPage';
 import UseMyPhoto from './UseMyPhoto';
 import PostItemDetailPage from './PostItemDetailPage';
@@ -14,17 +15,17 @@ import ChooseLocation from '../shared/ChooseLocation';
 const PostItemRouter = () => {
   const history = useHistory();
   const [item, setItem] = useState(defaultItem);
-  const updateTitle = (value) => setItem({ ...item, title: value });
-  const updateImageUrl = (value) => setItem({ ...item, imageUrl: value });
-  const onCategoryChange = (selectedOption) => setItem({ ...item, categories: selectedOption });
-  const onConditionChange = (selectedCondition) => setItem({ ...item, condition: selectedCondition });
-  const onDescriptionChange = (description) => setItem({ ...item, description });
-  const onDailyRentalChange = (price) => setItem({ ...item, rentalDailyPrice: Number(price) });
-  const onDepositChange = (price) => setItem({ ...item, deposit: Number(price) });
-  const onCanBeDeliveredChange = () => setItem({ ...item, canBeDelivered: !item.canBeDelivered });
-  const onDeliveryStartingPriceChange = (price) => setItem({ ...item, deliveryStarting: Number(price) });
-  const onDeliveryAdditionalPriceChange = (price) => setItem({ ...item, deliveryAdditional: Number(price) });
-  const onLocationChange = (location) => setItem({ ...item, location: { address: location } });
+  const updateTitle = (value) => setItem(assoc('title', value, item));
+  const updateImageUrl = (value) => setItem(assoc('imageUrl', value, item));
+  const onCategoryChange = (selectedOption) => setItem(assoc('categories', selectedOption, item));
+  const onConditionChange = (selectedCondition) => setItem(assoc('condition', selectedCondition, item));
+  const onDescriptionChange = (description) => setItem(assoc('description', description, item));
+  const onDailyRentalChange = (price) => setItem(assoc('rentalDailyPrice', Number(price), item));
+  const onDepositChange = (price) => setItem(assoc('deposit', Number(price), item));
+  const onCanBeDeliveredChange = () => setItem(assoc('canBeDelivered', not(item.canBeDelivered), item));
+  const onDeliveryStartingPriceChange = (price) => setItem(assoc('deliveryStarting', Number(price), item));
+  const onDeliveryAdditionalPriceChange = (price) => setItem(assoc('deliveryAdditional', Number(price), item));
+  const onLocationChange = (location) => setItem(assoc('location', { address: location }, item));
   const [uploadImageUrl, setUploadImageUrl] = useState();
 
   const onPostingItem = () => {

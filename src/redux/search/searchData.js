@@ -1,4 +1,4 @@
-import _ from 'lodash';
+import { assoc } from 'ramda';
 import {
   UPDATE_SEARCH_ADDRESS,
   UPDATE_SEARCH_COORDINATES,
@@ -22,27 +22,16 @@ const initialState = {
 };
 
 export default (state = initialState, action) => {
-  const newState = _.cloneDeep(state);
-
   switch (action.type) {
     case UPDATE_SEARCH_COORDINATES:
-      return {
-        ...newState,
-        coordinates: {
-          latitude: action.coordinates.latitude,
-          longitude: action.coordinates.longitude,
-        },
-      };
+      return assoc('coordinates', {
+        latitude: action.coordinates.latitude,
+        longitude: action.coordinates.longitude,
+      }, state);
     case UPDATE_SEARCH_ADDRESS:
-      return {
-        ...newState,
-        address: action.address,
-      };
+      return assoc('address', action.address, state);
     case USE_ADDRESS_FOR_SEARCH:
-      return {
-        ...newState,
-        useAddress: true,
-      };
+      return assoc('useAddress', true, state);
     default:
       return state;
   }

@@ -15,6 +15,8 @@ const PostItemPage = ({
 }) => {
   const titleIsEmpty = () => item.title === '';
 
+  const disableNextButton = () => titleIsEmpty() || item.imageUrl === '';
+
   return (
     <div>
       <PostItemTitleBar hideBackButton title="Post Items" />
@@ -33,7 +35,7 @@ const PostItemPage = ({
           useMyPhotoPath={useMyPhotoPath}
           onLocalImageLoad={onLocalImageLoad}
         />
-        <NextButton destination="/details" />
+        <NextButton destination="/details" disabled={disableNextButton()} />
       </div>
     </div>
   );

@@ -33,7 +33,7 @@ const PostItemDetailPage = ({
       description={item.description}
       onDescriptionChange={onDescriptionChange}
     />
-    <NextButton destination="/price-and-delivery" />
+    <NextButton destination="/price-and-delivery" disabled={item.categories.length === 0} />
   </div>
 );
 

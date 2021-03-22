@@ -22,10 +22,10 @@ const appReducer = combineReducers({
 });
 
 export default (state, action) => {
+  let newState = state;
   if (action.type === USER_LOGOUT) {
-    // eslint-disable-next-line no-param-reassign
-    state = undefined;
+    newState = undefined;
   }
 
-  return appReducer(state, action);
+  return appReducer(newState, action);
 };

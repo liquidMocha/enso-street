@@ -1,6 +1,7 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { isNil, path } from 'ramda';
 import PostItemTitleBar from '../shared/PostItemTitleBar';
 import '../../styles/Input.scss';
 import './PriceAndDelivery.scss';
@@ -10,6 +11,8 @@ import DeliveryFeeInputSection from './DeliveryFeeInputSection';
 import ProgressBar from './ProgressBar';
 import LocationInput from './LocationInput';
 import ColoredButton from '../shared/ColoredButton';
+
+const getAddress = path(['location', 'address']);
 
 const PriceAndDelivery = ({
   item,
@@ -23,7 +26,6 @@ const PriceAndDelivery = ({
     <PostItemTitleBar
       backLink="/details"
       title="Post Items"
-      backLinkState={{ item }}
     />
     <ProgressBar />
     <RentalPriceInputSection
@@ -34,7 +36,7 @@ const PriceAndDelivery = ({
     />
     <LocationInput
       chooseLocationPath="/choose-location"
-      address={item.location.address}
+      address={getAddress(item)}
     />
     <DeliveryToggle
       canBeDelivered={item.canBeDelivered}
@@ -51,13 +53,25 @@ const PriceAndDelivery = ({
       )
       : null}
     <Link to="/preview">
-      <ColoredButton buttonText="Preview" mode="dark" />
+      <ColoredButton buttonText="Preview" mode="dark" disabled={isNil(getAddress(item))} />
     </Link>
   </div>
 );
 
 PriceAndDelivery.propTypes = {
-  item: PropTypes.any,
+  item: PropTypes.shape({
+    deposit: PropTypes.number,
+    rentalDailyPrice: PropTypes.number,
+    location: PropTypes.shape({
+      address: PropTypes.shape({
+        street: PropTypes.string,
+        zipCode: PropTypes.string,
+      }),
+    }),
+    canBeDelivered: PropTypes.bool,
+    deliveryStarting: PropTypes.number,
+    deliveryAdditional: PropTypes.number,
+  }).isRequired,
   onDailyRentalChange: PropTypes.func.isRequired,
   onDepositChange: PropTypes.func.isRequired,
   onCanBeDeliveredChange: PropTypes.func.isRequired,
