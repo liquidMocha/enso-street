@@ -40,7 +40,7 @@
     "http-proxy-middleware": "^0.20.0",
     "identity-obj-proxy": "3.0.0",
     "is-wsl": "^1.1.0",
-    "jest": "24.8.0",
+    "jest": "25.0.0",
     "jest-environment-jsdom-fourteen": "0.1.0",
     "jest-resolve": "24.8.0",
     "jest-watch-typeahead": "0.3.1",
